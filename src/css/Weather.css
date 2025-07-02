@@ -307,3 +307,19 @@
     grid-area: related;
     overflow: hidden;
 }
+
+.effects-list {
+  list-style: none;
+  padding-left: 0;
+}
+.effects-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin: .5em 2em;
+}
+.effect-bullet {
+  width: 1.5em;
+  height: 1.5em;
+  flex-shrink: 0;
+}

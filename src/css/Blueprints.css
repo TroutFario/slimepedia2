@@ -47,7 +47,7 @@
 }
 
 .grow-in-out {
-    animation: grow-in-out var(--animation-speed) ease-in-out !important;
+    animation: grow-in-out var(--animation-speed) ease-in-out;
 }
 
 .add-to-cart {

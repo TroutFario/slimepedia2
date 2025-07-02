@@ -20,17 +20,17 @@ export const weatherID: string[] = [
     'sf'
 ];
 
-export const weatherList: { [key in Weather]: [string, string, string, string, string[], Weather | null, string[], boolean] } = {
-    [Weather.Clear]: ['Clear Skies', 'se', 'Select a weather to get it\'s informations', '', [], null, [], false],
-    [Weather.Rain]: ['Rain', 'ra', 'Moody, dreary, cozy, wonderful', 'That\'s wet !', [], null, ['co', 'rf', 'ss', 'ev', 'gl'], true],
-    [Weather.Snow]: ['Snow', 'sn', 'Walking in a wiggly wonderland', 'That\'s cold !', [], null, ['pb'], false],
-    [Weather.Thunder]: ['Thunderstorm', 'ls', 'Hair-raising, if slimes had hair', 'That\'s loud !', [], Weather.Lightning, ['co', 'rf', 'ss', 'ev', 'pb'], false],
-    [Weather.Lightning]: ['Lightning Strike', 'ls', 'When nature means business', 'That\'s bright !', ['mote', 'glass'], Weather.Thunder, ['co', 'rf', 'ss', 'ev', 'pb'], true],
-    [Weather.Wind]: ['Wind', 'ws', 'Hold on to your plorts!', 'That\'s windy !', [], Weather.Cyclone, ['co', 'rf', 'ss', 'ev', 'pb'], false],
-    [Weather.Cyclone]: ['Cyclone', 'ws', 'Dizzy as a dervish', 'That\'s spinning !', ['dervish', 'drift'], Weather.Wind, ['co', 'rf', 'ss', 'ev', 'pb'], true],
-    [Weather.Pollen]: ['Pollen', 'ps', 'ah- ah- AH- AHLUVSLIMES!', 'That\'s sneezy !', [], Weather.Vine, ['co', 'rf', 'ss', 'ev', 'gl'], false],
-    [Weather.Vine]: ['Vine Tangle', 'ps', 'Getting to the root of the pollen', 'That\'s thorny !', ['tangle'], Weather.Pollen, ['co', 'rf', 'ss', 'ev', 'gl'], true],
-    [Weather.Slimefall]: ['Slimefall', 'sf', 'Oh come on...', 'That\'s slimy !', ['slimes'], null, ['co', 'rf', 'ss', 'ev', 'pb'], false]
+export const weatherList: { [key in Weather]: [string, string, string, string, string[], Weather | null, string[], boolean, [string, string][]] } = {
+    [Weather.Clear]: ['Clear Skies', 'se', 'Select a weather to get it\'s informations', '', [], null, [], false, []],
+    [Weather.Rain]: ['Rain', 'ra', 'Moody, dreary, cozy, wonderful', 'That\'s wet !', [], null, ['co', 'rf', 'ss', 'ev', 'gl'], true, [['buildings/sprinkler', 'Crops grows faster'], ['slimes/tarr', 'Tarrs are automatically removed'], ['slimes/sloomber', 'Slimes are less agitated'], ['slimes/puddle', 'Puddle Slimes can live on land']]],
+    [Weather.Snow]: ['Snow', 'sn', 'Walking in a wiggly wonderland', 'That\'s cold !', [], null, ['pb'], false, [['resources/snowball', 'Snowballs can be picked up for a snowball fight']]],
+    [Weather.Thunder]: ['Thunderstorm', 'ls', 'Hair-raising, if slimes had hair', 'That\'s loud !', [], Weather.Lightning, ['co', 'rf', 'ss', 'ev', 'pb'], false, [['resources/mote', 'Thunder can be heard in the distance']]],
+    [Weather.Lightning]: ['Lightning Strike', 'ls', 'When nature means business', 'That\'s bright !', ['mote', 'glass'], Weather.Thunder, ['co', 'rf', 'ss', 'ev', 'pb'], true, [['resources/glass', 'Storm Glass and Lightning Mote can be found where lightning strikes'], ['misc/energy', 'Energy is boosted when struck by lightning']]],
+    [Weather.Wind]: ['Wind', 'ws', 'Hold on to your plorts!', 'That\'s windy !', [], Weather.Cyclone, ['co', 'rf', 'ss', 'ev', 'pb'], false, [['world/wind', 'Wind can push items and slimes around']]],
+    [Weather.Cyclone]: ['Cyclone', 'ws', 'Dizzy as a dervish', 'That\'s spinning !', ['dervish', 'drift'], Weather.Wind, ['co', 'rf', 'ss', 'ev', 'pb'], true, [['resources/drift', 'Drift Crystal can be found in Cyclones'], ['slimes/dervish', 'Dervish Slimes can spawn from Cyclones']]],
+    [Weather.Pollen]: ['Pollen', 'ps', 'ah- ah- AH- AHLUVSLIMES!', 'That\'s sneezy !', [], Weather.Vine, ['co', 'rf', 'ss', 'ev', 'gl'], false, [['world/pollen', 'Pollen can be found in the air']]],
+    [Weather.Vine]: ['Vine Tangle', 'ps', 'Getting to the root of the pollen', 'That\'s thorny !', ['tangle'], Weather.Pollen, ['co', 'rf', 'ss', 'ev', 'gl'], true, [['world/vine', 'Vines will grow on rock faces'], ['slimes/tangle', 'Tangle Slimes can spawn from Vines']]],
+    [Weather.Slimefall]: ['Slimefall', 'sf', 'Oh come on...', 'That\'s slimy !', ['slimes'], null, ['co', 'rf', 'ss', 'ev', 'pb'], false, [['slimes/pink', 'Pink Slimes will fall from the sky among others in specific regions:'], ['world/valley', 'Rock and Tabby Slimes will fall from the sky in the Ember Valley'], ['world/strand', 'Angler and Honey Slimes will fall from the sky in the Starlight Strand'], ['world/bluffs', 'Cotton and Saber Slimes will fall from the sky in the Powderfall Bluffs']]]
 };
 
 export const weatherPedia: { [key: string]: string } = {

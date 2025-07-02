@@ -15,6 +15,11 @@
     align-items: center;
     gap: 0;
     box-sizing: border-box;
+    padding-left: 0;
+    transition:
+        background-color var(--animation-speed) var(--animation-function),
+        max-width var(--animation-speed) var(--animation-function),
+        padding-left var(--animation-speed) var(--animation-function);
 }
 
 .region-music-player>div,
@@ -29,7 +34,7 @@
     height: 100%;
     overflow-x: auto;
     overflow-y: hidden;
-    padding-right: var(--border-size);
+    border-radius: 100vw;
     transition:
         background-color var(--animation-speed) var(--animation-function),
         max-width var(--animation-speed) var(--animation-function),
@@ -50,7 +55,6 @@
 
 .region-music-player.disabled>div {
     max-width: 0;
-    padding-right: 0;
 }
 
 .region-music-player.disabled {

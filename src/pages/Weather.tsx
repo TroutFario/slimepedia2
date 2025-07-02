@@ -122,7 +122,18 @@ export const WeatherPage: React.FC = () => {
                 <div className={"weather-info-content" + (panel ? "" : " weather-content-hidden")}>
                     <div className="weather-box effects-box">
                         <h2 className='weather-box-title'>Effects</h2>
-                        <p>WIP</p>
+                        <ul className="effects-list">
+                            {weatherList[weather][8].map(([iconPath, effect], index) => (
+                                <li key={iconPath + index}>
+                                    <img
+                                        src={`/assets/${iconPath}.png`}
+                                        alt=""
+                                        className="effect-bullet"
+                                    />
+                                    {effect}
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                     <div className="weather-box related-weater-box">
                         <h2 className='weather-box-title'>Related Weather</h2>
