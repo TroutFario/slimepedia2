@@ -1,311 +1,311 @@
 .weather-list,
 .weather-info {
-    margin: 0;
-    background-color: var(--menu-color-1);
-    border-radius: var(--border-size);
-    padding: var(--border-size);
+  margin: 0;
+  background-color: var(--menu-color-1);
+  border-radius: var(--border-size);
+  padding: var(--border-size);
 }
 
 .weather-list {
-    padding: var(--border-size);
-    flex: 0 0 auto;
-    aspect-ratio: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: var(--border-size);
-    overflow: clip;
+  padding: var(--border-size);
+  flex: 0 0 auto;
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: var(--border-size);
+  overflow: clip;
 }
 
 .weather-element {
-    position: relative;
-    background-color: var(--item-color);
-    border-radius: var(--border-size);
-    overflow: clip;
-    z-index: 3;
+  position: relative;
+  background-color: var(--item-color);
+  border-radius: var(--border-size);
+  overflow: clip;
+  z-index: 3;
 }
 
-.weather-element>*:not(video) {
-    z-index: 3;
+.weather-element > *:not(video) {
+  z-index: 3;
 }
 
 .weather-element-title {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 5px 0;
-    background-color: var(--item-color);
-    border-radius: var(--border-size) var(--border-size) 0 0;
-    transform: translateY(0);
-    transform-origin: top;
-    transition:
-        background-color var(--animation-speed) var(--animation-function),
-        transform var(--animation-speed) var(--animation-function);
-    z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 0;
+  background-color: var(--item-color);
+  border-radius: var(--border-size) var(--border-size) 0 0;
+  transform: translateY(0);
+  transform-origin: top;
+  transition:
+    background-color var(--animation-speed) var(--animation-function),
+    transform var(--animation-speed) var(--animation-function);
+  z-index: 3;
 }
 
-.weather-element.selected>.weather-element-title,
-.weather-element:hover>.weather-element-title {
-    transform: translateY(-100%);
+.weather-element.selected > .weather-element-title,
+.weather-element:hover > .weather-element-title {
+  transform: translateY(-100%);
 }
 
-.weather-element-title>h1 {
-    font-size: 1rem;
-    font-weight: 700;
+.weather-element-title > h1 {
+  font-size: 1rem;
+  font-weight: 700;
 }
 
-.weather-element>img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: auto;
-    height: 70%;
-    transform: translate(-50%, -50%) scale(1);
-    transform-origin: center;
-    transition: transform var(--animation-speed) var(--animation-function);
+.weather-element > img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: 70%;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center;
+  transition: transform var(--animation-speed) var(--animation-function);
 }
 
-.weather-element.selected>img,
-.weather-element:hover>img {
-    transform: translate(-50%, -50%) scale(1.2);
+.weather-element.selected > img,
+.weather-element:hover > img {
+  transform: translate(-50%, -50%) scale(1.2);
 }
 
-.weather-element>h1 {
-    flex: 0 0 auto;
-    font-size: 1vh;
-    font-weight: 700;
+.weather-element > h1 {
+  flex: 0 0 auto;
+  font-size: 1vh;
+  font-weight: 700;
 }
 
-.weather-element>video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: auto;
-    height: 100%;
-    z-index: 1;
-    filter: opacity(0) blur(10px);
-    transform: translate(-50%, -50%) scale(1);
-    transform-origin: center;
-    transition:
-        filter var(--animation-speed) var(--animation-function),
-        transform var(--animation-speed) var(--animation-function);
+.weather-element > video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  z-index: 1;
+  filter: opacity(0) blur(10px);
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center;
+  transition:
+    filter var(--animation-speed) var(--animation-function),
+    transform var(--animation-speed) var(--animation-function);
 }
 
-.weather-element.selected>video,
-.weather-element:hover>video {
-    filter: opacity(1) blur(0);
-    transform: translate(-50%, -50%) scale(1.2);
+.weather-element.selected > video,
+.weather-element:hover > video {
+  filter: opacity(1) blur(0);
+  transform: translate(-50%, -50%) scale(1.2);
 }
 
 .weather-info {
-    flex: 1 1 auto;
-    grid-area: main;
-    position: relative;
-    border-radius: var(--border-size);
-    padding: var(--border-size);
-    gap: var(--border-size);
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas:
-        "title"
-        "content";
-    overflow: hidden;
+  flex: 1 1 auto;
+  grid-area: main;
+  position: relative;
+  border-radius: var(--border-size);
+  padding: var(--border-size);
+  gap: var(--border-size);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "title"
+    "content";
+  overflow: hidden;
 }
 
 .top-buttons {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: calc(1vh + var(--border-size));
-    width: fit-content;
-    height: fit-content;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: calc(1vh + var(--border-size));
+  width: fit-content;
+  height: fit-content;
 }
 
-.top-buttons>div {
-    position: relative;
-    display: flex;
-    flex-flow: row-reverse nowrap;
-    gap: 1vw;
-    z-index: 10;
+.top-buttons > div {
+  position: relative;
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  gap: 1vw;
+  z-index: 10;
 }
 
-.top-buttons>div>button>img {
-    position: relative;
-    width: auto;
-    height: 5vh;
-    transform: scale(1);
-    transition:
-        transform var(--animation-speed) var(--animation-function),
-        filter var(--animation-speed) var(--animation-function);
-    z-index: 10;
+.top-buttons > div > button > img {
+  position: relative;
+  width: auto;
+  height: 5vh;
+  transform: scale(1);
+  transition:
+    transform var(--animation-speed) var(--animation-function),
+    filter var(--animation-speed) var(--animation-function);
+  z-index: 10;
 }
 
-.top-buttons>div>button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+.top-buttons > div > button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
-.music-player>img {
-    filter: grayscale(1)
+.music-player > img {
+  filter: grayscale(1);
 }
 
-.music-played>img,
-.top-buttons>div>button:hover>img:hover {
-    transform: scale(1.2);
-    filter: grayscale(0);
+.music-played > img,
+.top-buttons > div > button:hover > img:hover {
+  transform: scale(1.2);
+  filter: grayscale(0);
 }
 
-.weather-list>a {
-    color: var(--text-color);
+.weather-list > a {
+  color: var(--text-color);
 }
 
-.weather-info>*:not(video) {
-    z-index: 2;
+.weather-info > *:not(video) {
+  z-index: 2;
 }
 
 .weather-info-title {
-    grid-area: title;
-    display: grid;
-    grid-template-columns: auto auto 1fr;
-    grid-template-rows: auto auto 1fr;
-    grid-template-areas:
-        "icon title"
-        "icon description"
-        "icon pedia";
-    column-gap: var(--border-size);
-    color: white;
-    transform: translateY(0);
-    transition: transform var(--animation-speed) var(--animation-function);
+  grid-area: title;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "icon title"
+    "icon description"
+    "icon pedia";
+  column-gap: var(--border-size);
+  color: white;
+  transform: translateY(0);
+  transition: transform var(--animation-speed) var(--animation-function);
 }
 
-.weather-info-title>h1,
-.weather-info-title>h2,
-.weather-info-title>p {
-    text-shadow: var(--text-shadow);
+.weather-info-title > h1,
+.weather-info-title > h2,
+.weather-info-title > p {
+  text-shadow: var(--text-shadow);
 }
 
 .weather-title-hidden {
-    transform: translateY(calc(-100% - var(--border-size)));
+  transform: translateY(calc(-100% - var(--border-size)));
 }
 
 .weather-info-content {
-    grid-area: content;
-    display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
-    grid-template-rows: 1fr 1fr;
-    gap: var(--border-size);
-    grid-template-areas:
-        "effects effects spawn"
-        "slimes related spawn";
-    overflow: hidden;
-    transform: translateY(0);
-    transition: transform var(--animation-speed) var(--animation-function);
+  grid-area: content;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-rows: 1fr 1fr;
+  gap: var(--border-size);
+  grid-template-areas:
+    "effects effects spawn"
+    "slimes related spawn";
+  overflow: hidden;
+  transform: translateY(0);
+  transition: transform var(--animation-speed) var(--animation-function);
 }
 
 .weather-content-hidden {
-    transform: translateY(calc(100% + var(--border-size)));
+  transform: translateY(calc(100% + var(--border-size)));
 }
 
-.weather-info>video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: auto;
-    height: auto;
-    object-fit: cover;
-    transform: translate(-50%, -50%);
-    z-index: 1;
+.weather-info > video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
-.weather-info-title>*:not(video) {
-    z-index: 3;
+.weather-info-title > *:not(video) {
+  z-index: 3;
 }
 
-.weather-info-title>img {
-    grid-area: icon;
-    width: 12vw;
-    height: auto;
-    object-fit: cover;
+.weather-info-title > img {
+  grid-area: icon;
+  width: 12vw;
+  height: auto;
+  object-fit: cover;
 }
 
-.weather-info-title>h1 {
-    grid-area: title;
-    font-size: 5rem;
-    font-weight: 700;
-    text-align: left;
+.weather-info-title > h1 {
+  grid-area: title;
+  font-size: 5rem;
+  font-weight: 700;
+  text-align: left;
 }
 
-.weather-info-title>h2 {
-    grid-area: description;
-    font-size: 3rem;
-    font-style: italic;
-    font-weight: 500;
-    text-align: left;
+.weather-info-title > h2 {
+  grid-area: description;
+  font-size: 3rem;
+  font-style: italic;
+  font-weight: 500;
+  text-align: left;
 }
 
-.weather-info-title>p {
-    grid-area: pedia;
-    font-size: 1.5rem;
-    font-weight: 400;
-    text-align: justify;
+.weather-info-title > p {
+  grid-area: pedia;
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-align: justify;
 }
 
 .weather-box {
-    padding-top: calc(var(--ranch-pedia-size) + var(--border-size));
-    position: relative;
-    display: flex;
-    flex-flow: row nowrap;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--item-color);
-    border-radius: var(--border-size);
+  padding-top: calc(var(--ranch-pedia-size) + var(--border-size));
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--item-color);
+  border-radius: var(--border-size);
 }
 
 .weather-box-title {
-    margin: 0 0;
-    position: absolute;
-    top: .5vh;
-    left: 10px;
-    font-size: var(--ranch-pedia-size);
-    font-weight: normal;
-    font-style: italic;
+  margin: 0 0;
+  position: absolute;
+  top: 0.5vh;
+  left: 10px;
+  font-size: var(--ranch-pedia-size);
+  font-weight: normal;
+  font-style: italic;
 }
 
-.weather-box>img,
-.weather-box>a>img {
-    width: auto;
-    height: 8vh;
-    object-fit: cover;
-    transform: scale(1.3);
-    transition: transform var(--animation-speed) var(--animation-function);
+.weather-box > img,
+.weather-box > a > img {
+  width: auto;
+  height: 8vh;
+  object-fit: cover;
+  transform: scale(1.3);
+  transition: transform var(--animation-speed) var(--animation-function);
 }
 
-.weather-box>a:hover>img {
-    transform: scale(1.7);
+.weather-box > a:hover > img {
+  transform: scale(1.7);
 }
 
 .effects-box {
-    grid-area: effects;
-    overflow: hidden;
+  grid-area: effects;
+  overflow: hidden;
 }
 
 .spawning-slimes-box {
-    grid-area: slimes;
-    display: flex;
-    flex-flow: row nowrap;
-    gap: var(--border-size);
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+  grid-area: slimes;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: var(--border-size);
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .related-weather-box {
-    grid-area: related;
-    overflow: hidden;
+  grid-area: related;
+  overflow: hidden;
 }
 
 .effects-list {
@@ -316,7 +316,7 @@
   display: flex;
   align-items: center;
   gap: 0.5em;
-  margin: .5em 2em;
+  margin: 0.5em 2em;
 }
 .effect-bullet {
   width: 1.5em;

@@ -1,8 +1,8 @@
-import React, { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App'
+import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
 
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById("root");
 if (rootElement) {
   createRoot(rootElement).render(
     <StrictMode>
@@ -10,5 +10,5 @@ if (rootElement) {
     </StrictMode>,
   );
 } else {
-  console.error('Failed to find the root element');
+  console.error("Failed to find the root element");
 }

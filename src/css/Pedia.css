@@ -1,399 +1,401 @@
 .list-slime [data-overlayscrollbars-contents],
 .list-food [data-overlayscrollbars-contents] {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .list-slime,
 .list-food {
-    padding: 10px;
-    background-color: var(--menu-color-1);
-    border-radius: var(--border-size);
-    transition:
-        width var(--animation-speed) var(--animation-function),
-        border-radius var(--animation-speed) var(--animation-function),
-        background-color var(--animation-speed) var(--animation-function);
+  padding: 10px;
+  background-color: var(--menu-color-1);
+  border-radius: var(--border-size);
+  transition:
+    width var(--animation-speed) var(--animation-function),
+    border-radius var(--animation-speed) var(--animation-function),
+    background-color var(--animation-speed) var(--animation-function);
 }
 
 .list-food-first {
-    border-top-left-radius: 0;
+  border-top-left-radius: 0;
 }
 
 .list-food-last {
-    border-top-right-radius: 0;
+  border-top-right-radius: 0;
 }
 
 @media screen and (max-width: 1600px) {
-
-    .list-slime [data-overlayscrollbars-contents],
-    .list-food [data-overlayscrollbars-contents] {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-
+  .list-slime [data-overlayscrollbars-contents],
+  .list-food [data-overlayscrollbars-contents] {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 @media screen and (max-width: 1200px) {
-
-    .list-slime [data-overlayscrollbars-contents],
-    .list-food [data-overlayscrollbars-contents] {
-        grid-template-columns: 1fr 1fr;
-    }
-
+  .list-slime [data-overlayscrollbars-contents],
+  .list-food [data-overlayscrollbars-contents] {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .list-slime {
-    flex: 0 0 auto;
+  flex: 0 0 auto;
 }
 
 .list-food {
-    margin: 0;
+  margin: 0;
 }
 
 .slime-presentation {
-    flex-grow: 2;
-    width: 100%;
-    position: relative;
-    display: flex;
-    flex-flow: column nowrap;
-    border-radius: var(--border-size);
-    background-color: var(--menu-color-1);
-    padding: var(--border-size);
+  flex-grow: 2;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  border-radius: var(--border-size);
+  background-color: var(--menu-color-1);
+  padding: var(--border-size);
 }
 
 .pedia-infos {
-    display: grid;
-    overflow: hidden;
-    height: 100%;
-    transition:
-        height var(--animation-speed) var(--animation-function),
-        padding var(--animation-speed) var(--animation-function);
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: var(--border-size);
+  display: grid;
+  overflow: hidden;
+  height: 100%;
+  transition:
+    height var(--animation-speed) var(--animation-function),
+    padding var(--animation-speed) var(--animation-function);
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--border-size);
 }
 
 .slime-infos {
-    grid-template-rows: auto auto 1fr;
-    grid-template-areas:
-        "image food fav"
-        "image largo toy"
-        "image spawn spawn";
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "image food fav"
+    "image largo toy"
+    "image spawn spawn";
 }
 
 .food-infos {
-    grid-template-rows: auto 1fr;
-    grid-template-areas:
-        "image type fav"
-        "image spawn spawn";
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "image type fav"
+    "image spawn spawn";
 }
 
 .pedia-infos.hidden-infos {
-    height: 0;
-    padding: 0;
+  height: 0;
+  padding: 0;
 }
 
 .image-title {
-    position: relative;
-    background-color: var(--item-color);
-    border-radius: var(--border-size);
-    padding: var(--border-size);
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-    gap: 10px;
-    grid-area: image;
+  position: relative;
+  background-color: var(--item-color);
+  border-radius: var(--border-size);
+  padding: var(--border-size);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 10px;
+  grid-area: image;
 }
 
-.info-title>h1,
-.info-title>h2 {
-    margin: 10px;
+.info-title > h1,
+.info-title > h2 {
+  margin: 10px;
 }
 
-.info-title>h1 {
-    font-size: 2.5em;
-    font-weight: bold;
+.info-title > h1 {
+  font-size: 2.5em;
+  font-weight: bold;
 }
 
-.info-title>h2 {
-    font-size: 1.3em;
-    font-weight: normal;
-    font-style: italic;
+.info-title > h2 {
+  font-size: 1.3em;
+  font-weight: normal;
+  font-style: italic;
 }
 
 .image-container {
-    position: relative;
-    max-width: 100%;
-    max-height: 100%;
-    overflow: hidden;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .img-plort {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 10vh;
-    height: auto;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 10vh;
+  height: auto;
 }
 
 .img-main {
-    bottom: var(--border-size);
-    left: 50%;
-    max-width: auto;
-    max-height: 80%;
+  bottom: var(--border-size);
+  left: 50%;
+  max-width: auto;
+  max-height: 80%;
 }
 
-.infos-box>div>p {
-    margin: 10px 0;
-    text-align: justify;
-    line-height: 1;
-    font-size: 1.5em;
+.infos-box > div > p {
+  margin: 10px 0;
+  text-align: justify;
+  line-height: 1;
+  font-size: 1.5em;
 }
 
 .box-food {
-    grid-area: food;
+  grid-area: food;
 }
 
 .box-fav {
-    grid-area: fav;
+  grid-area: fav;
 }
 
 .link-to-food {
-    cursor: var(--pointer-style);
-    transition:
-        color var(--animation-speed) var(--animation-function),
-        background-color var(--animation-speed) var(--animation-function),
-        border-radius var(--animation-speed) var(--animation-function);
+  cursor: var(--pointer-style);
+  transition:
+    color var(--animation-speed) var(--animation-function),
+    background-color var(--animation-speed) var(--animation-function),
+    border-radius var(--animation-speed) var(--animation-function);
 }
 
 .link-to-food:hover {
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
-.link-to-food>img {
-    transition: transform var(--animation-speed) var(--animation-function);
+.link-to-food > img {
+  transition: transform var(--animation-speed) var(--animation-function);
 }
 
 .link-to-food:hover h3,
 .link-to-food:hover h4 {
-    color: var(--link-color);
+  color: var(--link-color);
 }
 
-.link-to-food:hover>img {
-    transform: scale(1.2);
+.link-to-food:hover > img {
+  transform: scale(1.2);
 }
 
 .box-largo {
-    grid-area: largo;
+  grid-area: largo;
 }
 
 .box-toy {
-    grid-area: toy;
+  grid-area: toy;
 }
 
 .newbuck {
-    width: 15px;
-    height: 15px;
-    margin-left: 10px;
-    margin-top: 0;
+  width: 15px;
+  height: 15px;
+  margin-left: 10px;
+  margin-top: 0;
 }
 
 .arrow-btn {
-    --btn-size: 2em;
-    width: fit-content;
-    height: fit-content;
-    background-color: transparent;
-    position: absolute;
-    left: calc(50% - var(--btn-size) / 4);
-    transition: all var(--animation-speed) var(--animation-function);
-    z-index: 10;
-    cursor: var(--pointer-style);
+  --btn-size: 2em;
+  width: fit-content;
+  height: fit-content;
+  background-color: transparent;
+  position: absolute;
+  left: calc(50% - var(--btn-size) / 4);
+  transition: all var(--animation-speed) var(--animation-function);
+  z-index: 10;
+  cursor: var(--pointer-style);
 }
 
-.arrow-btn:hover>svg {
-    fill: #888;
+.arrow-btn:hover > svg {
+  fill: #888;
 }
 
-.arrow-btn>svg {
-    fill: var(--text-color);
-    width: var(--btn-size);
-    height: auto;
-    transition: fill var(--animation-speed) var(--animation-function);
+.arrow-btn > svg {
+  fill: var(--text-color);
+  width: var(--btn-size);
+  height: auto;
+  transition: fill var(--animation-speed) var(--animation-function);
 }
 
 .top-btn {
-    bottom: 100%;
-    transform: translate(-50%, 50%) rotate(180deg);
+  bottom: 100%;
+  transform: translate(-50%, 50%) rotate(180deg);
 }
 
 .bot-btn {
-    bottom: 0;
-    transform: translate(-50%, 50%) rotate(0deg);
+  bottom: 0;
+  transform: translate(-50%, 50%) rotate(0deg);
 }
 
 .desc {
-    background-color: var(--item-color);
-    flex-grow: 10;
-    margin: 0;
-    border-radius: var(--border-size);
-    height: 100%;
-    padding: var(--border-size);
-    transition:
-        height var(--animation-speed) var(--animation-function),
-        padding var(--animation-speed) var(--animation-function);
-    overflow: auto;
-    text-align: justify;
-    font-size: var(--border-size);
+  background-color: var(--item-color);
+  flex-grow: 10;
+  margin: 0;
+  border-radius: var(--border-size);
+  height: 100%;
+  padding: var(--border-size);
+  transition:
+    height var(--animation-speed) var(--animation-function),
+    padding var(--animation-speed) var(--animation-function);
+  overflow: auto;
+  text-align: justify;
+  font-size: var(--border-size);
 }
 
-.desc>p:last-child {
-    padding-bottom: 0;
+.desc > p:last-child {
+  padding-bottom: 0;
 }
 
 .desc-title {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    gap: 10px;
-    padding: 2px 5px;
-    height: fit-content;
-    border-radius: 1000px;
-    background-color: #45537A;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 10px;
+  padding: 2px 5px;
+  height: fit-content;
+  border-radius: 1000px;
+  background-color: #45537a;
 }
 
-.desc-title>img {
-    height: 1.8em;
-    width: auto;
+.desc-title > img {
+  height: 1.8em;
+  width: auto;
 }
 
-.desc-title>h3 {
-    font-size: 1.5em;
-    color: white;
-    margin: 0;
+.desc-title > h3 {
+  font-size: 1.5em;
+  color: white;
+  margin: 0;
 }
 
-.desc>p {
-    font-size: 1.5em;
-    margin: 0;
-    overflow: hidden;
-    height: fit-content;
-    padding: var(--border-size);
+.desc > p {
+  font-size: 1.5em;
+  margin: 0;
+  overflow: hidden;
+  height: fit-content;
+  padding: var(--border-size);
 }
 
 br {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .hidden-desc {
-    height: 0;
-    padding: 0 var(--border-size);
-    margin: 0;
-    overflow: hidden;
+  height: 0;
+  padding: 0 var(--border-size);
+  margin: 0;
+  overflow: hidden;
 }
 
 .list-container {
-    flex: 0 0 auto;
-    width: fit-content;
-    border-radius: var(--border-size);
-    overflow: hidden;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: start;
-    gap: 0;
+  flex: 0 0 auto;
+  width: fit-content;
+  border-radius: var(--border-size);
+  overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  gap: 0;
 }
 
 .food-tabs,
 .items-tabs {
-    height: fit-content;
-    flex: 0 0 auto;
-    display: grid;
-    grid-template-rows: 1fr;
-    gap: var(--border-size);
-    padding: 0;
-    width: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
+  height: fit-content;
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-rows: 1fr;
+  gap: var(--border-size);
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .food-tabs {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
 .items-tabs {
-    grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .presentation {
-    width: 100%;
-    height: 100%;
-    max-height: 100%;
-    transition:
-        background-color var(--animation-speed) var(--animation-function),
-        height var(--animation-speed) var(--animation-function);
-    overflow: hidden;
-    position: relative;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: var(--border-size);
-    padding: var(--border-size);
-    background-color: var(--menu-color-1);
-    border-radius: var(--border-size);
-    box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  transition:
+    background-color var(--animation-speed) var(--animation-function),
+    height var(--animation-speed) var(--animation-function);
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--border-size);
+  padding: var(--border-size);
+  background-color: var(--menu-color-1);
+  border-radius: var(--border-size);
+  box-sizing: border-box;
 }
 
 .presentation-resources {
-    grid-template-rows: auto 1fr;
-    grid-template-areas:
-        "image desc desc"
-        "image spawn spawn";
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "image desc desc"
+    "image spawn spawn";
 }
 
 .presentation-toys {
-    grid-template-rows: auto auto 1fr;
-    grid-template-areas:
-        "image desc desc"
-        "image price fav"
-        "image spawn spawn";
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "image desc desc"
+    "image price fav"
+    "image spawn spawn";
 }
 
 .food-type {
-    grid-area: type;
+  grid-area: type;
 }
 
 .food-fav {
-    grid-area: fav;
-    cursor: var(--pointer-style);
+  grid-area: fav;
+  cursor: var(--pointer-style);
 }
 
 .spawn-list-container {
-    grid-area: spawn;
+  grid-area: spawn;
 }
 
 .infos-box {
-    grid-area: desc;
+  grid-area: desc;
 }
 
 .toy {
-    overflow: hidden;
-    height: 100%;
-    transition: height var(--animation-speed) var(--animation-function),
-        margin var(--animation-speed) var(--animation-function),
-        padding var(--animation-speed) var(--animation-function);
+  overflow: hidden;
+  height: 100%;
+  transition:
+    height var(--animation-speed) var(--animation-function),
+    margin var(--animation-speed) var(--animation-function),
+    padding var(--animation-speed) var(--animation-function);
 }
 
 .toy-price {
-    grid-area: price;
+  grid-area: price;
 }
 
 .toy-fav {
-    grid-area: fav;
+  grid-area: fav;
 }
 
 .toy-hide {
-    display: none;
+  display: none;
+}
+
+
+.no-image {
+  visibility: hidden;
 }

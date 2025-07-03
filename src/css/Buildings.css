@@ -1,289 +1,289 @@
 .buildings-list {
-    display: grid;
-    margin: 0;
-    padding: 10px;
-    border-radius: var(--border-size);
-    background-color: var(--menu-color-1);
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    min-width: fit-content;
-    overflow-x: hidden;
-    overflow-y: auto;
+  display: grid;
+  margin: 0;
+  padding: 10px;
+  border-radius: var(--border-size);
+  background-color: var(--menu-color-1);
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  min-width: fit-content;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .building-presentation {
-    height: 100%;
-    display: grid;
-    gap: var(--border-size);
-    grid-template-columns: minmax(0, 2fr) 1fr 1fr;
-    grid-template-rows: 2fr auto 2fr auto;
-    grid-template-areas:
-        "title desc desc"
-        "title cost use"
-        "title upgrade upgrade"
-        "upgrade-list upgrade upgrade";
+  height: 100%;
+  display: grid;
+  gap: var(--border-size);
+  grid-template-columns: minmax(0, 2fr) 1fr 1fr;
+  grid-template-rows: 2fr auto 2fr auto;
+  grid-template-areas:
+    "title desc desc"
+    "title cost use"
+    "title upgrade upgrade"
+    "upgrade-list upgrade upgrade";
 }
 
 .building-title {
-    grid-area: title;
-    z-index: 12;
-    margin: 0;
-    padding: 10px;
-    border-radius: var(--border-size);
-    background-color: var(--menu-color-1);
+  grid-area: title;
+  z-index: 12;
+  margin: 0;
+  padding: 10px;
+  border-radius: var(--border-size);
+  background-color: var(--menu-color-1);
 }
 
-.building-title>h1 {
-    font-size: 4em;
-    font-weight: bold;
+.building-title > h1 {
+  font-size: 4em;
+  font-weight: bold;
 }
 
-.building-title>h2 {
-    font-size: 2em;
-    height: 2lh;
-    font-weight: normal;
-    font-style: italic;
+.building-title > h2 {
+  font-size: 2em;
+  height: 2lh;
+  font-weight: normal;
+  font-style: italic;
 }
 
-.building-title>img {
-    width: auto;
-    height: 65%;
+.building-title > img {
+  width: auto;
+  height: 65%;
 }
 
 .building-description {
-    grid-area: desc;
-    margin: 0;
-    padding: 10px;
-    border-radius: var(--border-size);
-    background-color: var(--menu-color-1);
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    gap: var(--border-size)
+  grid-area: desc;
+  margin: 0;
+  padding: 10px;
+  border-radius: var(--border-size);
+  background-color: var(--menu-color-1);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: var(--border-size);
 }
 
-.building-description>p {
-    font-size: 1em;
-    font-weight: normal;
-    font-style: normal;
-    text-align: justify;
+.building-description > p {
+  font-size: 1em;
+  font-weight: normal;
+  font-style: normal;
+  text-align: justify;
 }
 
-.building-description>img {
-    width: 8vh;
-    height: auto;
+.building-description > img {
+  width: 8vh;
+  height: auto;
 }
 
 .little-box-buildings {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--border-size);
-    background-color: var(--menu-color-1);
-    padding: var(--border-size);
-    border-radius: var(--border-size);
-    height: fit-content;
-    grid-area: info;
-    overflow: hidden;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--border-size);
+  background-color: var(--menu-color-1);
+  padding: var(--border-size);
+  border-radius: var(--border-size);
+  height: fit-content;
+  grid-area: info;
+  overflow: hidden;
 }
 
-.little-box-buildings>img {
-    width: 50px;
-    height: 50px;
+.little-box-buildings > img {
+  width: 50px;
+  height: 50px;
 }
 
-.little-box-buildings>div {
-    width: 100%;
+.little-box-buildings > div {
+  width: 100%;
 }
 
-.little-box-buildings>div>h3,
-.little-box-buildings>div>h4 {
-    text-align: left;
-    margin: 0;
+.little-box-buildings > div > h3,
+.little-box-buildings > div > h4 {
+  text-align: left;
+  margin: 0;
 }
 
-.little-box-buildings>div>h3 {
-    font-size: var(--small-text-size);
-    font-weight: 700;
+.little-box-buildings > div > h3 {
+  font-size: var(--small-text-size);
+  font-weight: 700;
 }
 
-.little-box-buildings>div>h4 {
-    font-size: 1em;
-    font-weight: 500;
+.little-box-buildings > div > h4 {
+  font-size: 1em;
+  font-weight: 500;
 }
 
 .building-cost {
-    grid-area: cost;
+  grid-area: cost;
 }
 
 .building-use {
-    grid-area: use;
+  grid-area: use;
 }
 
 .upgrade-list {
-    position: relative;
-    grid-area: upgrade-list;
-    margin: 0 calc(-1 * var(--border-size)) 0 0;
-    padding: 10px;
-    border-radius: var(--border-size) 0 0 var(--border-size);
-    background-color: var(--menu-color-1);
-    overflow: visible;
+  position: relative;
+  grid-area: upgrade-list;
+  margin: 0 calc(-1 * var(--border-size)) 0 0;
+  padding: 10px;
+  border-radius: var(--border-size) 0 0 var(--border-size);
+  background-color: var(--menu-color-1);
+  overflow: visible;
 }
 
-.upgrade-list>div:not(.fake-border) {
-    position: relative;
-    display: flex;
-    flex-flow: row nowrap;
-    width: 100%;
-    gap: 10px;
-    overflow-x: auto;
-    overflow-y: hidden;
+.upgrade-list > div:not(.fake-border) {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
-.upgrade-list>div>h2 {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    margin: 0;
-    font-size: 1.5em;
-    width: 100%;
-    font-weight: bold;
-    text-align: center;
+.upgrade-list > div > h2 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  font-size: 1.5em;
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
 }
 
 .fake-border {
-    position: absolute;
-    top: calc(-1 * var(--border-size));
-    right: 0;
-    width: var(--border-size);
-    height: var(--border-size);
-    background-color: white;
+  position: absolute;
+  top: calc(-1 * var(--border-size));
+  right: 0;
+  width: var(--border-size);
+  height: var(--border-size);
+  background-color: white;
 }
 
 .fb-0 {
-    z-index: 10;
-    border-radius: 0;
-    background-color: var(--menu-color-1);
+  z-index: 10;
+  border-radius: 0;
+  background-color: var(--menu-color-1);
 }
 
 .fb-1 {
-    z-index: 11;
-    border-radius: 0 0 var(--border-size) 0;
-    background-color: var(--menu-color-0);
+  z-index: 11;
+  border-radius: 0 0 var(--border-size) 0;
+  background-color: var(--menu-color-0);
 }
 
 .upgrade-infos {
-    position: relative;
-    grid-area: upgrade;
-    margin: 0;
-    padding: var(--border-size);
-    border-radius: var(--border-size) var(--border-size) var(--border-size) 0;
-    background-color: var(--menu-color-1);
+  position: relative;
+  grid-area: upgrade;
+  margin: 0;
+  padding: var(--border-size);
+  border-radius: var(--border-size) var(--border-size) var(--border-size) 0;
+  background-color: var(--menu-color-1);
 }
 
 .upgrade-infos-available {
-    grid-area: upgrade;
-    display: grid;
-    gap: var(--border-size);
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 100px 1fr;
-    grid-template-areas:
-        'image title cost'
-        'image desc desc';
+  grid-area: upgrade;
+  display: grid;
+  gap: var(--border-size);
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 100px 1fr;
+  grid-template-areas:
+    "image title cost"
+    "image desc desc";
 }
 
-.upgrade-no-infos>div {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    padding: 0;
+.upgrade-no-infos > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 0;
 }
 
-.upgrade-no-infos>div>img {
-    width: 15vh;
-    height: auto;
+.upgrade-no-infos > div > img {
+  width: 15vh;
+  height: auto;
 }
 
-.upgrade-no-infos>div>h3 {
-    margin: var(--border-size) 0;
-    font-weight: bold;
-    font-size: calc(var(--small-text-size) * 1.5);
+.upgrade-no-infos > div > h3 {
+  margin: var(--border-size) 0;
+  font-weight: bold;
+  font-size: calc(var(--small-text-size) * 1.5);
 }
 
-.upgrade-no-infos>div>p {
-    margin: 0;
-    font-weight: 500;
-    font-size: 1.2em;
+.upgrade-no-infos > div > p {
+  margin: 0;
+  font-weight: 500;
+  font-size: 1.2em;
 }
 
-.upgrade-infos>div {
-    padding: var(--border-size);
+.upgrade-infos > div {
+  padding: var(--border-size);
 }
 
 .upgrade-img {
-    grid-area: image;
-    position: relative;
-    margin: 0;
-    border-radius: var(--border-size);
-    background-color: var(--item-color);
+  grid-area: image;
+  position: relative;
+  margin: 0;
+  border-radius: var(--border-size);
+  background-color: var(--item-color);
 }
 
-.upgrade-img>img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    height: auto;
+.upgrade-img > img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: auto;
 }
 
 .upgrade-title {
-    grid-area: title;
-    position: relative;
-    border-radius: var(--border-size);
-    background-color: var(--item-color);
+  grid-area: title;
+  position: relative;
+  border-radius: var(--border-size);
+  background-color: var(--item-color);
 }
 
-.upgrade-title>h3 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    text-align: center;
-    margin: 0;
-    font-size: 1.5em;
-    font-weight: bold;
+.upgrade-title > h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  text-align: center;
+  margin: 0;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 .upgrade-cost {
-    grid-area: cost;
-    background-color: var(--item-color);
-    height: 100%;
-    box-sizing: border-box;
+  grid-area: cost;
+  background-color: var(--item-color);
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .upgrade-desc {
-    grid-area: desc;
-    border-radius: var(--border-size);
-    background-color: var(--item-color);
+  grid-area: desc;
+  border-radius: var(--border-size);
+  background-color: var(--item-color);
 }
 
-.upgrade-desc>h4 {
-    margin: 0 0 10px 0;
-    text-align: left;
-    font-size: 1.3em;
-    font-weight: bold;
+.upgrade-desc > h4 {
+  margin: 0 0 10px 0;
+  text-align: left;
+  font-size: 1.3em;
+  font-weight: bold;
 }
 
-.upgrade-desc>p {
-    margin: 0;
-    font-size: 1em;
-    font-weight: normal;
-    font-style: normal;
-    text-align: justify;
+.upgrade-desc > p {
+  margin: 0;
+  font-size: 1em;
+  font-weight: normal;
+  font-style: normal;
+  text-align: justify;
 }

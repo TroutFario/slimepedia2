@@ -1,106 +1,106 @@
 .tab {
-    position: relative;
-    padding: var(--border-size);
-    transition:
-        background-color var(--animation-speed) var(--animation-function),
-        border-radius var(--animation-speed) var(--animation-function),
-        margin var(--animation-speed) var(--animation-function),
-        padding var(--animation-speed) var(--animation-function);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    cursor: var(--pointer-style);
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    height: fit-content;
-    overflow: visible;
+  position: relative;
+  padding: var(--border-size);
+  transition:
+    background-color var(--animation-speed) var(--animation-function),
+    border-radius var(--animation-speed) var(--animation-function),
+    margin var(--animation-speed) var(--animation-function),
+    padding var(--animation-speed) var(--animation-function);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  cursor: var(--pointer-style);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  height: fit-content;
+  overflow: visible;
 }
 
 .tab:not(.selected-tab) {
-    background-color: var(--menu-color-0);
-    margin-bottom: var(--border-size);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+  background-color: var(--menu-color-0);
+  margin-bottom: var(--border-size);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .selected-tab {
-    padding-bottom: calc(var(--border-size) * 2);
-    margin-bottom: 0;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+  padding-bottom: calc(var(--border-size) * 2);
+  margin-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .tab:hover,
 .selected-tab {
-    background-color: var(--menu-color-1);
+  background-color: var(--menu-color-1);
 }
 
-.tab>img {
-    width: auto;
-    height: 6vh;
-    transform: scale(1);
-    transition: transform var(--animation-speed) var(--animation-function);
-    flex: 1 1 auto;
+.tab > img {
+  width: auto;
+  height: 6vh;
+  transform: scale(1);
+  transition: transform var(--animation-speed) var(--animation-function);
+  flex: 1 1 auto;
 }
 
-.tab:hover>img,
-.selected-tab>img {
-    transform: scale(1.1);
+.tab:hover > img,
+.selected-tab > img {
+  transform: scale(1.1);
 }
 
-.tab>p {
-    margin: 0;
-    text-align: center;
-    color: var(--text-color);
-    font-size: var(--small-text-size);
+.tab > p {
+  margin: 0;
+  text-align: center;
+  color: var(--text-color);
+  font-size: var(--small-text-size);
 }
 
 .left-corner {
-    left: calc(-1 * var(--border-size));
-    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  left: calc(-1 * var(--border-size));
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
 }
 
 .right-corner {
-    right: calc(-1 * var(--border-size));
-    clip-path: polygon(0 0, 100% 100%, 0 100%);
+  right: calc(-1 * var(--border-size));
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
 }
 
 .tab-corner {
-    position: absolute;
-    bottom: 0;
+  position: absolute;
+  bottom: 0;
 }
 
-.left-corner>div,
-.right-corner>div {
-    width: 100%;
-    height: 100%;
-    background-color: var(--menu-color-0);
-    transition:
-        border-radius var(--animation-speed) var(--animation-function),
-        background-color var(--animation-speed) var(--animation-function);
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+.left-corner > div,
+.right-corner > div {
+  width: 100%;
+  height: 100%;
+  background-color: var(--menu-color-0);
+  transition:
+    border-radius var(--animation-speed) var(--animation-function),
+    background-color var(--animation-speed) var(--animation-function);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
-.selected-tab>div {
-    width: var(--border-size);
-    height: var(--border-size);
-    transition:
-        height var(--animation-speed) var(--animation-function),
-        background-color var(--animation-speed) var(--animation-function);
-    background-color: var(--menu-color-1);
+.selected-tab > div {
+  width: var(--border-size);
+  height: var(--border-size);
+  transition:
+    height var(--animation-speed) var(--animation-function),
+    background-color var(--animation-speed) var(--animation-function);
+  background-color: var(--menu-color-1);
 }
 
-.selected-tab>.left-corner>div {
-    border-bottom-right-radius: var(--border-size);
+.selected-tab > .left-corner > div {
+  border-bottom-right-radius: var(--border-size);
 }
 
-.selected-tab>.right-corner>div {
-    border-bottom-left-radius: var(--border-size);
+.selected-tab > .right-corner > div {
+  border-bottom-left-radius: var(--border-size);
 }
 
-.tab.tab:not(.selected-tab)>div {
-    height: 0;
+.tab.tab:not(.selected-tab) > div {
+  height: 0;
 }

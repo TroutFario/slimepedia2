@@ -1,157 +1,157 @@
 [data-theme="light"] .spawn-list-container .os-scrollbar-handle {
-    background-color: var(--menu-color-1);
-    border-radius: 4px;
+  background-color: var(--menu-color-1);
+  border-radius: 4px;
 }
 
 .spawn-list-container {
-    grid-area: spawn;
-    position: relative;
-    z-index: 2;
-    background-color: var(--item-color);
-    padding: var(--border-size);
-    border-radius: var(--border-size);
-    overflow: auto;
+  grid-area: spawn;
+  position: relative;
+  z-index: 2;
+  background-color: var(--item-color);
+  padding: var(--border-size);
+  border-radius: var(--border-size);
+  overflow: auto;
 }
 
-.spawn-list-container [data-overlayscrollbars-contents]>h3 {
-    padding: 0;
-    text-align: left;
-    margin-bottom: calc(var(--border-size) / 2);
-    font-size: 2em;
-    overflow: hidden;
-    height: 1lh;
-    transition:
-        color var(--animation-speed) var(--animation-function),
-        margin var(--animation-speed) var(--animation-function),
-        font-size var(--animation-speed) var(--animation-function),
-        height var(--animation-speed) var(--animation-function);
+.spawn-list-container [data-overlayscrollbars-contents] > h3 {
+  padding: 0;
+  text-align: left;
+  margin-bottom: calc(var(--border-size) / 2);
+  font-size: 2em;
+  overflow: hidden;
+  height: 1lh;
+  transition:
+    color var(--animation-speed) var(--animation-function),
+    margin var(--animation-speed) var(--animation-function),
+    font-size var(--animation-speed) var(--animation-function),
+    height var(--animation-speed) var(--animation-function);
 }
 
 .biome-item {
-    position: relative;
-    display: flex;
-    background-color: var(--item-color);
-    border-radius: var(--border-size);
-    padding: calc(var(--border-size) / 4) calc(var(--border-size) / 2);
-    align-items: flex-start;
-    height: 5vh;
-    overflow: hidden;
-    cursor: var(--pointer-style);
-    transition:
-        background-color var(--animation-speed) var(--animation-function),
-        height var(--animation-speed) var(--animation-function),
-        padding var(--animation-speed) var(--animation-function);
+  position: relative;
+  display: flex;
+  background-color: var(--item-color);
+  border-radius: var(--border-size);
+  padding: calc(var(--border-size) / 4) calc(var(--border-size) / 2);
+  align-items: flex-start;
+  height: 5vh;
+  overflow: hidden;
+  cursor: var(--pointer-style);
+  transition:
+    background-color var(--animation-speed) var(--animation-function),
+    height var(--animation-speed) var(--animation-function),
+    padding var(--animation-speed) var(--animation-function);
 }
 
 .biome-list-overlay {
-    display: flex;
-    height: fit-content;
-    flex-flow: row nowrap;
-    align-items: stretch;
-    gap: calc(var(--border-size) / 2);
-    transition: margin-top var(--animation-speed) var(--animation-function);
+  display: flex;
+  height: fit-content;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  gap: calc(var(--border-size) / 2);
+  transition: margin-top var(--animation-speed) var(--animation-function);
 }
 
 .biome-name {
-    font-size: 1.5em;
-    margin: auto 0;
-    text-shadow: none;
-    color: var(--text-color);
-    transition:
-        color var(--animation-speed) var(--animation-function),
-        text-shadow var(--animation-speed) var(--animation-function),
-        font-size var(--animation-speed) var(--animation-function),
-        margin-top var(--animation-speed) var(--animation-function);
+  font-size: 1.5em;
+  margin: auto 0;
+  text-shadow: none;
+  color: var(--text-color);
+  transition:
+    color var(--animation-speed) var(--animation-function),
+    text-shadow var(--animation-speed) var(--animation-function),
+    font-size var(--animation-speed) var(--animation-function),
+    margin-top var(--animation-speed) var(--animation-function);
 }
 
-.spawn-list-container [data-overlayscrollbars-contents]>.hidden-title {
-    font-size: 0;
-    height: 0;
-    margin: 0;
+.spawn-list-container [data-overlayscrollbars-contents] > .hidden-title {
+  font-size: 0;
+  height: 0;
+  margin: 0;
 }
 
 .spawn-list-hover {
-    all: unset;
-    height: fit-content;
-    width: 100%;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: stretch;
-    gap: 0;
-    overflow: auto;
+  all: unset;
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  gap: 0;
+  overflow: auto;
 }
 
 .biome-image {
-    width: 5vh;
-    height: auto;
-    transform: scale(1);
-    transition: transform var(--animation-speed) var(--animation-function);
+  width: 5vh;
+  height: auto;
+  transform: scale(1);
+  transition: transform var(--animation-speed) var(--animation-function);
 }
 
-.spawn-list-hover:hover>.biome-item {
-    padding: 0;
+.spawn-list-hover:hover > .biome-item {
+  padding: 0;
 }
 
-.spawn-list-hover:hover>div>div>.biome-image {
-    transform: scale(.7);
+.spawn-list-hover:hover > div > div > .biome-image {
+  transform: scale(0.7);
 }
 
-.biome-item:hover>div>.biome-image {
-    transform: scale(1.2);
+.biome-item:hover > div > .biome-image {
+  transform: scale(1.2);
 }
 
-.biome-item:hover>.biome-list-overlay {
-    margin: 0;
-    align-items: flex-start;
+.biome-item:hover > .biome-list-overlay {
+  margin: 0;
+  align-items: flex-start;
 }
 
 .biome-list-video {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%) scale(1.2);
-    border-radius: calc(var(--border-size) / 2);
-    z-index: -5;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: center;
-    filter: opacity(0) blur(var(--border-size));
-    transition:
-        filter var(--animation-speed) 0s var(--animation-function),
-        transform var(--animation-speed) 0s var(--animation-function);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) scale(1.2);
+  border-radius: calc(var(--border-size) / 2);
+  z-index: -5;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  filter: opacity(0) blur(var(--border-size));
+  transition:
+    filter var(--animation-speed) 0s var(--animation-function),
+    transform var(--animation-speed) 0s var(--animation-function);
 }
 
 .biome-item,
-.biome-item>*:not(video) {
-    z-index: 10;
+.biome-item > *:not(video) {
+  z-index: 10;
 }
 
-.biome-item>* {
-    pointer-events: none;
+.biome-item > * {
+  pointer-events: none;
 }
 
 .biome-item:hover.biome-item {
-    height: 17vh;
-    padding: calc(var(--border-size) / 2);
+  height: 17vh;
+  padding: calc(var(--border-size) / 2);
 }
 
-.biome-item:hover>.biome-list-video {
-    z-index: 5;
-    filter: opacity(1) blur(0);
-    transform: translateY(-50%) scale(1);
-    transition:
-        filter var(--animation-speed) var(--animation-function),
-        transform var(--animation-speed) var(--animation-function);
+.biome-item:hover > .biome-list-video {
+  z-index: 5;
+  filter: opacity(1) blur(0);
+  transform: translateY(-50%) scale(1);
+  transition:
+    filter var(--animation-speed) var(--animation-function),
+    transform var(--animation-speed) var(--animation-function);
 }
 
-.biome-item:hover>div>.biome-name {
-    color: white;
-    font-size: 2em;
-    margin: auto 0;
-    text-shadow: var(--text-shadow);
+.biome-item:hover > div > .biome-name {
+  color: white;
+  font-size: 2em;
+  margin: auto 0;
+  text-shadow: var(--text-shadow);
 }
 
-.spawn-list-hover:hover>div>div>.biome-name {
-    font-size: 1.1em;
+.spawn-list-hover:hover > div > div > .biome-name {
+  font-size: 1.1em;
 }
