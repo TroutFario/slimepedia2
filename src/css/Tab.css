@@ -6,6 +6,7 @@
     border-radius var(--animation-speed) var(--animation-function),
     margin var(--animation-speed) var(--animation-function),
     padding var(--animation-speed) var(--animation-function);
+  border: none;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   cursor: var(--pointer-style);

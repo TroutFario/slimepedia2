@@ -15,7 +15,7 @@ export const Tab: React.FC<TabProps> = ({
   action = () => {},
 }) => {
   return (
-    <a
+    <button
       className={"tab" + (selected ? " selected-tab" : "")}
       onClick={action}
       role="tab"
@@ -36,6 +36,6 @@ export const Tab: React.FC<TabProps> = ({
       </div>
       <img src={`/assets/${icon}.png`} alt={title} />
       <p>{title}</p>
-    </a>
+    </button>
   );
 };
