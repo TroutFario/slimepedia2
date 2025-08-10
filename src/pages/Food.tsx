@@ -160,7 +160,7 @@ const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
           />
         </div>
       </div>
-      <a
+      <button
         role="link"
         className="little-box food-type link-to-food"
         onClick={() => {
@@ -208,7 +208,7 @@ const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
               : foodTypeList[foodList[food][1]][1]}
           </h4>
         </div>
-      </a>
+      </button>
       {favSlime === null ? (
         <div className="little-box food-fav">
           <img src="/assets/misc/none.png" alt="None" />
@@ -337,7 +337,7 @@ export const FoodPage = () => {
         >
           <FoodDetails food={food} setFilter={setFilter} />
         </div>
-        <a
+        <button
           role="link"
           className={"arrow-btn " + (topBtn ? "top-btn" : "bot-btn")}
           onClick={() => setTopBtn(!topBtn)}
@@ -350,7 +350,7 @@ export const FoodPage = () => {
           tabIndex={0}
         >
           <FaAngleDown />
-        </a>
+        </button>
         <FoodDescription food={food} topBtn={topBtn} />
       </div>
     </div>

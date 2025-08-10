@@ -165,6 +165,7 @@
 }
 
 .link-to-food {
+  border: none;
   cursor: var(--pointer-style);
   transition: color var(--animation-speed) var(--animation-function),
     background-color var(--animation-speed) var(--animation-function),

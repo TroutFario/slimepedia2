@@ -316,7 +316,7 @@ export const Slimes = () => {
         >
           <SlimeDetails selectedSlime={slime} />
         </div>
-        <a
+        <button
           role="link"
           className={"arrow-btn " + (topBtn ? "top-btn" : "bot-btn")}
           onClick={() => setTopBtn(!topBtn)}
@@ -329,7 +329,7 @@ export const Slimes = () => {
           tabIndex={0}
         >
           <FaAngleDown />
-        </a>
+        </button>
         <SlimeDescription slimepediaEntry={slimepediaEntry} topBtn={topBtn} />
       </div>
     </div>
