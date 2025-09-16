@@ -104,7 +104,16 @@ export const NavBar = () => {
           />
         )}
       </NavLink>
-
+      <NavLink style={noLink} to="/music">
+        {({ isActive }) => (
+          <NavButton
+            name="Music"
+            icon="misc/audio"
+            tilting="none"
+            selected={isActive}
+          />
+        )}
+      </NavLink>
       <div className="theme-btn-container">
         <NavButton
           name="Switch Theme"

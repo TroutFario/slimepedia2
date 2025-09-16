@@ -206,6 +206,7 @@
 
 .arrow-btn {
   --btn-size: 2em;
+  border: none;
   width: fit-content;
   height: fit-content;
   background-color: transparent;

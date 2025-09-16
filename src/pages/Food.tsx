@@ -160,10 +160,11 @@ const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
           />
         </div>
       </div>
-      <button
-        role="link"
+      <a
+        href="#"
         className="little-box food-type link-to-food"
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
           setFilter(
             foodList[food][1] !== null &&
               [FoodType.Veggies, FoodType.Fruits, FoodType.Meat].includes(
@@ -187,6 +188,8 @@ const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
           }
         }}
         tabIndex={0}
+        role="button"
+        aria-pressed="false"
       >
         <img
           src={
@@ -208,7 +211,7 @@ const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
               : foodTypeList[foodList[food][1]][1]}
           </h4>
         </div>
-      </button>
+      </a>
       {favSlime === null ? (
         <div className="little-box food-fav">
           <img src="/assets/misc/none.png" alt="None" />
