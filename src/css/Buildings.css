@@ -1,10 +1,10 @@
 .buildings-list {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   margin: 0;
   padding: 10px;
   border-radius: var(--border-size);
   background-color: var(--menu-color-1);
-  grid-template-columns: 1fr 1fr;
   gap: 10px;
   min-width: fit-content;
   overflow-x: hidden;

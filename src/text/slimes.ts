@@ -24,6 +24,7 @@ export enum Slime {
   Dervish = "dervish",
   Yolky = "yolky",
   Twin = "twin",
+  Hyper = "hyper",
   Sloomber = "sloomber",
   Shadow = "shadow",
   Tarr = "tarr",
@@ -74,6 +75,7 @@ export const slimesList: {
   [Slime.Saber]: ["Saber Slime", FoodType.Meat, Food.HenCluck, true, null],
   [Slime.Shadow]: ["Shadow Slime", null, null, false, null],
   [Slime.Twin]: ["Twin Slime", FoodType.Fruits, Food.Cherry, true, null],
+  [Slime.Hyper]: ["Hyper Slime", FoodType.Veggies, Food.Tater, true, null],
   [Slime.Sloomber]: [
     "Sloomber Slime",
     FoodType.Meat,
@@ -120,6 +122,7 @@ export const slimesText: { [key in Slime]: string } = {
   [Slime.Saber]: "A bouncing blast from the past.",
   [Slime.Shadow]: "Chase your shadow and it will flee.",
   [Slime.Twin]: "Know thyself, and thy other self as well.",
+  [Slime.Hyper]: "Hold on tight—this slime's got places to be.",
   [Slime.Sloomber]: "To sleep-perchance to... sleep more, and more, and more.",
   [Slime.Yolky]: "This slime always looks at the sunny side... up.",
   [Slime.Tangle]: "A rose by any other name would still eat a chicken.",
@@ -219,6 +222,11 @@ export const slimepedia: { [key in Slime]: [string, string, string] } = {
     "Twin slimes are believed to be a bizarre byproduct of the Prismacore's effects on the Labyrinth, seemingly being two slimes occupying the same space in reality at different intervals. It is unclear if these slimes are in fact two versions of the same slime, or different ones, and if so, if they're even aware of the phenomenon.",
     "Twin slimes can create reality-defying portals that can snag things from the environment and drop them in other places. Generally this is done to acquire a tasty fruit that is out of reach, but it seems as though sometimes they exhibit this behavior just to cause some trouble. It is unclear which of the two halves of the twin slime is the most mischievous.",
     "Like the slime itself, a twin slime plort is actually two plorts occupying the same space in reality, and always in opposing polarities. This makes them inherently unstable and a challenge for practical applications like other plorts. For example. if applied to construction technology they would simultaneously generate the strongest substance to ever exist as well as the weakest. On the Plort Market, they are simultaneously the most valuable plort to ever exist, as well as one that is so undervalued it actually costs you a fortune in newbucks to sell it. So it shakes out to a pretty standard value in the end.",
+  ],
+  [Slime.Hyper]: [
+    "These adrenaline junkies can be found aroud the Terrarium, literally bouncing off the walls. Perhaps their energy feeds some sort of growth mechanism in the Labyrinth—or are they result of such forces? Their hyperactive nature will keep any rancher on their toes, but the cool factor makes the effort totally worth it.",
+    "Corralling these slimes is a gnarly challenge. They must constantly discharge small amounts of energy in order to maintan equilibrium, and each burst sends them rocochetting off corral walls, dashing into trouble, and leaping off of cliffs in search of adventure. Don't follow too closely!",
+    "The concentrated kinetic energy in these plorts would make them perfect for producing next-gen energy drinks. However, some caution is needed when handling them. While a brif dose may energize you enough for an all-nighter of racing around the range, too much can give you the shakes—the kind that send you in orbit."
   ],
   [Slime.Sloomber]: [
     "Sloomber slimes are found among the puffy, pink islands of the Labyrinth's Dream Land, drifting in and out of sleep from the strange auras that radiate from them. At first they may seem like somewhat lazy hunters, delighting in a chomp of chicken when they happen to be awake. However, given the function of Dream Land within the Labyrinth, it is possible that sloomber slimes are significantly more powerful creatures, perhaps even dreaming the world around them into existence as they sleep among the clouds.",

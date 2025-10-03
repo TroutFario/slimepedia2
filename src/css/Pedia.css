@@ -164,7 +164,7 @@
   grid-area: fav;
 }
 
-.link-to-food {
+.interactive-box {
   border: none;
   cursor: var(--pointer-style);
   transition: color var(--animation-speed) var(--animation-function),
@@ -172,20 +172,20 @@
     border-radius var(--animation-speed) var(--animation-function);
 }
 
-.link-to-food:hover {
+.interactive-box:hover {
   border-radius: 10px;
 }
 
-.link-to-food > img {
+.interactive-box > img {
   transition: transform var(--animation-speed) var(--animation-function);
 }
 
-.link-to-food:hover h3,
-.link-to-food:hover h4 {
+.interactive-box:hover h3,
+.interactive-box:hover h4 {
   color: var(--link-color);
 }
 
-.link-to-food:hover > img {
+.interactive-box:hover > img {
   transform: scale(1.2);
 }
 

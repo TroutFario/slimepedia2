@@ -26,61 +26,49 @@ export enum Ranch {
 }
 
 export const regionInfos: {
-  [key in Region]: [string, string, string, string, number, number, number];
+  [key in Region]: [string, string, string, string, number,];
 } = {
   [Region.Sea]: [
     "The Slime Sea",
     "se",
     "An expansive body of water and slime compound that's not fit for swimming, let alone drinking.",
     "se",
-    0,
-    0,
-    0,
+    0
   ],
   [Region.Fields]: [
     "Rainbow Fields",
     "rf",
     "Shifting colors like a dream, fading just as quickly.",
     "rf",
-    16,
-    0,
-    0,
+    18
   ],
   [Region.Strand]: [
     "Starlight Strand",
     "ss",
     "A vision of dusk and dawn together as one.",
     "ss",
-    31,
-    0,
-    0,
+    32
   ],
   [Region.Valley]: [
     "Ember Valley",
     "ev",
     "The ancient world stirs beneath your feet with every step.",
     "ev",
-    33,
-    0,
-    0,
+    33
   ],
   [Region.Bluffs]: [
     "Powderfall Bluffs",
     "pb",
     "A lost era echoing trough halls of shimmering ice.",
     "pb",
-    23,
-    0,
-    0,
+    24
   ],
   [Region.Labyrinth]: [
     "The Grey Labyrinth",
     "gl",
     "An imposing layer cake whose depths hide ancient, prismatic secrets.",
     "gl",
-    19,
-    0,
-    0,
+    25
   ],
 };
 
@@ -341,19 +329,21 @@ export const regionElements: {
       Slime.Ringtail,
       Slime.Shadow,
       Slime.Twin,
+      Slime.Hyper,
       Slime.Sloomber,
       Slime.Yolky,
     ],
     [
+      Food.Carrot,
+      Food.Lettuce,
+      Food.Beet,
+      Food.Onion,
+      Food.Tater,
       Food.Pogo,
       Food.Cuberry,
       Food.Mango,
       Food.Granite,
       Food.Pear,
-      Food.Carrot,
-      Food.Lettuce,
-      Food.Onion,
-      Food.Beet,
       Food.Hen,
       Food.HenBriar,
       Food.HenSea,
@@ -376,6 +366,7 @@ export const regionElements: {
       Resource.Diamond,
       Slime.Twin,
       Slime.Sloomber,
+      Slime.Hyper
     ],
   ],
   [Region.Sea]: [[], [], []],
@@ -454,6 +445,8 @@ export const regionsConnections: {
   ],
 };
 
+export const GLSections = ["waterworks", "lava", "labyrinth", "dreamland", "terrarium"];
+
 export const regionsResourcesInfos: {
   [key: string]: [string, string, string];
 } = {
@@ -473,6 +466,7 @@ export const regionsResourcesInfos: {
   saber: ["Saber Gordo", "gordos/saber", "/slimes/saber"],
   twin: ["Twin Gordo", "gordos/twin", "/slimes/twin"],
   sloomber: ["Sloomber Gordo", "gordos/sloomber", "/slimes/sloomber"],
+  hyper: ["Hyper Gordo", "gordos/hyper", "/slimes/hyper"],
   jelly: ["Jellystone", "resources/jelly", "/items/resources/jelly"],
   brine: ["Deep Brine", "resources/brine", "/items/resources/brine"],
   water: ["Water", "food/water", "/food/water"],

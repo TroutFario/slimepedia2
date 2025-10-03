@@ -13,7 +13,6 @@ import { Navigate, NavLink, useParams } from "react-router-dom";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { FaAngleDown } from "react-icons/fa6";
 import "../css/Pedia.css";
-import { getEnumValue } from "../App.js";
 import { Region, regionElements, regionInfos } from "../text/regions.js";
 import { Weather, weatherList } from "../text/weather.js";
 
@@ -159,11 +158,8 @@ const SlimeDetails: React.FC<SlimeDetailsProps> = ({ selectedSlime }) => {
           </div>
         </div>
       ) : (
-        <NavLink
-          to={`/food/${currentSlimeList[1]}`}
-          style={{ textDecoration: "none" }}
-        >
-          <div className="little-box box-food link-to-food">
+        <NavLink to={`/food/${currentSlimeList[1]}`} style={{ textDecoration: "none" }}>
+          <div className="little-box box-food interactive-box">
             <img src={foodTypeIcon} alt={"Picture of " + foodTypeName} />
             <div>
               <h3>Diet</h3>
@@ -185,7 +181,7 @@ const SlimeDetails: React.FC<SlimeDetailsProps> = ({ selectedSlime }) => {
           to={`/food/${currentSlimeList[2]}`}
           style={{ textDecoration: "none" }}
         >
-          <div className="little-box box-fav link-to-food">
+          <div className="little-box box-fav interactive-box">
             <img src={favFoodIcon} alt={"Picture of " + favFoodName} />
             <div>
               <h3>Favorite Food</h3>
@@ -221,7 +217,7 @@ const SlimeDetails: React.FC<SlimeDetailsProps> = ({ selectedSlime }) => {
           to={`/items/toys/${currentSlimeList[4]}`}
           style={{ textDecoration: "none" }}
         >
-          <div className="little-box box-toy link-to-food">
+          <div className="little-box box-toy interactive-box">
             <img src={toyIcon} alt={toyName[0]} />
             <div>
               <h3>Favorite Toy</h3>
@@ -266,7 +262,9 @@ const SlimeDescription: React.FC<SlimeDescriptionProps> = ({
 export const Slimes = () => {
   const { slime: slimeName } = useParams();
 
-  const slime = getEnumValue(Slime, slimeName);
+  const slime = Object.values(Slime).includes(slimeName as Slime) 
+    ? (slimeName as Slime) 
+    : null;
   const [topBtn, setTopBtn] = useState(false);
   useEffect(() => setTopBtn(false), [slime]);
   const slimepediaEntry: [string, string, string] = useMemo(

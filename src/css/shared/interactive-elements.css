@@ -1,0 +1,87 @@
+/* Interactive Elements */
+.interactive-element {
+  cursor: var(--pointer-style);
+  border-radius: var(--border-size);
+  transition: all var(--animation-speed) var(--animation-function);
+}
+
+.interactive-element:hover {
+  background-color: var(--menu-color-0);
+}
+
+/* Info boxes variations */
+.info-box-base {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--border-size);
+  background-color: var(--item-color);
+  padding: var(--border-size);
+  border-radius: var(--border-size);
+  height: fit-content;
+  overflow: hidden;
+  box-sizing: border-box;
+  min-height: 100%;
+}
+
+.info-box-base > img {
+  width: 5vh;
+  height: auto;
+}
+
+.info-box-base > div {
+  width: 100%;
+}
+
+.info-box-base > div > h3,
+.info-box-base > div > h4 {
+  text-align: left;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.info-box-base > div > h3 {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.info-box-base > div > h4 {
+  font-size: 1em;
+  font-weight: 500;
+}
+
+/* Interactive info box */
+.info-box-interactive {
+  border: none;
+  cursor: var(--pointer-style);
+  transition: color var(--animation-speed) var(--animation-function),
+    background-color var(--animation-speed) var(--animation-function),
+    border-radius var(--animation-speed) var(--animation-function);
+}
+
+.info-box-interactive:hover {
+  border-radius: 10px;
+}
+
+.info-box-interactive > img {
+  transition: transform var(--animation-speed) var(--animation-function);
+}
+
+.info-box-interactive:hover h3,
+.info-box-interactive:hover h4 {
+  color: var(--link-color);
+}
+
+.info-box-interactive:hover > img {
+  transform: scale(1.2);
+}
+
+/* Disabled state */
+.info-box-disabled > div > h4 {
+  opacity: 0;
+}
+
+.info-box-disabled img {
+  opacity: 0.5;
+}

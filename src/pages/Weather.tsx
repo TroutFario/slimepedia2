@@ -8,7 +8,6 @@ import {
 import { Biomes } from "../components/Biomes";
 import { Navigate, NavLink, useParams } from "react-router-dom";
 import "../css/Weather.css";
-import { getEnumValue } from "../App";
 
 export const WeatherPage: React.FC = () => {
   const [panel, setPanel] = useState<boolean>(true);
@@ -16,8 +15,8 @@ export const WeatherPage: React.FC = () => {
   const backgroundVideoRef = useRef<HTMLVideoElement>(null);
   const weatherMusicRef = useRef<HTMLAudioElement>(null);
   const { weather: weatherName } = useParams();
-  const weather = weatherName
-    ? getEnumValue(Weather, weatherName)
+  const weather = weatherName && Object.values(Weather).includes(weatherName as Weather)
+    ? (weatherName as Weather)
     : Weather.Clear;
   const [weatherMusicAvailable, setWeatherMusicAvailable] =
     useState<boolean>(false);

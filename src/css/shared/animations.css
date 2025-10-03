@@ -1,0 +1,36 @@
+/* Animation Utilities */
+.transition-base {
+  transition: all var(--animation-speed) var(--animation-function);
+}
+
+.transition-bg {
+  transition: background-color var(--animation-speed) var(--animation-function);
+}
+
+.transition-transform {
+  transition: transform var(--animation-speed) var(--animation-function);
+}
+
+.transition-size {
+  transition: width var(--animation-speed) var(--animation-function),
+    height var(--animation-speed) var(--animation-function);
+}
+
+.transition-colors {
+  transition: color var(--animation-speed) var(--animation-function),
+    background-color var(--animation-speed) var(--animation-function);
+}
+
+/* Interactive states */
+.clickable {
+  cursor: var(--pointer-style);
+  transition: all var(--animation-speed) var(--animation-function);
+}
+
+.hoverable:hover {
+  transform: scale(1.05);
+}
+
+.scalable:hover {
+  transform: scale(1.1);
+}

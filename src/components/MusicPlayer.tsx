@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
-import { Ranch, Region } from "../text/regions";
+import { GLSections, Ranch, Region } from "../text/regions";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import { getEnumValue } from "../App";
 
 const playAudio = (
   audioRef: React.MutableRefObject<HTMLAudioElement | null>,
@@ -38,29 +37,17 @@ const getAudioName = (currentAudio: HTMLAudioElement | null) => {
   return "";
 };
 
-const audioLabyRefsNames = [
-  "waterworks-day-theme",
-  "waterworks-day-ambient",
-  "waterworks-night-theme",
-  "waterworks-night-ambient",
-  "lava-day-theme",
-  "lava-day-ambient",
-  "lava-night-theme",
-  "lava-night-ambient",
-  "labyrinth-day-theme",
-  "labyrinth-day-ambient",
-  "labyrinth-night-theme",
-  "labyrinth-night-ambient",
-  "dreamland-day-theme",
-  "dreamland-day-ambient",
-  "dreamland-night-theme",
-  "dreamland-night-ambient",
-];
+const audioLabyRefsNames = GLSections.flatMap((section) => [
+  `${section}-day-theme`,
+  `${section}-day-ambient`,
+  `${section}-night-theme`,
+  `${section}-night-ambient`,
+]);
 
 export const MusicRefs: React.FC<{ region: Ranch | Region }> = ({
   region: regionName,
 }) => {
-  const region = getEnumValue(Ranch, regionName)
+  const region = Object.values(Ranch).includes(regionName as Ranch)
     ? Ranch.Conservatory
     : regionName;
   const [musicMenu, setMusicMenu] = useState(false);
@@ -80,70 +67,70 @@ export const MusicRefs: React.FC<{ region: Ranch | Region }> = ({
   return (
     <>
       <audio ref={themeDayRef} src={`/assets/music/${region}-day-theme.ogg`}>
-        <track
-          kind="captions"
-          srcLang="en"
-          label="Day Theme Captions"
-          default
-          src="data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusique%20de%20Rainbow%20Fields"
-        />
+      <track
+        kind="captions"
+        srcLang="en"
+        label="Day Theme Captions"
+        default
+        src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replace(/-/g, " ")}%20Day%20Theme`}
+      />
       </audio>
       <audio ref={relaxDayRef} src={`/assets/music/${region}-day-relax.ogg`}>
-        <track
-          kind="captions"
-          srcLang="en"
-          label="Day Relax Captions"
-          default
-          src="data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusique%20de%20Rainbow%20Fields%20Relax"
-        />
+      <track
+        kind="captions"
+        srcLang="en"
+        label="Day Relax Captions"
+        default
+        src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replace(/-/g, " ")}%20Day%20Relax`}
+      />
       </audio>
       <audio
-        ref={ambientDayRef}
-        src={`/assets/music/${region}-day-ambient.ogg`}
+      ref={ambientDayRef}
+      src={`/assets/music/${region}-day-ambient.ogg`}
       >
-        <track
-          kind="captions"
-          srcLang="en"
-          label="Day Ambient Captions"
-          default
-          src="data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusique%20de%20Rainbow%20Fields%20Ambient"
-        />
+      <track
+        kind="captions"
+        srcLang="en"
+        label="Day Ambient Captions"
+        default
+        src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replace(/-/g, " ")}%20Day%20Ambient`}
+      />
       </audio>
       <audio
-        ref={themeNightRef}
-        src={`/assets/music/${region}-night-theme.ogg`}
+      ref={themeNightRef}
+      src={`/assets/music/${region}-night-theme.ogg`}
       >
-        <track
-          kind="captions"
-          srcLang="en"
-          label="Night Theme Captions"
-          default
-          src="data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusique%20de%20Rainbow%20Fields%20Night%20Theme"
-        />
+      <track
+        kind="captions"
+        srcLang="en"
+        label="Night Theme Captions"
+        default
+        src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replace(/-/g, " ")}%20Night%20Theme`}
+      />
       </audio>
       <audio
-        ref={relaxNightRef}
-        src={`/assets/music/${region}-night-relax.ogg`}
+      ref={relaxNightRef}
+      src={`/assets/music/${region}-night-relax.ogg`}
       >
-        <track
-          kind="captions"
-          srcLang="en"
-          label="Night Relax Captions"
-          default
-          src="data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusique%20de%20Rainbow%20Fields%20Night%20Relax"
-        />
+      <track
+        kind="captions"
+        srcLang="en"
+        label="Night Relax Captions"
+        default
+        src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replace(/-/g, " ")}%20Night%20Relax`}
+      />
       </audio>
       <audio
-        ref={ambientNightRef}
-        src={`/assets/music/${region}-night-ambient.ogg`}
+      ref={ambientNightRef}
+      src={`/assets/music/${region}-night-ambient.ogg`}
       >
-        <track
-          kind="captions"
-          srcLang="en"
-          label="Night Ambient Captions"
-          default
-          src="data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusique%20de%20Rainbow%20Fields%20Night%20Ambient"
-        />
+      <track
+        kind="captions"
+        srcLang="en"
+        label="Night Ambient Captions"
+        default
+        src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replace(/-/g, " ")}%20Night%20Ambient`}
+      />
       </audio>
       <div className={`region-music-player ${musicMenu ? "" : "disabled"}`}>
         <button
@@ -308,15 +295,14 @@ export const LabyMusicRefs: React.FC = () => {
     ),
   ).current;
 
-  const sections = ["waterworks", "lava", "labyrinth", "dreamland"];
 
   return (
     <>
       {audioLabyRefsNames.map((name) => (
         <audio
-          key={name}
-          ref={refsList[name]}
-          src={`/assets/music/${name}.ogg`}
+        key={name}
+        ref={refsList[name]}
+        src={`/assets/music/${name}.ogg`}
         >
           <track
             kind="captions"
@@ -345,7 +331,7 @@ export const LabyMusicRefs: React.FC = () => {
           }}
           defer
         >
-          {sections.map((section) => (
+          {GLSections.map((section) => (
             <MusicSection
               key={section}
               sectionName={section}

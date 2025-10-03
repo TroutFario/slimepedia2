@@ -3,27 +3,44 @@ import { Navigate, NavLink, useParams } from "react-router-dom";
 import { NavButton } from "../components/NavButton";
 import { RecipeProvider, useRecipeContext } from "../components/RecipeContext";
 import {
-  decorationsDescription,
-  decorationsList,
-  decorationsNames,
+  BlueprintItem,
+  Recipe,
+  RecipeElementNames,
   recipeElements,
   themeList,
   unlockRequirements,
+} from "../text/blueprints/blueprints";
+import {
   upgradeDescriptions,
   upgradeEffects,
   upgradeNames,
+  Upgrade,
   upgradePacks,
   upgradesList,
-  utilitiesDescription,
-  utilitiesList,
-  utilitiesNames,
-  warpDescriptions,
-  warpGadgets,
-  warpNames,
-} from "../text/blueprints";
+  UpgradeWithTier,
+  getUpgradeKey,
+} from "../text/blueprints/upgrades";
 import "../css/Blueprints.css";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { FaAngleDown, FaMinus, FaPlus, FaXmark } from "react-icons/fa6";
+import {
+  warpDescriptions,
+  warpGadgets,
+  warpNames,
+  Warp,
+} from "../text/blueprints/warp";
+import {
+  utilitiesDescription,
+  utilitiesList,
+  Utility,
+  utilityNames,
+} from "../text/blueprints/utilities";
+import {
+  decorationsDescription,
+  decorationsList,
+  Decoration,
+  decorationNames,
+} from "../text/blueprints/decoration";
 
 enum BlueprintType {
   UPGRADES = "upgrades",
@@ -32,33 +49,36 @@ enum BlueprintType {
   DECORATIONS = "decorations",
 }
 
-const blueprintMatcher = (blueprint: string, type: BlueprintType) => {
+const blueprintMatcher = (
+  blueprint: BlueprintItem | UpgradeWithTier,
+  type: BlueprintType
+) => {
   switch (type) {
     case BlueprintType.UPGRADES:
-      return upgradesList[blueprint];
+      return upgradesList[blueprint as UpgradeWithTier];
     case BlueprintType.UTILITIES:
-      return utilitiesList[blueprint];
+      return utilitiesList[blueprint as Utility];
     case BlueprintType.WARP:
-      return warpGadgets[blueprint];
+      return warpGadgets[blueprint as Warp];
     case BlueprintType.DECORATIONS:
-      return decorationsList[blueprint];
+      return decorationsList[blueprint as Decoration];
   }
 };
 
-const descriptionMatcher = (blueprint: string, type: BlueprintType) => {
+const descriptionMatcher = (blueprint: BlueprintItem, type: BlueprintType) => {
   switch (type) {
     case BlueprintType.UPGRADES:
-      return upgradeDescriptions[blueprint];
+      return upgradeDescriptions[blueprint as UpgradeWithTier];
     case BlueprintType.UTILITIES:
-      return utilitiesDescription[blueprint];
+      return utilitiesDescription[blueprint as Utility];
     case BlueprintType.WARP:
-      return warpDescriptions[blueprint];
+      return warpDescriptions[blueprint as Warp];
     case BlueprintType.DECORATIONS:
-      return decorationsDescription[blueprint];
+      return decorationsDescription[blueprint as Decoration];
   }
 };
 
-const CraftingList: React.FC<{ name: string; type: BlueprintType }> = ({
+const CraftingList: React.FC<{ name: BlueprintItem; type: BlueprintType }> = ({
   name,
   type,
 }) => {
@@ -72,7 +92,7 @@ const CraftingList: React.FC<{ name: string; type: BlueprintType }> = ({
     setQuantity((prevQtty) => prevQtty + (prevQtty < 99 ? 1 : 0));
   const decreaseQuantity = () =>
     setQuantity((prevQtty) => prevQtty - (prevQtty > 1 ? 1 : 0));
-  const recipe = blueprintMatcher(name, type)[2];
+  const recipe = blueprintMatcher(name, type)[2] as Recipe;
   const elementRef = useRef<HTMLButtonElement | null>(null);
 
   return (
@@ -111,19 +131,21 @@ const CraftingList: React.FC<{ name: string; type: BlueprintType }> = ({
         <div key={ingredient}>
           <NavLink
             to={
-              recipeElements[ingredient][2] == null
+              recipeElements[ingredient as RecipeElementNames][2] == null
                 ? ""
-                : `/${recipeElements[ingredient][2]}`
+                : `/${recipeElements[ingredient as RecipeElementNames][2]}`
             }
           >
             <img
-              src={`/assets/${recipeElements[ingredient][1]}.png`}
-              alt={recipeElements[ingredient][0]}
-              title={recipeElements[ingredient][0]}
+              src={`/assets/${
+                recipeElements[ingredient as RecipeElementNames][1]
+              }.png`}
+              alt={recipeElements[ingredient as RecipeElementNames][0]}
+              title={recipeElements[ingredient as RecipeElementNames][0]}
             />
-            <p>{recipeElements[ingredient][0]}: </p>
+            <p>{recipeElements[ingredient as RecipeElementNames][0]}: </p>
           </NavLink>
-          <h3>{recipe[ingredient] * quantity}</h3>
+          <h3>{recipe[ingredient as RecipeElementNames]! * quantity}</h3>
         </div>
       ))}
     </OverlayScrollbarsComponent>
@@ -131,7 +153,7 @@ const CraftingList: React.FC<{ name: string; type: BlueprintType }> = ({
 };
 
 const BlueprintInfos: React.FC<{
-  blueprint: string | null;
+  blueprint: BlueprintItem | null;
   type: BlueprintType;
 }> = ({ blueprint, type }) => {
   if (blueprint === null)
@@ -160,7 +182,7 @@ const BlueprintInfos: React.FC<{
       <div className="blueprint-title-box">
         <img
           src={`/assets/${folder}/${blueprint}.png`}
-          alt={blueprintDescription}
+          alt={blueprintInfos[0] + " Image"}
         />
         <h1>{blueprintInfos[0]}</h1>
         <h2>{blueprintDescription}</h2>
@@ -253,9 +275,9 @@ const UpgradesPage: React.FC = () => {
 
   const validateUpgrade = () => {
     if (upgrade !== null) {
-      if (!upgradeNames.includes(upgrade))
+      if (!upgradeNames.includes(upgrade as Upgrade))
         return <Navigate to="/blueprints/upgrades" replace />;
-      if (tier < 1 || tier > upgradePacks[upgrade][1])
+      if (tier < 1 || tier > upgradePacks[upgrade as Upgrade][1])
         return <Navigate to={`/blueprints/upgrades/${upgrade}`} replace />;
     }
     return null;
@@ -299,7 +321,7 @@ const UpgradesPage: React.FC = () => {
   document.title =
     upgrade === null
       ? "Blueprints - Slimepedia"
-      : upgradesList[upgrade + tier][0] + " - Slimepedia";
+      : upgradesList[(upgrade + tier) as UpgradeWithTier][0] + " - Slimepedia";
 
   return (
     <>
@@ -313,26 +335,31 @@ const UpgradesPage: React.FC = () => {
 const UpgradeTitleBox: React.FC<{ upgrade: string | null; tier: number }> = ({
   upgrade,
   tier,
-}) => (
-  <div className="blueprint-title-box">
-    <img
-      src={
-        upgrade === null
-          ? "/assets/misc/upgrade.png"
-          : `/assets/upgrades/${upgrade}.png`
-      }
-      alt={upgrade === null ? "" : upgradesList[upgrade + tier][0]}
-    />
-    <h1>
-      {upgrade === null ? "Select an upgrade" : upgradesList[upgrade + tier][0]}
-    </h1>
-    <h2>
-      {upgrade === null
-        ? "Select an upgrade to view its details"
-        : upgradeDescriptions[upgrade + tier]}
-    </h2>
-  </div>
-);
+}) => {
+  const upgradeTier =
+    upgrade === null ? null : ((upgrade + tier) as UpgradeWithTier);
+  if (upgradeTier === null) return null;
+  return (
+    <div className="blueprint-title-box">
+      <img
+        src={
+          upgrade === null
+            ? "/assets/misc/upgrade.png"
+            : `/assets/upgrades/${upgrade}.png`
+        }
+        alt={upgrade === null ? "" : upgradesList[upgradeTier][0]}
+      />
+      <h1>
+        {upgrade === null ? "Select an upgrade" : upgradesList[upgradeTier][0]}
+      </h1>
+      <h2>
+        {upgrade === null
+          ? "Select an upgrade to view its details"
+          : upgradeDescriptions[upgradeTier]}
+      </h2>
+    </div>
+  );
+};
 
 const UpgradeRecipeBox: React.FC<{ upgrade: string | null; tier: number }> = ({
   upgrade,
@@ -341,7 +368,10 @@ const UpgradeRecipeBox: React.FC<{ upgrade: string | null; tier: number }> = ({
   <div className="blueprint-recipe-box">
     <h2>Recipe</h2>
     {upgrade !== null && tier !== null && (
-      <CraftingList name={upgrade + tier} type={BlueprintType.UPGRADES} />
+      <CraftingList
+        name={getUpgradeKey(upgrade, tier)}
+        type={BlueprintType.UPGRADES}
+      />
     )}
   </div>
 );
@@ -349,33 +379,46 @@ const UpgradeRecipeBox: React.FC<{ upgrade: string | null; tier: number }> = ({
 const UpgradeEffectBox: React.FC<{ upgrade: string | null; tier: number }> = ({
   upgrade,
   tier,
-}) => (
-  <div className="vac-upgrade-effect-box">
-    <img
-      src={
-        upgrade === null
-          ? ""
-          : `/assets/${upgradeEffects[upgrade + tier][0][0]}.png`
-      }
-      alt={upgrade === null ? "" : upgradesList[upgrade + tier][0]}
-    />
-    <p className="vac-effect-desc">
-      {upgrade === null ? "" : upgradeEffects[upgrade + tier][0][1]}
-    </p>
-    <FaAngleDown />
-    <img
-      src={
-        upgrade === null
-          ? ""
-          : `/assets/${upgradeEffects[upgrade + tier][1][0]}.png`
-      }
-      alt={upgrade === null ? "" : upgradesList[upgrade + tier][0]}
-    />
-    <p className="vac-effect-desc">
-      {upgrade === null ? "" : upgradeEffects[upgrade + tier][1][1]}
-    </p>
-  </div>
-);
+}) => {
+  const upgradeTier =
+    upgrade === null ? null : ((upgrade + tier) as UpgradeWithTier);
+  if (upgradeTier === null) return null;
+  return (
+    <div className="vac-upgrade-effect-box">
+      <img
+        src={
+          upgrade === null
+            ? ""
+            : `/assets/${upgradeEffects[upgradeTier][0][0]}.png`
+        }
+        alt={
+          upgrade === null
+            ? ""
+            : upgradesList[getUpgradeKey(upgrade, tier) as UpgradeWithTier][0]
+        }
+      />
+      <p className="vac-effect-desc">
+        {upgrade === null ? "" : upgradeEffects[upgradeTier][0][1]}
+      </p>
+      <FaAngleDown />
+      <img
+        src={
+          upgrade === null
+            ? ""
+            : `/assets/${upgradeEffects[upgradeTier][1][0]}.png`
+        }
+        alt={
+          upgrade === null
+            ? ""
+            : upgradesList[getUpgradeKey(upgrade, tier) as UpgradeWithTier][0]
+        }
+      />
+      <p className="vac-effect-desc">
+        {upgrade === null ? "" : upgradeEffects[upgradeTier][1][1]}
+      </p>
+    </div>
+  );
+};
 
 const UpgradeRequirementsBox: React.FC<{
   upgrade: string | null;
@@ -387,11 +430,19 @@ const UpgradeRequirementsBox: React.FC<{
     ) : (
       <>
         <img
-          src={`/assets/${unlockRequirements[upgradesList[upgrade + tier][1]][1]}.png`}
+          src={`/assets/${
+            unlockRequirements[
+              upgradesList[getUpgradeKey(upgrade, tier) as UpgradeWithTier][1]
+            ][1]
+          }.png`}
           alt={
             upgrade === null
               ? ""
-              : unlockRequirements[upgradesList[upgrade + tier][1]][0]
+              : unlockRequirements[
+                  upgradesList[
+                    getUpgradeKey(upgrade, tier) as UpgradeWithTier
+                  ][1]
+                ][0]
           }
         />
         <div>
@@ -399,7 +450,11 @@ const UpgradeRequirementsBox: React.FC<{
           <h4>
             {upgrade === null
               ? ""
-              : unlockRequirements[upgradesList[upgrade + tier][1]][0]}
+              : unlockRequirements[
+                  upgradesList[
+                    getUpgradeKey(upgrade, tier) as UpgradeWithTier
+                  ][1]
+                ][0]}
           </h4>
         </div>
       </>
@@ -414,7 +469,7 @@ const UtilitiesPage: React.FC = () => {
   document.title =
     blueprint === null
       ? "Blueprints - Slimepedia"
-      : utilitiesList[blueprint][0] + " - Slimepedia";
+      : utilitiesList[blueprint as Utility][0] + " - Slimepedia";
 
   return (
     <>
@@ -428,23 +483,26 @@ const UtilitiesPage: React.FC = () => {
         defer
         className="blueprint-list"
       >
-        {utilitiesNames.map((utilitiesNames) => (
+        {utilityNames.map((utilityName) => (
           <NavLink
-            key={utilitiesNames}
-            to={`/blueprints/utilities/${utilitiesNames}`}
+            key={utilityName}
+            to={`/blueprints/utilities/${utilityName}`}
             className="blueprint-item"
           >
             <NavButton
-              key={utilitiesNames}
-              name={utilitiesList[utilitiesNames][0]}
-              icon={`gadgets/${utilitiesNames}`}
+              key={utilityName}
+              name={utilitiesList[utilityName][0]}
+              icon={`gadgets/${utilityName}`}
               tilting="none"
               size={1.25}
             />
           </NavLink>
         ))}
       </OverlayScrollbarsComponent>
-      <BlueprintInfos blueprint={blueprint} type={BlueprintType.UTILITIES} />
+      <BlueprintInfos
+        blueprint={blueprint as BlueprintItem}
+        type={BlueprintType.UTILITIES}
+      />
     </>
   );
 };
@@ -456,7 +514,7 @@ const WarpPage: React.FC = () => {
   document.title =
     blueprint === null
       ? "Blueprints - Slimepedia"
-      : warpGadgets[blueprint][0] + " - Slimepedia";
+      : warpGadgets[blueprint as Warp][0] + " - Slimepedia";
 
   return (
     <>
@@ -486,7 +544,10 @@ const WarpPage: React.FC = () => {
           </NavLink>
         ))}
       </OverlayScrollbarsComponent>
-      <BlueprintInfos blueprint={blueprint} type={BlueprintType.WARP} />
+      <BlueprintInfos
+        blueprint={blueprint as BlueprintItem}
+        type={BlueprintType.WARP}
+      />
     </>
   );
 };
@@ -499,7 +560,7 @@ const DecorationsPage: React.FC = () => {
   document.title =
     blueprint === null
       ? "Blueprints - Slimepedia"
-      : decorationsList[blueprint][0] + " - Slimepedia";
+      : decorationsList[blueprint as Decoration][0] + " - Slimepedia";
 
   return (
     <>
@@ -508,7 +569,9 @@ const DecorationsPage: React.FC = () => {
           {Object.keys(themeList).map((theme) => (
             <button
               key={theme}
-              className={`decoration-tab${decoFilter === theme ? " selected" : ""}`}
+              className={`decoration-tab${
+                decoFilter === theme ? " selected" : ""
+              }`}
               onClick={() => setDecoFilter(theme)}
               title={themeList[theme][0]}
             >
@@ -533,9 +596,9 @@ const DecorationsPage: React.FC = () => {
           className="blueprint-list decoration"
         >
           {(decoFilter === "any"
-            ? decorationsNames
-            : decorationsNames.filter(
-                (deco) => decorationsList[deco][3] === decoFilter,
+            ? decorationNames
+            : decorationNames.filter(
+                (deco) => decorationsList[deco][3] === decoFilter
               )
           ).map((decoName) => (
             <NavLink
@@ -554,7 +617,10 @@ const DecorationsPage: React.FC = () => {
           ))}
         </OverlayScrollbarsComponent>
       </div>
-      <BlueprintInfos blueprint={blueprint} type={BlueprintType.DECORATIONS} />
+      <BlueprintInfos
+        blueprint={blueprint as BlueprintItem}
+        type={BlueprintType.DECORATIONS}
+      />
     </>
   );
 };
@@ -611,7 +677,10 @@ const RecipeMenu: React.FC = () => {
           ) : (
             Object.keys(recipeList.current).map((blueprint) => {
               const type = recipeList.current[blueprint][0];
-              const name = craftRecipeMatcher(blueprint, type)[0];
+              const name = craftRecipeMatcher(
+                blueprint as BlueprintItem,
+                type
+              )[0];
               const currentType =
                 type === BlueprintType.DECORATIONS ? "deco" : "gadgets";
               return (
@@ -665,12 +734,14 @@ const RecipeMenu: React.FC = () => {
             Object.keys(craftList).map((item) => (
               <div key={item} className="pin-element pin-item-element">
                 <img
-                  src={`/assets/${recipeElements[item][1]}.png`}
-                  alt={recipeElements[item][0]}
-                  title={recipeElements[item][0]}
+                  src={`/assets/${
+                    recipeElements[item as RecipeElementNames][1]
+                  }.png`}
+                  alt={recipeElements[item as RecipeElementNames][0]}
+                  title={recipeElements[item as RecipeElementNames][0]}
                 />
-                <p>{recipeElements[item][0]}: </p>
-                <h3>{craftList[item]}</h3>
+                <p>{recipeElements[item as RecipeElementNames][0]}: </p>
+                <h3>{craftList[item as keyof typeof craftList]}</h3>
               </div>
             ))
           )}
@@ -716,7 +787,9 @@ export const Blueprints: React.FC = () => {
           </NavLink>
           <NavLink
             to="/blueprints/utilities"
-            className={`blueprints-tab${tab === "utilities" ? " selected" : ""}`}
+            className={`blueprints-tab${
+              tab === "utilities" ? " selected" : ""
+            }`}
           >
             <img src="/assets/misc/utilities.png" alt="Utilities" />
             <h1>Utilities</h1>
@@ -730,7 +803,9 @@ export const Blueprints: React.FC = () => {
           </NavLink>
           <NavLink
             to="/blueprints/decorations"
-            className={`blueprints-tab${tab === "decorations" ? " selected" : ""}`}
+            className={`blueprints-tab${
+              tab === "decorations" ? " selected" : ""
+            }`}
           >
             <img src="/assets/misc/decorations.png" alt="Decorations" />
             <h1>Decoration</h1>

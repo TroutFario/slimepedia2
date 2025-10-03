@@ -8,7 +8,6 @@ import {
 import { Navigate, NavLink, useParams } from "react-router-dom";
 import React from "react";
 import "../css/Buildings.css";
-import { getEnumValue } from "../App";
 
 const linkStyle = {
   textDecoration: "none",
@@ -164,7 +163,9 @@ const EmptyBuilding: React.FC = () => (
 
 export const Buildings = () => {
   const { building: buildingName, upgrade } = useParams();
-  const building = getEnumValue(Building, buildingName) ?? Building.Corral;
+  const building = Object.values(Building).includes(buildingName as Building) 
+    ? (buildingName as Building) 
+    : Building.Corral;
   const currentUpgrade = upgrade ?? null;
 
   if (building === null) return <EmptyBuilding />;

@@ -16,7 +16,7 @@ import { Tab } from "../components/Tab";
 import { Slime, slimesList } from "../text/slimes";
 import "../css/Pedia.css";
 import { FaAngleDown } from "react-icons/fa6";
-import { getEnumValue } from "../App";
+import { Region, regionElements, regionInfos } from "../text/regions";
 
 interface FoodTabsProps {
   filter: FoodType | null;
@@ -32,16 +32,16 @@ const FoodTabs: React.FC<FoodTabsProps> = ({ filter, setFilter }) => (
       selected={filter === FoodType.Any}
     />
     <Tab
-      title="Fruits"
-      icon={`food/fruits`}
-      action={() => setFilter(FoodType.Fruits)}
-      selected={filter === FoodType.Fruits}
-    />
-    <Tab
       title="Veggies"
       icon={`food/veggies`}
       action={() => setFilter(FoodType.Veggies)}
       selected={filter === FoodType.Veggies}
+    />
+    <Tab
+      title="Fruits"
+      icon={`food/fruits`}
+      action={() => setFilter(FoodType.Fruits)}
+      selected={filter === FoodType.Fruits}
     />
     <Tab
       title="Meat"
@@ -108,6 +108,15 @@ const favSlimeCalc = (currentFood: Food | null) => {
   return null;
 };
 
+const getFoodSpawnlist = (food: Food | null) => {
+  if (food === null) return [];
+  const spawnList: string[] = [];
+  for (const [region, regionElement] of Object.entries(regionElements))
+    if (regionElement[1].includes(food))
+      spawnList.push(regionInfos[region as Region][1]);
+  return spawnList;
+};
+
 interface FoodDetailsProps {
   food: Food | null;
   setFilter: (filter: FoodType) => void;
@@ -160,11 +169,9 @@ const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
           />
         </div>
       </div>
-      <a
-        href="#"
-        className="little-box food-type link-to-food"
-        onClick={(e) => {
-          e.preventDefault();
+      <div
+        className="little-box food-type interactive-box"
+        onClick={() => {
           setFilter(
             foodList[food][1] !== null &&
               [FoodType.Veggies, FoodType.Fruits, FoodType.Meat].includes(
@@ -188,7 +195,6 @@ const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
           }
         }}
         tabIndex={0}
-        role="button"
         aria-pressed="false"
       >
         <img
@@ -211,7 +217,7 @@ const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
               : foodTypeList[foodList[food][1]][1]}
           </h4>
         </div>
-      </a>
+      </div>
       {favSlime === null ? (
         <div className="little-box food-fav">
           <img src="/assets/misc/none.png" alt="None" />
@@ -222,7 +228,7 @@ const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
         </div>
       ) : (
         <NavLink to={`/slimes/${favSlime}`} style={{ textDecoration: "none" }}>
-          <div className="little-box food-fav link-to-food">
+          <div className="little-box food-fav interactive-box">
             <img
               src={`/assets/slimes/${favSlime}.png`}
               alt={slimesList[favSlime][0]}
@@ -232,9 +238,10 @@ const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
               <h4>{slimesList[favSlime][0]}</h4>
             </div>
           </div>
+          
         </NavLink>
       )}
-      <Biomes spawnList={foodList[food][2]} />
+      <Biomes spawnList={getFoodSpawnlist(food)} />
     </>
   );
 };
@@ -282,7 +289,9 @@ const FoodDescription: React.FC<FoodDescriptionProps> = ({
 
 export const FoodPage = () => {
   const { food: foodName } = useParams<{ food: string }>();
-  const food = getEnumValue(Food, foodName);
+  const food = Object.values(Food).includes(foodName as Food) 
+    ? (foodName as Food) 
+    : null;
   const [filter, setFilter] = useState<FoodType | null>(
     food ? foodList[food][1] : FoodType.Any
   );

@@ -1,0 +1,53 @@
+/* Container Styles */
+.container-primary {
+  background-color: var(--menu-color-1);
+  border-radius: var(--border-size);
+  padding: var(--border-size);
+  overflow: hidden;
+}
+
+.container-secondary {
+  background-color: var(--item-color);
+  border-radius: var(--border-size);
+  padding: var(--border-size);
+  overflow: hidden;
+}
+
+/* List container variants */
+.list-container-base {
+  display: grid;
+  margin: 0;
+  padding: 10px;
+  border-radius: var(--border-size);
+  background-color: var(--menu-color-1);
+  gap: 10px;
+  min-width: fit-content;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.list-container-2-cols {
+  display: grid;
+  margin: 0;
+  padding: 10px;
+  border-radius: var(--border-size);
+  background-color: var(--menu-color-1);
+  gap: 10px;
+  min-width: fit-content;
+  overflow-x: hidden;
+  overflow-y: auto;
+  grid-template-columns: 1fr 1fr;
+}
+
+.list-container-3-cols {
+  display: grid;
+  margin: 0;
+  padding: 10px;
+  border-radius: var(--border-size);
+  background-color: var(--menu-color-1);
+  gap: 10px;
+  min-width: fit-content;
+  overflow-x: hidden;
+  overflow-y: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+}

@@ -8,7 +8,6 @@ import { Resource, resourceList, resourcePedia } from "../text/resources";
 import { Toy, toyNames } from "../text/toys";
 import { Slime, slimesList } from "../text/slimes";
 import "../css/Pedia.css";
-import { getEnumValue } from "../App";
 
 enum ItemType {
   Resource = "resources",
@@ -131,14 +130,13 @@ const EmptyItemInfos = () => (
 export const Items = () => {
   const { tab: tabName, item: itemName } = useParams();
   const category = (() => {
-    if (getEnumValue(Resource, itemName)) return ItemType.Resource;
-    if (getEnumValue(Toy, itemName)) return ItemType.Toy;
-    return getEnumValue(ItemType, tabName);
+    if (Object.values(Resource).includes(itemName as Resource)) return ItemType.Resource;
+    if (Object.values(Toy).includes(itemName as Toy)) return ItemType.Toy;
+    return Object.values(ItemType).includes(tabName as ItemType) ? (tabName as ItemType) : null;
   })();
   const item: Resource | Toy | null = (() => {
-    const resource = getEnumValue(Resource, itemName);
-    if (resource !== null) return resource;
-    return getEnumValue(Toy, itemName);
+    if (Object.values(Resource).includes(itemName as Resource)) return itemName as Resource;
+    return Object.values(Toy).includes(itemName as Toy) ? (itemName as Toy) : null;
   })();
   const [tab, setTab] = useState<ItemType>(category ?? ItemType.Resource);
 
@@ -147,9 +145,9 @@ export const Items = () => {
   }, [category]);
 
   if (category === null) {
-    if (getEnumValue(Resource, tabName))
+    if (Object.values(Resource).includes(tabName as Resource))
       return <Navigate to={`/items/resources/${tabName}`} replace />;
-    if (getEnumValue(Toy, tabName))
+    if (Object.values(Toy).includes(tabName as Toy))
       return <Navigate to={`/items/toys/${tabName}`} replace />;
     return <Navigate to="/items/resources" replace />;
   }
@@ -251,7 +249,7 @@ export const Items = () => {
                   to={`/slimes/${slime}`}
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="little-box toy-fav link-to-food">
+                  <div className="little-box toy-fav interactive-box">
                     <img
                       src={`/assets/slimes/${slime}.png`}
                       alt={slimesList[slime][0]}

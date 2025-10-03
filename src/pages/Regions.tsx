@@ -21,7 +21,6 @@ import { LabyMusicRefs, MusicRefs } from "../components/MusicPlayer";
 import "../css/MusicPlayer.css";
 import "../css/Regions.css";
 import { FaAngleDown } from "react-icons/fa6";
-import { getEnumValue } from "../App";
 
 const regionTypeMatcher: (region: Region | Ranch) => RegionType | null = (
   region,
@@ -288,7 +287,7 @@ const RegionDescription: React.FC<{ region: Region }> = ({ region }) => (
         }
         alt="Pods"
       />
-      <p>{regionInfos[region][5]}</p>
+      <p>{regionInfos[region][4]}</p>
     </div>
   </div>
 );
@@ -372,11 +371,12 @@ enum RegionType {
 
 export const Regions: React.FC = () => {
   const { regionType: regionTypeName, region: regionName } = useParams();
-  const regionType = getEnumValue(RegionType, regionTypeName);
+  const regionType = Object.values(RegionType).includes(regionTypeName as RegionType) 
+    ? (regionTypeName as RegionType) 
+    : null;
   const region = (() => {
-    const foundRegion = getEnumValue(Region, regionName);
-    if (foundRegion !== null) return foundRegion;
-    return getEnumValue(Ranch, regionName);
+    if (Object.values(Region).includes(regionName as Region)) return regionName as Region;
+    return Object.values(Ranch).includes(regionName as Ranch) ? (regionName as Ranch) : null;
   })();
   const [tab, setTab] = useState<RegionType>();
 
@@ -388,9 +388,9 @@ export const Regions: React.FC = () => {
   }, [regionType]);
 
   if (regionType === null) {
-    if (getEnumValue(Region, region as Region))
+    if (Object.values(Region).includes(region as Region))
       return <Navigate to={`/regions/region/${regionName}`} replace />;
-    if (getEnumValue(Ranch, region as Ranch))
+    if (Object.values(Ranch).includes(region as Ranch))
       return <Navigate to={`/regions/ranch/${regionName}`} replace />;
     return <Navigate to="/regions/region/fields" replace />;
   }
