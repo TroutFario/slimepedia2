@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Slime } from "./text/slimes.js";
-import Routes from "./routes/index.jsx";
+import { Slime } from "./text/slimes";
+import Routes from "./routes/index";
 import "overlayscrollbars/overlayscrollbars.css";
 import "./css/App.css";
 

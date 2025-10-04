@@ -16,7 +16,8 @@ import { Tab } from "../components/Tab";
 import { Slime, slimesList } from "../text/slimes";
 import "../css/Pedia.css";
 import { FaAngleDown } from "react-icons/fa6";
-import { Region, regionElements, regionInfos } from "../text/regions";
+import { Ranch, Region, regionElements } from "../text/regions";
+
 
 interface FoodTabsProps {
   filter: FoodType | null;
@@ -110,10 +111,10 @@ const favSlimeCalc = (currentFood: Food | null) => {
 
 const getFoodSpawnlist = (food: Food | null) => {
   if (food === null) return [];
-  const spawnList: string[] = [];
+  const spawnList: (Region | Ranch)[] = [];
   for (const [region, regionElement] of Object.entries(regionElements))
     if (regionElement[1].includes(food))
-      spawnList.push(regionInfos[region as Region][1]);
+      spawnList.push(region as (Region | Ranch));
   return spawnList;
 };
 

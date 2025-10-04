@@ -30,6 +30,8 @@ export enum Slime {
   Tarr = "tarr",
 }
 
+export const specialSlimes = [Slime.Lucky, Slime.Gold, Slime.Tarr];
+
 export const slimesList: {
   [key in Slime]: [string, FoodType | null, Food | null, boolean, Toy | null];
 } = {

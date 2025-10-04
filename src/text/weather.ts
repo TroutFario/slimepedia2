@@ -1,15 +1,7 @@
-export enum Weather {
-  Clear = "clear",
-  Rain = "rain",
-  Snow = "snow",
-  Thunder = "thunder",
-  Lightning = "lightning",
-  Wind = "wind",
-  Cyclone = "cyclone",
-  Pollen = "pollen",
-  Vine = "vine",
-  Slimefall = "slimefall",
-}
+import { Weather, Ranch, Region } from "./enums";
+
+// Réexport des enums pour compatibilité
+export { Weather, Ranch, Region };
 
 export const weatherID: string[] = ["ra", "sn", "ls", "ws", "ps", "sf"];
 
@@ -21,7 +13,7 @@ export const weatherList: {
     string,
     string[],
     Weather | null,
-    string[],
+    (Region | Ranch)[],
     boolean,
     [string, string][],
   ];
@@ -44,7 +36,7 @@ export const weatherList: {
     "That's wet !",
     [],
     null,
-    ["co", "rf", "ss", "ev", "gl"],
+    [Ranch.Conservatory, Region.Fields, Region.Strand, Region.Valley, Region.Labyrinth],
     true,
     [
       ["buildings/sprinkler", "Crops grows faster"],
@@ -60,7 +52,7 @@ export const weatherList: {
     "That's cold !",
     [],
     null,
-    ["pb"],
+    [Region.Bluffs],
     false,
     [["resources/snowball", "Snowballs can be picked up for a snowball fight"]],
   ],
@@ -71,7 +63,7 @@ export const weatherList: {
     "That's loud !",
     [],
     Weather.Lightning,
-    ["co", "rf", "ss", "ev", "pb"],
+    [Ranch.Conservatory, Region.Fields, Region.Strand, Region.Valley, Region.Bluffs],
     false,
     [["resources/mote", "Thunder can be heard in the distance"]],
   ],
@@ -82,7 +74,7 @@ export const weatherList: {
     "That's bright !",
     ["mote", "glass"],
     Weather.Thunder,
-    ["co", "rf", "ss", "ev", "pb"],
+    [Ranch.Conservatory, Region.Fields, Region.Strand, Region.Valley, Region.Bluffs],
     true,
     [
       [
@@ -99,7 +91,7 @@ export const weatherList: {
     "That's windy !",
     [],
     Weather.Cyclone,
-    ["co", "rf", "ss", "ev", "pb"],
+    [Ranch.Conservatory, Region.Fields, Region.Strand, Region.Valley, Region.Bluffs],
     false,
     [["world/wind", "Wind can push items and slimes around"]],
   ],
@@ -110,7 +102,7 @@ export const weatherList: {
     "That's spinning !",
     ["dervish", "drift"],
     Weather.Wind,
-    ["co", "rf", "ss", "ev", "pb"],
+    [Ranch.Conservatory, Region.Fields, Region.Strand, Region.Valley, Region.Bluffs],
     true,
     [
       ["resources/drift", "Drift Crystal can be found in Cyclones"],
@@ -124,7 +116,7 @@ export const weatherList: {
     "That's sneezy !",
     [],
     Weather.Vine,
-    ["co", "rf", "ss", "ev", "gl"],
+    [Ranch.Conservatory, Region.Fields, Region.Strand, Region.Valley, Region.Labyrinth],
     false,
     [["world/pollen", "Pollen can be found in the air"]],
   ],
@@ -135,7 +127,7 @@ export const weatherList: {
     "That's thorny !",
     ["tangle"],
     Weather.Pollen,
-    ["co", "rf", "ss", "ev", "gl"],
+    [Ranch.Conservatory, Region.Fields, Region.Strand, Region.Valley, Region.Labyrinth],
     true,
     [
       ["world/vine", "Vines will grow on rock faces"],
@@ -149,7 +141,7 @@ export const weatherList: {
     "That's slimy !",
     ["slimes"],
     null,
-    ["co", "rf", "ss", "ev", "pb"],
+    [Ranch.Conservatory, Region.Fields, Region.Strand, Region.Valley, Region.Bluffs],
     false,
     [
       [

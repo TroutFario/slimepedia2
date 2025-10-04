@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Slime, slimesList, slimesText, slimepedia } from "../text/slimes.js";
+import { Slime, slimesList, slimesText, slimepedia, specialSlimes } from "../text/slimes";
 import { NavButton } from "../components/NavButton";
-import { Biomes } from "../components/Biomes.js";
+import { Biomes } from "../components/Biomes";
 import {
   foodList,
   foodTypeList,
   foodTypeBlacklist,
   foodBlackList,
-} from "../text/food.js";
-import { toyNames } from "../text/toys.js";
+} from "../text/food";
+import { toyNames } from "../text/toys";
 import { Navigate, NavLink, useParams } from "react-router-dom";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { FaAngleDown } from "react-icons/fa6";
 import "../css/Pedia.css";
-import { Region, regionElements, regionInfos } from "../text/regions.js";
-import { Weather, weatherList } from "../text/weather.js";
+import { Region, regionElements } from "../text/regions";
+import { Weather, weatherList } from "../text/weather";
 
 const nonePath = "/assets/misc/none.png";
 const nonPlortSlimes = [null, Slime.Lucky, Slime.Tarr];
@@ -22,15 +22,16 @@ interface SlimeDetailsProps {
   selectedSlime: Slime | null;
 }
 
-const getSlimeSpawnlist = (slime: Slime | null) => {
+const getSlimeSpawnlist = (slime: Slime | null): (Region | Weather)[] => {
   if (slime === null) return [];
-  const spawnList: string[] = [];
+  if (specialSlimes.includes(slime)) return [Region.Fields, Region.Strand, Region.Valley, Region.Bluffs, Region.Labyrinth];
+  const spawnList: (Region | Weather)[] = [];
   for (const [region, regionElement] of Object.entries(regionElements))
     if (regionElement[0].includes(slime))
-      spawnList.push(regionInfos[region as Region][1]);
+      spawnList.push(region as Region);
   for (const [weather, weatherElement] of Object.entries(weatherList))
     if (weatherElement[4].includes(slime))
-      spawnList.push(weatherList[weather as Weather][1]);
+      spawnList.push(weather as Weather);
   return spawnList;
 };
 

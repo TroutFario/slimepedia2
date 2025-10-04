@@ -1,19 +1,39 @@
 import React, { useState, useRef, useEffect } from "react";
-import { spawnLocationsList } from "../text/regions";
+import {
+  Ranch,
+  ranchInfos,
+  Region,
+  regionInfos,
+} from "../text/regions";
 import { NavLink } from "react-router-dom";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import { weatherID } from "../text/weather";
+import { Weather, weatherID, weatherList } from "../text/weather";
 import "../css/Biomes.css";
 
 const light = true;
 const animationDelay = 200;
 
-export const Biomes: React.FC<{ spawnList: string[] }> = ({
+type MixedRegion = Region | Ranch | Weather | "pm";
+
+const biomeToElement: (biome: MixedRegion) => [string, string, string] | undefined = (
+  biome
+) => {
+  if (Object.values(Region).includes(biome as Region))
+    return [regionInfos[biome as Region][0], regionInfos[biome as Region][1], biome as string];
+  if (Object.values(Ranch).includes(biome as Ranch))
+    return [ranchInfos[biome as Ranch][0], ranchInfos[biome as Ranch][1], biome as string];
+  if (Object.values(Weather).includes(biome as Weather))
+    return [weatherList[biome as Weather][0], weatherList[biome as Weather][1], biome as string];
+  if (biome === "pm") return ["Pronto Mart", "pm", "shop"];
+  return undefined;
+};
+
+export const Biomes: React.FC<{ spawnList: MixedRegion[] }> = ({
   spawnList = [],
 }) => {
   const [listHovered, setListHovered] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const biomeBlacklist = ["pm"];
+  const biomeBlacklist: MixedRegion[] = ["pm"];
 
   useEffect(() => {
     videoRefs.current = spawnList.map((_, i) => videoRefs.current[i] ?? null);
@@ -52,14 +72,18 @@ export const Biomes: React.FC<{ spawnList: string[] }> = ({
     }, animationDelay);
   };
 
-  const renderBiomeItem = (biome: string, index: number) => {
+  const renderBiomeItem = (
+    biome: [string, string, string] | undefined,
+    index: number
+  ) => {
+    if (!biome) return null;
     const videoRef = videoRefs.current[index];
     const content = (
       <>
         <video
           ref={(el) => (videoRefs.current[index] = el)}
           className="biome-list-video"
-          src={`/assets/videos/${biome}${light && ".light"}.webm`}
+          src={`/assets/videos/${biome[1]}${light && ".light"}.webm`}
           preload="auto"
           loop
           muted
@@ -68,10 +92,10 @@ export const Biomes: React.FC<{ spawnList: string[] }> = ({
         <div className="biome-list-overlay">
           <img
             className="biome-image"
-            src={`/assets/world/${spawnLocationsList[biome][0]}.png`}
-            alt={spawnLocationsList[biome][1]}
+            src={`/assets/world/${biome[2]}.png`}
+            alt={biome[0]}
           />
-          <h4 className="biome-name">{spawnLocationsList[biome][1]}</h4>
+          <h4 className="biome-name">{biome[0]}</h4>
         </div>
       </>
     );
@@ -82,9 +106,9 @@ export const Biomes: React.FC<{ spawnList: string[] }> = ({
       onMouseLeave: () => handleMouseLeave(videoRef),
     };
 
-    if (biomeBlacklist.includes(biome)) {
+    if (biomeBlacklist.includes(biome[1] as MixedRegion)) {
       return (
-        <div key={biome} {...containerProps}>
+        <div key={biome[1]} {...containerProps}>
           {content}
         </div>
       );
@@ -92,8 +116,10 @@ export const Biomes: React.FC<{ spawnList: string[] }> = ({
 
     return (
       <NavLink
-        key={biome}
-        to={`/${weatherID.includes(biome) ? "weather" : "regions"}/${spawnLocationsList[biome][0]}`}
+        key={biome[1]}
+        to={`/${weatherID.includes(biome[1]) ? "weather" : "regions"}/${
+          biome[0]
+        }`}
         style={{ textDecoration: "none" }}
       >
         <div {...containerProps}>{content}</div>
@@ -122,7 +148,9 @@ export const Biomes: React.FC<{ spawnList: string[] }> = ({
           e.preventDefault();
         }}
       >
-        {spawnList.map((biome, index) => renderBiomeItem(biome, index))}
+        {spawnList.map((biome, index) =>
+          renderBiomeItem(biomeToElement(biome), index)
+        )}
       </button>
     </OverlayScrollbarsComponent>
   );

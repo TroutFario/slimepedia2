@@ -1,85 +1,58 @@
 import { Food } from "./food";
-import { Resource } from "./resources";
 import { Slime } from "./slimes";
+import { Region, Ranch, RegionType, Resource } from "./enums";
 
-export enum RegionType {
-  Region = "regions",
-  Ranch = "ranch",
-}
-
-export enum Region {
-  Fields = "fields",
-  Strand = "strand",
-  Valley = "valley",
-  Bluffs = "bluffs",
-  Labyrinth = "labyrinth",
-  Sea = "sea",
-}
-
-export enum Ranch {
-  Conservatory = "conservatory",
-  Archway = "archway",
-  Den = "den",
-  Gully = "gully",
-  Tidepools = "tidepools",
-  Digsite = "digsite",
-}
+// Réexport des enums pour compatibilité
+export { Region, Ranch, RegionType, Resource };
 
 export const regionInfos: {
-  [key in Region]: [string, string, string, string, number,];
+  [key in Region]: [string, string, string, number,];
 } = {
   [Region.Sea]: [
     "The Slime Sea",
     "se",
     "An expansive body of water and slime compound that's not fit for swimming, let alone drinking.",
-    "se",
     0
   ],
   [Region.Fields]: [
     "Rainbow Fields",
     "rf",
     "Shifting colors like a dream, fading just as quickly.",
-    "rf",
     18
   ],
   [Region.Strand]: [
     "Starlight Strand",
     "ss",
     "A vision of dusk and dawn together as one.",
-    "ss",
     32
   ],
   [Region.Valley]: [
     "Ember Valley",
     "ev",
     "The ancient world stirs beneath your feet with every step.",
-    "ev",
     33
   ],
   [Region.Bluffs]: [
     "Powderfall Bluffs",
     "pb",
     "A lost era echoing trough halls of shimmering ice.",
-    "pb",
     24
   ],
   [Region.Labyrinth]: [
     "The Grey Labyrinth",
     "gl",
     "An imposing layer cake whose depths hide ancient, prismatic secrets.",
-    "gl",
     25
   ],
 };
 
 export const ranchInfos: {
-  [key in Ranch]: [string, string, string, string, number, number, number];
+  [key in Ranch]: [string, string, string, number, number, number];
 } = {
   [Ranch.Conservatory]: [
     "The Conservatory",
     "co",
     "Your gateway to a prismatic paradise.",
-    "co",
     0,
     8,
     0,
@@ -88,7 +61,6 @@ export const ranchInfos: {
     "The Den",
     "td",
     "This dark, damp, mushroom-covered expansion to the conservatory is a refuge from the sun for slimes and ranchers alike.",
-    "co",
     1,
     5,
     1800,
@@ -97,7 +69,6 @@ export const ranchInfos: {
     "The Gully",
     "gu",
     "This expansion to the Conservatory is surrounded by tall rock formations and covered in amber grass.",
-    "gu",
     1,
     5,
     1800,
@@ -106,7 +77,6 @@ export const ranchInfos: {
     "The Archway",
     "ar",
     "An expansion to the conservatory set amongst ancient ruins and fields of rainbow grass.",
-    "ar",
     1,
     5,
     1800,
@@ -115,7 +85,6 @@ export const ranchInfos: {
     "The Tidepools",
     "tp",
     "A costal sanctuary for coral lifeforms and seaweed, this expansion to the conservatory is guaranteed to fill your shoes with sand.",
-    "tp",
     0,
     5,
     3500,
@@ -124,7 +93,6 @@ export const ranchInfos: {
     "The Digsite",
     "ds",
     "A curious archaeological site with plenty of room for a creative rancher to clean up and make it their own.",
-    "ds",
     0,
     4,
     4500,

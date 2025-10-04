@@ -287,7 +287,7 @@ const RegionDescription: React.FC<{ region: Region }> = ({ region }) => (
         }
         alt="Pods"
       />
-      <p>{regionInfos[region][4]}</p>
+      <p>{regionInfos[region][3]}</p>
     </div>
   </div>
 );
@@ -317,17 +317,17 @@ const RanchDescription: React.FC<{ region: Ranch }> = ({ region }) => (
     <RegionConnections region={region} />
     <div className="ranch-box ranch-cost">
       <h2 className="box-title">Expansion Cost</h2>
-      <h3>{ranchInfos[region][6]}</h3>
+      <h3>{ranchInfos[region][5]}</h3>
       <img src="/assets/misc/buck.png" alt="Newbucks" />
     </div>
     <div className="ranch-box ranch-slots">
       <h2 className="box-title">Available Slots</h2>
-      <h3>{ranchInfos[region][5]}</h3>
+      <h3>{ranchInfos[region][4]}</h3>
       <img src="/assets/misc/patch.png" alt="Slots" />
     </div>
     <div className="ranch-box ranch-pods">
       <h2 className="box-title">Pod in this Expansion</h2>
-      <h3>{ranchInfos[region][4]}</h3>
+      <h3>{ranchInfos[region][3]}</h3>
       <img src="/assets/misc/pod.png" alt="Slots" />
     </div>
     <div className="ranch-box ranch-special">
