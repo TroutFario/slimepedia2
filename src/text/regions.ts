@@ -1,9 +1,7 @@
 import { Food } from "./food";
 import { Slime } from "./slimes";
-import { Region, Ranch, RegionType, Resource } from "./enums";
-
-// Réexport des enums pour compatibilité
-export { Region, Ranch, RegionType, Resource };
+import { Region, Ranch, Resource } from "./enums";
+export { Region, Ranch, Resource } from "./enums";
 
 export const regionInfos: {
   [key in Region]: [string, string, string, number,];
@@ -416,6 +414,13 @@ export const regionsConnections: {
 };
 
 export const GLSections = ["waterworks", "lava", "labyrinth", "dreamland", "terrarium"];
+export const GLSectionTimecodes: { [key in typeof GLSections[number]]: [number, number, number, number] } = {
+  waterworks: [0, 5, 10, 15],
+  lava: [0, 30, 60, 90],
+  labyrinth: [0, 30, 60, 90],
+  dreamland: [0, 30, 60, 90],
+  terrarium: [0, 30, 60, 90],
+};
 
 export const regionsResourcesInfos: {
   [key: string]: [string, string, string];

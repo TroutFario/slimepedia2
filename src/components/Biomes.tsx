@@ -33,7 +33,7 @@ export const Biomes: React.FC<{ spawnList: MixedRegion[] }> = ({
 }) => {
   const [listHovered, setListHovered] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const biomeBlacklist: MixedRegion[] = ["pm"];
+  const biomeBlacklist: Set<MixedRegion> = new Set(["pm"]);
 
   useEffect(() => {
     videoRefs.current = spawnList.map((_, i) => videoRefs.current[i] ?? null);
@@ -106,7 +106,7 @@ export const Biomes: React.FC<{ spawnList: MixedRegion[] }> = ({
       onMouseLeave: () => handleMouseLeave(videoRef),
     };
 
-    if (biomeBlacklist.includes(biome[1] as MixedRegion)) {
+    if (biomeBlacklist.has(biome[1] as MixedRegion)) {
       return (
         <div key={biome[1]} {...containerProps}>
           {content}

@@ -571,9 +571,9 @@ export const Regions: React.FC = () => {
         <div className="region-container">
           <div className="region-main-page-frame">
             {region === "labyrinth" ? (
-              <LabyMusicRefs />
+              <LabyMusicRefs video={mainPlayer} />
             ) : (
-              <MusicRefs region={region} />
+              <MusicRefs region={region} videoRef={mainPlayer} />
             )}
             <div className="region-main-page">
               <img src={`/assets/world/${region}.png`} alt={zoneName} />
