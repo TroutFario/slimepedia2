@@ -680,11 +680,17 @@
   grid-area: unlock;
 }
 
-.little-box.blueprint-requirements-box > div > h3 {
+.decoration-theme-box {
+  grid-area: theme;
+}
+
+.little-box.blueprint-requirements-box > div > h3,
+.little-box.decoration-theme-box > div > h3 {
   font-size: 1.7em;
 }
 
-.little-box.blueprint-requirements-box > div > h4 {
+.little-box.blueprint-requirements-box > div > h4,
+.little-box.decoration-theme-box > div > h4 {
   font-size: 1.2em;
 }
 
@@ -725,12 +731,20 @@
   flex: 1 0 40vw;
   padding: 0;
   display: grid;
-  grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   grid-template-areas:
     "header header"
     "unlock recipe";
   gap: var(--border-size);
+}
+
+.blueprint-infos.decoration {
+  grid-template-rows: 2fr 1fr 1fr;
+  grid-template-areas:
+    "header header"
+    "theme  recipe"
+    "unlock recipe";
 }
 
 .decoration-list {

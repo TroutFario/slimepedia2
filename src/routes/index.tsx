@@ -16,7 +16,7 @@ const Items = lazyWithDefault(() => import("../pages/Items"));
 const WorldMap = lazyWithDefault(() => import("../pages/WorldMap"));
 const Regions = lazyWithDefault(() => import("../pages/Regions"));
 const Weather = lazyWithDefault(() => import("../pages/Weather"));
-const Blueprints = lazyWithDefault(() => import("../pages/Blueprints"));
+const Blueprints = lazyWithDefault(() => import("../pages/blueprints/Blueprints"));
 const Buildings = lazyWithDefault(() => import("../pages/Buildings"));
 
 export default function Index() {

@@ -1,15 +1,13 @@
-import React, {
-  createContext,
-  useContext,
-  useRef,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, useContext, useRef, useState, useCallback } from "react";
+import {
+  BlueprintItem,
+  Recipe,
+  RecipeElement,
+} from "../text/blueprints/blueprints";
 import { upgradesList } from "../text/blueprints/upgrades";
 import { utilitiesList, Utility } from "../text/blueprints/utilities";
 import { Warp, warpGadgets } from "../text/blueprints/warp";
 import { Decoration, decorationsList } from "../text/blueprints/decoration";
-import { BlueprintItem, Recipe } from "../text/blueprints/blueprints";
 
 enum BlueprintType {
   UPGRADES = "upgrades",
@@ -18,20 +16,20 @@ enum BlueprintType {
   DECORATIONS = "decorations",
 }
 
-// Type pour la liste des recettes (blueprint -> [type, quantity])
-type RecipeList = { [key: string]: [BlueprintType, number] };
+type BlueprintList = Map<BlueprintItem, [BlueprintType, number]>;
+type CraftList = Map<RecipeElement, number>;
 
 interface RecipeContextType {
-  recipeList: React.MutableRefObject<RecipeList>;
-  craftList: Recipe;
-  addToRecipeList: (item: string, type: BlueprintType, qtty: number) => void;
-  decreaseBlueprint: (item: string, type: BlueprintType, qtty: number) => void;
-  resetList: () => void;
-  resetBlueprint: (item: string) => void;
-  craftRecipeMatcher: (
+  blueprintList: BlueprintList;
+  craftList: CraftList;
+  increaseBlueprint: (
     item: BlueprintItem,
-    type: BlueprintType
-  ) => [string, Recipe];
+    type: BlueprintType,
+    qtty: number
+  ) => void;
+  decreaseBlueprint: (item: BlueprintItem, qtty: number) => void;
+  resetList: () => void;
+  deleteBlueprint: (item: BlueprintItem) => void;
   triggerAnimation: (
     elementRef: React.MutableRefObject<HTMLButtonElement | null>,
     animation: string
@@ -40,6 +38,24 @@ interface RecipeContextType {
 }
 
 const RecipeContext = createContext<RecipeContextType | undefined>(undefined);
+
+const getRecipeForItem: (item: BlueprintItem, type: BlueprintType) => Recipe = (
+  item,
+  type
+) => {
+  switch (type) {
+    case BlueprintType.UPGRADES:
+      return upgradesList[item as keyof typeof upgradesList][2];
+    case BlueprintType.UTILITIES:
+      return utilitiesList[item as Utility][2];
+    case BlueprintType.WARP:
+      return warpGadgets[item as Warp][2];
+    case BlueprintType.DECORATIONS:
+      return decorationsList[item as Decoration][2];
+    default:
+      throw new Error("Invalid blueprint type: " + type);
+  }
+};
 
 export const useRecipeContext = (): RecipeContextType => {
   const context = useContext(RecipeContext);
@@ -52,83 +68,58 @@ export const useRecipeContext = (): RecipeContextType => {
 export const RecipeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const blueprintList = useRef<RecipeList>({});
-  const [craftList, setCraftList] = useState<Recipe>({});
+  // store maps in state so React re-renders consumers when they change
+  const [blueprintList, setBlueprintList] = useState<BlueprintList>(new Map());
+  const [craftList, setCraftList] = useState<CraftList>(new Map());
 
-  const addToRecipeList = (item: string, type: BlueprintType, qtty: number) => {
-    if (blueprintList.current[item] === undefined)
-      blueprintList.current[item] = [type, qtty];
-    else blueprintList.current[item][1] += qtty;
-    updateCraftList();
+  const updateCraftList = useCallback((sourceBlueprints: BlueprintList) => {
+    const newCraft = new Map<RecipeElement, number>();
+    for (const [item, [type, qtty]] of sourceBlueprints) {
+      const recipe = getRecipeForItem(item, type);
+      for (const [ingredient, quantity] of recipe) {
+        const requiredQtty = quantity * qtty;
+        if (newCraft.has(ingredient as RecipeElement)) {
+          newCraft.set(ingredient as RecipeElement, newCraft.get(ingredient as RecipeElement)! + requiredQtty);
+        } else {
+          newCraft.set(ingredient as RecipeElement, requiredQtty);
+        }
+      }
+    }
+    setCraftList(newCraft);
+  }, []);
+
+  const increaseBlueprint = (item: BlueprintItem, type: BlueprintType, qtty: number) => {
+    const next = new Map(blueprintList);
+    if (!next.has(item)) next.set(item, [type, qtty]);
+    else next.get(item)![1] += qtty;
+    setBlueprintList(next);
+    updateCraftList(next);
   };
 
-  const decreaseBlueprint = (
-    item: string,
-    type: BlueprintType,
-    qtty: number
-  ) => {
-    if (blueprintList.current[item] === undefined) {
+  const decreaseBlueprint = (item: BlueprintItem, qtty: number) => {
+    if (!blueprintList.has(item)) {
       console.error("Item not found in blueprint list: ", item);
       return;
-    } else if (blueprintList.current[item][1] <= qtty)
-      delete blueprintList.current[item];
-    else blueprintList.current[item][1] -= qtty;
-    updateCraftList();
+    }
+    const next = new Map(blueprintList);
+    if (next.get(item)![1] <= qtty) next.delete(item);
+    else next.get(item)![1] -= qtty;
+    setBlueprintList(next);
+    updateCraftList(next);
   };
 
-  const resetBlueprint = (item: string) => {
-    delete blueprintList.current[item];
-    updateCraftList();
+  const deleteBlueprint = (item: BlueprintItem) => {
+    if (!blueprintList.has(item)) return;
+    const next = new Map(blueprintList);
+    next.delete(item);
+    setBlueprintList(next);
+    updateCraftList(next);
   };
 
   const resetList = () => {
-    blueprintList.current = {};
-    updateCraftList();
+    setBlueprintList(new Map());
+    setCraftList(new Map());
   };
-
-  const craftRecipeMatcher: (
-    item: BlueprintItem,
-    type: BlueprintType
-  ) => [string, Recipe] = (item: BlueprintItem, type: BlueprintType) => {
-    switch (type) {
-      case BlueprintType.UPGRADES:
-        return [
-          upgradesList[item as keyof typeof upgradesList][0],
-          upgradesList[item as keyof typeof upgradesList][2],
-        ];
-      case BlueprintType.UTILITIES:
-        return [
-          utilitiesList[item as Utility][0],
-          utilitiesList[item as Utility][2],
-        ];
-      case BlueprintType.WARP:
-        return [warpGadgets[item as Warp][0], warpGadgets[item as Warp][2]];
-      case BlueprintType.DECORATIONS:
-        return [
-          decorationsList[item as Decoration][0],
-          decorationsList[item as Decoration][2],
-        ];
-      default:
-        throw new Error("Invalid blueprint type");
-    }
-  };
-
-  const updateCraftList = () => {
-    const newCraftList: { [key: string]: number } = {};
-    for (const [item, [type, qtty]] of Object.entries(blueprintList.current))
-      for (const [craftItem, craftQtty] of Object.entries(
-        craftRecipeMatcher(item as BlueprintItem, type)[1]
-      )) {
-        if (newCraftList[craftItem] === undefined)
-          newCraftList[craftItem] = craftQtty * qtty;
-        else newCraftList[craftItem] += craftQtty * qtty;
-      }
-    setCraftList(newCraftList);
-  };
-
-  useEffect(() => {
-    updateCraftList();
-  }, [blueprintList]);
 
   const currentElementRef = useRef<HTMLButtonElement | null>(null);
 
@@ -145,17 +136,16 @@ export const RecipeProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const contextValue = React.useMemo(
     () => ({
-      recipeList: blueprintList,
+      blueprintList,
       craftList,
-      addToRecipeList,
+      increaseBlueprint,
       decreaseBlueprint,
       resetList,
-      craftRecipeMatcher,
-      resetBlueprint,
+      deleteBlueprint,
       triggerAnimation,
       currentElementRef,
     }),
-    [craftList]
+    [blueprintList, craftList]
   );
 
   return (

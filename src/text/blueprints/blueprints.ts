@@ -3,7 +3,14 @@ import { UpgradeWithTier } from "./upgrades";
 import { Utility } from "./utilities";
 import { Warp } from "./warp";
 
-export enum RecipeElementNames {
+export enum BlueprintType {
+  UPGRADES = "upgrades",
+  UTILITIES = "utilities",
+  WARP = "warp",
+  DECORATIONS = "decorations",
+}
+
+export enum RecipeElement {
   NEWBUCKS = "newbucks",
   PINK = "pink",
   COTTON = "cotton",
@@ -38,7 +45,7 @@ export enum RecipeElementNames {
   AQUA = "aqua",
   DREAM = "dream",
   WAX = "wax",
-  WILD_HONEY = "wildHoney",
+  WILDHONEY = "wildHoney",
   BRINE = "brine",
   JELLY = "jelly",
   SNOWFLAKE = "snowflake",
@@ -51,23 +58,23 @@ export enum RecipeElementNames {
   FOSSIL = "fossil",
   SAND = "sand",
   DIAMOND = "diamond",
-  TANK_LINER = "tankLiner",
-  STORAGE_CELL = "storageCell",
-  STORAGE_UNIT = "storageUnit",
-  POWER_CHIP = "powerChip",
-  DASH_BOOT_MODULE = "dashBootModule",
-  JETPACK_DRIVE = "jetpackDrive",
-  HEART_MODULE = "heartModule",
-  GOLDEN_SURESHOT_MODULE = "goldenSureshotModule",
-  SHADOW_SURESHOT_MODULE = "shadowSureshotModule",
-  DRONE_KEY = "droneKey",
-  REGEN_MODULE = "regenModule",
-  INJECTOR_MODULE = "injectorModule",
-  DRONE_MODULE = "droneModule",
+  TANKLINER = "tankLiner",
+  STORAGECELL = "storageCell",
+  STORAGEUNIT = "storageUnit",
+  POWERCHIP = "powerChip",
+  DASHBOOTMODULE = "dashBootModule",
+  JETPACKDRIVE = "jetpackDrive",
+  HEARTMODULE = "heartModule",
+  GOLDENSURESHOTMODULE = "goldenSureshotModule",
+  SHADOWSURESHOTMODULE = "shadowSureshotModule",
+  DRONEKEY = "droneKey",
+  REGENMODULE = "regenModule",
+  INJECTORMODULE = "injectorModule",
+  DRONEMODULE = "droneModule",
 }
 
 export const recipeElements: {
-  [key in RecipeElementNames]: [string, string, string | null];
+  [key in RecipeElement]: [string, string, string | null];
 } = {
   newbucks: ["Newbucks", "misc/buck", null],
   pink: ["Pink Plort", "plorts/pink", "slimes/pink"],
@@ -131,7 +138,7 @@ export const recipeElements: {
   droneModule: ["Drone Station Module", "upgrades/droneModule", null],
 };
 
-export type Recipe = { [key in RecipeElementNames]?: number };
+export type Recipe = Map<RecipeElement, number>;
 
 export enum UnlockRequirementNames {
   START = "start",
@@ -175,17 +182,30 @@ export function getEnumValue<T extends object>(
   return Object.values(enumObject).find((value) => value === element) ?? null;
 }
 
-export const themeList: { [key: string]: [string, string] } = {
-  any: ["Any", "misc/decorations"],
-  fields: ["Rainbow Fields", "world/fields"],
-  valley: ["Ember Valley", "world/valley"],
-  strand: ["Starlight Strand", "world/strand"],
-  bluffs: ["Powderfall Bluffs", "world/bluffs"],
-  labyrinth: ["Grey Labyrinth", "world/labyrinth"],
-  conservatory: ["The Conservatory", "world/conservatory"],
-  golden: ["Golden Statues", "plorts/gold"],
-  beach: ["Beach", "world/tidepools"],
-  fun: ["Fun", "food/ranchersnslimes"],
+export enum DecorationTheme {
+  ANY = "any",
+  FIELDS = "fields",
+  VALLEY = "valley",
+  STRAND = "strand",
+  BLUFFS = "bluffs",
+  LABYRINTH = "labyrinth",
+  CONSERVATORY = "conservatory",
+  GOLDEN = "golden",
+  BEACH = "beach",
+  FUN = "fun",
+}
+
+export const themeList: { [key in DecorationTheme]: [string, string] } = {
+  [DecorationTheme.ANY]: ["Any", "misc/decorations"],
+  [DecorationTheme.FIELDS]: ["Rainbow Fields", "world/fields"],
+  [DecorationTheme.VALLEY]: ["Ember Valley", "world/valley"],
+  [DecorationTheme.STRAND]: ["Starlight Strand", "world/strand"],
+  [DecorationTheme.BLUFFS]: ["Powderfall Bluffs", "world/bluffs"],
+  [DecorationTheme.LABYRINTH]: ["Grey Labyrinth", "world/labyrinth"],
+  [DecorationTheme.CONSERVATORY]: ["The Conservatory", "world/conservatory"],
+  [DecorationTheme.GOLDEN]: ["Golden Statues", "plorts/gold"],
+  [DecorationTheme.BEACH]: ["Beach", "world/tidepools"],
+  [DecorationTheme.FUN]: ["Fun", "food/ranchersnslimes"],
 };
 
 export type BlueprintItem = UpgradeWithTier | Utility | Warp | Decoration;
