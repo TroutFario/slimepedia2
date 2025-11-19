@@ -42,6 +42,28 @@ const audioLabyRefsNames = Object.values(GLSection).flatMap((section) => [
   `${section}-night-ambient`,
 ]);
 
+enum MusicType {
+  THEME = "Theme",
+  RELAX = "Relax",
+  AMBIENT = "Ambient",
+}
+
+enum MusicTime {
+  DAY = "Day",
+  NIGHT = "Night",
+}
+
+const regionCaption = (
+  region: Ranch | Region,
+  time: MusicTime,
+  type: MusicType
+) => {
+  return `data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replaceAll(
+    "-",
+    " "
+  )}%20${time}%20${type}`;
+};
+
 export const MusicRefs: React.FC<{
   region: Ranch | Region;
   videoRef: React.RefObject<HTMLVideoElement> | null;
@@ -71,10 +93,7 @@ export const MusicRefs: React.FC<{
           srcLang="en"
           label="Day Theme Captions"
           default
-          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replaceAll(
-            /-/g,
-            " "
-          )}%20Day%20Theme`}
+          src={regionCaption(region, MusicTime.DAY, MusicType.THEME)}
         />
       </audio>
       <audio ref={relaxDayRef} src={`/assets/music/${region}-day-relax.ogg`}>
@@ -83,10 +102,7 @@ export const MusicRefs: React.FC<{
           srcLang="en"
           label="Day Relax Captions"
           default
-          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replaceAll(
-            /-/g,
-            " "
-          )}%20Day%20Relax`}
+          src={regionCaption(region, MusicTime.DAY, MusicType.RELAX)}
         />
       </audio>
       <audio
@@ -98,10 +114,7 @@ export const MusicRefs: React.FC<{
           srcLang="en"
           label="Day Ambient Captions"
           default
-          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replaceAll(
-            /-/g,
-            " "
-          )}%20Day%20Ambient`}
+          src={regionCaption(region, MusicTime.DAY, MusicType.AMBIENT)}
         />
       </audio>
       <audio
@@ -113,10 +126,7 @@ export const MusicRefs: React.FC<{
           srcLang="en"
           label="Night Theme Captions"
           default
-          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replaceAll(
-            /-/g,
-            " "
-          )}%20Night%20Theme`}
+          src={regionCaption(region, MusicTime.NIGHT, MusicType.THEME)}
         />
       </audio>
       <audio
@@ -128,10 +138,7 @@ export const MusicRefs: React.FC<{
           srcLang="en"
           label="Night Relax Captions"
           default
-          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replaceAll(
-            /-/g,
-            " "
-          )}%20Night%20Relax`}
+          src={regionCaption(region, MusicTime.NIGHT, MusicType.RELAX)}
         />
       </audio>
       <audio
@@ -143,10 +150,7 @@ export const MusicRefs: React.FC<{
           srcLang="en"
           label="Night Ambient Captions"
           default
-          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replaceAll(
-            /-/g,
-            " "
-          )}%20Night%20Ambient`}
+          src={regionCaption(region, MusicTime.NIGHT, MusicType.AMBIENT)}
         />
       </audio>
       <div className={`region-music-player ${musicMenu ? "" : "disabled"}`}>
@@ -385,7 +389,7 @@ const setVideoTime = (
   time: number,
   played: boolean
 ) => {
-  if (videoRef && videoRef.current && played) {
+  if (videoRef?.current && played) {
     videoRef.current.currentTime = time;
     videoRef.current.play();
   }
@@ -420,7 +424,7 @@ export const LabyMusicRefs: React.FC<{
             label={`${name} Captions`}
             default
             src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0A${name.replaceAll(
-              /-/g,
+              " ",
               " "
             )}`}
           />
