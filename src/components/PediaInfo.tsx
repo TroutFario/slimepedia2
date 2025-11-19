@@ -59,10 +59,10 @@ export const PediaInfo: React.FC<PediaInfoProps> = ({
           />
         )}
       </div>
-      {littleBoxList.map((box) => (
+      {littleBoxList.map((box, index) => (
         <LittleBox
-          order={box.order}
-          key={box.order}
+          order={index}
+          key={box.id}
           image={box.image}
           alt={box.alt}
           title={box.title}

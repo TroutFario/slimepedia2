@@ -137,7 +137,6 @@ const SlimeDetails: React.FC<SlimeDetailsProps> = ({ selectedSlime }) => {
       link: isNoSlime || toy === null ? null : `/items/toys/${toy}`,
     },
   ];
-  console.log(littleBoxList);
 
   return (
     <PediaInfo

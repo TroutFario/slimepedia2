@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useRef, useState, useCallback } from "react";
+import React, {
+  createContext,
+  useContext,
+  useRef,
+  useState,
+  useCallback,
+} from "react";
 import {
   BlueprintItem,
   BlueprintType,
@@ -71,20 +77,24 @@ export const RecipeProvider: React.FC<{ children: React.ReactNode }> = ({
       const recipe = getRecipeForItem(item, type);
       for (const [ingredient, quantity] of recipe) {
         const requiredQtty = quantity * qtty;
-        if (newCraft.has(ingredient as RecipeElement)) {
-          newCraft.set(ingredient as RecipeElement, newCraft.get(ingredient as RecipeElement)! + requiredQtty);
+        if (newCraft.has(ingredient)) {
+          newCraft.set(ingredient, newCraft.get(ingredient)! + requiredQtty);
         } else {
-          newCraft.set(ingredient as RecipeElement, requiredQtty);
+          newCraft.set(ingredient, requiredQtty);
         }
       }
     }
     setCraftList(newCraft);
   }, []);
 
-  const increaseBlueprint = (item: BlueprintItem, type: BlueprintType, qtty: number) => {
+  const increaseBlueprint = (
+    item: BlueprintItem,
+    type: BlueprintType,
+    qtty: number
+  ) => {
     const next = new Map(blueprintList);
-    if (!next.has(item)) next.set(item, [type, qtty]);
-    else next.get(item)![1] += qtty;
+    if (next.has(item)) next.get(item)![1] += qtty;
+    else next.set(item, [type, qtty]);
     setBlueprintList(next);
     updateCraftList(next);
   };

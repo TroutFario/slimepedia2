@@ -735,13 +735,6 @@
 .blueprint-infos {
   flex: 1 0 40vw;
   padding: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas:
-    "header header"
-    "unlock recipe";
-  gap: var(--border-size);
 }
 
 .blueprint-list,

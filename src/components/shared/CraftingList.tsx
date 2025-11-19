@@ -3,7 +3,6 @@ import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import {
   BlueprintItem,
   BlueprintType,
-  RecipeElement,
   recipeElements,
 } from "../../data/blueprints/blueprints";
 import { useRecipeContext } from "../RecipeContext";
@@ -37,15 +36,15 @@ export const CraftingList: React.FC<{
 }> = ({ name, type }) => {
   const { increaseBlueprint, triggerAnimation, currentElementRef } =
     useRecipeContext();
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState<number>(1);
   useEffect(() => {
     setQuantity(1);
   }, [name]);
   const increaseQuantity = () =>
-    setQuantity((prevQtty) => (name !== null ? prevQtty + (prevQtty < 99 ? 1 : 0) : prevQtty));
+    setQuantity((prevQtty) => prevQtty < 99 ? prevQtty + 1 : 99);
   const decreaseQuantity = () =>
-    setQuantity((prevQtty) => (name !== null ? prevQtty - (prevQtty > 1 ? 1 : 0) : prevQtty));
-  const recipe = name ? (blueprintMatcher(name, type)[2]) : [];
+    setQuantity((prevQtty) => prevQtty > 1 ? prevQtty - 1 : 1);
+  const recipe = name ? blueprintMatcher(name, type)[2] : [];
   const elementRef = useRef<HTMLButtonElement | null>(null);
 
   return (
@@ -180,7 +179,7 @@ export const RecipeMenu: React.FC = () => {
             Array.from(blueprintList.keys()).map((blueprint: BlueprintItem) => {
               const type = blueprintList.get(blueprint)![0];
               const name = craftRecipeMatcher(
-                blueprint as BlueprintItem,
+                blueprint,
                 type
               )[0];
               const currentType =
@@ -194,7 +193,7 @@ export const RecipeMenu: React.FC = () => {
                     src={
                       type === BlueprintType.UPGRADE
                         ? "/assets/upgrades/" +
-                          blueprint.replace(/[^a-zA-Z]/g, "") +
+                          blueprint.replaceAll(/[^a-zA-Z]/g, "") +
                           ".png"
                         : `/assets/${currentType}/${blueprint}.png`
                     }
@@ -231,12 +230,12 @@ export const RecipeMenu: React.FC = () => {
               <div key={item} className="pin-element pin-item-element">
                 <img
                   src={`/assets/${
-                    recipeElements[item as RecipeElement][1]
+                    recipeElements[item][1]
                   }.png`}
-                  alt={recipeElements[item as RecipeElement][0]}
-                  title={recipeElements[item as RecipeElement][0]}
+                  alt={recipeElements[item][0]}
+                  title={recipeElements[item][0]}
                 />
-                <p>{recipeElements[item as RecipeElement][0]}: </p>
+                <p>{recipeElements[item][0]}: </p>
                 <h3>{craftList.get(item)!}</h3>
               </div>
             ))

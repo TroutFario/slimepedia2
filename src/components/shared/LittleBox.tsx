@@ -1,16 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-export interface LittleBoxProps {
-  id?: string;
-  order?: number;
-  image?: string | null;
-  alt?: string | null;
-  title?: string | null;
-  subtitle?: string | null;
-  action?: (() => void) | null;
-  link?: string | null;
-  otherClasses?: string;
-}
 
 const DisplayText: React.FC<{ text: string | null | undefined }> = ({
   text,
@@ -25,6 +14,44 @@ const DisplayText: React.FC<{ text: string | null | undefined }> = ({
   );
 };
 
+interface LittleBoxBodyProps {
+  image?: string | null;
+  alt?: string | null;
+  title?: string | null;
+  subtitle?: string | null;
+}
+
+const LittleBoxBody: React.FC<LittleBoxBodyProps> = ({
+  image,
+  alt,
+  title,
+  subtitle,
+}) => {
+  const imagePath = image ? image : "/assets/misc/empty.png";
+  const altText = alt ? alt : "No image";
+  return (
+    <>
+      <img src={imagePath} alt={altText} />
+      <div>
+        <h3>{title}</h3>
+        <DisplayText text={subtitle} />
+      </div>
+    </>
+  );
+};
+
+export interface LittleBoxProps {
+  id?: string;
+  order?: number;
+  image?: string | null;
+  alt?: string | null;
+  title?: string | null;
+  subtitle?: string | null;
+  action?: (() => void) | null;
+  link?: string | null;
+  otherClasses?: string;
+}
+
 export const LittleBox: React.FC<LittleBoxProps> = ({
   order = 0,
   image,
@@ -35,8 +62,6 @@ export const LittleBox: React.FC<LittleBoxProps> = ({
   link,
   otherClasses,
 }) => {
-  const imagePath = image ? image : "/assets/misc/empty.png";
-  const altText = alt ? alt : "No image available";
   if (link)
     return (
       <NavLink to={link} style={{ textDecoration: "none" }}>
@@ -60,11 +85,12 @@ export const LittleBox: React.FC<LittleBoxProps> = ({
           tabIndex={0}
           aria-pressed="false"
         >
-          <img src={imagePath} alt={altText} />
-          <div>
-            <h3>{title}</h3>
-            <DisplayText text={subtitle} />
-          </div>
+          <LittleBoxBody
+            image={image}
+            alt={alt}
+            title={title}
+            subtitle={subtitle}
+          />
         </div>
       </NavLink>
     );
@@ -90,11 +116,12 @@ export const LittleBox: React.FC<LittleBoxProps> = ({
       tabIndex={0}
       aria-pressed="false"
     >
-      <img src={imagePath} alt={altText} />
-      <div>
-        <h3>{title}</h3>
-        <DisplayText text={subtitle} />
-      </div>
+      <LittleBoxBody
+        image={image}
+        alt={alt}
+        title={title}
+        subtitle={subtitle}
+      />
     </div>
   );
 };
