@@ -9,7 +9,7 @@ import { Toy, toyList } from "../data/toys";
 import { Slime, slimesList } from "../data/slimes";
 import "../css/Pedia.css";
 import PediaInfo, { PediaBoxLayout } from "../components/PediaInfo";
-import { LittleBoxStruct } from "../components/shared/LittleBox";
+import { LittleBoxProps } from "../components/shared/LittleBox";
 
 enum ItemType {
   Resource = "resources",
@@ -103,7 +103,7 @@ const ItemInfos: React.FC<ItemInfosProps> = ({ item, category }) => {
   let icon: string | null = null;
   let biomeList: MixedRegion[] = [];
   let layout = PediaBoxLayout.OneByOne;
-  const littleBoxList: LittleBoxStruct[] = [];
+  const littleBoxList: LittleBoxProps[] = [];
   littleBoxList.push({
     image: "/assets/misc/pediatut.png",
     alt: "Pedia Informations Icon",

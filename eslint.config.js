@@ -11,6 +11,11 @@ export default [
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   {
+    settings: {
+      react: { version: "detect" },
+    },
+  },
+  {
     rules: {
       "@typescript-eslint/no-unused-vars": "warn",
       // "prefer-const": "warn",

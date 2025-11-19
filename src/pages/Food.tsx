@@ -17,7 +17,7 @@ import { Slime, slimesList } from "../data/slimes";
 import "../css/Pedia.css";
 import { FaAngleDown } from "react-icons/fa6";
 import { Region, regionElements } from "../data/regions";
-import { LittleBoxStruct } from "../components/shared/LittleBox";
+import { LittleBoxProps } from "../components/shared/LittleBox";
 import { PediaBoxLayout, PediaInfo } from "../components/PediaInfo";
 
 interface FoodTabsProps {
@@ -133,7 +133,7 @@ const specialFoodFilter = (foodType: FoodType | null): FoodType | null => {
 };
 
 const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
-  const littleBoxList: LittleBoxStruct[] = [];
+  const littleBoxList: LittleBoxProps[] = [];
   if (food === null) {
     littleBoxList.push({
       image: null,

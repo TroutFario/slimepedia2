@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
-interface LittleBoxProps {
+export interface LittleBoxProps {
+  id?: string;
   order?: number;
   image?: string | null;
   alt?: string | null;
@@ -24,8 +24,6 @@ const DisplayText: React.FC<{ text: string | null | undefined }> = ({
     </>
   );
 };
-
-export type LittleBoxStruct = Readonly<LittleBoxProps>;
 
 export const LittleBox: React.FC<LittleBoxProps> = ({
   order = 0,

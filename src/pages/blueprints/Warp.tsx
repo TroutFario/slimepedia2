@@ -13,14 +13,14 @@ import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { NavLink, useParams } from "react-router-dom";
 import NavButton from "../../components/NavButton";
 import { CraftingList } from "../../components/shared/CraftingList";
-import { LittleBoxStruct } from "../../components/shared/LittleBox";
+import { LittleBoxProps } from "../../components/shared/LittleBox";
 import PediaInfo, { PediaBoxLayout } from "../../components/PediaInfo";
 
 const WarpInfos: React.FC<{ warp: Warp | null }> = ({ warp }) => {
   let title = "No warp tech selected";
   let subtitle = "Select a warp tech to get its information";
   let icon: string | null = null;
-  const littleBoxList: LittleBoxStruct[] = [];
+  const littleBoxList: LittleBoxProps[] = [];
   if (warp !== null) {
     title = warpGadgets[warp][0];
     subtitle = warpDescriptions[warp];

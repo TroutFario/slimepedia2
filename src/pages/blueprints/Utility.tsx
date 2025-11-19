@@ -14,13 +14,13 @@ import {
   unlockRequirements,
 } from "../../data/blueprints/blueprints";
 import PediaInfo, { PediaBoxLayout } from "../../components/PediaInfo";
-import { LittleBoxStruct } from "../../components/shared/LittleBox";
+import { LittleBoxProps } from "../../components/shared/LittleBox";
 
 const UtilityInfo: React.FC<{utility: Utility | null}> = ({ utility }) => {
     let title = "No utility selected";
     let subtitle = "Select an utility to get its information";
     let icon: string | null = null;
-    const littleBoxList: LittleBoxStruct[] = [];
+    const littleBoxList: LittleBoxProps[] = [];
     if (utility !== null) {
       title = utilitiesList[utility][0];
       subtitle = utilitiesDescription[utility];

@@ -16,7 +16,7 @@ import { FaAngleDown } from "react-icons/fa6";
 import "../css/Pedia.css";
 import { Region, regionElements } from "../data/regions";
 import { Weather, weatherList } from "../data/weather";
-import { LittleBoxStruct } from "../components/shared/LittleBox";
+import { LittleBoxProps } from "../components/shared/LittleBox";
 import { PediaBoxLayout, PediaInfo } from "../components/PediaInfo";
 
 const nonePath = "/assets/misc/none.png";
@@ -52,7 +52,7 @@ const SlimeDetails: React.FC<SlimeDetailsProps> = ({ selectedSlime }) => {
   const isLargoable = currentSlimeList?.[3] ?? false;
   const toy = currentSlimeList?.[4] ?? null;
 
-  const littleBoxList: LittleBoxStruct[] = [
+  const littleBoxList: LittleBoxProps[] = [
     // Diet
     {
       image: isNoSlime
@@ -137,6 +137,7 @@ const SlimeDetails: React.FC<SlimeDetailsProps> = ({ selectedSlime }) => {
       link: isNoSlime || toy === null ? null : `/items/toys/${toy}`,
     },
   ];
+  console.log(littleBoxList);
 
   return (
     <PediaInfo

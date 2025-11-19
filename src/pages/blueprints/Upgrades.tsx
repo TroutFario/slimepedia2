@@ -17,7 +17,7 @@ import {
   unlockRequirements,
 } from "../../data/blueprints/blueprints";
 import PediaInfo, { PediaBoxLayout } from "../../components/PediaInfo";
-import { LittleBoxStruct } from "../../components/shared/LittleBox";
+import { LittleBoxProps } from "../../components/shared/LittleBox";
 
 interface UpgradeItemListProps {
   selected: boolean;
@@ -143,7 +143,7 @@ const UpgradeInfo: React.FC<{
   let title = "No upgrade selected";
   let subtitle = "Select an upgrade to get its information";
   let icon: string | null = null;
-  const littleBoxList: LittleBoxStruct[] = [];
+  const littleBoxList: LittleBoxProps[] = [];
 
   if (upgradeWithTier && upgradeWithTier in upgradesList) {
     title = upgradesList[upgradeWithTier][0];

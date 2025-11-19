@@ -15,7 +15,7 @@ import {
   themeList,
 } from "../../data/blueprints/decoration";
 import { CraftingList } from "../../components/shared/CraftingList";
-import { LittleBoxStruct } from "../../components/shared/LittleBox";
+import { LittleBoxProps } from "../../components/shared/LittleBox";
 import PediaInfo, { PediaBoxLayout } from "../../components/PediaInfo";
 
 const DecorationInfos: React.FC<{
@@ -25,7 +25,7 @@ const DecorationInfos: React.FC<{
   let title = "No decoration selected";
   let subtitle = "Select a decoration to get its information";
   let icon: string | null = null;
-  const littleBoxList: LittleBoxStruct[] = [];
+  const littleBoxList: LittleBoxProps[] = [];
   if (decoration !== null) {
     const themeName: string = themeList[decorationList[decoration][3]][0];
     littleBoxList.push({
