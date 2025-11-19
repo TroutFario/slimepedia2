@@ -27,8 +27,8 @@ const LittleBoxBody: React.FC<LittleBoxBodyProps> = ({
   title,
   subtitle,
 }) => {
-  const imagePath = image ? image : "/assets/misc/empty.png";
-  const altText = alt ? alt : "No image";
+  const imagePath = image ?? "/assets/misc/empty.png";
+  const altText = alt ?? "No image";
   return (
     <>
       <img src={imagePath} alt={altText} />
@@ -40,8 +40,19 @@ const LittleBoxBody: React.FC<LittleBoxBodyProps> = ({
   );
 };
 
+const actionHandler = (
+  e: React.KeyboardEvent<HTMLButtonElement>,
+  action: () => void
+) => {
+  if (action && "key" in e) {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      action();
+    }
+  }
+};
+
 export interface LittleBoxProps {
-  id?: string;
   order?: number;
   image?: string | null;
   alt?: string | null;
@@ -65,23 +76,14 @@ export const LittleBox: React.FC<LittleBoxProps> = ({
   if (link)
     return (
       <NavLink to={link} style={{ textDecoration: "none" }}>
-        <div
+        <button
           className={
-            "little-box interactive-box element-" +
+            "little-box button-reset interactive-box element-" +
             order +
             (otherClasses ? " " + otherClasses : "")
           }
           onClick={action ? () => action() : undefined}
-          onKeyDown={
-            action
-              ? (e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    action();
-                  }
-                }
-              : undefined
-          }
+          onKeyDown={(e) => actionHandler(e, action!)}
           tabIndex={0}
           aria-pressed="false"
         >
@@ -91,13 +93,13 @@ export const LittleBox: React.FC<LittleBoxProps> = ({
             title={title}
             subtitle={subtitle}
           />
-        </div>
+        </button>
       </NavLink>
     );
   return (
-    <div
+    <button
       className={
-        "little-box element-" +
+        "little-box button-reset element-" +
         order +
         (otherClasses ? " " + otherClasses : "") +
         (action ? " interactive-box" : "")
@@ -122,6 +124,6 @@ export const LittleBox: React.FC<LittleBoxProps> = ({
         title={title}
         subtitle={subtitle}
       />
-    </div>
+    </button>
   );
 };

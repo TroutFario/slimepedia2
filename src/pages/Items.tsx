@@ -24,9 +24,11 @@ const slimePerToy: (toy: Toy) => Slime | null = (toy) => {
   return null;
 };
 
+type Item = Resource | Toy;
+
 const ItemList: React.FC<{
   tab: ItemType;
-  item: Resource | Toy | null;
+  item: Item | null;
   setTab: (item: ItemType) => void;
 }> = ({ tab, item, setTab }) => (
   <div className="list-container">
@@ -93,7 +95,7 @@ const ItemList: React.FC<{
 );
 
 interface ItemInfosProps {
-  item: Resource | Toy | null;
+  item: Item | null;
   category: ItemType;
 }
 
@@ -130,18 +132,20 @@ const ItemInfos: React.FC<ItemInfosProps> = ({ item, category }) => {
     Object.values(Toy).includes(item as Toy)
   ) {
     littleBoxList.pop();
-    littleBoxList.push({
-      image: "/assets/misc/pediatut.png",
-      alt: "Pedia Informations Icon",
-      subtitle: toyList[item as Toy][1],
-    });
-    littleBoxList.push({
-      image: `/assets/misc/buck.png`,
-      alt: "Newbuck Icon",
-      title: "Price",
-      subtitle: "500",
-      link: null,
-    });
+    littleBoxList.push(
+      {
+        image: "/assets/misc/pediatut.png",
+        alt: "Pedia Informations Icon",
+        subtitle: toyList[item as Toy][1],
+      },
+      {
+        image: `/assets/misc/buck.png`,
+        alt: "Newbuck Icon",
+        title: "Price",
+        subtitle: "500",
+        link: null,
+      }
+    );
     const slime = slimePerToy(item as Toy);
     if (slime === null) {
       littleBoxList.push({
@@ -190,7 +194,7 @@ export const Items = () => {
       ? (tabName as ItemType)
       : null;
   })();
-  const item: Resource | Toy | null = (() => {
+  const item: Item | null = (() => {
     if (Object.values(Resource).includes(itemName as Resource))
       return itemName as Resource;
     return Object.values(Toy).includes(itemName as Toy)

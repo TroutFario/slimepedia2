@@ -1,4 +1,4 @@
-@import './shared.css';
+@import "./shared.css";
 
 :root {
   --menu-color-0: #efe7d4;
@@ -108,7 +108,7 @@ html {
 
 @media (aspect-ratio < 16/9) {
   html {
-    font-size: .9vw;
+    font-size: 0.9vw;
   }
 }
 
@@ -147,6 +147,20 @@ button {
 a,
 button {
   cursor: pointer;
+}
+
+.button-reset {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
+  cursor: default;
+  box-sizing: border-box;
 }
 
 h1 {
@@ -255,6 +269,7 @@ nav {
 }
 
 .little-box {
+  width: 100%;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -274,6 +289,7 @@ nav {
   height: auto;
 }
 
+.little-box > button,
 .little-box > div {
   width: 100%;
 }
@@ -285,6 +301,7 @@ nav {
   color: var(--text-color);
 }
 
+.little-box > button > h3,
 .little-box > div > h3 {
   font-size: 1.2em;
   font-weight: 700;

@@ -78,7 +78,7 @@ const getFoodSpawnlist = (food: Food | null): Region[] => {
   const spawnList: Region[] = [];
   for (const regionKey of Object.keys(regionElements) as Region[]) {
     const regionElement = regionElements[regionKey];
-    if (regionElement[1].includes(food)) spawnList.push(regionKey as Region);
+    if (regionElement[1].includes(food)) spawnList.push(regionKey);
   }
   return spawnList;
 };
@@ -93,9 +93,7 @@ const FoodList: React.FC<{
       "list-food" +
       (filter === FoodType.Any
         ? " list-food-first"
-        : filter === null
-        ? " list-food-last"
-        : "")
+        : filter && " list-food-last")
     }
     options={{
       scrollbars: {
@@ -135,27 +133,29 @@ const specialFoodFilter = (foodType: FoodType | null): FoodType | null => {
 const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
   const littleBoxList: LittleBoxProps[] = [];
   if (food === null) {
-    littleBoxList.push({
-      image: null,
-      alt: "No food selected",
-      title: "Food type",
-      subtitle: null,
-      action: null,
-      link: null,
-    });
-    littleBoxList.push({
-      image: null,
-      alt: "No slime selected",
-      title: "Favorite of",
-      subtitle: null,
-      action: null,
-      link: null,
-    });
+    littleBoxList.push(
+      {
+        image: null,
+        alt: "No food selected",
+        title: "Food type",
+        subtitle: null,
+        action: null,
+        link: null,
+      },
+      {
+        image: null,
+        alt: "No slime selected",
+        title: "Favorite of",
+        subtitle: null,
+        action: null,
+        link: null,
+      }
+    );
     return (
       <PediaInfo
         layout={PediaBoxLayout.OneByTwo}
         title="Select food"
-        subtitle="Click on food to get it&apos;s information"
+        subtitle="Click on food to get it's information"
         icon="/assets/misc/empty.png"
         littleBoxList={littleBoxList}
         BiomeComponent={<Biomes spawnList={[]} />}
@@ -176,23 +176,25 @@ const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
   const slimeIcon = favSlime
     ? `/assets/slimes/${favSlime}.png`
     : "/assets/misc/none.png";
-  littleBoxList.push({
-    image: foodTypeIcon,
-    alt: foodTypeName,
-    title: "Food type",
-    subtitle: foodTypeName,
-    action:
-      foodType !== null ? () => setFilter(specialFoodFilter(foodType)) : null,
-    link: null,
-  });
-  littleBoxList.push({
-    image: slimeIcon,
-    alt: "Icon of " + slimeName,
-    title: "Favorite of",
-    subtitle: slimeName,
-    action: null,
-    link: favSlime ? `/slimes/${favSlime}` : null,
-  });
+  littleBoxList.push(
+    {
+      image: foodTypeIcon,
+      alt: foodTypeName,
+      title: "Food type",
+      subtitle: foodTypeName,
+      action:
+        foodType === null ? null : () => setFilter(specialFoodFilter(foodType)),
+      link: null,
+    },
+    {
+      image: slimeIcon,
+      alt: "Icon of " + slimeName,
+      title: "Favorite of",
+      subtitle: slimeName,
+      action: null,
+      link: favSlime ? `/slimes/${favSlime}` : null,
+    }
+  );
   return (
     <PediaInfo
       layout={PediaBoxLayout.OneByTwo}
@@ -298,15 +300,9 @@ export const FoodPage = () => {
         <FoodTabs filter={filter} setFilter={setFilter} />
         <FoodList actualFoodList={actualFoodList} food={food} filter={filter} />
       </div>
-      <div
-        className={
-          "box-presentation" +
-          (topBtn ? " hidden-infos" : "")
-        }
-      >
+      <div className={"box-presentation" + (topBtn ? " hidden-infos" : "")}>
         <FoodDetails food={food} setFilter={setFilter} />
         <button
-          role="link"
           className={"arrow-btn " + (topBtn ? "top-btn" : "bot-btn")}
           onClick={() => setTopBtn(!topBtn)}
           onKeyDown={(e) => {
