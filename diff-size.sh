@@ -6,7 +6,7 @@ Show file size changes between two commits or the index and a commit.'
 SUBDIRECTORY_OK=1
 . "$(git --exec-path)/git-sh-setup"
 args=$(git rev-parse --sq "$@")
-[ -n "$args" ] || usage
+[[ -n "$args" ]] || usage
 cmd="diff-tree -r"
 [[ $args =~ "--cached" ]] && cmd="diff-index"
 eval "git $cmd $args" | {

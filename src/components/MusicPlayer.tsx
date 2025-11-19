@@ -1,13 +1,11 @@
 import React, { useRef, useState } from "react";
-import { GLSections, Ranch, Region } from "../data/regions";
+import { GLSection, GLSectionTimecodes, Ranch, Region } from "../data/regions";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 
 const playAudio = (
   audioRef: React.MutableRefObject<HTMLAudioElement | null>,
   currentAudio: HTMLAudioElement | null,
-  setCurrentAudio: React.Dispatch<
-    React.SetStateAction<HTMLAudioElement | null>
-  >,
+  setCurrentAudio: React.Dispatch<React.SetStateAction<HTMLAudioElement | null>>
 ) => {
   if (currentAudio)
     if (currentAudio !== audioRef.current) {
@@ -37,23 +35,23 @@ const getAudioName = (currentAudio: HTMLAudioElement | null) => {
   return "";
 };
 
-const audioLabyRefsNames = GLSections.flatMap((section) => [
+const audioLabyRefsNames = Object.values(GLSection).flatMap((section) => [
   `${section}-day-theme`,
   `${section}-day-ambient`,
   `${section}-night-theme`,
   `${section}-night-ambient`,
 ]);
 
-export const MusicRefs: React.FC<{ region: Ranch | Region, videoRef: React.RefObject<HTMLVideoElement> | null }> = ({
-  region: regionName,
-  videoRef,
-}) => {
+export const MusicRefs: React.FC<{
+  region: Ranch | Region;
+  videoRef: React.RefObject<HTMLVideoElement> | null;
+}> = ({ region: regionName, videoRef }) => {
   const region = Object.values(Ranch).includes(regionName as Ranch)
     ? Ranch.Conservatory
     : regionName;
   const [musicMenu, setMusicMenu] = useState(false);
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(
-    null,
+    null
   );
 
   const themeDayRef = useRef<HTMLAudioElement | null>(null);
@@ -73,7 +71,10 @@ export const MusicRefs: React.FC<{ region: Ranch | Region, videoRef: React.RefOb
           srcLang="en"
           label="Day Theme Captions"
           default
-          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replace(/-/g, " ")}%20Day%20Theme`}
+          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replaceAll(
+            /-/g,
+            " "
+          )}%20Day%20Theme`}
         />
       </audio>
       <audio ref={relaxDayRef} src={`/assets/music/${region}-day-relax.ogg`}>
@@ -82,7 +83,10 @@ export const MusicRefs: React.FC<{ region: Ranch | Region, videoRef: React.RefOb
           srcLang="en"
           label="Day Relax Captions"
           default
-          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replace(/-/g, " ")}%20Day%20Relax`}
+          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replaceAll(
+            /-/g,
+            " "
+          )}%20Day%20Relax`}
         />
       </audio>
       <audio
@@ -94,7 +98,10 @@ export const MusicRefs: React.FC<{ region: Ranch | Region, videoRef: React.RefOb
           srcLang="en"
           label="Day Ambient Captions"
           default
-          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replace(/-/g, " ")}%20Day%20Ambient`}
+          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replaceAll(
+            /-/g,
+            " "
+          )}%20Day%20Ambient`}
         />
       </audio>
       <audio
@@ -106,7 +113,10 @@ export const MusicRefs: React.FC<{ region: Ranch | Region, videoRef: React.RefOb
           srcLang="en"
           label="Night Theme Captions"
           default
-          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replace(/-/g, " ")}%20Night%20Theme`}
+          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replaceAll(
+            /-/g,
+            " "
+          )}%20Night%20Theme`}
         />
       </audio>
       <audio
@@ -118,7 +128,10 @@ export const MusicRefs: React.FC<{ region: Ranch | Region, videoRef: React.RefOb
           srcLang="en"
           label="Night Relax Captions"
           default
-          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replace(/-/g, " ")}%20Night%20Relax`}
+          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replaceAll(
+            /-/g,
+            " "
+          )}%20Night%20Relax`}
         />
       </audio>
       <audio
@@ -130,7 +143,10 @@ export const MusicRefs: React.FC<{ region: Ranch | Region, videoRef: React.RefOb
           srcLang="en"
           label="Night Ambient Captions"
           default
-          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replace(/-/g, " ")}%20Night%20Ambient`}
+          src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0AMusic%20from%20${region.replaceAll(
+            /-/g,
+            " "
+          )}%20Night%20Ambient`}
         />
       </audio>
       <div className={`region-music-player ${musicMenu ? "" : "disabled"}`}>
@@ -150,28 +166,52 @@ export const MusicRefs: React.FC<{ region: Ranch | Region, videoRef: React.RefOb
           defer
         >
           <button
-            className={`music-element-icon ${getAudioName(currentAudio) === region + "-night-ambient" ? "music-current" : ""}`}
+            className={`music-element-icon ${
+              getAudioName(currentAudio) === region + "-night-ambient"
+                ? "music-current"
+                : ""
+            }`}
             onClick={() => {
               playAudio(ambientNightRef, currentAudio, setCurrentAudio);
-              setVideoTime(videoRef, 50, currentAudio !== ambientNightRef.current );
+              setVideoTime(
+                videoRef,
+                50,
+                currentAudio !== ambientNightRef.current
+              );
             }}
           >
             <img src="/assets/deco/cheerfulstatue.png" alt="Cheerful Statue" />
           </button>
           <button
-            className={`music-element-icon ${getAudioName(currentAudio) === region + "-night-relax" ? "music-current" : ""}`}
+            className={`music-element-icon ${
+              getAudioName(currentAudio) === region + "-night-relax"
+                ? "music-current"
+                : ""
+            }`}
             onClick={() => {
               playAudio(relaxNightRef, currentAudio, setCurrentAudio);
-              setVideoTime(videoRef, 40, currentAudio !== relaxNightRef.current );
+              setVideoTime(
+                videoRef,
+                40,
+                currentAudio !== relaxNightRef.current
+              );
             }}
           >
             <img src="/assets/deco/happystatue.png" alt="Happy Statue" />
           </button>
           <button
-            className={`music-element-icon ${getAudioName(currentAudio) === region + "-night-theme" ? "music-current" : ""}`}
+            className={`music-element-icon ${
+              getAudioName(currentAudio) === region + "-night-theme"
+                ? "music-current"
+                : ""
+            }`}
             onClick={() => {
               playAudio(themeNightRef, currentAudio, setCurrentAudio);
-              setVideoTime(videoRef, 30, currentAudio !== themeNightRef.current );
+              setVideoTime(
+                videoRef,
+                30,
+                currentAudio !== themeNightRef.current
+              );
             }}
           >
             <img
@@ -185,16 +225,28 @@ export const MusicRefs: React.FC<{ region: Ranch | Region, videoRef: React.RefOb
             alt="Night Music"
           />
           <button
-            className={`music-element-icon ${getAudioName(currentAudio) === region + "-day-ambient" ? "music-current" : ""}`}
+            className={`music-element-icon ${
+              getAudioName(currentAudio) === region + "-day-ambient"
+                ? "music-current"
+                : ""
+            }`}
             onClick={() => {
               playAudio(ambientDayRef, currentAudio, setCurrentAudio);
-              setVideoTime(videoRef, 20, currentAudio !== ambientDayRef.current);
+              setVideoTime(
+                videoRef,
+                20,
+                currentAudio !== ambientDayRef.current
+              );
             }}
           >
             <img src="/assets/deco/cheerfulstatue.png" alt="Cheerful Statue" />
           </button>
           <button
-            className={`music-element-icon ${getAudioName(currentAudio) === region + "-day-relax" ? "music-current" : ""}`}
+            className={`music-element-icon ${
+              getAudioName(currentAudio) === region + "-day-relax"
+                ? "music-current"
+                : ""
+            }`}
             onClick={() => {
               playAudio(relaxDayRef, currentAudio, setCurrentAudio);
               setVideoTime(videoRef, 10, currentAudio !== relaxDayRef.current);
@@ -203,7 +255,11 @@ export const MusicRefs: React.FC<{ region: Ranch | Region, videoRef: React.RefOb
             <img src="/assets/deco/happystatue.png" alt="Happy Statue" />
           </button>
           <button
-            className={`music-element-icon ${getAudioName(currentAudio) === region + "-day-theme" ? "music-current" : ""}`}
+            className={`music-element-icon ${
+              getAudioName(currentAudio) === region + "-day-theme"
+                ? "music-current"
+                : ""
+            }`}
             onClick={() => {
               playAudio(themeDayRef, currentAudio, setCurrentAudio);
               setVideoTime(videoRef, 0, currentAudio !== themeDayRef.current);
@@ -227,92 +283,128 @@ export const MusicRefs: React.FC<{ region: Ranch | Region, videoRef: React.RefOb
 
 const MusicSection: React.FC<{
   videoRef: React.RefObject<HTMLVideoElement> | null;
-  sectionName: string;
+  sectionName: GLSection;
   refsList: Record<string, React.RefObject<HTMLAudioElement>>;
   currentAudio: HTMLAudioElement | null;
   setCurrentAudio: React.Dispatch<
     React.SetStateAction<HTMLAudioElement | null>
   >;
-}> = ({ sectionName, refsList, currentAudio, setCurrentAudio }) => (
+}> = ({ videoRef, sectionName, refsList, currentAudio, setCurrentAudio }) => (
   <div className={`music-section music-section-${sectionName}`}>
     <img src="/assets/misc/sun.png" className="music-time" alt="Day Music" />
     <button
-      className={`music-element-icon ${getAudioName(currentAudio) === sectionName + "-day-theme" ? "music-current" : ""}`}
-      onClick={() =>
+      className={`music-element-icon ${
+        getAudioName(currentAudio) === sectionName + "-day-theme"
+          ? "music-current"
+          : ""
+      }`}
+      onClick={() => {
+        setVideoTime(
+          videoRef,
+          GLSectionTimecodes[sectionName][0],
+          currentAudio !== refsList[`${sectionName}-day-theme`].current
+        );
         playAudio(
           refsList[`${sectionName}-day-theme`],
           currentAudio,
-          setCurrentAudio,
-        )
-      }
+          setCurrentAudio
+        );
+      }}
     >
       <img src="/assets/deco/overjoyedstatue.png" alt="Overjoyed Statue" />
     </button>
     <button
-      className={`music-element-icon ${getAudioName(currentAudio) === sectionName + "-day-ambient" ? "music-current" : ""}`}
-      onClick={() =>
+      className={`music-element-icon ${
+        getAudioName(currentAudio) === sectionName + "-day-ambient"
+          ? "music-current"
+          : ""
+      }`}
+      onClick={() => {
+        setVideoTime(
+          videoRef,
+          GLSectionTimecodes[sectionName][1],
+          currentAudio !== refsList[`${sectionName}-day-ambient`].current
+        );
         playAudio(
           refsList[`${sectionName}-day-ambient`],
           currentAudio,
-          setCurrentAudio,
-        )
-      }
+          setCurrentAudio
+        );
+      }}
     >
       <img src="/assets/deco/cheerfulstatue.png" alt="Cheerful Statue" />
     </button>
     <img src="/assets/misc/moon.png" className="music-time" alt="Night Music" />
     <button
-      className={`music-element-icon ${getAudioName(currentAudio) === sectionName + "-night-theme" ? "music-current" : ""}`}
-      onClick={() =>
+      className={`music-element-icon ${
+        getAudioName(currentAudio) === sectionName + "-night-theme"
+          ? "music-current"
+          : ""
+      }`}
+      onClick={() => {
+        setVideoTime(
+          videoRef,
+          GLSectionTimecodes[sectionName][2],
+          currentAudio !== refsList[`${sectionName}-night-theme`].current
+        );
         playAudio(
           refsList[`${sectionName}-night-theme`],
           currentAudio,
-          setCurrentAudio,
-        )
-      }
+          setCurrentAudio
+        );
+      }}
     >
       <img src="/assets/deco/overjoyedstatue.png" alt="Overjoyed Statue" />
     </button>
     <button
-      className={`music-element-icon ${getAudioName(currentAudio) === sectionName + "-night-ambient" ? "music-current" : ""}`}
-      onClick={() =>
+      className={`music-element-icon ${
+        getAudioName(currentAudio) === sectionName + "-night-ambient"
+          ? "music-current"
+          : ""
+      }`}
+      onClick={() => {
+        setVideoTime(
+          videoRef,
+          GLSectionTimecodes[sectionName][3],
+          currentAudio !== refsList[`${sectionName}-night-ambient`].current
+        );
         playAudio(
           refsList[`${sectionName}-night-ambient`],
           currentAudio,
-          setCurrentAudio,
-        )
-      }
+          setCurrentAudio
+        );
+      }}
     >
       <img src="/assets/deco/cheerfulstatue.png" alt="Cheerful Statue" />
     </button>
   </div>
 );
 
-const setVideoTime = (videoRef: React.RefObject<HTMLVideoElement> | null, time: number, played: boolean) => {
+const setVideoTime = (
+  videoRef: React.RefObject<HTMLVideoElement> | null,
+  time: number,
+  played: boolean
+) => {
   if (videoRef && videoRef.current && played) {
     videoRef.current.currentTime = time;
     videoRef.current.play();
   }
-}
+};
 
-export const LabyMusicRefs: React.FC<{ video: React.RefObject<HTMLVideoElement> | null }> = ({
-  video,
-}) => {
+export const LabyMusicRefs: React.FC<{
+  video: React.RefObject<HTMLVideoElement> | null;
+}> = ({ video }) => {
   const [musicMenu, setMusicMenu] = useState(false);
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(
-    null,
+    null
   );
 
   const refsList = useRef(
-    audioLabyRefsNames.reduce(
-      (acc, name) => {
-        acc[name] = React.createRef<HTMLAudioElement>();
-        return acc;
-      },
-      {} as Record<string, React.RefObject<HTMLAudioElement>>,
-    ),
+    audioLabyRefsNames.reduce((acc, name) => {
+      acc[name] = React.createRef<HTMLAudioElement>();
+      return acc;
+    }, {} as Record<string, React.RefObject<HTMLAudioElement>>)
   ).current;
-
 
   return (
     <>
@@ -327,12 +419,17 @@ export const LabyMusicRefs: React.FC<{ video: React.RefObject<HTMLVideoElement> 
             srcLang="en"
             label={`${name} Captions`}
             default
-            src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0A${name.replace(/-/g, " ")}`}
+            src={`data:text/vtt,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:10.000%0A${name.replaceAll(
+              /-/g,
+              " "
+            )}`}
           />
         </audio>
       ))}
       <div
-        className={`region-music-player region-labyrinth ${musicMenu ? "" : "disabled"}`}
+        className={`region-music-player region-labyrinth ${
+          musicMenu ? "" : "disabled"
+        }`}
       >
         <button
           className="music-player-icon"
@@ -349,7 +446,7 @@ export const LabyMusicRefs: React.FC<{ video: React.RefObject<HTMLVideoElement> 
           }}
           defer
         >
-          {GLSections.map((section) => (
+          {Object.values(GLSection).map((section) => (
             <MusicSection
               videoRef={video}
               key={section}

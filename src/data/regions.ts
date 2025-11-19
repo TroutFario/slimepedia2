@@ -413,8 +413,14 @@ export const regionsConnections: {
   ],
 };
 
-export const GLSections = ["waterworks", "lava", "labyrinth", "dreamland", "terrarium"];
-export const GLSectionTimecodes: { [key in typeof GLSections[number]]: [number, number, number, number] } = {
+export enum GLSection {
+  WATERWORKS = "waterworks",
+  LAVA = "lava",
+  LABYRINTH = "labyrinth",
+  DREAMLAND = "dreamland",
+  TERRARIUM = "terrarium",
+}
+export const GLSectionTimecodes: { [key in GLSection]: [number, number, number, number] } = {
   waterworks: [0, 5, 10, 15],
   lava: [0, 30, 60, 90],
   labyrinth: [0, 30, 60, 90],
