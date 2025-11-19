@@ -13,6 +13,10 @@ export default [
   {
     rules: {
       "@typescript-eslint/no-unused-vars": "warn",
+      // "prefer-const": "warn",
+      // make these stylistic checks warnings rather than errors
+      //"no-unused-vars": "warn",
+      //"prefer-const": "warn",
     },
   },
 ];

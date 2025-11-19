@@ -47,7 +47,7 @@
   margin: 0;
 }
 
-.slime-presentation {
+.box-presentation {
   flex-grow: 2;
   width: 100%;
   position: relative;
@@ -64,26 +64,69 @@
   height: 100%;
   transition: height var(--animation-speed) var(--animation-function),
     padding var(--animation-speed) var(--animation-function);
-  grid-template-columns: 2fr 1fr 1fr;
   gap: var(--border-size);
 }
 
-.slime-infos {
-  grid-template-rows: auto auto 1fr;
-  grid-template-areas:
-    "image food fav"
-    "image largo toy"
-    "image spawn spawn";
-}
-
-.food-infos {
+.one-one-layout {
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
-    "image type fav"
-    "image spawn spawn";
+    "image element-0"
+    "image component";
 }
 
-.pedia-infos.hidden-infos {
+.one-then-two-layout {
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "image element-0 element-0"
+    "image element-1 element-2"
+    "image component component";
+}
+
+.one-two-layout {
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "image element-0 element-1"
+    "image component component";
+}
+
+.two-one-layout {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "image element-0"
+    "image element-1"
+    "image component";
+}
+
+.two-two-layout {
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "image element-0 element-1"
+    "image element-2 element-3"
+    "image component component";
+}
+
+.little-box.element-0 {
+  grid-area: element-0;
+}
+
+.little-box.element-1 {
+  grid-area: element-1;
+}
+
+.little-box.element-2 {
+  grid-area: element-2;
+}
+
+.little-box.element-3 {
+  grid-area: element-3;
+}
+
+.hidden-infos > .pedia-infos {
   height: 0;
   padding: 0;
 }
@@ -147,13 +190,6 @@
     max-width: 80%;
     max-height: auto;
   }
-}
-
-.infos-box > div > p {
-  margin: 10px 0;
-  text-align: justify;
-  line-height: 1;
-  font-size: 1.5em;
 }
 
 .box-food {
@@ -346,21 +382,6 @@ br {
   box-sizing: border-box;
 }
 
-.presentation-resources {
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    "image desc desc"
-    "image spawn spawn";
-}
-
-.presentation-toys {
-  grid-template-rows: auto auto 1fr;
-  grid-template-areas:
-    "image desc desc"
-    "image price fav"
-    "image spawn spawn";
-}
-
 .food-type {
   grid-area: type;
 }
@@ -370,8 +391,8 @@ br {
   cursor: var(--pointer-style);
 }
 
-.spawn-list-container {
-  grid-area: spawn;
+.component-container {
+  grid-area: component;
 }
 
 .infos-box {

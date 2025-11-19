@@ -1,11 +1,9 @@
-// Shared constants across pages
 export const CONSTANTS = {
   NONE_IMAGE_PATH: "/assets/misc/none.png",
   ANIMATION_SPEED: "var(--animation-speed)",
   ANIMATION_FUNCTION: "var(--animation-function)",
 } as const;
 
-// Shared utility functions
 export const getImagePath = (folder: string, item: string | null) => {
   if (item === null) return CONSTANTS.NONE_IMAGE_PATH;
   return `/assets/${folder}/${item}.png`;

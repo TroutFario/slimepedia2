@@ -179,7 +179,7 @@ export const utilitiesList: {
   ],
   snaremaster: [
     "Master Gordo Snare",
-    UnlockRequirementNames.IDK,
+    UnlockRequirementNames.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 2000],
       [RecipeElement.HUNTER, 20],

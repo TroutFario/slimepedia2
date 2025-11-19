@@ -1,95 +1,123 @@
+import { MixedRegion } from "../components/Biomes";
 import { Ranch, Region, Resource, Weather } from "./enums";
 
-// Réexport des enums pour compatibilité
 export { Ranch, Region, Resource, Weather };
 
-export const resourceList: { [key in Resource]: [string, (Region | Ranch | Weather)[], string] } = {
+export const resourceList: { [key in Resource]: [string, string, MixedRegion[]] } = {
   [Resource.Primordy]: [
     "Primordy Oil",
-    [Region.Valley],
     "This stuff is pre-pre-prehistoric.",
+    [Region.Valley],
   ],
   [Resource.Brine]: [
     "Deep Brine",
-    [Ranch.Conservatory, Region.Fields],
     "Salt of the earth kind of stuff.",
+    [Ranch.Conservatory, Region.Fields],
   ],
   [Resource.Sand]: [
     "Silky Sand",
-    [Region.Strand, Region.Valley],
     "The finest, smoothest sand you'll ever see. Rubbish for sand castles.",
+    [Region.Strand, Region.Valley],
   ],
   [Resource.Lava]: [
     "Lava Dust",
-    [Region.Valley],
     "A survey on the state of this matter answered 'undecided'.",
+    [Region.Valley],
   ],
   [Resource.Wax]: [
     "Buzz Wax",
-    [Region.Strand, Region.Valley],
     "Can be used to make a great candle if you enjoy the smell of bee abdominal glands.",
+    [Region.Strand, Region.Valley],
   ],
   [Resource.Honey]: [
     "Wild Honey",
-    [Region.Strand],
     "Tastes great in tea or in shameful handfuls when no one is looking.",
+    [Region.Strand],
   ],
   [Resource.Jelly]: [
     "Jellystone",
-    [Ranch.Conservatory, Region.Fields],
     "It's both solid and squishy at the same time.",
+    [Ranch.Conservatory, Region.Fields],
   ],
   [Resource.Radiant]: [
     "Radiant Ore",
-    [Region.Strand, Region.Valley],
     "The awesome power of a rainbow and the sleek aesthetic of a lump of mineral.",
+    [Region.Strand, Region.Valley],
   ],
   [Resource.Diamond]: [
     "Strange Diamond",
-    [Region.Fields, Region.Strand, Region.Valley, Region.Bluffs, Region.Labyrinth],
     "Very strange, but even more valuable.",
+    [Region.Fields, Region.Strand, Region.Valley, Region.Bluffs, Region.Labyrinth],
   ],
   [Resource.Fossil]: [
     "Slime Fossil",
-    [Region.Bluffs],
     "If history could smile, it would look like this.",
+    [Region.Bluffs],
   ],
   [Resource.Snowflake]: [
     "Perfect Snowflake",
-    [Region.Bluffs],
     "They made all other snowflakes feel jealous.",
+    [Region.Bluffs],
   ],
   [Resource.Sunsap]: [
     "Sun Sap",
-    [Region.Bluffs],
     "So beautiful that staring at it too long will hurt your eyes.",
+    [Region.Bluffs],
   ],
   [Resource.Mote]: [
     "Lightning Mote",
-    [Weather.Lightning],
     "A scintillating speck of storm.",
+    [Weather.Lightning],
   ],
-  [Resource.Glass]: ["Storm Glass", [Weather.Lightning], "When the sky welds the earth."],
-  [Resource.Drift]: ["Drift Crystal", [Weather.Wind], "Drifting away on the wind."],
-  [Resource.Magma]: ["Magma Comb", [Region.Labyrinth], "A new level of spicy honey."],
-  [Resource.Aqua]: ["Aqua Glass", [Region.Labyrinth], "A different kind of hard water."],
-  [Resource.Dream]: ["Dream Bubble", [Region.Labyrinth], "Dream a little dream."],
-  [Resource.Petal]: ["Tin Petal", [Region.Labyrinth], "Nature is metal."],
-  [Resource.Indigo]: ["Black Indigonium", [Region.Labyrinth], "Dark as midnight."],
+  [Resource.Glass]: [
+    "Storm Glass",
+    "When the sky welds the earth.",
+    [Weather.Lightning],
+    ],
+  [Resource.Drift]: [
+    "Drift Crystal",
+    "Drifting away on the wind.",
+    [Weather.Wind],
+  ],
+  [Resource.Magma]: [
+    "Magma Comb",
+    "A new level of spicy honey.",
+    [Region.Labyrinth],
+    ],
+  [Resource.Aqua]: [
+    "Aqua Glass",
+    "A different kind of hard water.",
+    [Region.Labyrinth],
+  ],
+  [Resource.Dream]: [
+    "Dream Bubble",
+    "Dream a little dream.",
+    [Region.Labyrinth],
+  ],
+  [Resource.Petal]: [
+    "Tin Petal",
+    "Nature is metal.",
+    [Region.Labyrinth],
+    ],
+  [Resource.Indigo]: [
+    "Black Indigonium",
+    "Dark as midnight.",
+    [Region.Labyrinth],
+    ],
   [Resource.Royal]: [
     "Royal Jelly",
-    [Region.Labyrinth],
     "The king of all jellies... that is, until you meet the queen.",
+    [Region.Labyrinth],
   ],
   [Resource.Snowball]: [
     "Snowball",
-    [Region.Bluffs],
     "Slime-approved way to have fun and chill out.",
+    [Region.Bluffs],
   ],
   [Resource.Prisma]: [
     "Radiant Plort",
-    [Region.Labyrinth],
     "Prismatic plorts of possibilities with a purpose.",
+    [Region.Labyrinth],
   ],
 };
 

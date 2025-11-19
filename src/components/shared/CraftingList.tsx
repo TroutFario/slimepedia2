@@ -3,36 +3,36 @@ import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import {
   BlueprintItem,
   BlueprintType,
-  Recipe,
   RecipeElement,
   recipeElements,
-} from "../../text/blueprints/blueprints";
-import { useRecipeContext } from "../../components/RecipeContext";
-import { upgradesList, UpgradeWithTier } from "../../text/blueprints/upgrades";
-import { utilitiesList, Utility } from "../../text/blueprints/utilities";
-import { Warp, warpGadgets } from "../../text/blueprints/warp";
-import { Decoration, decorationsList } from "../../text/blueprints/decoration";
+} from "../../data/blueprints/blueprints";
+import { useRecipeContext } from "../RecipeContext";
+import { upgradesList, UpgradeWithTier } from "../../data/blueprints/upgrades";
+import { utilitiesList, Utility } from "../../data/blueprints/utilities";
+import { Warp, warpGadgets } from "../../data/blueprints/warp";
+import { Decoration, decorationList } from "../../data/blueprints/decoration";
 import { FaAngleDown, FaMinus, FaPlus, FaXmark } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
+import "../../css/Blueprints.css";
 
-export const blueprintMatcher = (
+const blueprintMatcher = (
   blueprint: BlueprintItem | UpgradeWithTier,
   type: BlueprintType
 ) => {
   switch (type) {
-    case BlueprintType.UPGRADES:
+    case BlueprintType.UPGRADE:
       return upgradesList[blueprint as UpgradeWithTier];
-    case BlueprintType.UTILITIES:
+    case BlueprintType.UTILITY:
       return utilitiesList[blueprint as Utility];
     case BlueprintType.WARP:
       return warpGadgets[blueprint as Warp];
-    case BlueprintType.DECORATIONS:
-      return decorationsList[blueprint as Decoration];
+    case BlueprintType.DECORATION:
+      return decorationList[blueprint as Decoration];
   }
 };
 
 export const CraftingList: React.FC<{
-  name: BlueprintItem;
+  name: BlueprintItem | null;
   type: BlueprintType;
 }> = ({ name, type }) => {
   const { increaseBlueprint, triggerAnimation, currentElementRef } =
@@ -42,11 +42,10 @@ export const CraftingList: React.FC<{
     setQuantity(1);
   }, [name]);
   const increaseQuantity = () =>
-    setQuantity((prevQtty) => prevQtty + (prevQtty < 99 ? 1 : 0));
+    setQuantity((prevQtty) => (name !== null ? prevQtty + (prevQtty < 99 ? 1 : 0) : prevQtty));
   const decreaseQuantity = () =>
-    setQuantity((prevQtty) => prevQtty - (prevQtty > 1 ? 1 : 0));
-  const recipe = blueprintMatcher(name, type)[2] as Recipe;
-  console.log(recipe);
+    setQuantity((prevQtty) => (name !== null ? prevQtty - (prevQtty > 1 ? 1 : 0) : prevQtty));
+  const recipe = name ? (blueprintMatcher(name, type)[2]) : [];
   const elementRef = useRef<HTMLButtonElement | null>(null);
 
   return (
@@ -70,6 +69,7 @@ export const CraftingList: React.FC<{
         <button
           ref={elementRef}
           onClick={() => {
+            if (name === null) return;
             triggerAnimation(currentElementRef, "add-to-cart");
             triggerAnimation(elementRef, "grow-in-out");
             increaseBlueprint(name, type, quantity);
@@ -81,25 +81,23 @@ export const CraftingList: React.FC<{
         <div></div>
         <FaAngleDown onClick={() => increaseQuantity()} />
       </div>
-      {Object.keys(recipe).map((ingredient) => (
+      {[...recipe].map(([ingredient, qtty]) => (
         <div key={ingredient}>
           <NavLink
             to={
-              recipeElements[ingredient as RecipeElement][2] == null
+              recipeElements[ingredient][2] == null
                 ? ""
-                : `/${recipeElements[ingredient as RecipeElement][2]}`
+                : `/${recipeElements[ingredient][2]}`
             }
           >
             <img
-              src={`/assets/${
-                recipeElements[ingredient as RecipeElement][1]
-              }.png`}
-              alt={recipeElements[ingredient as RecipeElement][0]}
-              title={recipeElements[ingredient as RecipeElement][0]}
+              src={`/assets/${recipeElements[ingredient][1]}.png`}
+              alt={recipeElements[ingredient][0]}
+              title={recipeElements[ingredient][0]}
             />
-            <p>{recipeElements[ingredient as RecipeElement][0]}: </p>
+            <p>{recipeElements[ingredient][0]}: </p>
           </NavLink>
-          <h3>{recipe.get(ingredient as RecipeElement)! * quantity}</h3>
+          <h3>{qtty * quantity}</h3>
         </div>
       ))}
     </OverlayScrollbarsComponent>
@@ -108,22 +106,22 @@ export const CraftingList: React.FC<{
 
 const craftRecipeMatcher = (item: BlueprintItem, type: BlueprintType) => {
   switch (type) {
-    case BlueprintType.UPGRADES:
+    case BlueprintType.UPGRADE:
       return [
         upgradesList[item as keyof typeof upgradesList][0],
         upgradesList[item as keyof typeof upgradesList][2],
       ];
-    case BlueprintType.UTILITIES:
+    case BlueprintType.UTILITY:
       return [
         utilitiesList[item as Utility][0],
         utilitiesList[item as Utility][2],
       ];
     case BlueprintType.WARP:
       return [warpGadgets[item as Warp][0], warpGadgets[item as Warp][2]];
-    case BlueprintType.DECORATIONS:
+    case BlueprintType.DECORATION:
       return [
-        decorationsList[item as Decoration][0],
-        decorationsList[item as Decoration][2],
+        decorationList[item as Decoration][0],
+        decorationList[item as Decoration][2],
       ];
     default:
       throw new Error("Invalid blueprint type: " + type);
@@ -179,14 +177,14 @@ export const RecipeMenu: React.FC = () => {
               <h1>No blueprint selected</h1>
             </div>
           ) : (
-            Array.from(blueprintList.keys()).map(((blueprint: BlueprintItem) => {
+            Array.from(blueprintList.keys()).map((blueprint: BlueprintItem) => {
               const type = blueprintList.get(blueprint)![0];
               const name = craftRecipeMatcher(
                 blueprint as BlueprintItem,
                 type
               )[0];
               const currentType =
-                type === BlueprintType.DECORATIONS ? "deco" : "gadgets";
+                type === BlueprintType.DECORATION ? "deco" : "gadgets";
               return (
                 <div
                   className="pin-element pin-blueprint-element"
@@ -194,7 +192,7 @@ export const RecipeMenu: React.FC = () => {
                 >
                   <img
                     src={
-                      type === BlueprintType.UPGRADES
+                      type === BlueprintType.UPGRADE
                         ? "/assets/upgrades/" +
                           blueprint.replace(/[^a-zA-Z]/g, "") +
                           ".png"
@@ -217,7 +215,7 @@ export const RecipeMenu: React.FC = () => {
                   </button>
                 </div>
               );
-            }))
+            })
           )}
         </div>
         <div className="pin-list-header">

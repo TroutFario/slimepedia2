@@ -4,7 +4,7 @@
 }
 
 .spawn-list-container {
-  grid-area: spawn;
+  grid-area: component;
   position: relative;
   z-index: 2;
   background-color: var(--item-color);

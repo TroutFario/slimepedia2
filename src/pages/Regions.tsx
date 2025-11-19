@@ -13,10 +13,10 @@ import {
   ranchInfos,
   ranchConnections,
   ranchPedia,
-} from "../text/regions";
+} from "../data/regions";
 import { Tab } from "../components/Tab";
-import { foodList } from "../text/food";
-import { slimesList } from "../text/slimes";
+import { foodList } from "../data/food";
+import { slimesList } from "../data/slimes";
 import { LabyMusicRefs, MusicRefs } from "../components/MusicPlayer";
 import "../css/MusicPlayer.css";
 import "../css/Regions.css";

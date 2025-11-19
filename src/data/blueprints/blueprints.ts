@@ -4,10 +4,10 @@ import { Utility } from "./utilities";
 import { Warp } from "./warp";
 
 export enum BlueprintType {
-  UPGRADES = "upgrades",
-  UTILITIES = "utilities",
+  UPGRADE = "upgrade",
+  UTILITY = "utility",
   WARP = "warp",
-  DECORATIONS = "decorations",
+  DECORATION = "decoration",
 }
 
 export enum RecipeElement {
@@ -135,7 +135,7 @@ export const recipeElements: {
   droneKey: ["Drone Key", "upgrades/droneKey", null],
   regenModule: ["Regenerator Module", "upgrades/regenModule", null],
   injectorModule: ["Injector Module", "upgrades/injectorModule", null],
-  droneModule: ["Drone Station Module", "upgrades/droneModule", null],
+  droneModule: ["Drone Station Module", "gadgets/droneModule", null],
 };
 
 export type Recipe = Map<RecipeElement, number>;
@@ -153,7 +153,6 @@ export enum UnlockRequirementNames {
   DOOR = "door",
   NIGHT = "night",
   GHOST = "ghost",
-  IDK = "idk",
 }
 
 export const unlockRequirements: { [key in UnlockRequirementNames]: [string, string] } = {
@@ -168,8 +167,7 @@ export const unlockRequirements: { [key in UnlockRequirementNames]: [string, str
   gigi: ["Given by Gigi", "ranchers/gigi"],
   door: ["Found inside Shadow Vaults", "misc/door"],
   night: ["Unlocked via Night Market", "misc/nightmarket"],
-  ghost: ["Found with roaming Ghost Drones", "misc/question"],
-  idk: ["IDK yet", "misc/question"],
+  ghost: ["Found with roaming Ghost Drones", "misc/ghostdroneface"],
 };
 
 export function getEnumValue<T extends object>(
@@ -194,18 +192,5 @@ export enum DecorationTheme {
   BEACH = "beach",
   FUN = "fun",
 }
-
-export const themeList: { [key in DecorationTheme]: [string, string] } = {
-  [DecorationTheme.ANY]: ["Any", "misc/decorations"],
-  [DecorationTheme.FIELDS]: ["Rainbow Fields", "world/fields"],
-  [DecorationTheme.VALLEY]: ["Ember Valley", "world/valley"],
-  [DecorationTheme.STRAND]: ["Starlight Strand", "world/strand"],
-  [DecorationTheme.BLUFFS]: ["Powderfall Bluffs", "world/bluffs"],
-  [DecorationTheme.LABYRINTH]: ["Grey Labyrinth", "world/labyrinth"],
-  [DecorationTheme.CONSERVATORY]: ["The Conservatory", "world/conservatory"],
-  [DecorationTheme.GOLDEN]: ["Golden Statues", "plorts/gold"],
-  [DecorationTheme.BEACH]: ["Beach", "world/tidepools"],
-  [DecorationTheme.FUN]: ["Fun", "food/ranchersnslimes"],
-};
 
 export type BlueprintItem = UpgradeWithTier | Utility | Warp | Decoration;

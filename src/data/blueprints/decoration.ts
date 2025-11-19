@@ -1,5 +1,18 @@
 import { DecorationTheme, Recipe, RecipeElement, UnlockRequirementNames } from "./blueprints";
 
+export const themeList: { [key in DecorationTheme]: [string, string] } = {
+  [DecorationTheme.ANY]: ["Any", "misc/decoration"],
+  [DecorationTheme.FIELDS]: ["Rainbow Fields", "world/fields"],
+  [DecorationTheme.VALLEY]: ["Ember Valley", "world/valley"],
+  [DecorationTheme.STRAND]: ["Starlight Strand", "world/strand"],
+  [DecorationTheme.BLUFFS]: ["Powderfall Bluffs", "world/bluffs"],
+  [DecorationTheme.LABYRINTH]: ["Grey Labyrinth", "world/labyrinth"],
+  [DecorationTheme.CONSERVATORY]: ["The Conservatory", "world/conservatory"],
+  [DecorationTheme.GOLDEN]: ["Golden Statues", "plorts/gold"],
+  [DecorationTheme.BEACH]: ["Beach", "world/tidepools"],
+  [DecorationTheme.FUN]: ["Fun", "food/ranchersnslimes"],
+};
+
 export enum Decoration {
   EMERALD_GRASS = "emeraldgrass",
   EMERALD_SHRUBS = "emeraldshrubs",
@@ -188,7 +201,7 @@ export enum Decoration {
   GOLDEN_YOLKY_STATUE = "goldenyolkystatue",
 }
 
-export const decorationsList: {
+export const decorationList: {
   [key in Decoration]: [string, UnlockRequirementNames, Recipe, DecorationTheme];
 } = {
   emeraldgrass: [
@@ -2181,7 +2194,7 @@ export const decorationsList: {
   ],
 };
 
-export const decorationsDescription: { [key in Decoration]: string } = {
+export const decorationDescription: { [key in Decoration]: string } = {
   emeraldgrass:
     "A small patch of idyllic, lush grass that never needs watering. Truly miraculous!",
   emeraldshrubs:

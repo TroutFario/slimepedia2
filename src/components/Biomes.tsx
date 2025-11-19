@@ -4,16 +4,16 @@ import {
   ranchInfos,
   Region,
   regionInfos,
-} from "../text/regions";
+} from "../data/regions";
 import { NavLink } from "react-router-dom";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import { Weather, weatherID, weatherList } from "../text/weather";
+import { Weather, weatherID, weatherList } from "../data/weather";
 import "../css/Biomes.css";
 
 const light = true;
 const animationDelay = 200;
 
-type MixedRegion = Region | Ranch | Weather | "pm";
+export type MixedRegion = Region | Ranch | Weather | "pm";
 
 const biomeToElement: (biome: MixedRegion) => [string, string, string] | undefined = (
   biome
@@ -135,7 +135,7 @@ export const Biomes: React.FC<{ spawnList: MixedRegion[] }> = ({
           autoHideDelay: 500,
         },
       }}
-      className="spawn-list-container"
+      className="spawn-list-container component-container"
       defer
     >
       <h3 className={listHovered ? "hidden-title" : ""}>Found in</h3>

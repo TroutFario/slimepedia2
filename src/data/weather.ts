@@ -1,6 +1,5 @@
 import { Weather, Ranch, Region } from "./enums";
 
-// Réexport des enums pour compatibilité
 export { Weather, Ranch, Region };
 
 export const weatherID: string[] = ["ra", "sn", "ls", "ws", "ps", "sf"];

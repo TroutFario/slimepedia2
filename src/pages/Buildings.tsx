@@ -4,7 +4,7 @@ import {
   buildingUpgrades,
   usageList,
   Building,
-} from "../text/buildings";
+} from "../data/buildings";
 import { Navigate, NavLink, useParams } from "react-router-dom";
 import React from "react";
 import "../css/Buildings.css";

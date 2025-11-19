@@ -11,13 +11,14 @@ import {
   FoodType,
   foodTypeList,
   foodBlackList,
-} from "../text/food";
+} from "../data/food";
 import { Tab } from "../components/Tab";
-import { Slime, slimesList } from "../text/slimes";
+import { Slime, slimesList } from "../data/slimes";
 import "../css/Pedia.css";
 import { FaAngleDown } from "react-icons/fa6";
-import { Ranch, Region, regionElements } from "../text/regions";
-
+import { Region, regionElements } from "../data/regions";
+import { LittleBoxStruct } from "../components/shared/LittleBox";
+import { PediaBoxLayout, PediaInfo } from "../components/PediaInfo";
 
 interface FoodTabsProps {
   filter: FoodType | null;
@@ -59,191 +60,148 @@ const FoodTabs: React.FC<FoodTabsProps> = ({ filter, setFilter }) => (
   </div>
 );
 
-interface FoodListProps {
-  actualFoodList: Food[];
-  food: string | null;
-  filter: FoodType | null;
+interface FoodDetailsProps {
+  food: Food | null;
+  setFilter: (filter: FoodType | null) => void;
 }
 
-const FoodList: React.FC<FoodListProps> = ({
-  actualFoodList,
-  food,
-  filter,
-}) => (
+const favSlimeCalc = (food: Food | null): Slime | null => {
+  if (food === null) return null;
+  for (const s of Object.values(Slime)) {
+    if (slimesList[s][2] === food) return s;
+  }
+  return null;
+};
+
+const getFoodSpawnlist = (food: Food | null): Region[] => {
+  if (food === null) return [];
+  const spawnList: Region[] = [];
+  for (const regionKey of Object.keys(regionElements) as Region[]) {
+    const regionElement = regionElements[regionKey];
+    if (regionElement[1].includes(food)) spawnList.push(regionKey as Region);
+  }
+  return spawnList;
+};
+
+const FoodList: React.FC<{
+  actualFoodList: Food[];
+  food: Food | null;
+  filter: FoodType | null;
+}> = ({ actualFoodList, food, filter }) => (
   <OverlayScrollbarsComponent
+    className={
+      "list-food" +
+      (filter === FoodType.Any
+        ? " list-food-first"
+        : filter === null
+        ? " list-food-last"
+        : "")
+    }
     options={{
       scrollbars: {
         autoHide: "move",
         autoHideDelay: 500,
       },
     }}
-    className={`list-food${
-      (filter === FoodType.Any ? " list-food-first" : "") +
-      (filter == null ? " list-food-last" : "")
-    }`}
     defer
   >
-    {actualFoodList.map((foodId) => (
+    {actualFoodList.map((foodName) => (
       <NavLink
-        key={foodId}
-        to={`/food/${foodId}`}
+        to={`/food/${foodName}`}
         style={{ textDecoration: "none" }}
+        key={foodName}
       >
         <NavButton
-          key={foodId}
-          icon={`food/${foodId}`}
-          name={foodList[foodId][0]}
+          key={foodName}
+          icon={`food/${foodName}`}
           size={1.25}
-          tilting={["ash", "water"].includes(foodId) ? "none" : "random"}
-          selected={food === foodId}
+          name={foodList[foodName][0]}
+          selected={foodName === food}
         />
       </NavLink>
     ))}
   </OverlayScrollbarsComponent>
 );
 
-const favSlimeCalc = (currentFood: Food | null) => {
-  if (currentFood === null) return null;
-  for (const slime of Object.values(Slime))
-    if (slimesList[slime][2] === currentFood) return slime;
+const specialFoodFilter = (foodType: FoodType | null): FoodType | null => {
+  if (
+    foodType &&
+    [FoodType.Fruits, FoodType.Veggies, FoodType.Meat].includes(foodType)
+  )
+    return foodType;
   return null;
 };
 
-const getFoodSpawnlist = (food: Food | null) => {
-  if (food === null) return [];
-  const spawnList: (Region | Ranch)[] = [];
-  for (const [region, regionElement] of Object.entries(regionElements))
-    if (regionElement[1].includes(food))
-      spawnList.push(region as (Region | Ranch));
-  return spawnList;
-};
-
-interface FoodDetailsProps {
-  food: Food | null;
-  setFilter: (filter: FoodType) => void;
-}
-
-const NoFoodDetails: React.FC = () => (
-  <>
-    <div className="image-title">
-      <div className="info-title">
-        <h1>Select food</h1>
-        <h2>Click on food to get it&apos;s information</h2>
-      </div>
-      <div className="image-container"></div>
-    </div>
-    <div className="little-box food-type disabled">
-      <img src="" className="no-image" alt="Food Icon" />
-      <div>
-        <h3>Food type</h3>
-        <h4>No food selected</h4>
-      </div>
-    </div>
-    <div className="little-box food-fav disabled">
-      <img src="" className="no-image" alt="None" />
-      <div>
-        <h3>Favorite of</h3>
-        <h4>No slime selected</h4>
-      </div>
-    </div>
-    <Biomes spawnList={[]} />
-  </>
-);
-
 const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
-  if (food === null) return <NoFoodDetails />;
+  const littleBoxList: LittleBoxStruct[] = [];
+  if (food === null) {
+    littleBoxList.push({
+      image: null,
+      alt: "No food selected",
+      title: "Food type",
+      subtitle: null,
+      action: null,
+      link: null,
+    });
+    littleBoxList.push({
+      image: null,
+      alt: "No slime selected",
+      title: "Favorite of",
+      subtitle: null,
+      action: null,
+      link: null,
+    });
+    return (
+      <PediaInfo
+        layout={PediaBoxLayout.OneByTwo}
+        title="Select food"
+        subtitle="Click on food to get it&apos;s information"
+        icon="/assets/misc/empty.png"
+        littleBoxList={littleBoxList}
+        BiomeComponent={<Biomes spawnList={[]} />}
+      />
+    );
+  }
+
+  const foodType = foodList[food][1];
+  const foodTypeName =
+    foodType === null ? "Unedible" : foodTypeList[foodType][1];
+  const foodTypeIcon =
+    foodType === null
+      ? "/assets/misc/none.png"
+      : `/assets/food/${foodType}.png`;
 
   const favSlime = favSlimeCalc(food);
-
+  const slimeName = favSlime ? slimesList[favSlime][0] : "Nobody";
+  const slimeIcon = favSlime
+    ? `/assets/slimes/${favSlime}.png`
+    : "/assets/misc/none.png";
+  littleBoxList.push({
+    image: foodTypeIcon,
+    alt: foodTypeName,
+    title: "Food type",
+    subtitle: foodTypeName,
+    action:
+      foodType !== null ? () => setFilter(specialFoodFilter(foodType)) : null,
+    link: null,
+  });
+  littleBoxList.push({
+    image: slimeIcon,
+    alt: "Icon of " + slimeName,
+    title: "Favorite of",
+    subtitle: slimeName,
+    action: null,
+    link: favSlime ? `/slimes/${favSlime}` : null,
+  });
   return (
-    <>
-      <div className="image-title">
-        <div className="info-title">
-          <h1>{foodList[food][0]}</h1>
-          <h2>{foodDescription[food]}</h2>
-        </div>
-        <div className="image-container">
-          <img
-            src={`/assets/food/${food}.png`}
-            className="img-main"
-            alt={foodList[food][0]}
-          />
-        </div>
-      </div>
-      <div
-        className="little-box food-type interactive-box"
-        onClick={() => {
-          setFilter(
-            foodList[food][1] !== null &&
-              [FoodType.Veggies, FoodType.Fruits, FoodType.Meat].includes(
-                foodList[food][1]
-              )
-              ? foodList[food][1]
-              : FoodType.Any
-          );
-        }}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            setFilter(
-              foodList[food][1] !== null &&
-                [FoodType.Veggies, FoodType.Fruits, FoodType.Meat].includes(
-                  foodList[food][1]
-                )
-                ? foodList[food][1]
-                : FoodType.Any
-            );
-          }
-        }}
-        tabIndex={0}
-        aria-pressed="false"
-      >
-        <img
-          src={
-            foodList[food][1] === null
-              ? "/assets/misc/none.png"
-              : `/assets/food/${foodList[food][1]}.png`
-          }
-          alt={
-            foodList[food][1] === null
-              ? "None"
-              : foodTypeList[foodList[food][1]][1]
-          }
-        />
-        <div>
-          <h3>Food type</h3>
-          <h4>
-            {foodList[food][1] === null
-              ? "Unedible"
-              : foodTypeList[foodList[food][1]][1]}
-          </h4>
-        </div>
-      </div>
-      {favSlime === null ? (
-        <div className="little-box food-fav">
-          <img src="/assets/misc/none.png" alt="None" />
-          <div>
-            <h3>Favorite of</h3>
-            <h4>Nobody</h4>
-          </div>
-        </div>
-      ) : (
-        <NavLink to={`/slimes/${favSlime}`} style={{ textDecoration: "none" }}>
-          <div className="little-box food-fav interactive-box">
-            <img
-              src={`/assets/slimes/${favSlime}.png`}
-              alt={slimesList[favSlime][0]}
-            />
-            <div>
-              <h3>Favorite of</h3>
-              <h4>{slimesList[favSlime][0]}</h4>
-            </div>
-          </div>
-          
-        </NavLink>
-      )}
-      <Biomes spawnList={getFoodSpawnlist(food)} />
-    </>
+    <PediaInfo
+      layout={PediaBoxLayout.OneByTwo}
+      title={foodList[food][0]}
+      subtitle={foodDescription[food]}
+      icon={`/assets/food/${food}.png`}
+      littleBoxList={littleBoxList}
+      BiomeComponent={<Biomes spawnList={getFoodSpawnlist(food)} />}
+    />
   );
 };
 
@@ -252,11 +210,8 @@ interface FoodDescriptionProps {
   topBtn: boolean;
 }
 
-const FoodDescription: React.FC<FoodDescriptionProps> = ({
-  food: foodName,
-  topBtn,
-}) => {
-  if (foodName === null)
+const FoodDescription: React.FC<FoodDescriptionProps> = ({ food, topBtn }) => {
+  if (food === null)
     return (
       <div className={"desc " + (topBtn ? "shown-desc" : "hidden-desc")}>
         <div className="desc-title">
@@ -271,7 +226,6 @@ const FoodDescription: React.FC<FoodDescriptionProps> = ({
         <p>Select a food to get it&apos;s description</p>
       </div>
     );
-  const food = Object.values(Food).includes(foodName) ? foodName : Food.Carrot;
   return (
     <div className={"desc " + (topBtn ? "shown-desc" : "hidden-desc")}>
       <div className="desc-title">
@@ -290,8 +244,8 @@ const FoodDescription: React.FC<FoodDescriptionProps> = ({
 
 export const FoodPage = () => {
   const { food: foodName } = useParams<{ food: string }>();
-  const food = Object.values(Food).includes(foodName as Food) 
-    ? (foodName as Food) 
+  const food = Object.values(Food).includes(foodName as Food)
+    ? (foodName as Food)
     : null;
   const [filter, setFilter] = useState<FoodType | null>(
     food ? foodList[food][1] : FoodType.Any
@@ -344,12 +298,13 @@ export const FoodPage = () => {
         <FoodTabs filter={filter} setFilter={setFilter} />
         <FoodList actualFoodList={actualFoodList} food={food} filter={filter} />
       </div>
-      <div className="slime-presentation box-layout-secondary">
-        <div
-          className={"pedia-infos food-infos" + (topBtn ? " hidden-infos" : "")}
-        >
-          <FoodDetails food={food} setFilter={setFilter} />
-        </div>
+      <div
+        className={
+          "box-presentation" +
+          (topBtn ? " hidden-infos" : "")
+        }
+      >
+        <FoodDetails food={food} setFilter={setFilter} />
         <button
           role="link"
           className={"arrow-btn " + (topBtn ? "top-btn" : "bot-btn")}

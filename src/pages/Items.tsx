@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Navigate, NavLink, useParams } from "react-router-dom";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { NavButton } from "../components/NavButton";
-import { Biomes } from "../components/Biomes";
+import { Biomes, MixedRegion } from "../components/Biomes";
 import { Tab } from "../components/Tab";
-import { Resource, resourceList, resourcePedia } from "../text/resources";
-import { Toy, toyNames } from "../text/toys";
-import { Slime, slimesList } from "../text/slimes";
+import { Resource, resourceList, resourcePedia } from "../data/resources";
+import { Toy, toyList } from "../data/toys";
+import { Slime, slimesList } from "../data/slimes";
 import "../css/Pedia.css";
+import PediaInfo, { PediaBoxLayout } from "../components/PediaInfo";
+import { LittleBoxStruct } from "../components/shared/LittleBox";
 
 enum ItemType {
   Resource = "resources",
@@ -66,7 +68,7 @@ const ItemList: React.FC<{
             >
               <NavButton
                 icon={"toys/" + toy}
-                name={toyNames[toy][0]}
+                name={toyList[toy][0]}
                 size={1.25}
                 selected={toy === item}
               />
@@ -90,53 +92,110 @@ const ItemList: React.FC<{
   </div>
 );
 
-const EmptyItemInfos = () => (
-  <div className={"presentation presentation-resources"}>
-    <div className="image-title">
-      <div className="info-title">
-        <h1>No item selected</h1>
-        <h2>Select an item on the list</h2>
-      </div>
-      <div className="image-container">
-        <img src="" className="img-main no-image" alt="" />
-      </div>
-    </div>
-    <div className="little-box infos-box">
-      <img
-        src="/assets/misc/pediatut.png"
-        alt="Pedia Informations Icon"
-      />
-      <div></div>
-    </div>
-    <div className="little-box toy-hide">
-      <img src="/assets/misc/buck.png" alt="Newbuck Icon" />
-      <div>
-        <h3>Price</h3>
-        <h4>500</h4>
-      </div>
-    </div>
+interface ItemInfosProps {
+  item: Resource | Toy | null;
+  category: ItemType;
+}
 
-    <div className="little-box toy-fav toy-hide">
-      <img src="/assets/misc/none.png" alt="None" />
-      <div>
-        <h3>Favorite of</h3>
-        <h4>None</h4>
-      </div>
+const ItemInfos: React.FC<ItemInfosProps> = ({ item, category }) => {
+  let title = "No resource selected";
+  let subtitle = "Select a resource to get its information";
+  let icon: string | null = null;
+  let biomeList: MixedRegion[] = [];
+  let layout = PediaBoxLayout.OneByOne;
+  const littleBoxList: LittleBoxStruct[] = [];
+  littleBoxList.push({
+    image: "/assets/misc/pediatut.png",
+    alt: "Pedia Informations Icon",
+    title: null,
+    subtitle: null,
+    link: null,
+  });
+  if (
+    category === ItemType.Resource &&
+    Object.values(Resource).includes(item as Resource)
+  ) {
+    icon = `/assets/resources/${item}.png`;
+    title = resourceList[item as Resource][0];
+    subtitle = resourceList[item as Resource][1];
+    biomeList = resourceList[item as Resource][2];
+    littleBoxList.pop();
+    littleBoxList.push({
+      image: "/assets/misc/pediatut.png",
+      alt: "Pedia Informations Icon",
+      subtitle: resourcePedia[item as Resource],
+    });
+  } else if (
+    category === ItemType.Toy &&
+    Object.values(Toy).includes(item as Toy)
+  ) {
+    littleBoxList.pop();
+    littleBoxList.push({
+      image: "/assets/misc/pediatut.png",
+      alt: "Pedia Informations Icon",
+      subtitle: toyList[item as Toy][1],
+    });
+    littleBoxList.push({
+      image: `/assets/misc/buck.png`,
+      alt: "Newbuck Icon",
+      title: "Price",
+      subtitle: "500",
+      link: null,
+    });
+    const slime = slimePerToy(item as Toy);
+    if (slime === null) {
+      littleBoxList.push({
+        image: "/assets/misc/none.png",
+        alt: "None",
+        title: "Favorite of",
+        subtitle: "Nobody",
+        link: null,
+      });
+    } else {
+      littleBoxList.push({
+        image: `/assets/slimes/${slime}.png`,
+        alt: slimesList[slime][0],
+        title: "Favorite of",
+        subtitle: slimesList[slime][0],
+        link: `/slimes/${slime}`,
+      });
+    }
+    icon = `/assets/toys/${item}.png`;
+    title = toyList[item as Toy][0];
+    subtitle = "Playtime gets the wiggles out.";
+    biomeList = ["pm"];
+    layout = PediaBoxLayout.OneThenTwo;
+  }
+  return (
+    <div className={"box-presentation"}>
+      <PediaInfo
+        layout={layout}
+        title={title}
+        subtitle={subtitle}
+        icon={icon}
+        littleBoxList={littleBoxList}
+        BiomeComponent={<Biomes spawnList={biomeList} />}
+      />
     </div>
-    <Biomes spawnList={[]} />
-  </div>
-);
+  );
+};
 
 export const Items = () => {
   const { tab: tabName, item: itemName } = useParams();
   const category = (() => {
-    if (Object.values(Resource).includes(itemName as Resource)) return ItemType.Resource;
+    if (Object.values(Resource).includes(itemName as Resource))
+      return ItemType.Resource;
     if (Object.values(Toy).includes(itemName as Toy)) return ItemType.Toy;
-    return Object.values(ItemType).includes(tabName as ItemType) ? (tabName as ItemType) : null;
+    return Object.values(ItemType).includes(tabName as ItemType)
+      ? (tabName as ItemType)
+      : null;
   })();
   const item: Resource | Toy | null = (() => {
-    if (Object.values(Resource).includes(itemName as Resource)) return itemName as Resource;
-    return Object.values(Toy).includes(itemName as Toy) ? (itemName as Toy) : null;
+    if (Object.values(Resource).includes(itemName as Resource))
+      return itemName as Resource;
+    return Object.values(Toy).includes(itemName as Toy)
+      ? (itemName as Toy)
+      : null;
   })();
   const [tab, setTab] = useState<ItemType>(category ?? ItemType.Resource);
 
@@ -155,7 +214,7 @@ export const Items = () => {
     return (
       <div>
         <ItemList tab={tab} item={null} setTab={setTab} />
-        <EmptyItemInfos />
+        <ItemInfos item={item} category={ItemType.Resource} />
       </div>
     );
   }
@@ -171,117 +230,16 @@ export const Items = () => {
     if (item !== null)
       return category === ItemType.Resource
         ? resourceList[item as Resource][0].toString()
-        : toyNames[item as Toy][0].toString();
+        : toyList[item as Toy][0].toString();
     if (category !== null) return category.toString();
     return "Items";
   })();
   document.title = title + " - Slimepedia 2";
 
-  const itemTitle = (() => {
-    if (category === ItemType.Resource)
-      return resourceList[item as Resource][0];
-    if (category === ItemType.Toy) return toyNames[item as Toy][0];
-    return "";
-  })();
-
   return (
     <div>
       <ItemList tab={tab} item={item} setTab={setTab} />
-      <div className={"presentation presentation-" + category}>
-        <div className="image-title">
-          <div className="info-title">
-            <h1>{itemTitle}</h1>
-            <h2>
-              {item && Object.values(Toy).includes(item as Toy)
-                ? "Playtime gets the wiggles out."
-                : resourceList[item as Resource][2]}
-            </h2>
-          </div>
-          <div className="image-container">
-            <img
-              src={`/assets/${category}/${item}.png`}
-              className="img-main"
-              alt={itemTitle}
-            />
-          </div>
-        </div>
-        <div className="little-box infos-box">
-          <img src="/assets/misc/pediatut.png" alt="Pedia Informations Icon" />
-          <div>
-            {(category === ItemType.Resource
-              ? resourcePedia[item as Resource]
-              : toyNames[item as Toy][1]
-            )
-              .split("\n")
-              .map((line, index) => {
-                return <p key={"paragraph-" + index}>{line}</p>;
-              })}
-          </div>
-        </div>
-        <div
-          className={
-            "little-box toy-price" +
-            (category !== ItemType.Toy ? " toy-hide" : "")
-          }
-        >
-          <img src="/assets/misc/buck.png" alt="Newbuck Icon" />
-          <div>
-            <h3>Price</h3>
-            <h4>500</h4>
-          </div>
-        </div>
-        {(() => {
-          if (category === ItemType.Toy) {
-            const slime = slimePerToy(item as Toy);
-            if (slime === null) {
-              return (
-                <div className="little-box toy-fav">
-                  <img src="/assets/misc/none.png" alt="None" />
-                  <div>
-                    <h3>Favorite of</h3>
-                    <h4>Nobody</h4>
-                  </div>
-                </div>
-              );
-            } else {
-              return (
-                <NavLink
-                  to={`/slimes/${slime}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="little-box toy-fav interactive-box">
-                    <img
-                      src={`/assets/slimes/${slime}.png`}
-                      alt={slimesList[slime][0]}
-                    />
-                    <div>
-                      <h3>Favorite of</h3>
-                      <h4>{slimesList[slime][0]}</h4>
-                    </div>
-                  </div>
-                </NavLink>
-              );
-            }
-          } else {
-            return (
-              <div className="little-box toy-fav toy-hide">
-                <img src="/assets/misc/none.png" alt="None" />
-                <div>
-                  <h3>Favorite of</h3>
-                  <h4>None</h4>
-                </div>
-              </div>
-            );
-          }
-        })()}
-        <Biomes
-          spawnList={
-            category === ItemType.Resource
-              ? resourceList[item as Resource][1]
-              : ["pm"]
-          }
-        />
-      </div>
+      <ItemInfos item={item} category={category} />
     </div>
   );
 };

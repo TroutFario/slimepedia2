@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { GLSections, Ranch, Region } from "../text/regions";
+import { GLSections, Ranch, Region } from "../data/regions";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 
 const playAudio = (

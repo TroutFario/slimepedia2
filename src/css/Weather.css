@@ -198,8 +198,8 @@
   grid-template-rows: 1fr 1fr;
   gap: var(--border-size);
   grid-template-areas:
-    "effects effects spawn"
-    "slimes related spawn";
+    "effects effects component"
+    "slimes related component";
   overflow: hidden;
   transform: translateY(0);
   transition: transform var(--animation-speed) var(--animation-function);

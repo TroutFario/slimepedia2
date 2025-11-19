@@ -1,20 +1,23 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Slime, slimesList, slimesText, slimepedia, specialSlimes } from "../text/slimes";
+import {
+  Slime,
+  slimesList,
+  slimesText,
+  slimepedia,
+  specialSlimes,
+} from "../data/slimes";
 import { NavButton } from "../components/NavButton";
 import { Biomes } from "../components/Biomes";
-import {
-  foodList,
-  foodTypeList,
-  foodTypeBlacklist,
-  foodBlackList,
-} from "../text/food";
-import { toyNames } from "../text/toys";
+import { foodList, foodTypeList, foodTypeBlacklist } from "../data/food";
+import { toyList } from "../data/toys";
 import { Navigate, NavLink, useParams } from "react-router-dom";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { FaAngleDown } from "react-icons/fa6";
 import "../css/Pedia.css";
-import { Region, regionElements } from "../text/regions";
-import { Weather, weatherList } from "../text/weather";
+import { Region, regionElements } from "../data/regions";
+import { Weather, weatherList } from "../data/weather";
+import { LittleBoxStruct } from "../components/shared/LittleBox";
+import { PediaBoxLayout, PediaInfo } from "../components/PediaInfo";
 
 const nonePath = "/assets/misc/none.png";
 const nonPlortSlimes = [null, Slime.Lucky, Slime.Tarr];
@@ -24,211 +27,141 @@ interface SlimeDetailsProps {
 
 const getSlimeSpawnlist = (slime: Slime | null): (Region | Weather)[] => {
   if (slime === null) return [];
-  if (specialSlimes.includes(slime)) return [Region.Fields, Region.Strand, Region.Valley, Region.Bluffs, Region.Labyrinth];
+  if (specialSlimes.includes(slime))
+    return [
+      Region.Fields,
+      Region.Strand,
+      Region.Valley,
+      Region.Bluffs,
+      Region.Labyrinth,
+    ];
   const spawnList: (Region | Weather)[] = [];
   for (const [region, regionElement] of Object.entries(regionElements))
-    if (regionElement[0].includes(slime))
-      spawnList.push(region as Region);
+    if (regionElement[0].includes(slime)) spawnList.push(region as Region);
   for (const [weather, weatherElement] of Object.entries(weatherList))
-    if (weatherElement[4].includes(slime))
-      spawnList.push(weather as Weather);
+    if (weatherElement[4].includes(slime)) spawnList.push(weather as Weather);
   return spawnList;
 };
 
-const EmptySlimeDetails: React.FC = () => (
-  <>
-    <div className="image-title">
-      <div className="info-title">
-        <h1>Select a slime</h1>
-        <h2>Click on a slime on the list to get their information</h2>
-      </div>
-      <div className="image-container"></div>
-    </div>
-    <div className="little-box box-food disabled">
-      <img
-        src="/assets/food/food.png"
-        alt="No slime selected"
-        className="no-image"
-      />
-      <div>
-        <h3>Diet</h3>
-        <h4>No slime selected</h4>
-      </div>
-    </div>
-    <div className="little-box box-fav disabled">
-      <img
-        src="/assets/food/food.png"
-        alt="No slime selected"
-        className="no-image"
-      />
-      <div>
-        <h3>Favorite Food</h3>
-        <h4>No slime selected</h4>
-      </div>
-    </div>
-    <div className="little-box box-largo disabled">
-      <img
-        src="/assets/misc/largo.png"
-        alt="No slime selected"
-        className="no-image"
-      />
-      <div>
-        <h3>Largo-able</h3>
-        <h4>No slime selected</h4>
-      </div>
-    </div>
-    <div className="little-box box-toy disabled">
-      <img
-        src="/assets/misc/toys.png"
-        alt="No slime selected"
-        className="no-image"
-      />
-      <div>
-        <h3>Favorite Toy</h3>
-        <h4>No slime selected</h4>
-      </div>
-    </div>
-    <Biomes spawnList={[]} />
-  </>
-);
-
 const SlimeDetails: React.FC<SlimeDetailsProps> = ({ selectedSlime }) => {
-  if (selectedSlime === null) {
-    return <EmptySlimeDetails />;
-  }
-  const currentSlimeList = slimesList[selectedSlime];
+  const isNoSlime = selectedSlime === null;
 
-  const slimeName = currentSlimeList[0];
+  const currentSlimeList = isNoSlime ? null : slimesList[selectedSlime];
+  const foodType = currentSlimeList?.[1] ?? null;
+  const favFood = currentSlimeList?.[2] ?? null;
+  const isLargoable = currentSlimeList?.[3] ?? false;
+  const toy = currentSlimeList?.[4] ?? null;
 
-  const foodTypeIcon =
-    currentSlimeList[1] === null
-      ? nonePath
-      : `/assets/food/${currentSlimeList[1]}.png`;
-  const foodTypeName =
-    currentSlimeList[1] == null ? "None" : foodTypeList[currentSlimeList[1]][0];
-
-  const favFoodIcon =
-    currentSlimeList[2] === null
-      ? nonePath
-      : `/assets/food/${currentSlimeList[2]}.png`;
-  const favFoodName =
-    currentSlimeList[2] == null ? "None" : foodList[currentSlimeList[2]][0];
-
-  const toyIcon =
-    currentSlimeList[4] === null
-      ? nonePath
-      : `/assets/toys/${currentSlimeList[4]}.png`;
-  const toyName =
-    currentSlimeList[4] != null
-      ? (toyNames[currentSlimeList[4]][0] ?? null)
-      : null;
+  const littleBoxList: LittleBoxStruct[] = [
+    // Diet
+    {
+      image: isNoSlime
+        ? "/assets/food/any.png"
+        : foodType === null
+        ? nonePath
+        : `/assets/food/${foodType}.png`,
+      alt: isNoSlime
+        ? "No slime selected"
+        : foodType == null
+        ? "None"
+        : foodTypeList[foodType][0],
+      title: "Diet",
+      subtitle: isNoSlime
+        ? null
+        : foodType == null
+        ? "None"
+        : foodTypeList[foodType][0],
+      action: null,
+      link:
+        isNoSlime ||
+        foodType === null ||
+        foodTypeBlacklist.slice(1).includes(foodType)
+          ? null
+          : `/food/${foodType}`,
+    },
+    // Favorite Food
+    {
+      image: isNoSlime
+        ? "/assets/misc/empty.png"
+        : favFood === null
+        ? "/assets/misc/none.png"
+        : `/assets/food/${favFood}.png`,
+      alt: isNoSlime
+        ? "No slime selected"
+        : favFood == null
+        ? "None"
+        : foodList[favFood][0],
+      title: "Favorite Food",
+      subtitle: isNoSlime
+        ? null
+        : favFood == null
+        ? "None"
+        : foodList[favFood][0],
+      action: null,
+      link: isNoSlime || favFood === null ? null : `/food/${favFood}`,
+    },
+    // Largo-able
+    {
+      image: isNoSlime
+        ? "/assets/misc/largo.png"
+        : `/assets/misc/${isLargoable ? "largo" : "none"}.png`,
+      alt: isNoSlime
+        ? "No slime selected"
+        : isLargoable
+        ? "Largo-able"
+        : "Non largo-able",
+      title: "Largo-able",
+      subtitle: isNoSlime ? null : isLargoable ? "Yes" : "No",
+      action: null,
+      link: null,
+    },
+    // Favorite Toy
+    {
+      image: isNoSlime
+        ? "/assets/misc/empty.png"
+        : !toy
+        ? "/assets/misc/none.png"
+        : `/assets/toys/${toy}.png`,
+      alt: isNoSlime
+        ? "No slime selected"
+        : toy != null
+        ? toyList[toy][0] ?? "None"
+        : "None",
+      title: "Favorite Toy",
+      subtitle: isNoSlime
+        ? null
+        : toy != null
+        ? toyList[toy][0] ?? "None"
+        : "None",
+      action: null,
+      link: isNoSlime || toy === null ? null : `/items/toys/${toy}`,
+    },
+  ];
 
   return (
-    <>
-      <div className="image-title">
-        <div className="info-title">
-          <h1>{slimeName}</h1>
-          <h2>{slimesText[selectedSlime]}</h2>
-        </div>
-        <div className="image-container">
-          <img
-            src={
-              selectedSlime === null
-                ? nonePath
-                : `/assets/slimes/${selectedSlime}.png`
-            }
-            className="img-main"
-            alt={"Picture of " + slimeName}
-          />
-        </div>
-        {!nonPlortSlimes.includes(selectedSlime) && (
-          <img
-            src={`/assets/plorts/${selectedSlime}.png`}
-            className="img-plort"
-            alt={"Plort of " + slimeName}
-          />
-        )}
-      </div>
-      {currentSlimeList[1] &&
-      foodTypeBlacklist.includes(currentSlimeList[1]) ? (
-        <div className="little-box box-food">
-          <img src={foodTypeIcon} alt={"Picture of " + foodTypeName} />
-          <div>
-            <h3>Diet</h3>
-            <h4>{foodTypeName}</h4>
-          </div>
-        </div>
-      ) : (
-        <NavLink to={`/food/${currentSlimeList[1]}`} style={{ textDecoration: "none" }}>
-          <div className="little-box box-food interactive-box">
-            <img src={foodTypeIcon} alt={"Picture of " + foodTypeName} />
-            <div>
-              <h3>Diet</h3>
-              <h4>{foodTypeName}</h4>
-            </div>
-          </div>
-        </NavLink>
-      )}
-      {foodBlackList.includes(currentSlimeList[2]) ? (
-        <div className="little-box box-fav">
-          <img src={favFoodIcon} alt="None" />
-          <div>
-            <h3>Favorite Food</h3>
-            <h4>{favFoodName}</h4>
-          </div>
-        </div>
-      ) : (
-        <NavLink
-          to={`/food/${currentSlimeList[2]}`}
-          style={{ textDecoration: "none" }}
-        >
-          <div className="little-box box-fav interactive-box">
-            <img src={favFoodIcon} alt={"Picture of " + favFoodName} />
-            <div>
-              <h3>Favorite Food</h3>
-              <h4>{favFoodName}</h4>
-            </div>
-          </div>
-        </NavLink>
-      )}
-      <div className="little-box box-largo">
-        <img
-          src={
-            currentSlimeList[3]
-              ? "/assets/misc/largo.png"
-              : "/assets/misc/none.png"
-          }
-          alt={currentSlimeList[4] ? "Largo-able" : "Non largo-able"}
-        />
-        <div>
-          <h3>Largo-able</h3>
-          <h4>{currentSlimeList[3] ? "Yes" : "No"}</h4>
-        </div>
-      </div>
-      {toyName === null ? (
-        <div className="little-box box-toy">
-          <img src={toyIcon} alt="None" />
-          <div>
-            <h3>Favorite Toy</h3>
-            <h4>None</h4>
-          </div>
-        </div>
-      ) : (
-        <NavLink
-          to={`/items/toys/${currentSlimeList[4]}`}
-          style={{ textDecoration: "none" }}
-        >
-          <div className="little-box box-toy interactive-box">
-            <img src={toyIcon} alt={toyName[0]} />
-            <div>
-              <h3>Favorite Toy</h3>
-              <h4>{toyName}</h4>
-            </div>
-          </div>
-        </NavLink>
-      )}
-      <Biomes spawnList={getSlimeSpawnlist(selectedSlime)} />
-    </>
+    <PediaInfo
+      layout={PediaBoxLayout.TwoByTwo}
+      title={
+        isNoSlime || !currentSlimeList ? "Select a slime" : currentSlimeList[0]
+      }
+      subtitle={
+        isNoSlime
+          ? "Click on a slime on the list to get their information"
+          : slimesText[selectedSlime]
+      }
+      icon={
+        isNoSlime
+          ? "/assets/misc/empty.png"
+          : `/assets/slimes/${selectedSlime}.png`
+      }
+      plortIcon={
+        !isNoSlime && !nonPlortSlimes.includes(selectedSlime)
+          ? selectedSlime
+          : undefined
+      }
+      littleBoxList={littleBoxList}
+      BiomeComponent={<Biomes spawnList={getSlimeSpawnlist(selectedSlime)} />}
+    />
   );
 };
 
@@ -263,14 +196,14 @@ const SlimeDescription: React.FC<SlimeDescriptionProps> = ({
 export const Slimes = () => {
   const { slime: slimeName } = useParams();
 
-  const slime = Object.values(Slime).includes(slimeName as Slime) 
-    ? (slimeName as Slime) 
+  const slime = Object.values(Slime).includes(slimeName as Slime)
+    ? (slimeName as Slime)
     : null;
   const [topBtn, setTopBtn] = useState(false);
   useEffect(() => setTopBtn(false), [slime]);
   const slimepediaEntry: [string, string, string] = useMemo(
     () => (slime === null ? ["", "", ""] : slimepedia[slime]),
-    [slime],
+    [slime]
   );
   if (slime === null && slimeName !== undefined) {
     return <Navigate to="/slimes" replace />;
@@ -307,14 +240,13 @@ export const Slimes = () => {
           </NavLink>
         ))}
       </OverlayScrollbarsComponent>
-      <div className="slime-presentation box-layout-secondary">
-        <div
-          className={
-            "pedia-infos slime-infos" + (topBtn ? " hidden-infos" : "")
-          }
-        >
-          <SlimeDetails selectedSlime={slime} />
-        </div>
+      <div
+        className={
+          "box-presentation" +
+          (topBtn ? " hidden-infos" : "")
+        }
+      >
+        <SlimeDetails selectedSlime={slime} />
         <button
           role="link"
           className={"arrow-btn " + (topBtn ? "top-btn" : "bot-btn")}

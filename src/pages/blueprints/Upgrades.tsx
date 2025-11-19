@@ -1,11 +1,23 @@
 import React, { useState } from "react";
 import { FaAngleDown } from "react-icons/fa6";
 import { Navigate, NavLink, useParams } from "react-router-dom";
-import { getUpgradeKey, Upgrade, upgradeDescriptions, upgradeEffects, upgradeNames, upgradePacks, upgradesList, UpgradeWithTier } from "../../text/blueprints/upgrades";
+import {
+  Upgrade,
+  upgradeDescriptions,
+  upgradeEffects,
+  upgradeNames,
+  upgradePacks,
+  upgradesList,
+  UpgradeWithTier,
+} from "../../data/blueprints/upgrades";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import CraftingList from "./CraftingList";
-import { BlueprintType, unlockRequirements } from "../../text/blueprints/blueprints";
-
+import CraftingList from "../../components/shared/CraftingList";
+import {
+  BlueprintType,
+  unlockRequirements,
+} from "../../data/blueprints/blueprints";
+import PediaInfo, { PediaBoxLayout } from "../../components/PediaInfo";
+import { LittleBoxStruct } from "../../components/shared/LittleBox";
 
 interface UpgradeItemListProps {
   selected: boolean;
@@ -26,7 +38,7 @@ const UpgradeItemList: React.FC<UpgradeItemListProps> = ({
       key={upgradePack[0]}
     >
       <NavLink
-        to={`/blueprints/upgrades/${upgradePack[0]}/${tier}`}
+        to={`/blueprints/upgrade/${upgradePack[0]}/${tier}`}
         className="vac-upgrade-pack"
       >
         <img
@@ -38,7 +50,7 @@ const UpgradeItemList: React.FC<UpgradeItemListProps> = ({
       <div className="vac-upgrade-tiers">
         {tier > 1 && upgradePack[2] >= 1 ? (
           <NavLink
-            to={`/blueprints/upgrades/${upgradePack[0]}/${tier - 1}`}
+            to={`/blueprints/upgrade/${upgradePack[0]}/${tier - 1}`}
             onClick={() => setTier(tier - 1)}
           >
             <div className="arrow-left">
@@ -53,7 +65,7 @@ const UpgradeItemList: React.FC<UpgradeItemListProps> = ({
         <h2>{tier}</h2>
         {tier < upgradePack[2] && upgradePack[2] >= 1 ? (
           <NavLink
-            to={`/blueprints/upgrades/${upgradePack[0]}/${tier + 1}`}
+            to={`/blueprints/upgrade/${upgradePack[0]}/${tier + 1}`}
             onClick={() => setTier(tier + 1)}
           >
             <div className="arrow-right">
@@ -70,24 +82,17 @@ const UpgradeItemList: React.FC<UpgradeItemListProps> = ({
   );
 };
 
-export const UpgradesPage: React.FC = () => {
+export const UpgradePage: React.FC = () => {
   const { blueprint: upgradeName, tier: selectedTier } = useParams();
   const tier = selectedTier ? parseInt(selectedTier, 10) : 1;
-  const upgrade =
-    upgradeName != null && upgradeNames.includes(upgradeName as Upgrade)
-      ? (upgradeName as Upgrade)
-      : null;
+  const upgrade = upgradeName != null ? (upgradeName as Upgrade) : null;
 
-  const validateUpgrade = () => {
-    if (upgrade !== null) {
-      if (!upgradeNames.includes(upgrade as Upgrade))
-        return <Navigate to="/blueprints/upgrades" replace />;
-      if (tier < 1 || tier > upgradePacks[upgrade as Upgrade][1])
-        return <Navigate to={`/blueprints/upgrades/${upgrade}`} replace />;
-    }
-    return null;
-  };
-
+  if (upgrade !== null) {
+    if (!upgradeNames.includes(upgrade as Upgrade))
+      return <Navigate to="/blueprints/upgrade" replace />;
+    if (tier < 1 || tier > upgradePacks[upgrade as Upgrade][1])
+      return <Navigate to={`/blueprints/upgrade/${upgrade}`} replace />;
+  }
   document.title =
     upgrade === null
       ? "Blueprints - Slimepedia"
@@ -95,7 +100,6 @@ export const UpgradesPage: React.FC = () => {
 
   return (
     <>
-      {validateUpgrade()}
       <OverlayScrollbarsComponent
         options={{
           scrollbars: {
@@ -119,98 +123,74 @@ export const UpgradesPage: React.FC = () => {
           />
         ))}
       </OverlayScrollbarsComponent>
-      <div className="vac-upgrade-info">
-        <UpgradeTitleBox upgrade={upgrade} tier={tier} />
-        <div className="blueprint-recipe-box">
-          <h2>Recipe</h2>
-          {upgrade !== null && tier !== null && (
-            <CraftingList
-              name={getUpgradeKey(upgrade, tier)}
-              type={BlueprintType.UPGRADES}
-            />
-          )}
-        </div>
-        <UpgradeEffectBox upgrade={upgrade} tier={tier} />
-        <UpgradeRequirementBox upgrade={upgrade} tier={tier} />
+      <div className="blueprint-infos box-presentation">
+        <UpgradeInfo upgrade={upgrade} tier={tier} />
       </div>
     </>
   );
 };
 
-const UpgradeTitleBox: React.FC<{ upgrade: Upgrade | null; tier: number }> = ({
-  upgrade,
-  tier,
-}) => {
-  const upgradeTier =
-    upgrade === null ? null : ((upgrade + tier) as UpgradeWithTier);
-  if (upgradeTier === null)
-    return (
-      <div className="blueprint-title-box">
-        <img src={"/assets/misc/upgrade.png"} alt="" />
-        <h1>Select an upgrade</h1>
-        <h2>Select an upgrade to view its details</h2>
-      </div>
-    );
-
-  return (
-    <div className="blueprint-title-box">
-      <img
-        src={`/assets/upgrades/${upgrade}.png`}
-        alt={upgradesList[upgradeTier][0]}
-      />
-      <h1>{upgradesList[upgradeTier][0]}</h1>
-      <h2>{upgradeDescriptions[upgradeTier]}</h2>
-    </div>
-  );
-};
-
-const UpgradeEffectBox: React.FC<{ upgrade: Upgrade | null; tier: number }> = ({
-  upgrade,
-  tier,
-}) => {
-  const upgradeTier =
-    upgrade === null ? null : ((upgrade + tier) as UpgradeWithTier);
-  if (upgradeTier === null || upgrade === null)
-    return (
-      <div className="vac-upgrade-effect-box">
-        <img src="" alt="" />
-        <p className="vac-effect-desc"></p>
-        <div></div>
-        <img src="" alt="" />
-        <p className="vac-effect-desc"></p>
-      </div>
-    );
-  return (
-    <div className="vac-upgrade-effect-box">
-      <img src={`/assets/${upgradeEffects[upgradeTier][0][0]}.png`} alt="" />
-      <p className="vac-effect-desc">{upgradeEffects[upgradeTier][0][1]}</p>
-      <FaAngleDown />
-      <img
-        src={`/assets/${upgradeEffects[upgradeTier][1][0]}.png`}
-        alt={upgradesList[getUpgradeKey(upgrade, tier) as UpgradeWithTier][0]}
-      />
-      <p className="vac-effect-desc">{upgradeEffects[upgradeTier][1][1]}</p>
-    </div>
-  );
-};
-
-const UpgradeRequirementBox: React.FC<{
+const UpgradeInfo: React.FC<{
   upgrade: Upgrade | null;
   tier: number;
 }> = ({ upgrade, tier }) => {
-  if (upgrade === null)
-    return <div className="blueprint-requirements-box little-box"></div>;
-  const unlockName = upgradesList[getUpgradeKey(upgrade, tier)][1];
+  const upgradeWithTier: UpgradeWithTier | null =
+    upgrade === null
+      ? null
+      : upgrade + tier in upgradesList
+      ? ((upgrade + tier) as UpgradeWithTier)
+      : null;
+  let title = "No upgrade selected";
+  let subtitle = "Select an upgrade to get its information";
+  let icon: string | null = null;
+  const littleBoxList: LittleBoxStruct[] = [];
+
+  if (upgradeWithTier && upgradeWithTier in upgradesList) {
+    title = upgradesList[upgradeWithTier][0];
+    subtitle = upgradeDescriptions[upgradeWithTier];
+    icon = `/assets/upgrades/${upgrade}.png`;
+    littleBoxList.push({
+      image: `/assets/${
+        unlockRequirements[upgradesList[upgradeWithTier][1]][1]
+      }.png`,
+      alt: unlockRequirements[upgradesList[upgradeWithTier][1]][0],
+      title: "Unlock Requirements",
+      subtitle: unlockRequirements[upgradesList[upgradeWithTier][1]][0],
+    });
+    littleBoxList.push({
+      image: `/assets/${upgradeEffects[upgradeWithTier][0]}.png`,
+      alt: upgradeEffects[upgradeWithTier][1],
+      title: "Effect",
+      subtitle: upgradeEffects[upgradeWithTier][1],
+    });
+  } else {
+    littleBoxList.push({
+      image: "/assets/misc/check.png",
+      alt: "No upgrade selected",
+      title: "Unlock Requirements",
+    });
+    littleBoxList.push({
+      image: "/assets/misc/pediatut.png",
+      alt: "No upgrade selected",
+      title: "Effect",
+    });
+  }
+
   return (
-    <div className="blueprint-requirements-box little-box">
-      <img
-        src={`/assets/${unlockRequirements[unlockName][1]}.png`}
-        alt={unlockRequirements[unlockName][0]}
-      />
-      <div>
-        <h3>Requirements</h3>
-        <h4>{unlockRequirements[unlockName][0]}</h4>
-      </div>
-    </div>
+    <PediaInfo
+      layout={PediaBoxLayout.TwoByOne}
+      title={title}
+      subtitle={subtitle}
+      icon={icon}
+      littleBoxList={littleBoxList}
+      BiomeComponent={
+        <div className="blueprint-recipe-box component-container">
+          <h2>Recipe</h2>
+          <CraftingList name={upgradeWithTier} type={BlueprintType.UPGRADE} />
+        </div>
+      }
+    />
   );
 };
+
+export default UpgradePage;

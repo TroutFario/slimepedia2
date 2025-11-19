@@ -1,5 +1,3 @@
-// Fichier central pour tous les enums - évite les imports circulaires
-
 export enum RegionType {
   Region = "regions",
   Ranch = "ranch",

@@ -4,7 +4,7 @@ import {
   weatherList,
   weatherPedia,
   weatherSpawn,
-} from "../text/weather";
+} from "../data/weather";
 import { Biomes } from "../components/Biomes";
 import { Navigate, NavLink, useParams } from "react-router-dom";
 import "../css/Weather.css";

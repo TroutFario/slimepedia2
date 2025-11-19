@@ -11,7 +11,7 @@ export enum Toy {
   Fox = "fox",
 }
 
-export const toyNames: { [key in Toy]: [string, string] } = {
+export const toyList: { [key in Toy]: [string, string] } = {
   [Toy.Ball]: [
     "Beach Ball",
     "Reduces agitation of nearby slimes, especially Pink Slimes who enjoy fun in the sun.",

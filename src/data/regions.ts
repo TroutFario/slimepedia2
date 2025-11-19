@@ -486,6 +486,6 @@ export const regionsResourcesInfos: {
   springpad: [
     "Spring Pad",
     "gadgets/springpad",
-    "/blueprints/utilities/springpad",
+    "/blueprints/utility/springpad",
   ],
 };

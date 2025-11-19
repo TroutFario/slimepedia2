@@ -38,7 +38,6 @@ export const upgradePacks: { [key in Upgrade]: [string, number] } = {
 
 
 
-// Enum pour toutes les upgrades avec leurs tiers
 export enum UpgradeWithTier {
   HARVESTER1 = "harvester1",
   HEALTH1 = "health1",
@@ -463,8 +462,8 @@ export const upgradesList: {
     new Map([
       [RecipeElement.NEWBUCKS, 1500],
       [RecipeElement.FIRE, 20],
-      [RecipeElement.GOLD, 1],
       [RecipeElement.SNOWFLAKE, 10],
+      [RecipeElement.GOLD, 1],
       [RecipeElement.SUNSAP, 1],
       [RecipeElement.GOLDENSURESHOTMODULE, 1],
     ]),
@@ -475,8 +474,8 @@ export const upgradesList: {
     new Map([
       [RecipeElement.NEWBUCKS, 3000],
       [RecipeElement.SABER, 30],
-      [RecipeElement.GOLD, 2],
       [RecipeElement.SNOWFLAKE, 20],
+      [RecipeElement.GOLD, 2],
       [RecipeElement.SUNSAP, 2],
       [RecipeElement.GOLDENSURESHOTMODULE, 1],
     ]),
@@ -487,8 +486,8 @@ export const upgradesList: {
     new Map([
       [RecipeElement.NEWBUCKS, 6000],
       [RecipeElement.SABER, 40],
-      [RecipeElement.GOLD, 3],
       [RecipeElement.SNOWFLAKE, 30],
+      [RecipeElement.GOLD, 3],
       [RecipeElement.SUNSAP, 3],
       [RecipeElement.GOLDENSURESHOTMODULE, 1],
     ]),
@@ -582,173 +581,129 @@ export const upgradeDescriptions: { [key in UpgradeWithTier]: string } = {
 };
 
 export const upgradeEffects: {
-  [key in UpgradeWithTier]: [[string, string], [string, string]];
+  [key in UpgradeWithTier]: [string, string];
 } = {
-  harvester1: [
-    ["misc/none", ""],
+  harvester1:
     ["upgrades/harvester", "+ Resource Harvester"],
-  ],
-  health1: [
-    ["misc/health", "100 Health"],
+
+  health1:
     ["misc/health", "150 Health (+50)"],
-  ],
-  health2: [
-    ["misc/health", "150 Health"],
+
+  health2:
     ["misc/health", "200 Health (+50)"],
-  ],
-  health3: [
-    ["misc/health", "200 Health"],
+
+  health3:
     ["misc/health", "250 Health (+50)"],
-  ],
-  health4: [
-    ["misc/health", "250 Health"],
+
+  health4:
     ["misc/health", "300 Health (+50)"],
-  ],
-  power1: [
-    ["misc/energy", "100 Energy"],
+
+  power1:
     ["misc/energy", "150 Energy (+50)"],
-  ],
-  power2: [
-    ["misc/energy", "150 Energy"],
+
+  power2:
     ["misc/energy", "200 Energy (+50)"],
-  ],
-  power3: [
-    ["misc/energy", "200 Energy"],
+
+  power3:
     ["misc/energy", "250 Energy (+50)"],
-  ],
-  power4: [
-    ["misc/energy", "250 Energy"],
+
+  power4:
     ["misc/energy", "275 Energy (+25)"],
-  ],
-  power5: [
-    ["misc/energy", "275 Energy"],
+
+  power5:
     ["misc/energy", "300 Energy (+25)"],
-  ],
-  dash1: [
-    ["misc/none", ""],
+
+  dash1:
     ["upgrades/dash", "- Sprint Energy Consumption"],
-  ],
-  dash2: [
-    ["misc/none", ""],
+
+  dash2:
     ["upgrades/dash", "- Sprint Energy Consumption"],
-  ],
-  jetpack1: [
-    ["misc/none", ""],
+
+  jetpack1:
     ["upgrades/jetpack", "Jetpack"],
-  ],
-  jetpack2: [
-    ["upgrades/jetpack", "Jetpack"],
+
+  jetpack2:
     ["upgrades/jetpack", "- Jetpack Energy Consumption"],
-  ],
-  tankBooster1: [
-    ["upgrades/tankBooster", "20 Units Capacity"],
+
+  tankBooster1:
     ["upgrades/tankBooster", "30 Units Capacity (+10)"],
-  ],
-  tankBooster2: [
-    ["upgrades/tankBooster", "30 Units Capacity"],
+
+  tankBooster2:
     ["upgrades/tankBooster", "40 Units Capacity (+10)"],
-  ],
-  tankBooster3: [
-    ["upgrades/tankBooster", "40 Units Capacity"],
+
+  tankBooster3:
     ["upgrades/tankBooster", "50 Units Capacity (+10)"],
-  ],
-  tankBooster4: [
-    ["upgrades/tankBooster", "50 Units Capacity"],
+
+  tankBooster4:
     ["upgrades/tankBooster", "60 Units Capacity (+10)"],
-  ],
-  tankBooster5: [
-    ["upgrades/tankBooster", "60 Units Capacity"],
+
+  tankBooster5:
     ["upgrades/tankBooster", "70 Units Capacity (+10)"],
-  ],
-  tankBooster6: [
-    ["upgrades/tankBooster", "70 Units Capacity"],
+
+  tankBooster6:
     ["upgrades/tankBooster", "80 Units Capacity (+10)"],
-  ],
-  tankBooster7: [
-    ["upgrades/tankBooster", "80 Units Capacity"],
+
+  tankBooster7:
     ["upgrades/tankBooster", "90 Units Capacity (+10)"],
-  ],
-  tankBooster8: [
-    ["upgrades/tankBooster", "90 Units Capacity"],
+
+  tankBooster8:
     ["upgrades/tankBooster", "100 Units Capacity (+10)"],
-  ],
-  extraTank1: [
-    ["upgrades/extraTank", "4 Tanks"],
+
+  extraTank1:
     ["upgrades/extraTank", "5 Tanks (+1)"],
-  ],
-  extraTank2: [
-    ["upgrades/extraTank", "5 Tanks"],
+
+  extraTank2:
     ["upgrades/extraTank", "6 Tanks (+1)"],
-  ],
-  waterTank1: [
-    ["misc/none", ""],
+
+  waterTank1:
     ["upgrades/waterTank", "+ Water Tank"],
-  ],
-  pulseWave1: [
-    ["misc/none", ""],
+
+  pulseWave1:
     ["upgrades/pulseWave", "+ Pulse Wave"],
-  ],
-  tankGuard1: [
-    ["misc/death", "Full Loss on Death"],
+
+  tankGuard1:
     ["upgrades/tankGuard", "30% Salvage on Death"],
-  ],
-  tankGuard2: [
-    ["upgrades/tankGuard", "30% Salvage on Death"],
+
+  tankGuard2:
     ["upgrades/tankGuard", "40% Salvage on Death"],
-  ],
-  tankGuard3: [
-    ["upgrades/tankGuard", "40% Salvage on Death"],
+
+  tankGuard3:
     ["upgrades/tankGuard", "60% Salvage on Death"],
-  ],
-  droneKey1: [
-    ["misc/none", ""],
+
+  droneKey1:
     ["upgrades/droneKey", "+ Drone Archive Key"],
-  ],
-  goldenSureshot1: [
-    ["plorts/gold", "1 Plorts per Gold Slime Fed"],
+
+  goldenSureshot1:
     ["plorts/gold", "2 Plorts per Gold Slime Fed"],
-  ],
-  goldenSureshot2: [
-    ["plorts/gold", "2 Plorts per Gold Slime Fed"],
+
+  goldenSureshot2:
     ["plorts/gold", "3 Plorts per Gold Slime Fed"],
-  ],
-  goldenSureshot3: [
-    ["plorts/gold", "3 Plorts per Gold Slime Fed"],
+
+  goldenSureshot3:
     ["plorts/gold", "4 Plorts per Gold Slime Fed"],
-  ],
-  shadowSureshot1: [
-    ["plorts/shadow", "1 Plorts per Shadow Slime Hit"],
+
+  shadowSureshot1:
     ["plorts/shadow", "2 Plorts per Shadow Slime Hit"],
-  ],
-  regenerator1: [
-    ["misc/none", ""],
+
+  regenerator1:
     ["upgrades/regenerator", "+15 % Energy Regeneration Rate"],
-  ],
-  regenerator2: [
-    ["upgrades/regenerator", "+15 % Energy Regeneration Rate"],
+
+  regenerator2:
     ["upgrades/regenerator", "+30 % Energy Regeneration Rate"],
-  ],
-  powerinjector1: [
-    ["misc/none", ""],
+
+  powerinjector1:
     ["upgrades/powerinjector", "-33% Energy Regeneration Delay"],
-  ],
-  powerinjector2: [
-    ["upgrades/powerinjector", "-33% Energy Regeneration Delay"],
+
+  powerinjector2:
     ["upgrades/powerinjector", "-66% Energy Regeneration Delay"],
-  ],
+
 };
 
-// Types utilitaires pour les upgrades avec tiers
 export type UpgradeBase = keyof typeof upgradePacks;
-export type UpgradeTier<T extends UpgradeBase> = T extends keyof typeof upgradePacks 
-  ? 1 | 2 | 3 | 4 | 5 | 6  // Maximum de tiers possibles
-  : never;
 
-// Fonction utilitaire pour construire une clé d'upgrade
 export function getUpgradeKey(base: string | UpgradeBase, tier: number): UpgradeWithTier {
   return `${base}${tier}` as UpgradeWithTier;
 }
 
-// Exports de compatibilité
 export const upgradeNames = Object.values(Upgrade);
 export const upgradeWithTierNames = Object.values(UpgradeWithTier);

@@ -1,20 +1,14 @@
 import React, { createContext, useContext, useRef, useState, useCallback } from "react";
 import {
   BlueprintItem,
+  BlueprintType,
   Recipe,
   RecipeElement,
-} from "../text/blueprints/blueprints";
-import { upgradesList } from "../text/blueprints/upgrades";
-import { utilitiesList, Utility } from "../text/blueprints/utilities";
-import { Warp, warpGadgets } from "../text/blueprints/warp";
-import { Decoration, decorationsList } from "../text/blueprints/decoration";
-
-enum BlueprintType {
-  UPGRADES = "upgrades",
-  UTILITIES = "utilities",
-  WARP = "warp",
-  DECORATIONS = "decorations",
-}
+} from "../data/blueprints/blueprints";
+import { upgradesList } from "../data/blueprints/upgrades";
+import { utilitiesList, Utility } from "../data/blueprints/utilities";
+import { Warp, warpGadgets } from "../data/blueprints/warp";
+import { Decoration, decorationList } from "../data/blueprints/decoration";
 
 type BlueprintList = Map<BlueprintItem, [BlueprintType, number]>;
 type CraftList = Map<RecipeElement, number>;
@@ -44,14 +38,14 @@ const getRecipeForItem: (item: BlueprintItem, type: BlueprintType) => Recipe = (
   type
 ) => {
   switch (type) {
-    case BlueprintType.UPGRADES:
+    case BlueprintType.UPGRADE:
       return upgradesList[item as keyof typeof upgradesList][2];
-    case BlueprintType.UTILITIES:
+    case BlueprintType.UTILITY:
       return utilitiesList[item as Utility][2];
     case BlueprintType.WARP:
       return warpGadgets[item as Warp][2];
-    case BlueprintType.DECORATIONS:
-      return decorationsList[item as Decoration][2];
+    case BlueprintType.DECORATION:
+      return decorationList[item as Decoration][2];
     default:
       throw new Error("Invalid blueprint type: " + type);
   }
@@ -68,7 +62,6 @@ export const useRecipeContext = (): RecipeContextType => {
 export const RecipeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  // store maps in state so React re-renders consumers when they change
   const [blueprintList, setBlueprintList] = useState<BlueprintList>(new Map());
   const [craftList, setCraftList] = useState<CraftList>(new Map());
 

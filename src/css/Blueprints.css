@@ -58,8 +58,8 @@
   position: absolute;
   width: 6vh;
   height: 6vh;
-  bottom: 5vh;
-  right: 5vh;
+  bottom: 1vh;
+  right: 1vh;
   background-color: #f45d8c;
   border-radius: 50px;
   transition: border-radius var(--animation-speed) var(--animation-function),
@@ -401,7 +401,6 @@
 
 .blueprints-tab > img {
   height: 75px;
-  border-radius: var(--border-size);
   transform: scale(1);
   transition: transform var(--animation-speed) var(--animation-function);
 }
@@ -548,7 +547,6 @@
   gap: var(--border-size);
 }
 
-.blueprint-infos > div,
 .vac-upgrade-info > div {
   background-color: var(--menu-color-1);
   border-radius: var(--border-size);
@@ -595,6 +593,12 @@
   overflow: auto;
 }
 
+.blueprint-recipe-box.component-container {
+  background-color: var(--item-color);
+  border-radius: var(--border-size);
+  padding: var(--border-size);
+}
+
 .blueprint-recipe-box > div > img,
 .blueprint-recipe-box img {
   height: 1.7em;
@@ -606,6 +610,7 @@
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: stretch;
+  gap: var(--border-size);
   padding: 0;
   margin: 0;
   overflow-x: hidden;
@@ -739,14 +744,7 @@
   gap: var(--border-size);
 }
 
-.blueprint-infos.decoration {
-  grid-template-rows: 2fr 1fr 1fr;
-  grid-template-areas:
-    "header header"
-    "theme  recipe"
-    "unlock recipe";
-}
-
+.blueprint-list,
 .decoration-list {
   display: flex;
   flex-flow: column nowrap;
