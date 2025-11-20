@@ -20,7 +20,7 @@ import { LittleBoxProps } from "../components/shared/LittleBox";
 import { PediaBoxLayout, PediaInfo } from "../components/PediaInfo";
 
 const nonePath = "/assets/misc/none.png";
-const nonPlortSlimes = [null, Slime.Lucky, Slime.Tarr];
+const nonPlortSlimes = new Set([null, Slime.Lucky, Slime.Tarr]);
 interface SlimeDetailsProps {
   selectedSlime: Slime | null;
 }
@@ -52,113 +52,129 @@ const SlimeDetails: React.FC<SlimeDetailsProps> = ({ selectedSlime }) => {
   const isLargoable = currentSlimeList?.[3] ?? false;
   const toy = currentSlimeList?.[4] ?? null;
 
-  const littleBoxList: LittleBoxProps[] = [
-    // Diet
-    {
-      image: isNoSlime
-        ? "/assets/food/any.png"
-        : foodType === null
-        ? nonePath
-        : `/assets/food/${foodType}.png`,
-      alt: isNoSlime
-        ? "No slime selected"
-        : foodType == null
-        ? "None"
-        : foodTypeList[foodType][0],
+  const textOrNone = (value: string | null | number | undefined) =>
+    value === null || value === undefined ? "None" : String(value);
+
+  const buildDietBox = (): LittleBoxProps => {
+    let image: string;
+    if (isNoSlime) image = "/assets/food/any.png";
+    else if (foodType === null) image = nonePath;
+    else image = `/assets/food/${foodType}.png`;
+
+    let label: string;
+    if (isNoSlime) {
+      label = "No slime selected";
+    } else {
+      let val: string | undefined;
+      if (foodType == null) val = undefined;
+      else val = foodTypeList[foodType][0];
+      label = textOrNone(val);
+    }
+
+    let link: string | null;
+    if (isNoSlime || foodType == null || foodTypeBlacklist.slice(1).includes(foodType)) {
+      link = null;
+    } else {
+      link = `/food/${foodType}`;
+    }
+    return {
+      image,
+      alt: label,
       title: "Diet",
-      subtitle: isNoSlime
-        ? null
-        : foodType == null
-        ? "None"
-        : foodTypeList[foodType][0],
+      subtitle: (() => {
+        if (isNoSlime) return null;
+        let val: string | undefined;
+        if (foodType == null) val = undefined;
+        else val = foodTypeList[foodType][0];
+        return textOrNone(val);
+      })(),
       action: null,
-      link:
-        isNoSlime ||
-        foodType === null ||
-        foodTypeBlacklist.slice(1).includes(foodType)
-          ? null
-          : `/food/${foodType}`,
-    },
-    // Favorite Food
-    {
-      image: isNoSlime
-        ? "/assets/misc/empty.png"
-        : favFood === null
-        ? "/assets/misc/none.png"
-        : `/assets/food/${favFood}.png`,
-      alt: isNoSlime
-        ? "No slime selected"
-        : favFood == null
-        ? "None"
-        : foodList[favFood][0],
+      link,
+    };
+  };
+
+  const buildFavFoodBox = (): LittleBoxProps => {
+    let image: string;
+    if (isNoSlime) image = "/assets/misc/empty.png";
+    else if (favFood === null) image = "/assets/misc/none.png";
+    else image = `/assets/food/${favFood}.png`;
+    let label: string;
+    if (isNoSlime) {
+      label = "No slime selected";
+    } else {
+      let val: string | undefined;
+      if (favFood == null) val = undefined;
+      else val = foodList[favFood][0];
+      label = textOrNone(val);
+    }
+    return {
+      image,
+      alt: label,
       title: "Favorite Food",
-      subtitle: isNoSlime
-        ? null
-        : favFood == null
-        ? "None"
-        : foodList[favFood][0],
+      subtitle: (() => {
+        if (isNoSlime) return null;
+        let val: string | undefined;
+        if (favFood == null) val = undefined;
+        else val = foodList[favFood][0];
+        return textOrNone(val);
+      })(),
       action: null,
       link: isNoSlime || favFood === null ? null : `/food/${favFood}`,
-    },
-    // Largo-able
-    {
-      image: isNoSlime
-        ? "/assets/misc/largo.png"
-        : `/assets/misc/${isLargoable ? "largo" : "none"}.png`,
-      alt: isNoSlime
-        ? "No slime selected"
-        : isLargoable
-        ? "Largo-able"
-        : "Non largo-able",
+    };
+  };
+
+  const buildLargoBox = (): LittleBoxProps => {
+    let image: string;
+    if (isNoSlime) image = "/assets/misc/largo.png";
+    else image = `/assets/misc/${isLargoable ? "largo" : "none"}.png`;
+    let alt: string;
+    if (isNoSlime) alt = "No slime selected";
+    else alt = isLargoable ? "Largo-able" : "Non largo-able";
+    return {
+      image,
+      alt,
       title: "Largo-able",
-      subtitle: isNoSlime ? null : isLargoable ? "Yes" : "No",
+      subtitle: (() => {
+        if (isNoSlime) return null;
+        return isLargoable ? "Yes" : "No";
+      })(),
       action: null,
       link: null,
-    },
-    // Favorite Toy
-    {
-      image: isNoSlime
-        ? "/assets/misc/empty.png"
-        : !toy
-        ? "/assets/misc/none.png"
-        : `/assets/toys/${toy}.png`,
-      alt: isNoSlime
-        ? "No slime selected"
-        : toy != null
-        ? toyList[toy][0] ?? "None"
-        : "None",
+    };
+  };
+
+  const buildToyBox = (): LittleBoxProps => {
+    let image: string;
+    if (isNoSlime) image = "/assets/misc/empty.png";
+    else if (toy == null) image = "/assets/misc/none.png";
+    else image = `/assets/toys/${toy}.png`;
+    let toyLabel: string;
+    if (toy == null) toyLabel = "None";
+    else toyLabel = toyList[toy] ? toyList[toy][0] : "None";
+    return {
+      image,
+      alt: isNoSlime ? "No slime selected" : toyLabel,
       title: "Favorite Toy",
-      subtitle: isNoSlime
-        ? null
-        : toy != null
-        ? toyList[toy][0] ?? "None"
-        : "None",
+      subtitle: isNoSlime ? null : toyLabel,
       action: null,
       link: isNoSlime || toy === null ? null : `/items/toys/${toy}`,
-    },
+    };
+  };
+
+  const littleBoxList: LittleBoxProps[] = [
+    buildDietBox(),
+    buildFavFoodBox(),
+    buildLargoBox(),
+    buildToyBox(),
   ];
 
   return (
     <PediaInfo
       layout={PediaBoxLayout.TwoByTwo}
-      title={
-        isNoSlime || !currentSlimeList ? "Select a slime" : currentSlimeList[0]
-      }
-      subtitle={
-        isNoSlime
-          ? "Click on a slime on the list to get their information"
-          : slimesText[selectedSlime]
-      }
-      icon={
-        isNoSlime
-          ? "/assets/misc/empty.png"
-          : `/assets/slimes/${selectedSlime}.png`
-      }
-      plortIcon={
-        !isNoSlime && !nonPlortSlimes.includes(selectedSlime)
-          ? selectedSlime
-          : undefined
-      }
+      title={isNoSlime || !currentSlimeList ? "Select a slime" : currentSlimeList[0]}
+      subtitle={isNoSlime ? "Click on a slime on the list to get their information" : slimesText[selectedSlime]}
+      icon={isNoSlime ? "/assets/misc/empty.png" : `/assets/slimes/${selectedSlime}.png`}
+      plortIcon={isNoSlime || nonPlortSlimes.has(selectedSlime) ? undefined : selectedSlime}
       littleBoxList={littleBoxList}
       BiomeComponent={<Biomes spawnList={getSlimeSpawnlist(selectedSlime)} />}
     />
@@ -248,7 +264,6 @@ export const Slimes = () => {
       >
         <SlimeDetails selectedSlime={slime} />
         <button
-          role="link"
           className={"arrow-btn " + (topBtn ? "top-btn" : "bot-btn")}
           onClick={() => setTopBtn(!topBtn)}
           onKeyDown={(e) => {
