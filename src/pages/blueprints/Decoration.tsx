@@ -26,7 +26,17 @@ const DecorationInfos: React.FC<{
   let subtitle = "Select a decoration to get its information";
   let icon: string | null = null;
   const littleBoxList: LittleBoxProps[] = [];
-  if (decoration !== null) {
+  if (decoration === null) {
+    littleBoxList.push({
+      image: "/assets/misc/decoration.png",
+      alt: "No decoration selected",
+      title: "Decoration Theme",
+    }, {
+      image: "/assets/misc/pediatut.png",
+      alt: "No decoration selected",
+      title: "Unlock Requirements",
+    });
+  } else {
     const themeName: string = themeList[decorationList[decoration][3]][0];
     littleBoxList.push({
       image: `/assets/${themeList[decorationList[decoration][3]][1]}.png`,
@@ -39,23 +49,11 @@ const DecorationInfos: React.FC<{
     subtitle = decorationDescription[decoration];
     icon = `/assets/deco/${decoration}.png`;
     littleBoxList.push({
-      image: `/assets/${
-        unlockRequirements[decorationList[decoration][1]][1]
-      }.png`,
+      image: `/assets/${unlockRequirements[decorationList[decoration][1]][1]
+        }.png`,
       alt: unlockRequirements[decorationList[decoration][1]][0],
       title: "Unlock Requirements",
       subtitle: unlockRequirements[decorationList[decoration][1]][0],
-    });
-  } else {
-    littleBoxList.push({
-      image: "/assets/misc/decoration.png",
-      alt: "No decoration selected",
-      title: "Decoration Theme",
-    });
-    littleBoxList.push({
-      image: "/assets/misc/pediatut.png",
-      alt: "No decoration selected",
-      title: "Unlock Requirements",
     });
   }
   return (
@@ -91,8 +89,8 @@ const DecorationPage: React.FC = () => {
     decoFilter === "any"
       ? decorationNames
       : decorationNames.filter(
-          (deco) => decorationList[deco][3] === decoFilter
-        );
+        (deco) => decorationList[deco][3] === decoFilter
+      );
 
   document.title =
     blueprint === null
@@ -106,9 +104,8 @@ const DecorationPage: React.FC = () => {
           {Object.values(DecorationTheme).map((theme) => (
             <button
               key={theme}
-              className={`decoration-tab${
-                decoFilter === theme ? " selected" : ""
-              }`}
+              className={`decoration-tab${decoFilter === theme ? " selected" : ""
+                }`}
               onClick={() => setDecoFilter(theme)}
               title={themeList[theme][0]}
             >

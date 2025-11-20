@@ -1,7 +1,7 @@
 import { MixedRegion } from "../components/Biomes";
 import { Ranch, Region, Resource, Weather } from "./enums";
 
-export { Ranch, Region, Resource, Weather };
+export { Ranch, Region, Resource, Weather } from "./enums";
 
 export const resourceList: { [key in Resource]: [string, string, MixedRegion[]] } = {
   [Resource.Primordy]: [

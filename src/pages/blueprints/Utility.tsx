@@ -21,7 +21,13 @@ const UtilityInfo: React.FC<{utility: Utility | null}> = ({ utility }) => {
     let subtitle = "Select an utility to get its information";
     let icon: string | null = null;
     const littleBoxList: LittleBoxProps[] = [];
-    if (utility !== null) {
+    if (utility === null) {
+      littleBoxList.push({
+        image: "/assets/misc/check.png",
+        alt: "No utility selected",
+        title: "Unlock Requirements",
+      });
+    } else {
       title = utilitiesList[utility][0];
       subtitle = utilitiesDescription[utility];
       icon = `/assets/gadgets/${utility}.png`;
@@ -30,12 +36,6 @@ const UtilityInfo: React.FC<{utility: Utility | null}> = ({ utility }) => {
         alt: unlockRequirements[utilitiesList[utility][1]][0],
         title: "Unlock Requirements",
         subtitle: unlockRequirements[utilitiesList[utility][1]][0],
-      });
-    } else {
-      littleBoxList.push({
-        image: "/assets/misc/check.png",
-        alt: "No utility selected",
-        title: "Unlock Requirements",
       });
     }
     return (

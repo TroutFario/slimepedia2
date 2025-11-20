@@ -21,7 +21,13 @@ const WarpInfos: React.FC<{ warp: Warp | null }> = ({ warp }) => {
   let subtitle = "Select a warp tech to get its information";
   let icon: string | null = null;
   const littleBoxList: LittleBoxProps[] = [];
-  if (warp !== null) {
+  if (warp === null) {
+    littleBoxList.push({
+      image: "/assets/misc/check.png",
+      alt: "No warp tech selected",
+      title: "Unlock Requirements",
+    });
+  } else{
     title = warpGadgets[warp][0];
     subtitle = warpDescriptions[warp];
     icon = `/assets/gadgets/${warp}.png`;
@@ -31,13 +37,7 @@ const WarpInfos: React.FC<{ warp: Warp | null }> = ({ warp }) => {
       title: "Unlock Requirements",
       subtitle: unlockRequirements[warpGadgets[warp][1]][0],
     });
-  } else {
-    littleBoxList.push({
-      image: "/assets/misc/check.png",
-      alt: "No warp tech selected",
-      title: "Unlock Requirements",
-    });
-  }
+  } 
   return (
     <div className={"blueprint-infos box-presentation"}>
       <PediaInfo

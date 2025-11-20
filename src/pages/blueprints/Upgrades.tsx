@@ -82,22 +82,80 @@ const UpgradeItemList: React.FC<UpgradeItemListProps> = ({
   );
 };
 
+const UpgradeInfo: React.FC<{
+  upgrade: Upgrade | null;
+  tier: number;
+}> = ({ upgrade, tier }) => {
+  const upgradeWithTier: UpgradeWithTier | null =
+    upgrade === null || !(upgrade + tier in upgradesList)
+      ? null
+      : (upgrade + tier) as UpgradeWithTier;
+  let title = "No upgrade selected";
+  let subtitle = "Select an upgrade to get its information";
+  let icon: string | null = null;
+  const littleBoxList: LittleBoxProps[] = [];
+
+  if (upgradeWithTier && upgradeWithTier in upgradesList) {
+    title = upgradesList[upgradeWithTier][0];
+    subtitle = upgradeDescriptions[upgradeWithTier];
+    icon = `/assets/upgrades/${upgrade}.png`;
+    littleBoxList.push({
+      image: `/assets/${unlockRequirements[upgradesList[upgradeWithTier][1]][1]
+        }.png`,
+      alt: unlockRequirements[upgradesList[upgradeWithTier][1]][0],
+      title: "Unlock Requirements",
+      subtitle: unlockRequirements[upgradesList[upgradeWithTier][1]][0],
+    }, {
+      image: `/assets/${upgradeEffects[upgradeWithTier][0]}.png`,
+      alt: upgradeEffects[upgradeWithTier][1],
+      title: "Effect",
+      subtitle: upgradeEffects[upgradeWithTier][1],
+    });
+  } else {
+    littleBoxList.push({
+      image: "/assets/misc/check.png",
+      alt: "No upgrade selected",
+      title: "Unlock Requirements",
+    }, {
+      image: "/assets/misc/pediatut.png",
+      alt: "No upgrade selected",
+      title: "Effect",
+    });
+  }
+
+  return (
+    <PediaInfo
+      layout={PediaBoxLayout.TwoByOne}
+      title={title}
+      subtitle={subtitle}
+      icon={icon}
+      littleBoxList={littleBoxList}
+      BiomeComponent={
+        <div className="blueprint-recipe-box component-container">
+          <h2>Recipe</h2>
+          <CraftingList name={upgradeWithTier} type={BlueprintType.UPGRADE} />
+        </div>
+      }
+    />
+  );
+};
+
 export const UpgradePage: React.FC = () => {
   const { blueprint: upgradeName, tier: selectedTier } = useParams();
-  const tier = selectedTier ? parseInt(selectedTier, 10) : 1;
-  const upgrade = upgradeName != null ? (upgradeName as Upgrade) : null;
+  const tier = selectedTier ? Number.parseInt(selectedTier, 10) : 1;
+  const upgrade = upgradeName ? (upgradeName as Upgrade) : null;
 
   if (upgrade !== null) {
-    if (!upgradeNames.includes(upgrade as Upgrade))
+    if (!upgradeNames.includes(upgrade))
       return <Navigate to="/blueprints/upgrade" replace />;
-    if (tier < 1 || tier > upgradePacks[upgrade as Upgrade][1])
+    if (tier < 1 || tier > upgradePacks[upgrade][1])
       return <Navigate to={`/blueprints/upgrade/${upgrade}`} replace />;
   }
   document.title =
-    upgrade === null
-      ? "Blueprints - Slimepedia"
-      : upgradesList[(upgrade + tier) as UpgradeWithTier][0] + " - Slimepedia";
-
+  upgrade === null
+  ? "Blueprints - Slimepedia"
+  : upgradesList[(upgrade + tier) as UpgradeWithTier][0] + " - Slimepedia";
+  
   return (
     <>
       <OverlayScrollbarsComponent
@@ -127,69 +185,6 @@ export const UpgradePage: React.FC = () => {
         <UpgradeInfo upgrade={upgrade} tier={tier} />
       </div>
     </>
-  );
-};
-
-const UpgradeInfo: React.FC<{
-  upgrade: Upgrade | null;
-  tier: number;
-}> = ({ upgrade, tier }) => {
-  const upgradeWithTier: UpgradeWithTier | null =
-    upgrade === null
-      ? null
-      : upgrade + tier in upgradesList
-      ? ((upgrade + tier) as UpgradeWithTier)
-      : null;
-  let title = "No upgrade selected";
-  let subtitle = "Select an upgrade to get its information";
-  let icon: string | null = null;
-  const littleBoxList: LittleBoxProps[] = [];
-
-  if (upgradeWithTier && upgradeWithTier in upgradesList) {
-    title = upgradesList[upgradeWithTier][0];
-    subtitle = upgradeDescriptions[upgradeWithTier];
-    icon = `/assets/upgrades/${upgrade}.png`;
-    littleBoxList.push({
-      image: `/assets/${
-        unlockRequirements[upgradesList[upgradeWithTier][1]][1]
-      }.png`,
-      alt: unlockRequirements[upgradesList[upgradeWithTier][1]][0],
-      title: "Unlock Requirements",
-      subtitle: unlockRequirements[upgradesList[upgradeWithTier][1]][0],
-    });
-    littleBoxList.push({
-      image: `/assets/${upgradeEffects[upgradeWithTier][0]}.png`,
-      alt: upgradeEffects[upgradeWithTier][1],
-      title: "Effect",
-      subtitle: upgradeEffects[upgradeWithTier][1],
-    });
-  } else {
-    littleBoxList.push({
-      image: "/assets/misc/check.png",
-      alt: "No upgrade selected",
-      title: "Unlock Requirements",
-    });
-    littleBoxList.push({
-      image: "/assets/misc/pediatut.png",
-      alt: "No upgrade selected",
-      title: "Effect",
-    });
-  }
-
-  return (
-    <PediaInfo
-      layout={PediaBoxLayout.TwoByOne}
-      title={title}
-      subtitle={subtitle}
-      icon={icon}
-      littleBoxList={littleBoxList}
-      BiomeComponent={
-        <div className="blueprint-recipe-box component-container">
-          <h2>Recipe</h2>
-          <CraftingList name={upgradeWithTier} type={BlueprintType.UPGRADE} />
-        </div>
-      }
-    />
   );
 };
 

@@ -42,7 +42,7 @@ const LittleBoxBody: React.FC<LittleBoxBodyProps> = ({
 
 const actionHandler = (
   e: React.KeyboardEvent<HTMLButtonElement>,
-  action: () => void
+  action: (() => void) | null | undefined
 ) => {
   if (action && "key" in e) {
     if (e.key === "Enter" || e.key === " ") {
@@ -83,7 +83,7 @@ export const LittleBox: React.FC<LittleBoxProps> = ({
             (otherClasses ? " " + otherClasses : "")
           }
           onClick={action ? () => action() : undefined}
-          onKeyDown={(e) => actionHandler(e, action!)}
+          onKeyDown={(e) => actionHandler(e, action)}
           tabIndex={0}
           aria-pressed="false"
         >
