@@ -5,7 +5,7 @@ import NavButton from "./NavButton";
 const darkModeCheck = () => {
   const savedDarkMode: string | null = localStorage.getItem("darkMode");
   if (null === savedDarkMode)
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return globalThis.matchMedia("(prefers-color-scheme: dark)").matches;
   return savedDarkMode === "dark";
 };
 
@@ -15,11 +15,8 @@ export const NavBar = () => {
 
   useEffect(() => {
     localStorage.setItem("darkMode", darkMode ? "dark" : "light");
-    window.dispatchEvent(new Event("darkModeChange"));
-    document.documentElement.setAttribute(
-      "data-theme",
-      darkMode ? "dark" : "light",
-    );
+    globalThis.dispatchEvent(new Event("darkModeChange"));
+    document.documentElement.dataset.theme = darkMode ? "dark" : "light";
   }, [darkMode]);
 
   return (

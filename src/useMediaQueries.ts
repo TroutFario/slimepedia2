@@ -4,7 +4,7 @@ const useMediaQuery = (query: string): boolean => {
   const [matches, setMatches] = useState<boolean>(false);
 
   useEffect(() => {
-    const mediaQueryList = window.matchMedia(query);
+    const mediaQueryList = globalThis.matchMedia(query);
     const documentChangeHandler = () => setMatches(mediaQueryList.matches);
 
     // Initial check

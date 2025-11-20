@@ -10,10 +10,10 @@ export const Header: React.FC = () => {
 
   useEffect(() => {
     updateDarkMode();
-    window.addEventListener("darkModeChange", updateDarkMode);
+    globalThis.addEventListener("darkModeChange", updateDarkMode);
 
     return () => {
-      window.removeEventListener("darkModeChange", updateDarkMode);
+      globalThis.removeEventListener("darkModeChange", updateDarkMode);
     };
   }, []);
 

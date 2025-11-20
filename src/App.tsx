@@ -8,7 +8,7 @@ function App() {
   document.title = "Slimepedia 2";
 
   useEffect(() => {
-    const crypto = window.crypto || window.Crypto;
+    const crypto = globalThis.crypto || globalThis.Crypto;
     const array = new Uint32Array(1);
     crypto.getRandomValues(array);
     const randomSlimeKey =
