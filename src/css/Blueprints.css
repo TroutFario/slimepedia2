@@ -587,12 +587,6 @@
   margin: 0;
 }
 
-.blueprint-recipe-box {
-  grid-area: recipe;
-  align-items: center;
-  overflow: auto;
-}
-
 .blueprint-recipe-box.component-container {
   background-color: var(--item-color);
   border-radius: var(--border-size);
@@ -734,7 +728,6 @@
 
 .blueprint-infos {
   flex: 1 0 40vw;
-  padding: 0;
 }
 
 .blueprint-list,

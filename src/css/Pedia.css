@@ -48,7 +48,6 @@
 }
 
 .box-presentation {
-  flex-grow: 2;
   width: 100%;
   position: relative;
   display: flex;

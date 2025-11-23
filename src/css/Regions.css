@@ -12,8 +12,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   border-radius: var(--border-size);
-  transition:
-    border-radius var(--animation-speed) var(--animation-function),
+  transition: border-radius var(--animation-speed) var(--animation-function),
     background-color var(--animation-speed) var(--animation-function);
 }
 
@@ -76,8 +75,7 @@
   left: 50%;
   transform: translate(-50%, -50%) scale(1.2);
   filter: opacity(0) blur(10px);
-  transition:
-    filter var(--animation-speed) var(--animation-function),
+  transition: filter var(--animation-speed) var(--animation-function),
     transform var(--animation-speed) var(--animation-function);
 }
 
@@ -103,8 +101,7 @@
   font-size: var(--tab-font-size);
   color: var(--text-color);
   text-shadow: none;
-  transition:
-    color var(--animation-speed) var(--animation-function),
+  transition: color var(--animation-speed) var(--animation-function),
     text-shadow var(--animation-speed) var(--animation-function);
 }
 
@@ -139,6 +136,7 @@
   overflow: hidden;
   background-position: center;
   background-size: cover;
+  border-radius: var(--border-size);
 }
 
 .region-background-video {
