@@ -51,16 +51,6 @@ export const NavBar = () => {
           />
         )}
       </NavLink>
-      <NavLink style={noLink} to="/map">
-        {({ isActive }) => (
-          <NavButton
-            name="Interactive Map"
-            icon="misc/map"
-            tilting="none"
-            selected={isActive}
-          />
-        )}
-      </NavLink>
       <NavLink style={noLink} to="/regions/fields">
         {({ isActive }) => (
           <NavButton

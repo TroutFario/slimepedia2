@@ -141,7 +141,14 @@ export const buildingUpgrades: {
       "Safely and gently moves Elder chickens away from the younger generation and stores them in a collector.",
     ],
   ],
-  [Building.Pond]: [],
+  [Building.Pond]: [
+    [
+      "collector",
+      "Plort Collector",
+      1200,
+      "A plort collector will vacuum up one type of plort in a pond at regular intervals, depositing them into a storage tank, so long as space is available.",
+    ],
+  ],
   [Building.Incinerator]: [
     [
       "trough",
@@ -149,6 +156,13 @@ export const buildingUpgrades: {
       500,
       "An ash trough allows you to collect the ash of incinerated food at its base, which is eaten exclusively by fire slimes. It's gross.",
     ],
+    [
+      "collector",
+      "Plort Collector",
+      1200,
+      "A plort collector will vacuum up one type of plort in an incinerator at regular intervals, depositing them into a storage tank, so long as space is available.",
+    ],
+
   ],
   [Building.Silo]: [
     [

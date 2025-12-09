@@ -29,6 +29,7 @@ export enum Utility {
   MARKER_SPOUT = "markerspout",
   MARKER_MINERAL = "markermineral",
   MARKER_HIVE = "markerhive",
+  MARKER_SLIME = "markerslime",
   MARKER_STABILIZER = "markerstabilizer",
   FAN = "fan",
   BUMPER = "bumper",
@@ -41,6 +42,7 @@ export enum Utility {
   NULLIFIER = "nullifier",
   DISRUPTION_DETECTOR = "disruptiondetector",
   DRONE_STATION = "dronestation",
+  DISTRIBUTOR = "distributor",
 }
 
 export const utilitiesList: {
@@ -384,6 +386,15 @@ export const utilitiesList: {
       [RecipeElement.JELLY, 5],
     ]),
   ],
+  markerslime: [
+    "Slime Resource Flag",
+    UnlockRequirementNames.POLESTAR,
+    new Map([
+      [RecipeElement.NEWBUCKS, 50],
+      [RecipeElement.PINK, 5],
+      [RecipeElement.JELLY, 1],
+    ]),
+  ],
   markerstabilizer: [
     "Stabilizer Flag",
     UnlockRequirementNames.POLESTAR,
@@ -461,6 +472,17 @@ export const utilitiesList: {
       [RecipeElement.DRONEMODULE, 1],
     ]),
   ],
+  distributor: [
+    "Distributor",
+    UnlockRequirementNames.POLESTAR,
+    new Map([
+      [RecipeElement.NEWBUCKS, 3000],
+      [RecipeElement.DERVISH, 25],
+      [RecipeElement.SABER, 25],
+      [RecipeElement.JELLY, 10],
+      [RecipeElement.RADIANT, 10]
+    ]),
+  ]
 };
 
 export const utilitiesDescription: { [key in Utility]: string } = {
@@ -520,6 +542,7 @@ export const utilitiesDescription: { [key in Utility]: string } = {
   markermineral:
     "A useful marker to call attention to any nearby mineral resources.",
   markerhive: "A useful marker to call attention to any nearby hive resources.",
+  markerslime: "A useful marker to call attention to something slime-related nearby.",
   markerstabilizer:
     "A useful marker to call attention to any nearby stabilizers.",
   dreamlantern:
@@ -533,7 +556,9 @@ export const utilitiesDescription: { [key in Utility]: string } = {
   disruptiondetector:
     "This device can detect nearby active and incoming prisma disruptions before they even happen.",
   dronestation:
-  "Quantum Drones flicker trough obstacles and store items in the quantum cloud. They do different tasks if at the ranch or out in the range. Charge them up for the best results!"
+  "Quantum Drones flicker trough obstacles and store items in the quantum cloud. They do different tasks if at the ranch or out in the range. Charge them up for the best results!",
+  distributor:
+    "Vacs up nearby objects and shoots them out the other end. It will pick them up from loose on the ground, or from various collectors, depots, or silos. Send objects further than ever before! Only functions with a rancher nearby."
 };
 
 export const utilityNames = Object.values(Utility);

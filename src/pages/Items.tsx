@@ -142,7 +142,7 @@ const ItemInfos: React.FC<ItemInfosProps> = ({ item, category }) => {
         image: `/assets/misc/buck.png`,
         alt: "Newbuck Icon",
         title: "Price",
-        subtitle: "500",
+        subtitle: toyList[item as Toy][2].toString(),
         link: null,
       }
     );
