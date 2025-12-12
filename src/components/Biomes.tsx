@@ -118,7 +118,7 @@ export const Biomes: React.FC<{ spawnList: MixedRegion[] }> = ({
       <NavLink
         key={biome[1]}
         to={`/${weatherID.includes(biome[1]) ? "weather" : "regions"}/${
-          biome[0]
+          biome[2]
         }`}
         style={{ textDecoration: "none" }}
       >
