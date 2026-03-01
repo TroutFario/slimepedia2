@@ -163,8 +163,8 @@ const EmptyBuilding: React.FC = () => (
 
 export const Buildings = () => {
   const { building: buildingName, upgrade } = useParams();
-  const building = Object.values(Building).includes(buildingName as Building) 
-    ? (buildingName as Building) 
+  const building = Object.values(Building).includes(buildingName as Building)
+    ? (buildingName as Building)
     : Building.Corral;
   const currentUpgrade = upgrade ?? null;
 

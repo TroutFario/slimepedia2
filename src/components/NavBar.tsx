@@ -4,10 +4,31 @@ import NavButton from "./NavButton";
 
 const darkModeCheck = () => {
   const savedDarkMode: string | null = localStorage.getItem("darkMode");
-  if (null === savedDarkMode)
+  if (savedDarkMode === null)
     return globalThis.matchMedia("(prefers-color-scheme: dark)").matches;
   return savedDarkMode === "dark";
 };
+
+const navLinks = [
+  { name: "Slimes", to: "/slimes", icon: "slimes/pink", tilting: "left" },
+  { name: "Food", to: "/food", icon: "food/any", tilting: "right" },
+  { name: "Items", to: "/items", icon: "misc/res", tilting: "left" },
+  {
+    name: "Regions",
+    to: "/regions/fields",
+    icon: "misc/world",
+    tilting: "left",
+  },
+  { name: "Weather", to: "/weather", icon: "misc/weather", tilting: "none" },
+  {
+    name: "Blueprints",
+    to: "/blueprints",
+    icon: "misc/blueprint",
+    tilting: "none",
+  },
+  { name: "Buildings", to: "/buildings", icon: "misc/patch", tilting: "none" },
+  { name: "Music", to: "/music", icon: "misc/audio", tilting: "none" },
+];
 
 export const NavBar = () => {
   const noLink = { textDecoration: "none" };
@@ -21,86 +42,18 @@ export const NavBar = () => {
 
   return (
     <nav className="box-layout">
-      <NavLink style={noLink} to="/slimes">
-        {({ isActive }) => (
-          <NavButton
-            name="Slimes"
-            icon="slimes/pink"
-            tilting="left"
-            selected={isActive}
-          />
-        )}
-      </NavLink>
-      <NavLink style={noLink} to="/food">
-        {({ isActive }) => (
-          <NavButton
-            name="Food"
-            icon="food/any"
-            tilting="right"
-            selected={isActive}
-          />
-        )}
-      </NavLink>
-      <NavLink style={noLink} to="/items">
-        {({ isActive }) => (
-          <NavButton
-            name="Items"
-            icon="misc/res"
-            tilting="left"
-            selected={isActive}
-          />
-        )}
-      </NavLink>
-      <NavLink style={noLink} to="/regions/fields">
-        {({ isActive }) => (
-          <NavButton
-            name="Regions"
-            icon="misc/world"
-            tilting="left"
-            selected={isActive}
-          />
-        )}
-      </NavLink>
-      <NavLink style={noLink} to="/weather">
-        {({ isActive }) => (
-          <NavButton
-            name="Weather"
-            icon="misc/weather"
-            tilting="none"
-            selected={isActive}
-          />
-        )}
-      </NavLink>
-      <NavLink style={noLink} to="/blueprints">
-        {({ isActive }) => (
-          <NavButton
-            name="Blueprints"
-            icon="misc/blueprint"
-            tilting="none"
-            selected={isActive}
-          />
-        )}
-      </NavLink>
-      <NavLink style={noLink} to="/buildings">
-        {({ isActive }) => (
-          <NavButton
-            name="Buildings"
-            icon="misc/patch"
-            tilting="none"
-            selected={isActive}
-          />
-        )}
-      </NavLink>
-      <NavLink style={noLink} to="/music">
-        {({ isActive }) => (
-          <NavButton
-            name="Music"
-            icon="misc/audio"
-            tilting="none"
-            selected={isActive}
-          />
-        )}
-      </NavLink>
+      {navLinks.map(({ name, to, icon, tilting }) => (
+        <NavLink style={noLink} to={to} key={to}>
+          {({ isActive }) => (
+            <NavButton
+              name={name}
+              icon={icon}
+              tilting={tilting}
+              selected={isActive}
+            />
+          )}
+        </NavLink>
+      ))}
       <div className="theme-btn-container">
         <NavButton
           name="Switch Theme"
