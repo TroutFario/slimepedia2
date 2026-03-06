@@ -331,6 +331,8 @@ export const regionElements: {
       Resource.Dream,
       Resource.Petal,
       Resource.Royal,
+      Resource.Prisma,
+      Resource.Sunsap,
       Resource.Diamond,
       Slime.Twin,
       Slime.Sloomber,

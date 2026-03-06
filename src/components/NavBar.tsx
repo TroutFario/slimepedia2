@@ -27,7 +27,7 @@ const navLinks = [
     tilting: "none",
   },
   { name: "Buildings", to: "/buildings", icon: "misc/patch", tilting: "none" },
-  { name: "Music", to: "/music", icon: "misc/audio", tilting: "none" },
+  { name: "Music", to: "/", icon: "misc/audio", tilting: "none" },
 ];
 
 export const NavBar = () => {
