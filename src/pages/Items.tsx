@@ -39,12 +39,7 @@ const ItemList: React.FC<{
         selected={tab === ItemType.Resource}
         action={() => setTab(ItemType.Resource)}
       />
-      <Tab
-        title="Toys"
-        icon="misc/toys"
-        selected={tab === ItemType.Toy}
-        action={() => setTab(ItemType.Toy)}
-      />
+      <Tab title="Toys" icon="misc/toys" selected={tab === ItemType.Toy} action={() => setTab(ItemType.Toy)} />
     </div>
     <OverlayScrollbarsComponent
       options={{
@@ -53,35 +48,17 @@ const ItemList: React.FC<{
           autoHideDelay: 500,
         },
       }}
-      className={
-        "list-food " +
-        (tab === Object.values(ItemType)[0]
-          ? "list-food-first"
-          : "list-food-last")
-      }
+      className={"list-food " + (tab === Object.values(ItemType)[0] ? "list-food-first" : "list-food-last")}
       defer
     >
       {tab === ItemType.Toy
         ? Object.values(Toy).map((toy) => (
-            <NavLink
-              key={toy + "-item"}
-              to={"/items/toys/" + toy}
-              style={{ textDecoration: "none" }}
-            >
-              <NavButton
-                icon={"toys/" + toy}
-                name={toyList[toy][0]}
-                size={1.25}
-                selected={toy === item}
-              />
+            <NavLink key={toy + "-item"} to={"/items/toys/" + toy} style={{ textDecoration: "none" }}>
+              <NavButton icon={"toys/" + toy} name={toyList[toy][0]} size={1.25} selected={toy === item} />
             </NavLink>
           ))
         : Object.values(Resource).map((resource) => (
-            <NavLink
-              key={resource + "-item"}
-              to={`/items/${tab}/${resource}`}
-              style={{ textDecoration: "none" }}
-            >
+            <NavLink key={resource + "-item"} to={`/items/${tab}/${resource}`} style={{ textDecoration: "none" }}>
               <NavButton
                 icon={tab + "/" + resource}
                 name={resourceList[resource][0]}
@@ -113,10 +90,7 @@ const ItemInfos: React.FC<ItemInfosProps> = ({ item, category }) => {
     subtitle: null,
     link: null,
   });
-  if (
-    category === ItemType.Resource &&
-    Object.values(Resource).includes(item as Resource)
-  ) {
+  if (category === ItemType.Resource && Object.values(Resource).includes(item as Resource)) {
     icon = `/assets/resources/${item}.png`;
     title = resourceList[item as Resource][0];
     subtitle = resourceList[item as Resource][1];
@@ -127,10 +101,7 @@ const ItemInfos: React.FC<ItemInfosProps> = ({ item, category }) => {
       alt: "Pedia Informations Icon",
       subtitle: resourcePedia[item as Resource],
     });
-  } else if (
-    category === ItemType.Toy &&
-    Object.values(Toy).includes(item as Toy)
-  ) {
+  } else if (category === ItemType.Toy && Object.values(Toy).includes(item as Toy)) {
     littleBoxList.pop();
     littleBoxList.push(
       {
@@ -144,7 +115,7 @@ const ItemInfos: React.FC<ItemInfosProps> = ({ item, category }) => {
         title: "Price",
         subtitle: toyList[item as Toy][2].toString(),
         link: null,
-      }
+      },
     );
     const slime = slimePerToy(item as Toy);
     if (slime === null) {
@@ -187,19 +158,13 @@ const ItemInfos: React.FC<ItemInfosProps> = ({ item, category }) => {
 export const Items = () => {
   const { tab: tabName, item: itemName } = useParams();
   const category = (() => {
-    if (Object.values(Resource).includes(itemName as Resource))
-      return ItemType.Resource;
+    if (Object.values(Resource).includes(itemName as Resource)) return ItemType.Resource;
     if (Object.values(Toy).includes(itemName as Toy)) return ItemType.Toy;
-    return Object.values(ItemType).includes(tabName as ItemType)
-      ? (tabName as ItemType)
-      : null;
+    return Object.values(ItemType).includes(tabName as ItemType) ? (tabName as ItemType) : null;
   })();
   const item: Item | null = (() => {
-    if (Object.values(Resource).includes(itemName as Resource))
-      return itemName as Resource;
-    return Object.values(Toy).includes(itemName as Toy)
-      ? (itemName as Toy)
-      : null;
+    if (Object.values(Resource).includes(itemName as Resource)) return itemName as Resource;
+    return Object.values(Toy).includes(itemName as Toy) ? (itemName as Toy) : null;
   })();
   const [tab, setTab] = useState<ItemType>(category ?? ItemType.Resource);
 
@@ -210,8 +175,7 @@ export const Items = () => {
   if (category === null) {
     if (Object.values(Resource).includes(tabName as Resource))
       return <Navigate to={`/items/resources/${tabName}`} replace />;
-    if (Object.values(Toy).includes(tabName as Toy))
-      return <Navigate to={`/items/toys/${tabName}`} replace />;
+    if (Object.values(Toy).includes(tabName as Toy)) return <Navigate to={`/items/toys/${tabName}`} replace />;
     return <Navigate to="/items/resources" replace />;
   }
   if (item === null) {
@@ -222,10 +186,7 @@ export const Items = () => {
       </div>
     );
   }
-  if (
-    tabName === ItemType.Resource &&
-    !Object.values(Resource).includes(item as Resource)
-  )
+  if (tabName === ItemType.Resource && !Object.values(Resource).includes(item as Resource))
     return <Navigate to={`/items/toys/${item}`} replace />;
   if (tabName === ItemType.Toy && !Object.values(Toy).includes(item as Toy))
     return <Navigate to={`/items/resources/${item}`} replace />;

@@ -3,15 +3,7 @@ import { NavLink, useParams, Navigate } from "react-router-dom";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { NavButton } from "../components/NavButton";
 import { Biomes } from "../components/Biomes";
-import {
-  foodpedia,
-  foodDescription,
-  foodList,
-  Food,
-  FoodType,
-  foodTypeList,
-  foodBlackList,
-} from "../data/food";
+import { foodpedia, foodDescription, foodList, Food, FoodType, foodTypeList, foodBlackList } from "../data/food";
 import { Tab } from "../components/Tab";
 import { Slime, slimesList } from "../data/slimes";
 import "../css/Pedia.css";
@@ -27,12 +19,7 @@ interface FoodTabsProps {
 
 const FoodTabs: React.FC<FoodTabsProps> = ({ filter, setFilter }) => (
   <div className="food-tabs">
-    <Tab
-      title="All"
-      icon={`food/any`}
-      action={() => setFilter(FoodType.Any)}
-      selected={filter === FoodType.Any}
-    />
+    <Tab title="All" icon={`food/any`} action={() => setFilter(FoodType.Any)} selected={filter === FoodType.Any} />
     <Tab
       title="Veggies"
       icon={`food/veggies`}
@@ -45,18 +32,8 @@ const FoodTabs: React.FC<FoodTabsProps> = ({ filter, setFilter }) => (
       action={() => setFilter(FoodType.Fruits)}
       selected={filter === FoodType.Fruits}
     />
-    <Tab
-      title="Meat"
-      icon={`food/meat`}
-      action={() => setFilter(FoodType.Meat)}
-      selected={filter === FoodType.Meat}
-    />
-    <Tab
-      title="Special"
-      icon={`food/honey`}
-      action={() => setFilter(null)}
-      selected={filter === null}
-    />
+    <Tab title="Meat" icon={`food/meat`} action={() => setFilter(FoodType.Meat)} selected={filter === FoodType.Meat} />
+    <Tab title="Special" icon={`food/honey`} action={() => setFilter(null)} selected={filter === null} />
   </div>
 );
 
@@ -89,12 +66,7 @@ const FoodList: React.FC<{
   filter: FoodType | null;
 }> = ({ actualFoodList, food, filter }) => (
   <OverlayScrollbarsComponent
-    className={
-      "list-food" +
-      (filter === FoodType.Any
-        ? " list-food-first"
-        : filter && " list-food-last")
-    }
+    className={"list-food" + (filter === FoodType.Any ? " list-food-first" : filter && " list-food-last")}
     options={{
       scrollbars: {
         autoHide: "move",
@@ -104,11 +76,7 @@ const FoodList: React.FC<{
     defer
   >
     {actualFoodList.map((foodName) => (
-      <NavLink
-        to={`/food/${foodName}`}
-        style={{ textDecoration: "none" }}
-        key={foodName}
-      >
+      <NavLink to={`/food/${foodName}`} style={{ textDecoration: "none" }} key={foodName}>
         <NavButton
           key={foodName}
           icon={`food/${foodName}`}
@@ -122,11 +90,7 @@ const FoodList: React.FC<{
 );
 
 const specialFoodFilter = (foodType: FoodType | null): FoodType | null => {
-  if (
-    foodType &&
-    [FoodType.Fruits, FoodType.Veggies, FoodType.Meat].includes(foodType)
-  )
-    return foodType;
+  if (foodType && [FoodType.Fruits, FoodType.Veggies, FoodType.Meat].includes(foodType)) return foodType;
   return null;
 };
 
@@ -149,7 +113,7 @@ const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
         subtitle: null,
         action: null,
         link: null,
-      }
+      },
     );
     return (
       <PediaInfo
@@ -164,26 +128,19 @@ const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
   }
 
   const foodType = foodList[food][1];
-  const foodTypeName =
-    foodType === null ? "Unedible" : foodTypeList[foodType][1];
-  const foodTypeIcon =
-    foodType === null
-      ? "/assets/misc/none.png"
-      : `/assets/food/${foodType}.png`;
+  const foodTypeName = foodType === null ? "Unedible" : foodTypeList[foodType][1];
+  const foodTypeIcon = foodType === null ? "/assets/misc/none.png" : `/assets/food/${foodType}.png`;
 
   const favSlime = favSlimeCalc(food);
   const slimeName = favSlime ? slimesList[favSlime][0] : "Nobody";
-  const slimeIcon = favSlime
-    ? `/assets/slimes/${favSlime}.png`
-    : "/assets/misc/none.png";
+  const slimeIcon = favSlime ? `/assets/slimes/${favSlime}.png` : "/assets/misc/none.png";
   littleBoxList.push(
     {
       image: foodTypeIcon,
       alt: foodTypeName,
       title: "Food type",
       subtitle: foodTypeName,
-      action:
-        foodType === null ? null : () => setFilter(specialFoodFilter(foodType)),
+      action: foodType === null ? null : () => setFilter(specialFoodFilter(foodType)),
       link: null,
     },
     {
@@ -193,7 +150,7 @@ const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
       subtitle: slimeName,
       action: null,
       link: favSlime ? `/slimes/${favSlime}` : null,
-    }
+    },
   );
   return (
     <PediaInfo
@@ -246,12 +203,8 @@ const FoodDescription: React.FC<FoodDescriptionProps> = ({ food, topBtn }) => {
 
 export const FoodPage = () => {
   const { food: foodName } = useParams<{ food: string }>();
-  const food = Object.values(Food).includes(foodName as Food)
-    ? (foodName as Food)
-    : null;
-  const [filter, setFilter] = useState<FoodType | null>(
-    food ? foodList[food][1] : FoodType.Any
-  );
+  const food = Object.values(Food).includes(foodName as Food) ? (foodName as Food) : null;
+  const [filter, setFilter] = useState<FoodType | null>(food ? foodList[food][1] : FoodType.Any);
   const [topBtn, setTopBtn] = useState(false);
 
   const actualFoodList: Food[] = useMemo(() => {
@@ -259,25 +212,17 @@ export const FoodPage = () => {
       case FoodType.Any:
         return Object.values(Food).slice(0, -2);
       case FoodType.Fruits:
-        return Object.values(Food).filter(
-          (foodSearched) => foodList[foodSearched][1] === FoodType.Fruits
-        );
+        return Object.values(Food).filter((foodSearched) => foodList[foodSearched][1] === FoodType.Fruits);
       case FoodType.Veggies:
-        return Object.values(Food).filter(
-          (foodSearched) => foodList[foodSearched][1] === FoodType.Veggies
-        );
+        return Object.values(Food).filter((foodSearched) => foodList[foodSearched][1] === FoodType.Veggies);
       case FoodType.Meat:
-        return Object.values(Food).filter(
-          (foodSearched) => foodList[foodSearched][1] === FoodType.Meat
-        );
+        return Object.values(Food).filter((foodSearched) => foodList[foodSearched][1] === FoodType.Meat);
       case null:
         return Object.values(Food)
           .filter(
             (foodSearched) =>
               foodList[foodSearched][1] === null ||
-              ![FoodType.Fruits, FoodType.Veggies, FoodType.Meat].includes(
-                foodList[foodSearched][1]
-              )
+              ![FoodType.Fruits, FoodType.Veggies, FoodType.Meat].includes(foodList[foodSearched][1]),
           )
           .slice(0, -2);
       default:
@@ -285,14 +230,10 @@ export const FoodPage = () => {
     }
   }, [filter]);
 
-  if (
-    (food === null && foodName !== undefined) ||
-    (food !== null && foodBlackList.includes(food))
-  )
+  if ((food === null && foodName !== undefined) || (food !== null && foodBlackList.includes(food)))
     return <Navigate to="/food" replace />;
 
-  document.title =
-    food === null ? "Food - Slimepedia" : foodList[food][0] + " - Slimepedia";
+  document.title = food === null ? "Food - Slimepedia" : foodList[food][0] + " - Slimepedia";
 
   return (
     <div>

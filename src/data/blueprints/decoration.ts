@@ -2285,159 +2285,96 @@ export const decorationList: {
 };
 
 export const decorationDescription: { [key in Decoration]: string } = {
-  emeraldgrass:
-    "A small patch of idyllic, lush grass that never needs watering. Truly miraculous!",
-  emeraldshrubs:
-    "Vibrantly green and often found near cypresses, they will not grow into trees. They're shrubs.",
-  emeraldcypress:
-    "A tree whose leaves are a rich emerald color. They're just leaves though, and won't make you rich.",
-  tallemeraldcypress:
-    "This cypress is extra lush and healthy. It must be because it's taller and gets more sunlight.",
+  emeraldgrass: "A small patch of idyllic, lush grass that never needs watering. Truly miraculous!",
+  emeraldshrubs: "Vibrantly green and often found near cypresses, they will not grow into trees. They're shrubs.",
+  emeraldcypress: "A tree whose leaves are a rich emerald color. They're just leaves though, and won't make you rich.",
+  tallemeraldcypress: "This cypress is extra lush and healthy. It must be because it's taller and gets more sunlight.",
   emeraldcypresscluster:
     "A group of cypress trees is a great start for a grove. Two times more effective than a lone tree.",
-  goldpetalflowers:
-    "Lustrous and glittering, these flowers definitely aren't gold but are beautiful nonetheless.",
-  rainbowgrass:
-    "This unique ground cover ripples with all the colors of the Rainbow Fields.",
-  pinkbonsai:
-    "This contemplative arrangement of tree and rock is guaranteed to decrease stress. It's science.",
+  goldpetalflowers: "Lustrous and glittering, these flowers definitely aren't gold but are beautiful nonetheless.",
+  rainbowgrass: "This unique ground cover ripples with all the colors of the Rainbow Fields.",
+  pinkbonsai: "This contemplative arrangement of tree and rock is guaranteed to decrease stress. It's science.",
   largepinkbonsai:
     "A lovely centerpiece to any garden, this arrangement evokes peace, calm, and the joy of pink slimes.",
-  rockfragments:
-    "Rock slimes get their spikes by rolling over fragments like these tiny shards.",
-  rockcluster:
-    "A clump of rocks resulting from repeated rock slime impacts against larger boulders.",
-  rockclump:
-    "Sometimes these are signs of a Rock Gordo! But most of the time they're just a bunch of rocks.",
+  rockfragments: "Rock slimes get their spikes by rolling over fragments like these tiny shards.",
+  rockcluster: "A clump of rocks resulting from repeated rock slime impacts against larger boulders.",
+  rockclump: "Sometimes these are signs of a Rock Gordo! But most of the time they're just a bunch of rocks.",
   smallboulder: "Larger than a pebble. Smaller than a boulder.",
-  sharpboulder:
-    "Wind and time have sharpened this rock formation to a rough point.",
-  rainbowmound:
-    "Rumor has it that cotton slimes perfect their jumping by bounding over these grass-covered mounds.",
-  rainbowlumps:
-    "A dollop of soil and rocks topped and sprinkled with prismatic grass.",
-  overjoyedstatue:
-    "The only thing potentially happier than a slime is an overjoyed statue of a slime.",
-  ambergrass:
-    "Grass that flashes with the fiery colors of fall, but without the satisfying crunch of dry grass.",
+  sharpboulder: "Wind and time have sharpened this rock formation to a rough point.",
+  rainbowmound: "Rumor has it that cotton slimes perfect their jumping by bounding over these grass-covered mounds.",
+  rainbowlumps: "A dollop of soil and rocks topped and sprinkled with prismatic grass.",
+  overjoyedstatue: "The only thing potentially happier than a slime is an overjoyed statue of a slime.",
+  ambergrass: "Grass that flashes with the fiery colors of fall, but without the satisfying crunch of dry grass.",
   ambershrubs: "Orange as a pumpkin, but you can't carve them. They're shrubs.",
-  ambercypress:
-    "Minerals in the soil give this cypress a fiery orange hue reminiscent of fall.",
-  tallambercypress:
-    "Mineral-packed soil gives this strong cypress its signature fall hue and exceptional height.",
+  ambercypress: "Minerals in the soil give this cypress a fiery orange hue reminiscent of fall.",
+  tallambercypress: "Mineral-packed soil gives this strong cypress its signature fall hue and exceptional height.",
   ambercypresscluster:
     "Good thing the soil gives these amber trees their color rather than seasons. Less leaves to sweep.",
-  ochrepoppies:
-    "A patch of poppies whose leaves are the color of the setting sun.",
-  cinderspikeblossoms:
-    "These blossoms glow with the heat of the magma far beneath their soil.",
-  ashblooms:
-    "Flowers growing near lava flows that take on the burning hue of the magma beneath the surface.",
-  sunfiredaisies:
-    "It's recommended to wear eye protection when staring straight into the center of these daisies.",
-  shortpalm:
-    "These palms provide a nice shade-covered retreat for slimes in hot environments.",
-  mediumpalm:
-    "These tall palms are like leafy umbrellas offering protection from the sun.",
-  stalagmite:
-    "Looks like a giant tooth. It's a good thing the caves they're found in are just caves. Right?",
+  ochrepoppies: "A patch of poppies whose leaves are the color of the setting sun.",
+  cinderspikeblossoms: "These blossoms glow with the heat of the magma far beneath their soil.",
+  ashblooms: "Flowers growing near lava flows that take on the burning hue of the magma beneath the surface.",
+  sunfiredaisies: "It's recommended to wear eye protection when staring straight into the center of these daisies.",
+  shortpalm: "These palms provide a nice shade-covered retreat for slimes in hot environments.",
+  mediumpalm: "These tall palms are like leafy umbrellas offering protection from the sun.",
+  stalagmite: "Looks like a giant tooth. It's a good thing the caves they're found in are just caves. Right?",
   stalagmitecluster:
     "Found often in batty slime caves, this rocky cluster resembles a pair of fangs. Creepy coincidence.",
   shortmagmaclump: "A small clump of magma that has cooled for now.",
-  tallmagmaclump:
-    "Bubbling up from deep underground, these magma clumps give off tremendous amounts of heat.",
-  magmapool:
-    "There's nothing like a hot, relaxing soak in the magma pool... if you're a fire slime.",
-  roundedmagmapool:
-    "Shaped like a natural, geothermal cauldron, the only things it'll cook are careless ranchers.",
+  tallmagmaclump: "Bubbling up from deep underground, these magma clumps give off tremendous amounts of heat.",
+  magmapool: "There's nothing like a hot, relaxing soak in the magma pool... if you're a fire slime.",
+  roundedmagmapool: "Shaped like a natural, geothermal cauldron, the only things it'll cook are careless ranchers.",
   gnarledashwood:
     "A bare, twisted tree, which means fewer leaves catching fire in the lava areas the tree is found in.",
-  shortredashwood:
-    "Found far above lava flows, these ashwood trees have fiery red leaves.",
-  mediumredashwood:
-    "These tall ashwood trees rise far above the heat that would cause their red leaves to wilt.",
-  tallashwood:
-    "A tall tree that has lost its leaves. Perfect for a spooky holiday.",
-  stonyegglamp:
-    "These rounded, stone lamps are egg-cellent ways to brighten up the night.",
-  happystatue:
-    "Ancient sculptors captured the likeness of a well-fed slime in its natural state.",
-  starbloomflowers:
-    "Flowers that shimmer like shooting stars and are rumored to grow where the fragments land.",
-  azuregrass:
-    "A small patch of grass and flowers that smell like a refreshing, cool breeze after a rainstorm.",
-  azureshrubs:
-    "These soothing shrubs may be as blue as the sky and fluffy as a cloud, but they're just bushes.",
-  azuremangrove:
-    "The sky-colored, fluffy canopy of this mangrove is held aloft like a cloud on a stick.",
+  shortredashwood: "Found far above lava flows, these ashwood trees have fiery red leaves.",
+  mediumredashwood: "These tall ashwood trees rise far above the heat that would cause their red leaves to wilt.",
+  tallashwood: "A tall tree that has lost its leaves. Perfect for a spooky holiday.",
+  stonyegglamp: "These rounded, stone lamps are egg-cellent ways to brighten up the night.",
+  happystatue: "Ancient sculptors captured the likeness of a well-fed slime in its natural state.",
+  starbloomflowers: "Flowers that shimmer like shooting stars and are rumored to grow where the fragments land.",
+  azuregrass: "A small patch of grass and flowers that smell like a refreshing, cool breeze after a rainstorm.",
+  azureshrubs: "These soothing shrubs may be as blue as the sky and fluffy as a cloud, but they're just bushes.",
+  azuremangrove: "The sky-colored, fluffy canopy of this mangrove is held aloft like a cloud on a stick.",
   pinkgrass: "This soft, pink grass makes for a lovely place to take a nap.",
-  pinkmangrove:
-    "Usually found on coasts, this mangrove uses the slime-linity of the soil to grow anywhere.",
-  roottangle:
-    "Often mistaken for tree trunks, these are actually roots. Some trees can grow to massive scales.",
-  rootarches:
-    "These graceful natural arches mirror the larger structures found around certain areas of the island.",
-  costalrock:
-    "Retains its smooth, ocean-worn surface even when taken out of its natural environment.",
-  costalrockpillar:
-    "You've saved this rocky pillar from its demise by ocean-based erosion.",
-  shortpinkcoralcolumns:
-    "These coral towers are usually found submerged beneath the slime sea. Curious.",
+  pinkmangrove: "Usually found on coasts, this mangrove uses the slime-linity of the soil to grow anywhere.",
+  roottangle: "Often mistaken for tree trunks, these are actually roots. Some trees can grow to massive scales.",
+  rootarches: "These graceful natural arches mirror the larger structures found around certain areas of the island.",
+  costalrock: "Retains its smooth, ocean-worn surface even when taken out of its natural environment.",
+  costalrockpillar: "You've saved this rocky pillar from its demise by ocean-based erosion.",
+  shortpinkcoralcolumns: "These coral towers are usually found submerged beneath the slime sea. Curious.",
   mediumpinkcoralcolumns:
     "Once populated by other aquatic life, these columns are often found where angler slimes abound.",
-  tallpinkcoralcolumns:
-    "The level of the slime sea once rose above even these tall columns of pink coral.",
-  tallvioletswirlshroom:
-    "The caps of these mushrooms hardened long ago, otherwise they look like springy platforms.",
-  violetswirlshroom:
-    "These mysterious mushrooms shouldn't be eaten even if their caps do look like candy.",
-  azureglowshrooms:
-    "Despite being the color of a clear blue sky, these mushrooms truly shine at night.",
-  pinkglowshrooms:
-    "These pink and springy mushrooms get their unique properties from their slime-filled ecosystems.",
-  cavepillar:
-    "This pillar of solid stone looks like it could hold up a tiny cave roof. Tiny cave not included.",
-  thincavepillar:
-    "Formed by mineral-rich water droplets, on their own these thin pillars look like 'cavern trees'.",
-  mossyhenstatue:
-    "This moss-covered statue depicts the most serene hen hen in egg-istence.",
-  cheerfulstatue:
-    "This eternally cheerful slime never gets hungry or agitated, but unfortunately makes no plorts.",
-  rubygrass:
-    "A small patch of vibrant, hardy grass that thrives even in the coldest environments.",
-  snowybush:
-    "This red shrub adds a splash of rosy warmth to even the coldest climates.",
-  icetreeo:
-    "These red spruce trees come in triplets to quickly bring boreal beauty anywhere on Rainbow Island.",
-  frostedshell:
-    "An ancient shell that was once home to a Pre-Jellassic ammonite.",
-  glacialcrystal:
-    "Just looking at these massive chunks of glacial ice is enough to make one shiver. Brrrr!",
-  snowzbench:
-    "Bundle up and have some hot cocoa while relaxing on this cozy, snow-dappled bench.",
-  crystalspires:
-    "Defying even the warmest temperatures, these spires of ice refuse to melt.",
-  icecubed:
-    "Is it an art piece? Is it a miniature slime ziggurat? A saber slime scratching post?",
+  tallpinkcoralcolumns: "The level of the slime sea once rose above even these tall columns of pink coral.",
+  tallvioletswirlshroom: "The caps of these mushrooms hardened long ago, otherwise they look like springy platforms.",
+  violetswirlshroom: "These mysterious mushrooms shouldn't be eaten even if their caps do look like candy.",
+  azureglowshrooms: "Despite being the color of a clear blue sky, these mushrooms truly shine at night.",
+  pinkglowshrooms: "These pink and springy mushrooms get their unique properties from their slime-filled ecosystems.",
+  cavepillar: "This pillar of solid stone looks like it could hold up a tiny cave roof. Tiny cave not included.",
+  thincavepillar: "Formed by mineral-rich water droplets, on their own these thin pillars look like 'cavern trees'.",
+  mossyhenstatue: "This moss-covered statue depicts the most serene hen hen in egg-istence.",
+  cheerfulstatue: "This eternally cheerful slime never gets hungry or agitated, but unfortunately makes no plorts.",
+  rubygrass: "A small patch of vibrant, hardy grass that thrives even in the coldest environments.",
+  snowybush: "This red shrub adds a splash of rosy warmth to even the coldest climates.",
+  icetreeo: "These red spruce trees come in triplets to quickly bring boreal beauty anywhere on Rainbow Island.",
+  frostedshell: "An ancient shell that was once home to a Pre-Jellassic ammonite.",
+  glacialcrystal: "Just looking at these massive chunks of glacial ice is enough to make one shiver. Brrrr!",
+  snowzbench: "Bundle up and have some hot cocoa while relaxing on this cozy, snow-dappled bench.",
+  crystalspires: "Defying even the warmest temperatures, these spires of ice refuse to melt.",
+  icecubed: "Is it an art piece? Is it a miniature slime ziggurat? A saber slime scratching post?",
   icelamp: "These glacial gifts light up the night with inner radiance.",
-  chillyslimestack:
-    "Add a touch of playful, wintry cheer with this snowy stack of slimes.",
-  fireflower:
-    "This fiery flora glows with heat supplied by the planet's magma without any of the actual fire hazards.",
+  chillyslimestack: "Add a touch of playful, wintry cheer with this snowy stack of slimes.",
+  fireflower: "This fiery flora glows with heat supplied by the planet's magma without any of the actual fire hazards.",
   auroraflowers:
     "While not truly auroras, these ethereal flowers capture the majestic, prismatic splendor of the night sky.",
   aurorapine:
     "While not truly an aurora, this ethereal pine tree evokes the wonder of the night sky even during the day.",
-  frozenflame:
-    "Prismatic energy captured in ice the shape of a dancing flame lights up the night surely as any fire.",
+  frozenflame: "Prismatic energy captured in ice the shape of a dancing flame lights up the night surely as any fire.",
   majesticsnowflake:
     "It's not perfect, but this massive snowflake adds a touch of serenity and grace anywhere it's placed.",
   snowglobe:
     "A decorative globe that plays a hauntingly beautiful melody reminiscent of a moonlit dance during a snowy night.",
   conservatorybench:
     "A bench that invites one to just relax and take in the view. Even the energetic slimes enjoy taking a break on a bench now and then.",
-  largesimplebench:
-    "An inviting bench, where slimes can relax together and take a breath.",
+  largesimplebench: "An inviting bench, where slimes can relax together and take a breath.",
   conservatorychair:
     "If slimes had legs they'd love to kick back and relax on one of these comfy chairs. For now, they can only dream...",
   conservatorytable:
@@ -2448,127 +2385,85 @@ export const decorationDescription: { [key in Decoration]: string } = {
     "This small trellis wall is a great way to add structure to a garden when space is at a premium or you're just a big fan of small trellises.",
   widetrellis:
     "This trellis wall is a great way to add structure to a garden, though some might say a garden should have no such thing.",
-  trellisarch:
-    "A beautiful accent to any trellis wall that comes with hanging ivy and a small planter of flowers.",
-  smallemeraldtrellis:
-    "Provides a touch of privacy like a natural drapery of vines, but makes it fashionable.",
+  trellisarch: "A beautiful accent to any trellis wall that comes with hanging ivy and a small planter of flowers.",
+  smallemeraldtrellis: "Provides a touch of privacy like a natural drapery of vines, but makes it fashionable.",
   wideemeraldtrellis:
     "A large trellis with lovely ivy growing over it. Perfect for adding a bit of structure to a garden.",
-  pottedplants:
-    "A collection of various flowers found around Rainbow Island to brighten up any space.",
+  pottedplants: "A collection of various flowers found around Rainbow Island to brighten up any space.",
   mushroomplanter: "Add a sporal splash of color with some fabulous fungi.",
   displaycase:
     "Show off your prized collection of items with this handy display case. Perfectly preserving objects for your viewing pleasure!",
   wheelbarrow:
     "Despite vacpack technology making many manual hauling devices obsolete, wheelbarrows persisted for their advanced ability to get in one and go weeeeeeee.",
-  goldenanglerstatue:
-    "Dazzle onlookers with this golden monument to Rainbow Island's most flashy slime.",
+  goldenanglerstatue: "Dazzle onlookers with this golden monument to Rainbow Island's most flashy slime.",
   goldenbattystatue:
     "This shining monument to Rainbow Island's nocturnal hunters will bring a sparkle to even the darkest cave.",
   goldenchickenstatue: "A golden, soaring monument to all chicken-kind.",
-  goldencottonstatue:
-    "Elevate any area with this golden monument to Rainbow Island's resident high jumper.",
+  goldencottonstatue: "Elevate any area with this golden monument to Rainbow Island's resident high jumper.",
   goldendervishstatue:
     "Celebrate Dervish Slimes with this shiny, gold statue that importantly, remains perfectly still all the time, and doesn't create hazardous cyclones. If it ever does: full refund.",
-  goldenflutterstatue:
-    "A golden monument to Rainbow Island's most soothing slime.",
-  goldentabbystatue:
-    "A golden monument to Rainbow Island's most playful boopers.",
+  goldenflutterstatue: "A golden monument to Rainbow Island's most soothing slime.",
+  goldentabbystatue: "A golden monument to Rainbow Island's most playful boopers.",
   goldentanglestatue:
     "A golden monument to the tenacious Tangle slime, which makes a great garden centerpiece when you'd rather not deal with Tangle Slimes.",
   yellowreefbush: "This reef bush evokes the warmth and calm of a summer day.",
-  sunflowerumbrella:
-    "A large, sunflower-shaped umbrella perfect for providing shade for a picnic.",
-  sakuraumbrella:
-    "A large umbrella with vibrant blossoms perfect for providing shade for a spring outing.",
-  beachumbrella:
-    "A large, playful umbrella perfect for providing shade for a beach day.",
-  stripedbeachblanket:
-    "Perfect for lying out on the beach and soaking up some rays. (not the fish)",
+  sunflowerumbrella: "A large, sunflower-shaped umbrella perfect for providing shade for a picnic.",
+  sakuraumbrella: "A large umbrella with vibrant blossoms perfect for providing shade for a spring outing.",
+  beachumbrella: "A large, playful umbrella perfect for providing shade for a beach day.",
+  stripedbeachblanket: "Perfect for lying out on the beach and soaking up some rays. (not the fish)",
   beachlantern:
     "A hanging lantern in the shape of a beach ball, yet it is not a beach ball, but instead a hanging lantern. So, very clever of this beach ball I mean lantern.",
-  seashells:
-    "While delicate, these seashells add a pop of color and character to any garden.",
-  seashellcollection:
-    "A collection of pristine shells found in tide pools and on rocky shores.",
+  seashells: "While delicate, these seashells add a pop of color and character to any garden.",
+  seashellcollection: "A collection of pristine shells found in tide pools and on rocky shores.",
   seagrass: "A small patch of grass that sways gracefully in water or wind.",
-  seaweed:
-    "This robust seaweed is able to thrive everywhere from deep currents to sandy beaches.",
+  seaweed: "This robust seaweed is able to thrive everywhere from deep currents to sandy beaches.",
   curlyseaweed: "This robust seaweed can grow in water and on land.",
   blueswirltree:
     "These trees unfurl to enormous sizes in the depths of the slime sea, but swirl playfully when transplanted to the shore.",
   pinkreefbush:
     "This hardly little reef bush resembles a mass of pink worms, but is only occasionally an actual mass of worms.",
-  pinkreeftree:
-    "The delicate tendrils of this reef tree add an elegant touch to any aquatic garden.",
-  pinkreeftreecluster:
-    "A cluster of delicate reef trees that provide a sense of tranquility in any garden.",
-  tallpinkreeftree:
-    "Tall reef trees add a sense of grandeur to any seascape or garden.",
-  bluereefbush:
-    "This reef bush offers a pop of color that brings to mind a still and serene seascape.",
-  blueanemone:
-    "This small blue anemone thrives in coastal regions, smelling of the sea and salt in that order.",
-  pinkanemone:
-    "This small pink anemone thrives in coastal regions, smelling of salt and the sea in that order.",
-  pinkanemonecluster:
-    "This decorative cluster of anemones will add an ocean vibe to any garden!",
-  shortpinkflowerreef:
-    "While this flower reef resembles a table, it is not advisable to eat off of it.",
-  pinkflowerreef:
-    "This vibrant flower reef creates a tranquil haven for sea life beneath its large fronds.",
-  tallpinkflowerreef:
-    "These tall reef flowers create an inviting shelter beneath their spreading fronds.",
+  pinkreeftree: "The delicate tendrils of this reef tree add an elegant touch to any aquatic garden.",
+  pinkreeftreecluster: "A cluster of delicate reef trees that provide a sense of tranquility in any garden.",
+  tallpinkreeftree: "Tall reef trees add a sense of grandeur to any seascape or garden.",
+  bluereefbush: "This reef bush offers a pop of color that brings to mind a still and serene seascape.",
+  blueanemone: "This small blue anemone thrives in coastal regions, smelling of the sea and salt in that order.",
+  pinkanemone: "This small pink anemone thrives in coastal regions, smelling of salt and the sea in that order.",
+  pinkanemonecluster: "This decorative cluster of anemones will add an ocean vibe to any garden!",
+  shortpinkflowerreef: "While this flower reef resembles a table, it is not advisable to eat off of it.",
+  pinkflowerreef: "This vibrant flower reef creates a tranquil haven for sea life beneath its large fronds.",
+  tallpinkflowerreef: "These tall reef flowers create an inviting shelter beneath their spreading fronds.",
   clamthrone: "This elegant clam throne is fit for a goddess.",
-  smallsandcastle:
-    "Is the best part of making a sandcastle building it, or stomping on it after?",
+  smallsandcastle: "Is the best part of making a sandcastle building it, or stomping on it after?",
   largesandcastle:
     "A day at the beach isn't complete without building a sand castle. This one stands proud and imposing. Just don't step on it!",
-  reefchair:
-    "This attractive reef chair is perfect for kicking back and enjoying an ocean view.",
-  reeftable:
-    "Perfect for laying out a feast while pretending to be in an underwater kingdom.",
-  smallnet:
-    "A small net for catching items and slimes. The thick rope is stiff with seawater, but still effective.",
-  mediumnet:
-    "A medium net for catching items and slimes. The thick rope is stiff with seawater, but still effective.",
-  largenet:
-    "A large net for catching items and slimes. The thick rope is stiff with seawater, but still effective.",
-  shipinabottle:
-    "Memorialize crossing the Slime Sea with this elegant ship in a bottle.",
-  sandyyellowcoral:
-    "This cheerful yellow coral resembles a burst of sunshine beneath the waves.",
-  pennant:
-    "This pennant has an eye-catching yet simple design, perfect for leaving a telltale marker in the world.",
-  ribbonstreamers:
-    "These streamers are attached to a long pole and great at fluttering in the wind.",
-  scarfstreamers:
-    "An economical, yet elegant use of all the extra scarves sitting in your closet.",
-  windsocks:
-    "Socks should only have one hole, so these are perfect for stringing up and leaving outside.",
-  smallpinwheel:
-    "A small pinwheel that twirls whimsically in the breeze just like its bigger cousin.",
-  largepinwheel:
-    "A large pinwheel that spins wildly when the wind picks up. Until then, it waits...",
-  windchimes:
-    "These chimes sway in the wind, adding dulcet tones anywhere they're placed.",
-  boombox:
-    "Carry the tunes of the Far, Far Range wherever you go, so long as where you go includes this boombox.",
+  reefchair: "This attractive reef chair is perfect for kicking back and enjoying an ocean view.",
+  reeftable: "Perfect for laying out a feast while pretending to be in an underwater kingdom.",
+  smallnet: "A small net for catching items and slimes. The thick rope is stiff with seawater, but still effective.",
+  mediumnet: "A medium net for catching items and slimes. The thick rope is stiff with seawater, but still effective.",
+  largenet: "A large net for catching items and slimes. The thick rope is stiff with seawater, but still effective.",
+  shipinabottle: "Memorialize crossing the Slime Sea with this elegant ship in a bottle.",
+  sandyyellowcoral: "This cheerful yellow coral resembles a burst of sunshine beneath the waves.",
+  pennant: "This pennant has an eye-catching yet simple design, perfect for leaving a telltale marker in the world.",
+  ribbonstreamers: "These streamers are attached to a long pole and great at fluttering in the wind.",
+  scarfstreamers: "An economical, yet elegant use of all the extra scarves sitting in your closet.",
+  windsocks: "Socks should only have one hole, so these are perfect for stringing up and leaving outside.",
+  smallpinwheel: "A small pinwheel that twirls whimsically in the breeze just like its bigger cousin.",
+  largepinwheel: "A large pinwheel that spins wildly when the wind picks up. Until then, it waits...",
+  windchimes: "These chimes sway in the wind, adding dulcet tones anywhere they're placed.",
+  boombox: "Carry the tunes of the Far, Far Range wherever you go, so long as where you go includes this boombox.",
   daintyteacup:
     "This delicate teacup perfectly fits slimes, who are so eager to hop inside that it's never practical to fill it with tea.",
   bountifulteacup:
     "This large teacup might be overflowing with tea if largos weren't always trying to take turns hopping inside of it.",
   pinkstripedlamp:
     "This bright and playful lamp is guaranteed to lend a touch of whimsical brilliance anywhere it's used.",
-  swing:
-    "The only problem is that a slime can't push itself on this swing, because you know, arms.",
+  swing: "The only problem is that a slime can't push itself on this swing, because you know, arms.",
   prideflag: "Show off your pride!",
   seesaw:
     "A great way for slimes to make friends, and help each other through all the ups and downs of life on the ranch.",
   carousel:
     "...riding a carousel around and around is a wonderful way for slimes to have fun because going in circles is always fun, just like how...",
-  ferriswheel:
-    "A slime can definitely see its home from the top of this ferris wheel.",
+  ferriswheel: "A slime can definitely see its home from the top of this ferris wheel.",
   slimejailstandee: "For naughty slimes, or those who wish they were.",
   sunflowerstandee: "Perfect for slimes that wish they were Tangle slimes.",
   snowmanstandee: "All the joy of a snowman, now available anywhere!",
@@ -2581,23 +2476,15 @@ export const decorationDescription: { [key in Decoration]: string } = {
     "This fountain draws magma fromthe depths of the planet, transforming the awesome power of nature into a cute garden ornament.",
   ancientroundpillar:
     "What ancient builder first decided on roundd over square? And why a hole in the pillar? Were they inspired by ancient slimes, or cheating at ancient hide-and-seek?",
-  ancientarchedwall:
-    "The winding designs on this arched wall are truly amazing.",
+  ancientarchedwall: "The winding designs on this arched wall are truly amazing.",
   excavationlights: "Essential for safety exploring ancient ruins.",
-  goldslimefloorpanel:
-    "A burnished ode to the duality of slime-kind, and also a flashy addition to any garden path.",
-  goldtwistedtree:
-    "Organic and metal, wood and gold twine together unnaturally, yet with a brilliant beauty.",
-  ancientpurpleoak:
-    "A mighty oak whose branches provide shade and peace to anyone resting below.",
-  youngcedaroak:
-    "This tree seems to have characteristics of several different species of plant.",
-  pottedlavaplants:
-    "These lava plants bring warmth to any space, and can fire the very pots they're potted in.",
-  walllighting:
-    "Add a dash of elegance, and light, to any space with this wall lighting.",
-  aquarium:
-    "Inspired by ancient water works, this aquarium works to keep water inside.",
+  goldslimefloorpanel: "A burnished ode to the duality of slime-kind, and also a flashy addition to any garden path.",
+  goldtwistedtree: "Organic and metal, wood and gold twine together unnaturally, yet with a brilliant beauty.",
+  ancientpurpleoak: "A mighty oak whose branches provide shade and peace to anyone resting below.",
+  youngcedaroak: "This tree seems to have characteristics of several different species of plant.",
+  pottedlavaplants: "These lava plants bring warmth to any space, and can fire the very pots they're potted in.",
+  walllighting: "Add a dash of elegance, and light, to any space with this wall lighting.",
+  aquarium: "Inspired by ancient water works, this aquarium works to keep water inside.",
   woodenfence: "No need to be on the fence about this fence — it's great!",
   straightstonefence: "A beautifully, ancient stone fence. It's just like a curved fence, only straight!",
   curvedstonefence: "An elegant, archaic stone fence. It's just like a straight fence, only curved!",
@@ -2607,15 +2494,19 @@ export const decorationDescription: { [key in Decoration]: string } = {
   azurewaterflower: "Bluer than the water around them, they give off a strange energy.",
   overgrownlilypad: "Well worth spending some Monet on.",
   giantstalks: "These stalks are big, but there are not giants at the top.",
-  floralslimetree: "Not just for Tabby Slimes! Flower-shaped platforms make a great perching spot for any fun-loving slime.",
+  floralslimetree:
+    "Not just for Tabby Slimes! Flower-shaped platforms make a great perching spot for any fun-loving slime.",
   flowerlamp: "Bring wonders of your garden to light with this beautiful flower-shaped lamp.",
-  hightechwall: "A speculative, futuristic wall made from technology that, by all rights, shouldn't exist in this world.",
+  hightechwall:
+    "A speculative, futuristic wall made from technology that, by all rights, shouldn't exist in this world.",
   hightechbattery: "A futuristic battery, designed with nano cells that haven't been invented yet.",
   miniaturesdome: "Miniature buildings in a display dome: just one of the many mysteries of Rainbow Island.",
   miniaturewindmill: "Works best in a small breeze.",
   goldentwinstatue: "A golden monument to the slime that'll have you seeing double.",
-  goldensloomberstatue: "Make any area seem a bit cozier with this golden monument to Rainbow Island's sleepiest slime.",
-  goldenhyperstatue: "This golden monument to Rainbow Island's speediest slime is the only time you'll them standing still.",
+  goldensloomberstatue:
+    "Make any area seem a bit cozier with this golden monument to Rainbow Island's sleepiest slime.",
+  goldenhyperstatue:
+    "This golden monument to Rainbow Island's speediest slime is the only time you'll them standing still.",
   goldenyolkystatue: "The eggiest slime shines in this golden monument. Goes great with a Golden Chicken Statue!",
   indigograss: "This prince of grasses grows best in a purple rain.",
   indigoflowers: "Plant them by in-digging! Go!",

@@ -11,12 +11,9 @@ function App() {
     const crypto = globalThis.crypto || globalThis.Crypto;
     const array = new Uint32Array(1);
     crypto.getRandomValues(array);
-    const randomSlimeKey =
-      Object.values(Slime)[array[0] % Object.keys(Slime).length];
+    const randomSlimeKey = Object.values(Slime)[array[0] % Object.keys(Slime).length];
     const favicon = document.querySelector('link[rel="icon"]');
-    if (favicon)
-      (favicon as HTMLLinkElement).href =
-        `/assets/slimes/${randomSlimeKey}.png`;
+    if (favicon) (favicon as HTMLLinkElement).href = `/assets/slimes/${randomSlimeKey}.png`;
   }, []);
 
   return (

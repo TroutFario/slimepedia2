@@ -1,9 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const DisplayText: React.FC<{ text: string | null | undefined }> = ({
-  text,
-}) => {
+const DisplayText: React.FC<{ text: string | null | undefined }> = ({ text }) => {
   if (!text) return <h4>&nbsp;</h4>;
   return (
     <>
@@ -21,12 +19,7 @@ interface LittleBoxBodyProps {
   subtitle?: string | null;
 }
 
-const LittleBoxBody: React.FC<LittleBoxBodyProps> = ({
-  image,
-  alt,
-  title,
-  subtitle,
-}) => {
+const LittleBoxBody: React.FC<LittleBoxBodyProps> = ({ image, alt, title, subtitle }) => {
   const imagePath = image ?? "/assets/misc/empty.png";
   const altText = alt ?? "No image";
   return (
@@ -40,10 +33,7 @@ const LittleBoxBody: React.FC<LittleBoxBodyProps> = ({
   );
 };
 
-const actionHandler = (
-  e: React.KeyboardEvent<HTMLButtonElement>,
-  action: (() => void) | null | undefined
-) => {
+const actionHandler = (e: React.KeyboardEvent<HTMLButtonElement>, action: (() => void) | null | undefined) => {
   if (action && "key" in e) {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -78,21 +68,14 @@ export const LittleBox: React.FC<LittleBoxProps> = ({
       <NavLink to={link} style={{ textDecoration: "none" }}>
         <button
           className={
-            "little-box button-reset interactive-box element-" +
-            order +
-            (otherClasses ? " " + otherClasses : "")
+            "little-box button-reset interactive-box element-" + order + (otherClasses ? " " + otherClasses : "")
           }
           onClick={action ? () => action() : undefined}
           onKeyDown={(e) => actionHandler(e, action)}
           tabIndex={0}
           aria-pressed="false"
         >
-          <LittleBoxBody
-            image={image}
-            alt={alt}
-            title={title}
-            subtitle={subtitle}
-          />
+          <LittleBoxBody image={image} alt={alt} title={title} subtitle={subtitle} />
         </button>
       </NavLink>
     );
@@ -118,12 +101,7 @@ export const LittleBox: React.FC<LittleBoxProps> = ({
       tabIndex={0}
       aria-pressed="false"
     >
-      <LittleBoxBody
-        image={image}
-        alt={alt}
-        title={title}
-        subtitle={subtitle}
-      />
+      <LittleBoxBody image={image} alt={alt} title={title} subtitle={subtitle} />
     </button>
   );
 };

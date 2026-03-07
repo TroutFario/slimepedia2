@@ -2,6 +2,7 @@ import globals from "globals";
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
+import pluginReactRefresh from "eslint-plugin-react-refresh";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -16,8 +17,12 @@ export default [
     },
   },
   {
+    plugins: {
+      "react-refresh": pluginReactRefresh,
+    },
     rules: {
       "@typescript-eslint/no-unused-vars": "warn",
+      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
       // "prefer-const": "warn",
       // make these stylistic checks warnings rather than errors
       //"no-unused-vars": "warn",

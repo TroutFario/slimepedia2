@@ -36,12 +36,10 @@ export const upgradePacks: { [key in Upgrade]: [string, number] } = {
   powerinjector: ["Power Injector", 2],
 };
 
-
-
 export enum UpgradeWithTier {
   HARVESTER1 = "harvester1",
   HEALTH1 = "health1",
-  HEALTH2 = "health2", 
+  HEALTH2 = "health2",
   HEALTH3 = "health3",
   HEALTH4 = "health4",
   POWER1 = "power1",
@@ -88,7 +86,8 @@ export const upgradesList: {
     new Map([
       [RecipeElement.NEWBUCKS, 450],
       [RecipeElement.COTTON, 10],
-    ])],
+    ]),
+  ],
 
   health1: [
     "Heart Module I",
@@ -96,7 +95,8 @@ export const upgradesList: {
     new Map([
       [RecipeElement.NEWBUCKS, 450],
       [RecipeElement.PINK, 10],
-    ])],
+    ]),
+  ],
   health2: [
     "Heart Module II",
     UnlockRequirementNames.POD,
@@ -510,36 +510,27 @@ export const upgradeDescriptions: { [key in UpgradeWithTier]: string } = {
     "Adds a resonator to the vac's suction mechanism that shakes loose science resources from nodes in the environment.",
   health1:
     "Syncs with your body's own vital processes to enhance life systems, boosting health to 150. Plus, it's sparkly.",
-  health2:
-    "A more advanced and even sparklier heart module that boosts health to 200.",
+  health2: "A more advanced and even sparklier heart module that boosts health to 200.",
   health3: "The ultimate in heart module technology, boosting health to 250.",
-  health4:
-    "An expermiental life systems amplification device that boosts health to 300.",
-  power1:
-    "Augments your vackpack with an almost-certainly-safe micro fusion generator that boosts energy to 150.",
-  power2:
-    "This enhanced micro generator boosts energy to 200; but more importantly, is even smaller.",
-  power3:
-    "The latest micro generator boosts energy to 250; but not high enough to give up coffee entirely.",
-  power4:
-    "An impossibly advanced micro generator boosts personal energy to 275. There's no way this is still legal.",
+  health4: "An expermiental life systems amplification device that boosts health to 300.",
+  power1: "Augments your vackpack with an almost-certainly-safe micro fusion generator that boosts energy to 150.",
+  power2: "This enhanced micro generator boosts energy to 200; but more importantly, is even smaller.",
+  power3: "The latest micro generator boosts energy to 250; but not high enough to give up coffee entirely.",
+  power4: "An impossibly advanced micro generator boosts personal energy to 275. There's no way this is still legal.",
   power5:
     "An advanced micro generator that blows past all previously known limits of personal energy, pushing it to 300.",
   regenerator1:
     "A small software update that improves energy routing trough the vac's conduits, increasing the rate of energy regeneration by 15%.",
   regenerator2:
     "Integrates a significantly more advanced routing algorythm to the energy conduit, increasing the rate of energy regeneration by 30%.",
-  powerinjector1:
-    "Streamlines the vac's power transfer, reducing the delay before energy regenerates by 25%.",
+  powerinjector1: "Streamlines the vac's power transfer, reducing the delay before energy regenerates by 25%.",
   powerinjector2:
     "Add a self-cleaning function to the power injector that cleans up all the gunk you'd rather not think about, reducting the delay before energy regenerates by 66%.",
-  dash1:
-    "These highly advanced and, frankly, fashion-forward boots reduce the energy consumption of sprinting.",
+  dash1: "These highly advanced and, frankly, fashion-forward boots reduce the energy consumption of sprinting.",
   dash2:
     "Experimental footwear capable of reducing the cost of sprinting even further. It makes you think walking is for suckers.",
   jetpack1: "Keep your head in the clouds with this amazing, personal jetpack!",
-  jetpack2:
-    "Enhanced jetpack thrusters that consume 20% less energy but produce double the fun.",
+  jetpack2: "Enhanced jetpack thrusters that consume 20% less energy but produce double the fun.",
   tankBooster1:
     "Improved nano-storage cell technology allows your vac tanks to hold 30 units of whatever you can vac up.",
   tankBooster2:
@@ -548,8 +539,7 @@ export const upgradeDescriptions: { [key in UpgradeWithTier]: string } = {
     "More is better, but in this case, it's best. These premium nano-storage cells can hold 50 units in each vac tank.",
   tankBooster4:
     "The secret best vac tank available using experimental nano-storage technology that's absolutely probably maybe legal.",
-  tankBooster5:
-    "Pushing the limits of slime science, the nano-storage technology increases vac tank capacity to 70.",
+  tankBooster5: "Pushing the limits of slime science, the nano-storage technology increases vac tank capacity to 70.",
   tankBooster6:
     "Thanks to the latest scientific breaktroughs, the nano-storage technology of this booster allows you to hold 80 units per vac tank.",
   tankBooster7:
@@ -558,8 +548,7 @@ export const upgradeDescriptions: { [key in UpgradeWithTier]: string } = {
     "Slime Science does it again! The improved (and totally safe) nano-storage technology in this booster enables you to hold a whopping 100 units per vac tank!",
   extraTank1: "Adds an extra general-purpose vac tank.",
   extraTank2: "Adds yet another extra general-purpose vac tank.",
-  waterTank1:
-    "Adds a specialized vac tank that allows you to store fresh water.",
+  waterTank1: "Adds a specialized vac tank that allows you to store fresh water.",
   pulseWave1:
     "Adds a pulse wave emitter feature to your vacpack that pushes away slimes whenever you need some personal space.",
   tankGuard1:
@@ -568,8 +557,7 @@ export const upgradeDescriptions: { [key in UpgradeWithTier]: string } = {
     "Salvages 40% of your vac tank's contents upon accidental encounters with the slime sea or following other forms of health loss.",
   tankGuard3:
     "Salvages 60% of your vac's tank's contents upon accidental encounters with the slime sea or following other forms of health loss.",
-  droneKey1:
-    "Utilizes Miles tech decryption algorithms to unlock access to archived logs on Research Drones.",
+  droneKey1: "Utilizes Miles tech decryption algorithms to unlock access to archived logs on Research Drones.",
   goldenSureshot1:
     "A special vacpack upgrade that hones in on gold slime weakpoints (their secret bellybutton?) and doubles the amount of gold plorts they produce when hit.",
   goldenSureshot2:
@@ -583,120 +571,81 @@ export const upgradeDescriptions: { [key in UpgradeWithTier]: string } = {
 export const upgradeEffects: {
   [key in UpgradeWithTier]: [string, string];
 } = {
-  harvester1:
-    ["upgrades/harvester", "+ Resource Harvester"],
+  harvester1: ["upgrades/harvester", "+ Resource Harvester"],
 
-  health1:
-    ["misc/health", "150 Health (+50)"],
+  health1: ["misc/health", "150 Health (+50)"],
 
-  health2:
-    ["misc/health", "200 Health (+50)"],
+  health2: ["misc/health", "200 Health (+50)"],
 
-  health3:
-    ["misc/health", "250 Health (+50)"],
+  health3: ["misc/health", "250 Health (+50)"],
 
-  health4:
-    ["misc/health", "300 Health (+50)"],
+  health4: ["misc/health", "300 Health (+50)"],
 
-  power1:
-    ["misc/energy", "150 Energy (+50)"],
+  power1: ["misc/energy", "150 Energy (+50)"],
 
-  power2:
-    ["misc/energy", "200 Energy (+50)"],
+  power2: ["misc/energy", "200 Energy (+50)"],
 
-  power3:
-    ["misc/energy", "250 Energy (+50)"],
+  power3: ["misc/energy", "250 Energy (+50)"],
 
-  power4:
-    ["misc/energy", "275 Energy (+25)"],
+  power4: ["misc/energy", "275 Energy (+25)"],
 
-  power5:
-    ["misc/energy", "300 Energy (+25)"],
+  power5: ["misc/energy", "300 Energy (+25)"],
 
-  dash1:
-    ["upgrades/dash", "- Sprint Energy Consumption"],
+  dash1: ["upgrades/dash", "- Sprint Energy Consumption"],
 
-  dash2:
-    ["upgrades/dash", "- Sprint Energy Consumption"],
+  dash2: ["upgrades/dash", "- Sprint Energy Consumption"],
 
-  jetpack1:
-    ["upgrades/jetpack", "Jetpack"],
+  jetpack1: ["upgrades/jetpack", "Jetpack"],
 
-  jetpack2:
-    ["upgrades/jetpack", "- Jetpack Energy Consumption"],
+  jetpack2: ["upgrades/jetpack", "- Jetpack Energy Consumption"],
 
-  tankBooster1:
-    ["upgrades/tankBooster", "30 Units Capacity (+10)"],
+  tankBooster1: ["upgrades/tankBooster", "30 Units Capacity (+10)"],
 
-  tankBooster2:
-    ["upgrades/tankBooster", "40 Units Capacity (+10)"],
+  tankBooster2: ["upgrades/tankBooster", "40 Units Capacity (+10)"],
 
-  tankBooster3:
-    ["upgrades/tankBooster", "50 Units Capacity (+10)"],
+  tankBooster3: ["upgrades/tankBooster", "50 Units Capacity (+10)"],
 
-  tankBooster4:
-    ["upgrades/tankBooster", "60 Units Capacity (+10)"],
+  tankBooster4: ["upgrades/tankBooster", "60 Units Capacity (+10)"],
 
-  tankBooster5:
-    ["upgrades/tankBooster", "70 Units Capacity (+10)"],
+  tankBooster5: ["upgrades/tankBooster", "70 Units Capacity (+10)"],
 
-  tankBooster6:
-    ["upgrades/tankBooster", "80 Units Capacity (+10)"],
+  tankBooster6: ["upgrades/tankBooster", "80 Units Capacity (+10)"],
 
-  tankBooster7:
-    ["upgrades/tankBooster", "90 Units Capacity (+10)"],
+  tankBooster7: ["upgrades/tankBooster", "90 Units Capacity (+10)"],
 
-  tankBooster8:
-    ["upgrades/tankBooster", "100 Units Capacity (+10)"],
+  tankBooster8: ["upgrades/tankBooster", "100 Units Capacity (+10)"],
 
-  extraTank1:
-    ["upgrades/extraTank", "5 Tanks (+1)"],
+  extraTank1: ["upgrades/extraTank", "5 Tanks (+1)"],
 
-  extraTank2:
-    ["upgrades/extraTank", "6 Tanks (+1)"],
+  extraTank2: ["upgrades/extraTank", "6 Tanks (+1)"],
 
-  waterTank1:
-    ["upgrades/waterTank", "+ Water Tank"],
+  waterTank1: ["upgrades/waterTank", "+ Water Tank"],
 
-  pulseWave1:
-    ["upgrades/pulseWave", "+ Pulse Wave"],
+  pulseWave1: ["upgrades/pulseWave", "+ Pulse Wave"],
 
-  tankGuard1:
-    ["upgrades/tankGuard", "30% Salvage on Death"],
+  tankGuard1: ["upgrades/tankGuard", "30% Salvage on Death"],
 
-  tankGuard2:
-    ["upgrades/tankGuard", "40% Salvage on Death"],
+  tankGuard2: ["upgrades/tankGuard", "40% Salvage on Death"],
 
-  tankGuard3:
-    ["upgrades/tankGuard", "60% Salvage on Death"],
+  tankGuard3: ["upgrades/tankGuard", "60% Salvage on Death"],
 
-  droneKey1:
-    ["upgrades/droneKey", "+ Drone Archive Key"],
+  droneKey1: ["upgrades/droneKey", "+ Drone Archive Key"],
 
-  goldenSureshot1:
-    ["plorts/gold", "2 Plorts per Gold Slime Fed"],
+  goldenSureshot1: ["plorts/gold", "2 Plorts per Gold Slime Fed"],
 
-  goldenSureshot2:
-    ["plorts/gold", "3 Plorts per Gold Slime Fed"],
+  goldenSureshot2: ["plorts/gold", "3 Plorts per Gold Slime Fed"],
 
-  goldenSureshot3:
-    ["plorts/gold", "4 Plorts per Gold Slime Fed"],
+  goldenSureshot3: ["plorts/gold", "4 Plorts per Gold Slime Fed"],
 
-  shadowSureshot1:
-    ["plorts/shadow", "2 Plorts per Shadow Slime Hit"],
+  shadowSureshot1: ["plorts/shadow", "2 Plorts per Shadow Slime Hit"],
 
-  regenerator1:
-    ["upgrades/regenerator", "+15 % Energy Regeneration Rate"],
+  regenerator1: ["upgrades/regenerator", "+15 % Energy Regeneration Rate"],
 
-  regenerator2:
-    ["upgrades/regenerator", "+30 % Energy Regeneration Rate"],
+  regenerator2: ["upgrades/regenerator", "+30 % Energy Regeneration Rate"],
 
-  powerinjector1:
-    ["upgrades/powerinjector", "-33% Energy Regeneration Delay"],
+  powerinjector1: ["upgrades/powerinjector", "-33% Energy Regeneration Delay"],
 
-  powerinjector2:
-    ["upgrades/powerinjector", "-66% Energy Regeneration Delay"],
-
+  powerinjector2: ["upgrades/powerinjector", "-66% Energy Regeneration Delay"],
 };
 
 export type UpgradeBase = keyof typeof upgradePacks;

@@ -36,21 +36,9 @@ export const slimesList: {
   [key in Slime]: [string, FoodType | null, Food | null, boolean, Toy | null];
 } = {
   [Slime.Pink]: ["Pink Slime", FoodType.Any, null, true, Toy.Ball],
-  [Slime.Cotton]: [
-    "Cotton Slime",
-    FoodType.Veggies,
-    Food.Lettuce,
-    true,
-    Toy.Bouncy,
-  ],
+  [Slime.Cotton]: ["Cotton Slime", FoodType.Veggies, Food.Lettuce, true, Toy.Bouncy],
   [Slime.Tabby]: ["Tabby Slime", FoodType.Meat, Food.HenStony, true, Toy.Yarn],
-  [Slime.Phosphor]: [
-    "Phosphor Slime",
-    FoodType.Fruits,
-    Food.Cuberry,
-    true,
-    Toy.Light,
-  ],
+  [Slime.Phosphor]: ["Phosphor Slime", FoodType.Fruits, Food.Cuberry, true, Toy.Light],
   [Slime.Rock]: ["Rock Slime", FoodType.Veggies, Food.Beet, true, Toy.Rock],
   [Slime.Hunter]: ["Hunter Slime", FoodType.Meat, Food.Rooster, true, Toy.Chicken],
   [Slime.Angler]: ["Angler Slime", FoodType.Meat, Food.HenSea, true, Toy.Puffer],
@@ -76,27 +64,21 @@ export const slimesList: {
 };
 
 export const slimesText: { [key in Slime]: string } = {
-  [Slime.Pink]:
-    "Their coral hue is scientifically proven to be the color of cheer.",
+  [Slime.Pink]: "Their coral hue is scientifically proven to be the color of cheer.",
   [Slime.Cotton]: "A hop, a skip, a jump and- oh, it's gone.",
   [Slime.Tabby]: "Those stripes, that tail, that wiggle, wiggle, wiggle.",
   [Slime.Phosphor]: "The softly glowing heralds of starlight.",
   [Slime.Rock]: "These slimes ore totally metal.",
   [Slime.Honey]: "Nothing is sweeter than (a freshly produced plort of) honey.",
-  [Slime.Flutter]:
-    "Like snowflakes, each pair of wings are unique, and just as delicate.",
+  [Slime.Flutter]: "Like snowflakes, each pair of wings are unique, and just as delicate.",
   [Slime.Hunter]: "Nevermind the rabbit, have you seen any chickens?",
   [Slime.Ringtail]: "Where there's a crime, there's a ringtail slime.",
-  [Slime.Puddle]:
-    "Keep one in your boot and you'll always stay cool. But it's weird.",
+  [Slime.Puddle]: "Keep one in your boot and you'll always stay cool. But it's weird.",
   [Slime.Angler]: "So pretty! Let me just get a closer-",
-  [Slime.Batty]:
-    "A fiendish stalker of the night, hungering always... for fruit.",
+  [Slime.Batty]: "A fiendish stalker of the night, hungering always... for fruit.",
   [Slime.Boom]: "Careful, these slimes have been known to expl-",
-  [Slime.Crystal]:
-    "It's clear as shiny, transparent rocks that these slimes are dangerous.",
-  [Slime.Fire]:
-    "Like a little campfire, except that it moves and it's a slime.",
+  [Slime.Crystal]: "It's clear as shiny, transparent rocks that these slimes are dangerous.",
+  [Slime.Fire]: "Like a little campfire, except that it moves and it's a slime.",
   [Slime.Saber]: "A bouncing blast from the past.",
   [Slime.Shadow]: "Chase your shadow and it will flee.",
   [Slime.Twin]: "Know thyself, and thy other self as well.",
@@ -204,7 +186,7 @@ export const slimepedia: { [key in Slime]: [string, string, string] } = {
   [Slime.Hyper]: [
     "These adrenaline junkies can be found aroud the Terrarium, literally bouncing off the walls. Perhaps their energy feeds some sort of growth mechanism in the Labyrinth—or are they result of such forces? Their hyperactive nature will keep any rancher on their toes, but the cool factor makes the effort totally worth it.",
     "Corralling these slimes is a gnarly challenge. They must constantly discharge small amounts of energy in order to maintan equilibrium, and each burst sends them rocochetting off corral walls, dashing into trouble, and leaping off of cliffs in search of adventure. Don't follow too closely!",
-    "The concentrated kinetic energy in these plorts would make them perfect for producing next-gen energy drinks. However, some caution is needed when handling them. While a brif dose may energize you enough for an all-nighter of racing around the range, too much can give you the shakes—the kind that send you in orbit."
+    "The concentrated kinetic energy in these plorts would make them perfect for producing next-gen energy drinks. However, some caution is needed when handling them. While a brif dose may energize you enough for an all-nighter of racing around the range, too much can give you the shakes—the kind that send you in orbit.",
   ],
   [Slime.Sloomber]: [
     "Sloomber slimes are found among the puffy, pink islands of the Labyrinth's Dream Land, drifting in and out of sleep from the strange auras that radiate from them. At first they may seem like somewhat lazy hunters, delighting in a chomp of chicken when they happen to be awake. However, given the function of Dream Land within the Labyrinth, it is possible that sloomber slimes are significantly more powerful creatures, perhaps even dreaming the world around them into existence as they sleep among the clouds.",

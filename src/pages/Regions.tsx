@@ -22,18 +22,13 @@ import "../css/MusicPlayer.css";
 import "../css/Regions.css";
 import { FaAngleDown } from "react-icons/fa6";
 
-const regionTypeMatcher: (region: Region | Ranch) => RegionType | null = (
-  region,
-) => {
-  if (Object.values(Region).includes(region as Region))
-    return RegionType.Region;
+const regionTypeMatcher: (region: Region | Ranch) => RegionType | null = (region) => {
+  if (Object.values(Region).includes(region as Region)) return RegionType.Region;
   if (Object.values(Ranch).includes(region as Ranch)) return RegionType.Ranch;
   else return null;
 };
 
-const RegionConnections: React.FC<{ region: Region | Ranch }> = ({
-  region,
-}) => {
+const RegionConnections: React.FC<{ region: Region | Ranch }> = ({ region }) => {
   const connections = (() => {
     if (regionTypeMatcher(region) === RegionType.Region) {
       return regionsConnections[region as Region];
@@ -49,10 +44,7 @@ const RegionConnections: React.FC<{ region: Region | Ranch }> = ({
           connections[0].map((regionName) => {
             if (regionTypeMatcher(regionName) === RegionType.Region)
               return (
-                <NavLink
-                  to={`/regions/region/${regionName}`}
-                  key={"from-" + regionName}
-                >
+                <NavLink to={`/regions/region/${regionName}`} key={"from-" + regionName}>
                   <img
                     src={`/assets/world/${regionName}.png`}
                     alt={regionInfos[regionName as Region][0]}
@@ -62,10 +54,7 @@ const RegionConnections: React.FC<{ region: Region | Ranch }> = ({
               );
             if (regionTypeMatcher(regionName) === RegionType.Ranch)
               return (
-                <NavLink
-                  to={`/regions/ranch/${regionName}`}
-                  key={"from-" + regionName}
-                >
+                <NavLink to={`/regions/ranch/${regionName}`} key={"from-" + regionName}>
                   <img
                     src={`/assets/world/${regionName}.png`}
                     alt={ranchInfos[regionName as Ranch][0]}
@@ -73,32 +62,17 @@ const RegionConnections: React.FC<{ region: Region | Ranch }> = ({
                   />
                 </NavLink>
               );
-            return (
-              <img
-                key={"from-" + regionName}
-                className="no-hover"
-                src="/assets/misc/none.png"
-                alt="No Region"
-              />
-            );
+            return <img key={"from-" + regionName} className="no-hover" src="/assets/misc/none.png" alt="No Region" />;
           })
         ) : (
-          <img
-            className="no-hover"
-            src="/assets/misc/none.png"
-            alt="No Region"
-          />
+          <img className="no-hover" src="/assets/misc/none.png" alt="No Region" />
         )}
       </div>
       <div className="region-connection-separator">
         <FaAngleDown />
       </div>
       <div>
-        <img
-          className="no-hover"
-          src={`/assets/world/${region}.png`}
-          alt="Current Biome"
-        />
+        <img className="no-hover" src={`/assets/world/${region}.png`} alt="Current Biome" />
       </div>
       <div className="region-connection-separator">
         <FaAngleDown />
@@ -108,10 +82,7 @@ const RegionConnections: React.FC<{ region: Region | Ranch }> = ({
           connections[1].map((regionName) => {
             if (regionTypeMatcher(regionName) === RegionType.Region)
               return (
-                <NavLink
-                  to={`/regions/region/${regionName}`}
-                  key={"from-" + regionName}
-                >
+                <NavLink to={`/regions/region/${regionName}`} key={"from-" + regionName}>
                   <img
                     src={`/assets/world/${regionName}.png`}
                     alt={regionInfos[regionName as Region][0]}
@@ -121,10 +92,7 @@ const RegionConnections: React.FC<{ region: Region | Ranch }> = ({
               );
             if (regionTypeMatcher(regionName) === RegionType.Ranch)
               return (
-                <NavLink
-                  to={`/regions/ranch/${regionName}`}
-                  key={"from-" + regionName}
-                >
+                <NavLink to={`/regions/ranch/${regionName}`} key={"from-" + regionName}>
                   <img
                     src={`/assets/world/${regionName}.png`}
                     alt={ranchInfos[regionName as Ranch][0]}
@@ -132,21 +100,10 @@ const RegionConnections: React.FC<{ region: Region | Ranch }> = ({
                   />
                 </NavLink>
               );
-            return (
-              <img
-                key={"from-" + regionName}
-                className="no-hover"
-                src="/assets/misc/none.png"
-                alt="No Region"
-              />
-            );
+            return <img key={"from-" + regionName} className="no-hover" src="/assets/misc/none.png" alt="No Region" />;
           })
         ) : (
-          <img
-            className="no-hover"
-            src="/assets/misc/none.png"
-            alt="No Region"
-          />
+          <img className="no-hover" src="/assets/misc/none.png" alt="No Region" />
         )}
       </div>
     </div>
@@ -184,18 +141,10 @@ const RegionDescription: React.FC<{ region: Region }> = ({ region }) => (
     >
       <h2 className="box-title">Available Slimes</h2>
       {regionElements[region][0].map((slime, index) => (
-        <NavLink
-          to={`/slimes/${slime}`}
-          style={{ textDecoration: "none" }}
-          key={`${slime}-${index}`}
-        >
+        <NavLink to={`/slimes/${slime}`} style={{ textDecoration: "none" }} key={`${slime}-${index}`}>
           <div className="region-element" key={`${slime}-${index}`}>
             <div className="region-element-content">
-              <img
-                src={`/assets/slimes/${slime}.png`}
-                alt={slimesList[slime][0]}
-                title={slimesList[slime][0]}
-              />
+              <img src={`/assets/slimes/${slime}.png`} alt={slimesList[slime][0]} title={slimesList[slime][0]} />
             </div>
           </div>
         </NavLink>
@@ -213,18 +162,10 @@ const RegionDescription: React.FC<{ region: Region }> = ({ region }) => (
     >
       <h2 className="box-title">Available Food</h2>
       {regionElements[region][1].map((food, index) => (
-        <NavLink
-          to={`/food/${food}`}
-          style={{ textDecoration: "none" }}
-          key={`${food}-${index}`}
-        >
+        <NavLink to={`/food/${food}`} style={{ textDecoration: "none" }} key={`${food}-${index}`}>
           <div className="region-element" key={`${food}-${index}`}>
             <div className="region-element-content">
-              <img
-                src={`/assets/food/${food}.png`}
-                alt={foodList[food][0]}
-                title={foodList[food][0]}
-              />
+              <img src={`/assets/food/${food}.png`} alt={foodList[food][0]} title={foodList[food][0]} />
             </div>
           </div>
         </NavLink>
@@ -256,15 +197,8 @@ const RegionDescription: React.FC<{ region: Region }> = ({ region }) => (
             />
           </div>
         ) : (
-          <NavLink
-            to={regionsResourcesInfos[resource][2]}
-            style={{ textDecoration: "none" }}
-            key={resource}
-          >
-            <div
-              className="region-element-resource resource-hover"
-              key={resource}
-            >
+          <NavLink to={regionsResourcesInfos[resource][2]} style={{ textDecoration: "none" }} key={resource}>
+            <div className="region-element-resource resource-hover" key={resource}>
               <img
                 src={`/assets/${regionsResourcesInfos[resource][1]}.png`}
                 alt={regionsResourcesInfos[resource][0]}
@@ -276,27 +210,15 @@ const RegionDescription: React.FC<{ region: Region }> = ({ region }) => (
       )}
     </OverlayScrollbarsComponent>
     <div className="region-pods">
-      <h2 className="box-title">
-        {region === "labyrinth" ? "Ancient Vaults" : "Tresaure Pods"}
-      </h2>
-      <img
-        src={
-          region === "labyrinth"
-            ? "/assets/misc/door.png"
-            : "/assets/misc/pod.png"
-        }
-        alt="Pods"
-      />
+      <h2 className="box-title">{region === "labyrinth" ? "Ancient Vaults" : "Tresaure Pods"}</h2>
+      <img src={region === "labyrinth" ? "/assets/misc/door.png" : "/assets/misc/pod.png"} alt="Pods" />
       <p>{regionInfos[region][3]}</p>
     </div>
   </div>
 );
 
 const RanchDescription: React.FC<{ region: Ranch }> = ({ region }) => (
-  <div
-    className={`ranch-description${region === "conservatory" ? " ranch-conservatory" : ""}`}
-    id="ranch-description"
-  >
+  <div className={`ranch-description${region === "conservatory" ? " ranch-conservatory" : ""}`} id="ranch-description">
     <OverlayScrollbarsComponent
       options={{
         scrollbars: {
@@ -336,23 +258,13 @@ const RanchDescription: React.FC<{ region: Ranch }> = ({ region }) => (
         const isDirectFeature = regionsResourcesInfos[feature][2] === "";
         return isDirectFeature ? (
           <div className="ranch-special-feature" key={feature}>
-            <img
-              src={`/assets/${regionsResourcesInfos[feature][1]}.png`}
-              alt={regionsResourcesInfos[feature][0]}
-            />
+            <img src={`/assets/${regionsResourcesInfos[feature][1]}.png`} alt={regionsResourcesInfos[feature][0]} />
             <h3>{regionsResourcesInfos[feature][0]}</h3>
           </div>
         ) : (
-          <NavLink
-            to={regionsResourcesInfos[feature][2]}
-            style={{ textDecoration: "none" }}
-            key={feature}
-          >
+          <NavLink to={regionsResourcesInfos[feature][2]} style={{ textDecoration: "none" }} key={feature}>
             <div className="ranch-special-feature special-hover" key={feature}>
-              <img
-                src={`/assets/${regionsResourcesInfos[feature][1]}.png`}
-                alt={regionsResourcesInfos[feature][0]}
-              />
+              <img src={`/assets/${regionsResourcesInfos[feature][1]}.png`} alt={regionsResourcesInfos[feature][0]} />
               <h3>{regionsResourcesInfos[feature][0]}</h3>
             </div>
           </NavLink>
@@ -371,8 +283,8 @@ enum RegionType {
 
 export const Regions: React.FC = () => {
   const { regionType: regionTypeName, region: regionName } = useParams();
-  const regionType = Object.values(RegionType).includes(regionTypeName as RegionType) 
-    ? (regionTypeName as RegionType) 
+  const regionType = Object.values(RegionType).includes(regionTypeName as RegionType)
+    ? (regionTypeName as RegionType)
     : null;
   const region = (() => {
     if (Object.values(Region).includes(regionName as Region)) return regionName as Region;
@@ -390,20 +302,13 @@ export const Regions: React.FC = () => {
   if (regionType === null) {
     if (Object.values(Region).includes(region as Region))
       return <Navigate to={`/regions/region/${regionName}`} replace />;
-    if (Object.values(Ranch).includes(region as Ranch))
-      return <Navigate to={`/regions/ranch/${regionName}`} replace />;
+    if (Object.values(Ranch).includes(region as Ranch)) return <Navigate to={`/regions/ranch/${regionName}`} replace />;
     return <Navigate to="/regions/region/fields" replace />;
   }
   if (region === null) return <Navigate to="/regions/region/fields" replace />;
-  if (
-    regionTypeName === RegionType.Region &&
-    !Object.values(Region).includes(region as Region)
-  )
+  if (regionTypeName === RegionType.Region && !Object.values(Region).includes(region as Region))
     return <Navigate to={`/regions/ranch/${region}`} replace />;
-  if (
-    regionTypeName === RegionType.Ranch &&
-    !Object.values(Ranch).includes(region as Ranch)
-  )
+  if (regionTypeName === RegionType.Ranch && !Object.values(Ranch).includes(region as Ranch))
     return <Navigate to={`/regions/region/${region}`} replace />;
 
   const zoneList = (() => {
@@ -419,9 +324,7 @@ export const Regions: React.FC = () => {
   const zoneCode = zoneList[1];
   const zoneDescription = zoneList[2];
 
-  const handleMouseEnter = async (
-    e: React.MouseEvent<HTMLVideoElement, MouseEvent>,
-  ) => {
+  const handleMouseEnter = async (e: React.MouseEvent<HTMLVideoElement, MouseEvent>) => {
     const video = e.target as HTMLVideoElement;
     if (video.readyState >= 3) {
       try {
@@ -432,9 +335,7 @@ export const Regions: React.FC = () => {
     }
   };
 
-  const handleMouseLeave = async (
-    e: React.MouseEvent<HTMLVideoElement, MouseEvent>,
-  ) => {
+  const handleMouseLeave = async (e: React.MouseEvent<HTMLVideoElement, MouseEvent>) => {
     const video = e.target as HTMLVideoElement;
     setTimeout(async () => {
       if (video.readyState >= 3) {
@@ -462,12 +363,10 @@ export const Regions: React.FC = () => {
     backgroundImage: `url("/assets/wait/${region}.jpg")})`,
   };
 
-  const regionList =
-    tab === RegionType.Region ? Object.values(Region) : Object.values(Ranch);
+  const regionList = tab === RegionType.Region ? Object.values(Region) : Object.values(Ranch);
   document.title =
-    (regionType === RegionType.Region
-      ? regionInfos[region as Region][0]
-      : ranchInfos[region as Ranch][0]) + " - Slimepedia 2";
+    (regionType === RegionType.Region ? regionInfos[region as Region][0] : ranchInfos[region as Ranch][0]) +
+    " - Slimepedia 2";
 
   return (
     <div>
@@ -479,12 +378,7 @@ export const Regions: React.FC = () => {
             selected={tab === "region"}
             action={() => setTab(RegionType.Region)}
           />
-          <Tab
-            title="Ranch"
-            icon="misc/patch"
-            selected={tab === "ranch"}
-            action={() => setTab(RegionType.Ranch)}
-          />
+          <Tab title="Ranch" icon="misc/patch" selected={tab === "ranch"} action={() => setTab(RegionType.Ranch)} />
         </div>
         <OverlayScrollbarsComponent
           options={{
@@ -493,27 +387,15 @@ export const Regions: React.FC = () => {
               autoHideDelay: 500,
             },
           }}
-          className={
-            "regions-list" +
-            (tab === "region" ? " regions-list-regions" : " regions-list-ranch")
-          }
+          className={"regions-list" + (tab === "region" ? " regions-list-regions" : " regions-list-ranch")}
           defer
         >
           {regionList.map((regionItem) => (
-            <NavLink
-              to={`/regions/${tab}/${regionItem}`}
-              style={{ textDecoration: "none" }}
-              key={regionItem}
-            >
+            <NavLink to={`/regions/${tab}/${regionItem}`} style={{ textDecoration: "none" }} key={regionItem}>
               <div
-                className={
-                  "region-tab" +
-                  (regionItem === region ? " region-selected" : "")
-                }
+                className={"region-tab" + (regionItem === region ? " region-selected" : "")}
                 key={
-                  tab === RegionType.Region
-                    ? regionInfos[regionItem as Region][0]
-                    : ranchInfos[regionItem as Ranch][0]
+                  tab === RegionType.Region ? regionInfos[regionItem as Region][0] : ranchInfos[regionItem as Ranch][0]
                 }
               >
                 <video
@@ -584,12 +466,8 @@ export const Regions: React.FC = () => {
               <FaAngleDown />
             </a>
           </div>
-          {regionType === RegionType.Region && (
-            <RegionDescription region={region as Region} />
-          )}
-          {regionType === RegionType.Ranch && (
-            <RanchDescription region={region as Ranch} />
-          )}
+          {regionType === RegionType.Region && <RegionDescription region={region as Region} />}
+          {regionType === RegionType.Ranch && <RanchDescription region={region as Ranch} />}
         </div>
       </div>
     </div>

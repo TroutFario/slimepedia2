@@ -1,16 +1,5 @@
-import React, {
-  createContext,
-  useContext,
-  useRef,
-  useState,
-  useCallback,
-} from "react";
-import {
-  BlueprintItem,
-  BlueprintType,
-  Recipe,
-  RecipeElement,
-} from "../data/blueprints/blueprints";
+import React, { createContext, useContext, useRef, useState, useCallback } from "react";
+import { BlueprintItem, BlueprintType, Recipe, RecipeElement } from "../data/blueprints/blueprints";
 import { upgradesList } from "../data/blueprints/upgrades";
 import { utilitiesList, Utility } from "../data/blueprints/utilities";
 import { Warp, warpGadgets } from "../data/blueprints/warp";
@@ -22,27 +11,17 @@ type CraftList = Map<RecipeElement, number>;
 interface RecipeContextType {
   blueprintList: BlueprintList;
   craftList: CraftList;
-  increaseBlueprint: (
-    item: BlueprintItem,
-    type: BlueprintType,
-    qtty: number
-  ) => void;
+  increaseBlueprint: (item: BlueprintItem, type: BlueprintType, qtty: number) => void;
   decreaseBlueprint: (item: BlueprintItem, qtty: number) => void;
   resetList: () => void;
   deleteBlueprint: (item: BlueprintItem) => void;
-  triggerAnimation: (
-    elementRef: React.MutableRefObject<HTMLButtonElement | null>,
-    animation: string
-  ) => void;
+  triggerAnimation: (elementRef: React.MutableRefObject<HTMLButtonElement | null>, animation: string) => void;
   currentElementRef: React.MutableRefObject<HTMLButtonElement | null>;
 }
 
 const RecipeContext = createContext<RecipeContextType | undefined>(undefined);
 
-const getRecipeForItem: (item: BlueprintItem, type: BlueprintType) => Recipe = (
-  item,
-  type
-) => {
+const getRecipeForItem: (item: BlueprintItem, type: BlueprintType) => Recipe = (item, type) => {
   switch (type) {
     case BlueprintType.UPGRADE:
       return upgradesList[item as keyof typeof upgradesList][2];
@@ -65,9 +44,7 @@ export const useRecipeContext = (): RecipeContextType => {
   return context;
 };
 
-export const RecipeProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const RecipeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [blueprintList, setBlueprintList] = useState<BlueprintList>(new Map());
   const [craftList, setCraftList] = useState<CraftList>(new Map());
 
@@ -87,11 +64,7 @@ export const RecipeProvider: React.FC<{ children: React.ReactNode }> = ({
     setCraftList(newCraft);
   }, []);
 
-  const increaseBlueprint = (
-    item: BlueprintItem,
-    type: BlueprintType,
-    qtty: number
-  ) => {
+  const increaseBlueprint = (item: BlueprintItem, type: BlueprintType, qtty: number) => {
     const next = new Map(blueprintList);
     if (next.has(item)) next.get(item)![1] += qtty;
     else next.set(item, [type, qtty]);
@@ -126,10 +99,7 @@ export const RecipeProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const currentElementRef = useRef<HTMLButtonElement | null>(null);
 
-  const triggerAnimation = (
-    elementRef: React.MutableRefObject<HTMLButtonElement | null>,
-    animation: string
-  ) => {
+  const triggerAnimation = (elementRef: React.MutableRefObject<HTMLButtonElement | null>, animation: string) => {
     if (elementRef.current) {
       elementRef.current.classList.remove(animation);
       void elementRef.current.offsetWidth;
@@ -148,12 +118,8 @@ export const RecipeProvider: React.FC<{ children: React.ReactNode }> = ({
       triggerAnimation,
       currentElementRef,
     }),
-    [blueprintList, craftList]
+    [blueprintList, craftList],
   );
 
-  return (
-    <RecipeContext.Provider value={contextValue}>
-      {children}
-    </RecipeContext.Provider>
-  );
+  return <RecipeContext.Provider value={contextValue}>{children}</RecipeContext.Provider>;
 };

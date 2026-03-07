@@ -23,12 +23,10 @@ export const InfoBox: React.FC<InfoBoxProps> = ({
   onClick,
 }) => {
   const boxContent = (
-    <div className={`little-box ${className} ${disabled ? "disabled" : ""} ${linkTo || onClick ? "interactive-box" : ""}`}>
-      <img 
-        src={icon} 
-        alt={alt}
-        className={disabled ? "no-image" : ""}
-      />
+    <div
+      className={`little-box ${className} ${disabled ? "disabled" : ""} ${linkTo || onClick ? "interactive-box" : ""}`}
+    >
+      <img src={icon} alt={alt} className={disabled ? "no-image" : ""} />
       <div>
         <h3>{title}</h3>
         <h4>{subtitle}</h4>

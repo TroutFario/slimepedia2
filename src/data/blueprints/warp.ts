@@ -464,7 +464,8 @@ export const warpDescriptions: { [key in Warp]: string } = {
   teleportss: teleportWarpText + "Starlight Strand.",
   teleportpb: teleportWarpText + "Powderfall Bluffs.",
   teleportgl: teleportWarpText + "Grey Labyrinth.",
-  marketlink: "A compact plort market that allows you to make quick sales. Consult the main plort market for price data.",
+  marketlink:
+    "A compact plort market that allows you to make quick sales. Consult the main plort market for price data.",
   refinerylink: "Allows you to remotely deposit resources into the refinery.",
   teleportamber: teleportCustomText,
   teleportberry: teleportCustomText,

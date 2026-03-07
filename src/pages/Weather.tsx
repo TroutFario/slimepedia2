@@ -1,10 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import {
-  Weather,
-  weatherList,
-  weatherPedia,
-  weatherSpawn,
-} from "../data/weather";
+import { Weather, weatherList, weatherPedia, weatherSpawn } from "../data/weather";
 import { Biomes } from "../components/Biomes";
 import { Navigate, NavLink, useParams } from "react-router-dom";
 import "../css/Weather.css";
@@ -15,11 +10,9 @@ export const WeatherPage: React.FC = () => {
   const backgroundVideoRef = useRef<HTMLVideoElement>(null);
   const weatherMusicRef = useRef<HTMLAudioElement>(null);
   const { weather: weatherName } = useParams();
-  const weather = weatherName && Object.values(Weather).includes(weatherName as Weather)
-    ? (weatherName as Weather)
-    : Weather.Clear;
-  const [weatherMusicAvailable, setWeatherMusicAvailable] =
-    useState<boolean>(false);
+  const weather =
+    weatherName && Object.values(Weather).includes(weatherName as Weather) ? (weatherName as Weather) : Weather.Clear;
+  const [weatherMusicAvailable, setWeatherMusicAvailable] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
@@ -45,8 +38,7 @@ export const WeatherPage: React.FC = () => {
   };
 
   const handleVideoLoaded = () => {
-    backgroundVideoRef.current!.currentTime =
-      videoRefs.current[weather]!.currentTime;
+    backgroundVideoRef.current!.currentTime = videoRefs.current[weather]!.currentTime;
     backgroundVideoRef.current!.play();
   };
 
@@ -83,10 +75,7 @@ export const WeatherPage: React.FC = () => {
             </audio>
           )}
           {weatherMusicAvailable && (
-            <button
-              onClick={() => handleMusicPlay()}
-              className={"music-player" + (isPlaying ? " music-played" : "")}
-            >
+            <button onClick={() => handleMusicPlay()} className={"music-player" + (isPlaying ? " music-played" : "")}>
               <img src="/assets/misc/audio.png" alt="Play weather music" />
             </button>
           )}
@@ -100,16 +89,11 @@ export const WeatherPage: React.FC = () => {
             <NavLink
               to={`/weather/${weatherName}`}
               key={weatherName}
-              className={
-                "weather-element" + (weatherName === weather ? " selected" : "")
-              }
+              className={"weather-element" + (weatherName === weather ? " selected" : "")}
               onMouseEnter={() => handleMouseEnter(weatherName)}
               onMouseLeave={() => handleMouseLeave(weatherName)}
             >
-              <img
-                src={`/assets/world/${weatherName}.png`}
-                alt={weatherList[weatherName][0] + " icon"}
-              />
+              <img src={`/assets/world/${weatherName}.png`} alt={weatherList[weatherName][0] + " icon"} />
               <video
                 ref={(el) => (videoRefs.current[weatherName] = el)}
                 className={`video-${weatherName}`}
@@ -135,34 +119,19 @@ export const WeatherPage: React.FC = () => {
           muted
           onLoadedData={handleVideoLoaded}
         />
-        <div
-          className={
-            "weather-info-title" + (panel ? "" : " weather-title-hidden")
-          }
-        >
-          <img
-            src={`/assets/world/${weather}.png`}
-            alt={weatherList[weather][0] + " icon"}
-          />
+        <div className={"weather-info-title" + (panel ? "" : " weather-title-hidden")}>
+          <img src={`/assets/world/${weather}.png`} alt={weatherList[weather][0] + " icon"} />
           <h1>{weatherList[weather][0]}</h1>
           <h2>{weatherList[weather][2]}</h2>
           <p>{weatherPedia[weather]}</p>
         </div>
-        <div
-          className={
-            "weather-info-content" + (panel ? "" : " weather-content-hidden")
-          }
-        >
+        <div className={"weather-info-content" + (panel ? "" : " weather-content-hidden")}>
           <div className="weather-box effects-box">
             <h2 className="weather-box-title">Effects</h2>
             <ul className="effects-list">
               {weatherList[weather][8].map(([iconPath, effect], index) => (
                 <li key={iconPath + index}>
-                  <img
-                    src={`/assets/${iconPath}.png`}
-                    alt=""
-                    className="effect-bullet"
-                  />
+                  <img src={`/assets/${iconPath}.png`} alt="" className="effect-bullet" />
                   {effect}
                 </li>
               ))}

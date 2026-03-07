@@ -1,10 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import {
-  Ranch,
-  ranchInfos,
-  Region,
-  regionInfos,
-} from "../data/regions";
+import { Ranch, ranchInfos, Region, regionInfos } from "../data/regions";
 import { NavLink } from "react-router-dom";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { Weather, weatherID, weatherList } from "../data/weather";
@@ -15,9 +10,7 @@ const animationDelay = 200;
 
 export type MixedRegion = Region | Ranch | Weather | "pm";
 
-const biomeToElement: (biome: MixedRegion) => [string, string, string] | undefined = (
-  biome
-) => {
+const biomeToElement: (biome: MixedRegion) => [string, string, string] | undefined = (biome) => {
   if (Object.values(Region).includes(biome as Region))
     return [regionInfos[biome as Region][0], regionInfos[biome as Region][1], biome as string];
   if (Object.values(Ranch).includes(biome as Ranch))
@@ -28,9 +21,7 @@ const biomeToElement: (biome: MixedRegion) => [string, string, string] | undefin
   return undefined;
 };
 
-export const Biomes: React.FC<{ spawnList: MixedRegion[] }> = ({
-  spawnList = [],
-}) => {
+export const Biomes: React.FC<{ spawnList: MixedRegion[] }> = ({ spawnList = [] }) => {
   const [listHovered, setListHovered] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const biomeBlacklist: Set<MixedRegion> = new Set(["pm"]);
@@ -44,8 +35,7 @@ export const Biomes: React.FC<{ spawnList: MixedRegion[] }> = ({
       if (videoRef.readyState < 3) {
         await new Promise<void>((resolve, reject) => {
           videoRef.onloadeddata = () => resolve();
-          videoRef.onerror = () =>
-            reject(new Error(`Failed to load video: ${videoRef.src}`));
+          videoRef.onerror = () => reject(new Error(`Failed to load video: ${videoRef.src}`));
         });
       }
       await videoRef.play();
@@ -72,10 +62,7 @@ export const Biomes: React.FC<{ spawnList: MixedRegion[] }> = ({
     }, animationDelay);
   };
 
-  const renderBiomeItem = (
-    biome: [string, string, string] | undefined,
-    index: number
-  ) => {
+  const renderBiomeItem = (biome: [string, string, string] | undefined, index: number) => {
     if (!biome) return null;
     const videoRef = videoRefs.current[index];
     const content = (
@@ -90,11 +77,7 @@ export const Biomes: React.FC<{ spawnList: MixedRegion[] }> = ({
           disablePictureInPicture
         />
         <div className="biome-list-overlay">
-          <img
-            className="biome-image"
-            src={`/assets/world/${biome[2]}.png`}
-            alt={biome[0]}
-          />
+          <img className="biome-image" src={`/assets/world/${biome[2]}.png`} alt={biome[0]} />
           <h4 className="biome-name">{biome[0]}</h4>
         </div>
       </>
@@ -117,9 +100,7 @@ export const Biomes: React.FC<{ spawnList: MixedRegion[] }> = ({
     return (
       <NavLink
         key={biome[1]}
-        to={`/${weatherID.includes(biome[1]) ? "weather" : "regions"}/${
-          biome[2]
-        }`}
+        to={`/${weatherID.includes(biome[1]) ? "weather" : "regions"}/${biome[2]}`}
         style={{ textDecoration: "none" }}
       >
         <div {...containerProps}>{content}</div>
@@ -148,9 +129,7 @@ export const Biomes: React.FC<{ spawnList: MixedRegion[] }> = ({
           e.preventDefault();
         }}
       >
-        {spawnList.map((biome, index) =>
-          renderBiomeItem(biomeToElement(biome), index)
-        )}
+        {spawnList.map((biome, index) => renderBiomeItem(biomeToElement(biome), index))}
       </button>
     </OverlayScrollbarsComponent>
   );

@@ -1,11 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import {
-  Slime,
-  slimesList,
-  slimesText,
-  slimepedia,
-  specialSlimes,
-} from "../data/slimes";
+import { Slime, slimesList, slimesText, slimepedia, specialSlimes } from "../data/slimes";
 import { NavButton } from "../components/NavButton";
 import { Biomes } from "../components/Biomes";
 import { foodList, foodTypeList, foodTypeBlacklist } from "../data/food";
@@ -28,13 +22,7 @@ interface SlimeDetailsProps {
 const getSlimeSpawnlist = (slime: Slime | null): (Region | Weather)[] => {
   if (slime === null) return [];
   if (specialSlimes.includes(slime))
-    return [
-      Region.Fields,
-      Region.Strand,
-      Region.Valley,
-      Region.Bluffs,
-      Region.Labyrinth,
-    ];
+    return [Region.Fields, Region.Strand, Region.Valley, Region.Bluffs, Region.Labyrinth];
   const spawnList: (Region | Weather)[] = [];
   for (const [region, regionElement] of Object.entries(regionElements))
     if (regionElement[0].includes(slime)) spawnList.push(region as Region);
@@ -161,12 +149,7 @@ const SlimeDetails: React.FC<SlimeDetailsProps> = ({ selectedSlime }) => {
     };
   };
 
-  const littleBoxList: LittleBoxProps[] = [
-    buildDietBox(),
-    buildFavFoodBox(),
-    buildLargoBox(),
-    buildToyBox(),
-  ];
+  const littleBoxList: LittleBoxProps[] = [buildDietBox(), buildFavFoodBox(), buildLargoBox(), buildToyBox()];
 
   return (
     <PediaInfo
@@ -186,10 +169,7 @@ interface SlimeDescriptionProps {
   topBtn: boolean;
 }
 
-const SlimeDescription: React.FC<SlimeDescriptionProps> = ({
-  slimepediaEntry,
-  topBtn,
-}) => (
+const SlimeDescription: React.FC<SlimeDescriptionProps> = ({ slimepediaEntry, topBtn }) => (
   <div className={"desc " + (topBtn ? "shown-desc" : "hidden-desc")}>
     <div className="desc-title">
       <img src="/assets/misc/pediaslime.png" alt="Slimeology" />
@@ -212,21 +192,18 @@ const SlimeDescription: React.FC<SlimeDescriptionProps> = ({
 export const Slimes = () => {
   const { slime: slimeName } = useParams();
 
-  const slime = Object.values(Slime).includes(slimeName as Slime)
-    ? (slimeName as Slime)
-    : null;
+  const slime = Object.values(Slime).includes(slimeName as Slime) ? (slimeName as Slime) : null;
   const [topBtn, setTopBtn] = useState(false);
   useEffect(() => setTopBtn(false), [slime]);
   const slimepediaEntry: [string, string, string] = useMemo(
     () => (slime === null ? ["", "", ""] : slimepedia[slime]),
-    [slime]
+    [slime],
   );
   if (slime === null && slimeName !== undefined) {
     return <Navigate to="/slimes" replace />;
   }
 
-  document.title =
-    (slime ? slimesList[slime][0] : "Slimes") + " - Slimepedia 2";
+  document.title = (slime ? slimesList[slime][0] : "Slimes") + " - Slimepedia 2";
 
   return (
     <div>
@@ -241,11 +218,7 @@ export const Slimes = () => {
         defer
       >
         {Object.values(Slime).map((slimeName) => (
-          <NavLink
-            to={`/slimes/${slimeName}`}
-            style={{ textDecoration: "none" }}
-            key={slimeName}
-          >
+          <NavLink to={`/slimes/${slimeName}`} style={{ textDecoration: "none" }} key={slimeName}>
             <NavButton
               key={slimeName}
               icon={`slimes/${slimeName}`}
@@ -256,12 +229,7 @@ export const Slimes = () => {
           </NavLink>
         ))}
       </OverlayScrollbarsComponent>
-      <div
-        className={
-          "box-presentation" +
-          (topBtn ? " hidden-infos" : "")
-        }
-      >
+      <div className={"box-presentation" + (topBtn ? " hidden-infos" : "")}>
         <SlimeDetails selectedSlime={slime} />
         <button
           className={"arrow-btn " + (topBtn ? "top-btn" : "bot-btn")}

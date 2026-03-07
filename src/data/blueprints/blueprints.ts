@@ -170,10 +170,7 @@ export const unlockRequirements: { [key in UnlockRequirementNames]: [string, str
   ghost: ["Found with roaming Ghost Drones", "misc/ghostdroneface"],
 };
 
-export function getEnumValue<T extends object>(
-  enumObject: T,
-  element: string | undefined,
-): T[keyof T] | null {
+export function getEnumValue<T extends object>(enumObject: T, element: string | undefined): T[keyof T] | null {
   if (!element) {
     return null;
   }

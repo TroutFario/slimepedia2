@@ -76,12 +76,7 @@ export const buildingUpgrades: {
       425,
       "A solar shield will encase a corral in a dim shade, protecting slimes sensitive to light.",
     ],
-    [
-      "musicbox",
-      "Music Box",
-      350,
-      "The music box plays a soothing tune that greatly reduces slime agitation.",
-    ],
+    ["musicbox", "Music Box", 350, "The music box plays a soothing tune that greatly reduces slime agitation."],
     [
       "feeder",
       "Auto-Feeder",
@@ -116,12 +111,7 @@ export const buildingUpgrades: {
     ],
   ],
   [Building.Coop]: [
-    [
-      "coophighwalls",
-      "High Walls",
-      200,
-      "Helps prevent chickens from flying the coop.",
-    ],
+    ["coophighwalls", "High Walls", 200, "Helps prevent chickens from flying the coop."],
     [
       "grass",
       "Spring Grass",
@@ -162,27 +152,11 @@ export const buildingUpgrades: {
       1200,
       "A plort collector will vacuum up one type of plort in an incinerator at regular intervals, depositing them into a storage tank, so long as space is available.",
     ],
-
   ],
   [Building.Silo]: [
-    [
-      "additional1",
-      "Additional storage",
-      500,
-      "A silo can have up to four ports for storing plorts and resources.",
-    ],
-    [
-      "additional2",
-      "Additional storage",
-      500,
-      "A silo can have up to four ports for storing plorts and resources.",
-    ],
-    [
-      "additional3",
-      "Additional storage",
-      500,
-      "A silo can have up to four ports for storing plorts and resources.",
-    ],
+    ["additional1", "Additional storage", 500, "A silo can have up to four ports for storing plorts and resources."],
+    ["additional2", "Additional storage", 500, "A silo can have up to four ports for storing plorts and resources."],
+    ["additional3", "Additional storage", 500, "A silo can have up to four ports for storing plorts and resources."],
   ],
 };
 

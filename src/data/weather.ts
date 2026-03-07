@@ -17,17 +17,7 @@ export const weatherList: {
     [string, string][],
   ];
 } = {
-  [Weather.Clear]: [
-    "Clear Skies",
-    "se",
-    "Select a weather to get it's informations",
-    "",
-    [],
-    null,
-    [],
-    false,
-    [],
-  ],
+  [Weather.Clear]: ["Clear Skies", "se", "Select a weather to get it's informations", "", [], null, [], false, []],
   [Weather.Rain]: [
     "Rain",
     "ra",
@@ -76,10 +66,7 @@ export const weatherList: {
     [Ranch.Conservatory, Region.Fields, Region.Strand, Region.Valley, Region.Bluffs],
     true,
     [
-      [
-        "resources/glass",
-        "Storm Glass and Lightning Mote can be found where lightning strikes",
-      ],
+      ["resources/glass", "Storm Glass and Lightning Mote can be found where lightning strikes"],
       ["misc/energy", "Energy is boosted when struck by lightning"],
     ],
   ],
@@ -143,22 +130,10 @@ export const weatherList: {
     [Ranch.Conservatory, Region.Fields, Region.Strand, Region.Valley, Region.Bluffs],
     false,
     [
-      [
-        "slimes/pink",
-        "Pink Slimes will fall from the sky among others in specific regions:",
-      ],
-      [
-        "world/valley",
-        "Rock and Tabby Slimes will fall from the sky in the Ember Valley",
-      ],
-      [
-        "world/strand",
-        "Angler and Honey Slimes will fall from the sky in the Starlight Strand",
-      ],
-      [
-        "world/bluffs",
-        "Cotton and Saber Slimes will fall from the sky in the Powderfall Bluffs",
-      ],
+      ["slimes/pink", "Pink Slimes will fall from the sky among others in specific regions:"],
+      ["world/valley", "Rock and Tabby Slimes will fall from the sky in the Ember Valley"],
+      ["world/strand", "Angler and Honey Slimes will fall from the sky in the Starlight Strand"],
+      ["world/bluffs", "Cotton and Saber Slimes will fall from the sky in the Powderfall Bluffs"],
     ],
   ],
 };

@@ -45,25 +45,18 @@ export const Blueprints: React.FC = () => {
           </NavLink>
           <NavLink
             to="/blueprints/utility"
-            className={`blueprints-tab${
-              tab === BlueprintType.UTILITY ? " selected" : ""
-            }`}
+            className={`blueprints-tab${tab === BlueprintType.UTILITY ? " selected" : ""}`}
           >
             <img src="/assets/misc/utility.png" alt="Utility" />
             <h1>Utility</h1>
           </NavLink>
-          <NavLink
-            to="/blueprints/warp"
-            className={`blueprints-tab${tab === BlueprintType.WARP ? " selected" : ""}`}
-          >
+          <NavLink to="/blueprints/warp" className={`blueprints-tab${tab === BlueprintType.WARP ? " selected" : ""}`}>
             <img src="/assets/misc/warp.png" alt="Warp Tech" />
             <h1>Warp Tech</h1>
           </NavLink>
           <NavLink
             to="/blueprints/decoration"
-            className={`blueprints-tab${
-              tab === BlueprintType.DECORATION ? " selected" : ""
-            }`}
+            className={`blueprints-tab${tab === BlueprintType.DECORATION ? " selected" : ""}`}
           >
             <img src="/assets/misc/decoration.png" alt="Decoration" />
             <h1>Decoration</h1>

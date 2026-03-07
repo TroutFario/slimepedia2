@@ -19,11 +19,7 @@ export const Header: React.FC = () => {
 
   return (
     <header className="slimepedia-header">
-      <img
-        src={`/assets/slimes/${darkMode ? "phosphor" : "pink"}.png`}
-        className="slimepedia-logo"
-        alt="Slime Logo"
-      />
+      <img src={`/assets/slimes/${darkMode ? "phosphor" : "pink"}.png`} className="slimepedia-logo" alt="Slime Logo" />
       <h1>Slimepedia 2</h1>
     </header>
   );

@@ -1,10 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import {
-  BlueprintItem,
-  BlueprintType,
-  recipeElements,
-} from "../../data/blueprints/blueprints";
+import { BlueprintItem, BlueprintType, recipeElements } from "../../data/blueprints/blueprints";
 import { useRecipeContext } from "../RecipeContext";
 import { upgradesList, UpgradeWithTier } from "../../data/blueprints/upgrades";
 import { utilitiesList, Utility } from "../../data/blueprints/utilities";
@@ -14,10 +10,7 @@ import { FaAngleDown, FaMinus, FaPlus, FaXmark } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import "../../css/Blueprints.css";
 
-const blueprintMatcher = (
-  blueprint: BlueprintItem | UpgradeWithTier,
-  type: BlueprintType
-) => {
+const blueprintMatcher = (blueprint: BlueprintItem | UpgradeWithTier, type: BlueprintType) => {
   switch (type) {
     case BlueprintType.UPGRADE:
       return upgradesList[blueprint as UpgradeWithTier];
@@ -34,16 +27,13 @@ export const CraftingList: React.FC<{
   name: BlueprintItem | null;
   type: BlueprintType;
 }> = ({ name, type }) => {
-  const { increaseBlueprint, triggerAnimation, currentElementRef } =
-    useRecipeContext();
+  const { increaseBlueprint, triggerAnimation, currentElementRef } = useRecipeContext();
   const [quantity, setQuantity] = useState<number>(1);
   useEffect(() => {
     setQuantity(1);
   }, [name]);
-  const increaseQuantity = () =>
-    setQuantity((prevQtty) => prevQtty < 99 ? prevQtty + 1 : 99);
-  const decreaseQuantity = () =>
-    setQuantity((prevQtty) => prevQtty > 1 ? prevQtty - 1 : 1);
+  const increaseQuantity = () => setQuantity((prevQtty) => (prevQtty < 99 ? prevQtty + 1 : 99));
+  const decreaseQuantity = () => setQuantity((prevQtty) => (prevQtty > 1 ? prevQtty - 1 : 1));
   const recipe = name ? blueprintMatcher(name, type)[2] : [];
   const elementRef = useRef<HTMLButtonElement | null>(null);
 
@@ -82,13 +72,7 @@ export const CraftingList: React.FC<{
       </div>
       {[...recipe].map(([ingredient, qtty]) => (
         <div key={ingredient}>
-          <NavLink
-            to={
-              recipeElements[ingredient][2] == null
-                ? ""
-                : `/${recipeElements[ingredient][2]}`
-            }
-          >
+          <NavLink to={recipeElements[ingredient][2] == null ? "" : `/${recipeElements[ingredient][2]}`}>
             <img
               src={`/assets/${recipeElements[ingredient][1]}.png`}
               alt={recipeElements[ingredient][0]}
@@ -106,22 +90,13 @@ export const CraftingList: React.FC<{
 const craftRecipeMatcher = (item: BlueprintItem, type: BlueprintType) => {
   switch (type) {
     case BlueprintType.UPGRADE:
-      return [
-        upgradesList[item as keyof typeof upgradesList][0],
-        upgradesList[item as keyof typeof upgradesList][2],
-      ];
+      return [upgradesList[item as keyof typeof upgradesList][0], upgradesList[item as keyof typeof upgradesList][2]];
     case BlueprintType.UTILITY:
-      return [
-        utilitiesList[item as Utility][0],
-        utilitiesList[item as Utility][2],
-      ];
+      return [utilitiesList[item as Utility][0], utilitiesList[item as Utility][2]];
     case BlueprintType.WARP:
       return [warpGadgets[item as Warp][0], warpGadgets[item as Warp][2]];
     case BlueprintType.DECORATION:
-      return [
-        decorationList[item as Decoration][0],
-        decorationList[item as Decoration][2],
-      ];
+      return [decorationList[item as Decoration][0], decorationList[item as Decoration][2]];
     default:
       throw new Error("Invalid blueprint type: " + type);
   }
@@ -140,10 +115,7 @@ export const RecipeMenu: React.FC = () => {
   const [recipeMenuToggle, setRecipeMenuToggle] = useState(false);
   return (
     <div className={`pin-button ${recipeMenuToggle ? " opened" : ""}`}>
-      <button
-        onClick={() => setRecipeMenuToggle(!recipeMenuToggle)}
-        ref={currentElementRef}
-      >
+      <button onClick={() => setRecipeMenuToggle(!recipeMenuToggle)} ref={currentElementRef}>
         <img src="/assets/misc/shop.png" alt="Shop icon" />
       </button>
       <div className="pin-header">
@@ -178,23 +150,14 @@ export const RecipeMenu: React.FC = () => {
           ) : (
             Array.from(blueprintList.keys()).map((blueprint: BlueprintItem) => {
               const type = blueprintList.get(blueprint)![0];
-              const name = craftRecipeMatcher(
-                blueprint,
-                type
-              )[0];
-              const currentType =
-                type === BlueprintType.DECORATION ? "deco" : "gadgets";
+              const name = craftRecipeMatcher(blueprint, type)[0];
+              const currentType = type === BlueprintType.DECORATION ? "deco" : "gadgets";
               return (
-                <div
-                  className="pin-element pin-blueprint-element"
-                  key={blueprint}
-                >
+                <div className="pin-element pin-blueprint-element" key={blueprint}>
                   <img
                     src={
                       type === BlueprintType.UPGRADE
-                        ? "/assets/upgrades/" +
-                          blueprint.replaceAll(/[^a-zA-Z]/g, "") +
-                          ".png"
+                        ? "/assets/upgrades/" + blueprint.replaceAll(/[^a-zA-Z]/g, "") + ".png"
                         : `/assets/${currentType}/${blueprint}.png`
                     }
                     alt="Icon of blueprint"
@@ -202,15 +165,9 @@ export const RecipeMenu: React.FC = () => {
                   <p>{name}: </p>
                   <FaMinus onClick={() => decreaseBlueprint(blueprint, 1)} />
                   <h3>{blueprintList.get(blueprint)![1]}</h3>
-                  <FaPlus
-                    onClick={() => increaseBlueprint(blueprint, type, 1)}
-                  />
+                  <FaPlus onClick={() => increaseBlueprint(blueprint, type, 1)} />
                   <button onClick={() => deleteBlueprint(blueprint)}>
-                    <img
-                      src="/assets/misc/trash.png"
-                      alt="Clear the blueprint"
-                      className="clear-item-img"
-                    />
+                    <img src="/assets/misc/trash.png" alt="Clear the blueprint" className="clear-item-img" />
                   </button>
                 </div>
               );
@@ -229,9 +186,7 @@ export const RecipeMenu: React.FC = () => {
             Array.from(craftList.keys()).map((item) => (
               <div key={item} className="pin-element pin-item-element">
                 <img
-                  src={`/assets/${
-                    recipeElements[item][1]
-                  }.png`}
+                  src={`/assets/${recipeElements[item][1]}.png`}
                   alt={recipeElements[item][0]}
                   title={recipeElements[item][0]}
                 />

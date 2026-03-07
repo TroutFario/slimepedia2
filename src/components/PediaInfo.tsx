@@ -45,19 +45,9 @@ export const PediaInfo: React.FC<PediaInfoProps> = ({
           <h2>{subtitle}</h2>
         </div>
         <div className="image-container">
-          <img
-            src={icon || "/assets/misc/empty.png"}
-            className="img-main"
-            alt={"Picture of " + title}
-          />
+          <img src={icon || "/assets/misc/empty.png"} className="img-main" alt={"Picture of " + title} />
         </div>
-        {plortIcon && (
-          <img
-            src={`/assets/plorts/${plortIcon}.png`}
-            className="img-plort"
-            alt={"Plort of " + title}
-          />
-        )}
+        {plortIcon && <img src={`/assets/plorts/${plortIcon}.png`} className="img-plort" alt={"Plort of " + title} />}
       </div>
       {littleBoxList.map((box, index) => (
         <LittleBox

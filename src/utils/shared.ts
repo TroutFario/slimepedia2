@@ -12,5 +12,5 @@ export const getImagePath = (folder: string, item: string | null) => {
 export const getDisplayName = (item: unknown, fallback: string = "None") => {
   if (!item) return fallback;
   if (Array.isArray(item)) return item[0] || fallback;
-  return typeof item === 'string' ? item : fallback;
+  return typeof item === "string" ? item : fallback;
 };

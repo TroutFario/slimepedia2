@@ -22,7 +22,8 @@
   --border-size: 1em;
   --animation-function: ease-in-out;
   color-scheme: light dark;
-  transition: background-color var(--animation-speed) var(--animation-function),
+  transition:
+    background-color var(--animation-speed) var(--animation-function),
     color var(--animation-speed) var(--animation-function);
 }
 
@@ -123,9 +124,9 @@ body {
   overflow: auto;
   scroll-behavior: smooth;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
 }
 
 h1,
@@ -139,7 +140,8 @@ a,
 div,
 nav,
 button {
-  transition: background-color var(--animation-speed) var(--animation-function),
+  transition:
+    background-color var(--animation-speed) var(--animation-function),
     color var(--animation-speed) var(--animation-function);
   margin: 0;
 }

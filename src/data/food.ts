@@ -36,11 +36,7 @@ export enum Food {
   Ash = "ash",
 }
 
-export const foodBlackList: (Food | null)[] = [
-  Food.RanchersnSlimes,
-  Food.Ash,
-  null,
-];
+export const foodBlackList: (Food | null)[] = [Food.RanchersnSlimes, Food.Ash, null];
 
 export enum FoodType {
   Any = "any",
@@ -53,11 +49,7 @@ export enum FoodType {
   RanchersnSlimes = "ranchersnslimes",
 }
 
-export const foodTypeBlacklist: FoodType[] = [
-  FoodType.Any,
-  FoodType.Ash,
-  FoodType.RanchersnSlimes,
-];
+export const foodTypeBlacklist: FoodType[] = [FoodType.Any, FoodType.Ash, FoodType.RanchersnSlimes];
 
 export const foodTypeList: { [key in FoodType]: [string, string] } = {
   [FoodType.Any]: ["Any", "Any"],
@@ -70,44 +62,43 @@ export const foodTypeList: { [key in FoodType]: [string, string] } = {
   [FoodType.RanchersnSlimes]: ["Ranchers and Slimes", "Ranchers and Slimes"],
 };
 
-export const foodList: { [key in Food]: [string, FoodType | null] } =
-  {
-    [Food.Carrot]: ["Carrot", FoodType.Veggies],
-    [Food.Lettuce]: ["Water Lettuce", FoodType.Veggies],
-    [Food.Beet]: ["Heart Beet", FoodType.Veggies],
-    [Food.Onion]: ["Odd Onion", FoodType.Veggies],
-    [Food.Tater]: ["Turbo Tater", FoodType.Veggies],
-    [Food.Pogo]: ["Pogofruit", FoodType.Fruits],
-    [Food.Cuberry]: ["Cuberry", FoodType.Fruits],
-    [Food.Mango]: ["Mint Mango", FoodType.Fruits],
-    [Food.Granite]: ["Pomegranite", FoodType.Fruits],
-    [Food.Pear]: ["Prickle Pear", FoodType.Fruits],
-    [Food.Cherry]: ["Polaricherry", FoodType.Fruits],
-    [Food.Chick]: ["Chickadoo", null],
-    [Food.ChickBriar]: ["Briar Chick", null],
-    [Food.ChickCandied]: ["Candied Chick", null],
-    [Food.ChickCluck]: ["Thundercluck Chick", null],
-    [Food.ChickPainted]: ["Painted Chick", null],
-    [Food.ChickSea]: ["Sea Chick", null],
-    [Food.ChickStony]: ["Stony Chick", null],
-    [Food.Hen]: ["Hen Hen", FoodType.Meat],
-    [Food.HenStony]: ["Stony Hen", FoodType.Meat],
-    [Food.HenSea]: ["Sea Hen", FoodType.Meat],
-    [Food.HenBriar]: ["Briar Hen", FoodType.Meat],
-    [Food.HenCluck]: ["Thundercluck Hen", FoodType.Meat],
-    [Food.HenPainted]: ["Painted Hen", FoodType.Meat],
-    [Food.HenCandied]: ["Candied Hen", FoodType.Meat],
-    [Food.Rooster]: ["Rooster", FoodType.Meat],
-    [Food.HenElder]: ["Elder Hen", FoodType.Meat],
-    [Food.RoosterElder]: ["Elder Rooster", FoodType.Meat],
-    [Food.Water]: ["Water", FoodType.Water],
-    [Food.Nectar]: ["Moondew Nectar", FoodType.Nectar],
-    [Food.UnstableFruit]: ["Unstable Fruit", FoodType.Fruits],
-    [Food.UnstableVeggie]: ["Unstable Veggie", FoodType.Veggies],
-    [Food.UnstableMeat]: ["Unstable Meat", FoodType.Meat],
-    [Food.RanchersnSlimes]: ["Ranchers and Slimes", FoodType.RanchersnSlimes],
-    [Food.Ash]: ["Ash", FoodType.Ash],
-  };
+export const foodList: { [key in Food]: [string, FoodType | null] } = {
+  [Food.Carrot]: ["Carrot", FoodType.Veggies],
+  [Food.Lettuce]: ["Water Lettuce", FoodType.Veggies],
+  [Food.Beet]: ["Heart Beet", FoodType.Veggies],
+  [Food.Onion]: ["Odd Onion", FoodType.Veggies],
+  [Food.Tater]: ["Turbo Tater", FoodType.Veggies],
+  [Food.Pogo]: ["Pogofruit", FoodType.Fruits],
+  [Food.Cuberry]: ["Cuberry", FoodType.Fruits],
+  [Food.Mango]: ["Mint Mango", FoodType.Fruits],
+  [Food.Granite]: ["Pomegranite", FoodType.Fruits],
+  [Food.Pear]: ["Prickle Pear", FoodType.Fruits],
+  [Food.Cherry]: ["Polaricherry", FoodType.Fruits],
+  [Food.Chick]: ["Chickadoo", null],
+  [Food.ChickBriar]: ["Briar Chick", null],
+  [Food.ChickCandied]: ["Candied Chick", null],
+  [Food.ChickCluck]: ["Thundercluck Chick", null],
+  [Food.ChickPainted]: ["Painted Chick", null],
+  [Food.ChickSea]: ["Sea Chick", null],
+  [Food.ChickStony]: ["Stony Chick", null],
+  [Food.Hen]: ["Hen Hen", FoodType.Meat],
+  [Food.HenStony]: ["Stony Hen", FoodType.Meat],
+  [Food.HenSea]: ["Sea Hen", FoodType.Meat],
+  [Food.HenBriar]: ["Briar Hen", FoodType.Meat],
+  [Food.HenCluck]: ["Thundercluck Hen", FoodType.Meat],
+  [Food.HenPainted]: ["Painted Hen", FoodType.Meat],
+  [Food.HenCandied]: ["Candied Hen", FoodType.Meat],
+  [Food.Rooster]: ["Rooster", FoodType.Meat],
+  [Food.HenElder]: ["Elder Hen", FoodType.Meat],
+  [Food.RoosterElder]: ["Elder Rooster", FoodType.Meat],
+  [Food.Water]: ["Water", FoodType.Water],
+  [Food.Nectar]: ["Moondew Nectar", FoodType.Nectar],
+  [Food.UnstableFruit]: ["Unstable Fruit", FoodType.Fruits],
+  [Food.UnstableVeggie]: ["Unstable Veggie", FoodType.Veggies],
+  [Food.UnstableMeat]: ["Unstable Meat", FoodType.Meat],
+  [Food.RanchersnSlimes]: ["Ranchers and Slimes", FoodType.RanchersnSlimes],
+  [Food.Ash]: ["Ash", FoodType.Ash],
+};
 
 export const foodDescription: { [key in Food]: string } = {
   [Food.Carrot]: "Next to a vacpack, it's a rancher's best friend.",
@@ -281,5 +272,5 @@ export const foodpedia: { [key in Food]: [string, string] } = {
     "While unable to be used for regular ranching, unstable resources do seem to have unique interactions with the slimes within the Grey Labyrinth. It will take an intrepid slime scientist or adventurous rancher to find out how these disrupted resources impact the normal slime digestive process. Due to their reality-bending energies, unstable resources directly conflict with warp technology. They cannot be teleported and even prevent ranchers from using warp technology themselves as long as unstable resources are within their vac tanks.",
   ],
   [Food.RanchersnSlimes]: ["", ""],
-  [Food.Ash]: ["", ""]
+  [Food.Ash]: ["", ""],
 };

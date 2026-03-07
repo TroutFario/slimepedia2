@@ -4,26 +4,14 @@ import { Ranch, Region, Resource, Weather } from "./enums";
 export { Ranch, Region, Resource, Weather } from "./enums";
 
 export const resourceList: { [key in Resource]: [string, string, MixedRegion[]] } = {
-  [Resource.Primordy]: [
-    "Primordy Oil",
-    "This stuff is pre-pre-prehistoric.",
-    [Region.Valley],
-  ],
-  [Resource.Brine]: [
-    "Deep Brine",
-    "Salt of the earth kind of stuff.",
-    [Ranch.Conservatory, Region.Fields],
-  ],
+  [Resource.Primordy]: ["Primordy Oil", "This stuff is pre-pre-prehistoric.", [Region.Valley]],
+  [Resource.Brine]: ["Deep Brine", "Salt of the earth kind of stuff.", [Ranch.Conservatory, Region.Fields]],
   [Resource.Sand]: [
     "Silky Sand",
     "The finest, smoothest sand you'll ever see. Rubbish for sand castles.",
     [Region.Strand, Region.Valley],
   ],
-  [Resource.Lava]: [
-    "Lava Dust",
-    "A survey on the state of this matter answered 'undecided'.",
-    [Region.Valley],
-  ],
+  [Resource.Lava]: ["Lava Dust", "A survey on the state of this matter answered 'undecided'.", [Region.Valley]],
   [Resource.Wax]: [
     "Buzz Wax",
     "Can be used to make a great candle if you enjoy the smell of bee abdominal glands.",
@@ -49,79 +37,32 @@ export const resourceList: { [key in Resource]: [string, string, MixedRegion[]] 
     "Very strange, but even more valuable.",
     [Region.Fields, Region.Strand, Region.Valley, Region.Bluffs, Region.Labyrinth],
   ],
-  [Resource.Fossil]: [
-    "Slime Fossil",
-    "If history could smile, it would look like this.",
-    [Region.Bluffs],
-  ],
-  [Resource.Snowflake]: [
-    "Perfect Snowflake",
-    "They made all other snowflakes feel jealous.",
-    [Region.Bluffs],
-  ],
-  [Resource.Sunsap]: [
-    "Sun Sap",
-    "So beautiful that staring at it too long will hurt your eyes.",
-    [Region.Bluffs],
-  ],
-  [Resource.Mote]: [
-    "Lightning Mote",
-    "A scintillating speck of storm.",
-    [Weather.Lightning],
-  ],
-  [Resource.Glass]: [
-    "Storm Glass",
-    "When the sky welds the earth.",
-    [Weather.Lightning],
-    ],
-  [Resource.Drift]: [
-    "Drift Crystal",
-    "Drifting away on the wind.",
-    [Weather.Wind],
-  ],
-  [Resource.Magma]: [
-    "Magma Comb",
-    "A new level of spicy honey.",
-    [Region.Labyrinth],
-    ],
-  [Resource.Aqua]: [
-    "Aqua Glass",
-    "A different kind of hard water.",
-    [Region.Labyrinth],
-  ],
-  [Resource.Dream]: [
-    "Dream Bubble",
-    "Dream a little dream.",
-    [Region.Labyrinth],
-  ],
-  [Resource.Petal]: [
-    "Tin Petal",
-    "Nature is metal.",
-    [Region.Labyrinth],
-    ],
-  [Resource.Indigo]: [
-    "Black Indigonium",
-    "Dark as midnight.",
-    [Region.Labyrinth],
-    ],
+  [Resource.Fossil]: ["Slime Fossil", "If history could smile, it would look like this.", [Region.Bluffs]],
+  [Resource.Snowflake]: ["Perfect Snowflake", "They made all other snowflakes feel jealous.", [Region.Bluffs]],
+  [Resource.Sunsap]: ["Sun Sap", "So beautiful that staring at it too long will hurt your eyes.", [Region.Bluffs]],
+  [Resource.Mote]: ["Lightning Mote", "A scintillating speck of storm.", [Weather.Lightning]],
+  [Resource.Glass]: ["Storm Glass", "When the sky welds the earth.", [Weather.Lightning]],
+  [Resource.Drift]: ["Drift Crystal", "Drifting away on the wind.", [Weather.Wind]],
+  [Resource.Magma]: ["Magma Comb", "A new level of spicy honey.", [Region.Labyrinth]],
+  [Resource.Aqua]: ["Aqua Glass", "A different kind of hard water.", [Region.Labyrinth]],
+  [Resource.Dream]: ["Dream Bubble", "Dream a little dream.", [Region.Labyrinth]],
+  [Resource.Petal]: ["Tin Petal", "Nature is metal.", [Region.Labyrinth]],
+  [Resource.Indigo]: ["Black Indigonium", "Dark as midnight.", [Region.Labyrinth]],
   [Resource.Royal]: [
     "Royal Jelly",
     "The king of all jellies... that is, until you meet the queen.",
     [Region.Labyrinth],
   ],
-  [Resource.Snowball]: [
-    "Snowball",
-    "Slime-approved way to have fun and chill out.",
-    [Region.Bluffs],
-  ],
-  [Resource.Prisma]: [
-    "Radiant Plort",
-    "Prismatic plorts of possibilities with a purpose.",
+  [Resource.Snowball]: ["Snowball", "Slime-approved way to have fun and chill out.", [Region.Bluffs]],
+  [Resource.UnstableResources]: [
+    "Unstable Resources",
+    "Unnatural objects with a slippery grasp on reality.",
     [Region.Labyrinth],
   ],
+  [Resource.Prisma]: ["Radiant Plort", "Prismatic plorts of possibilities with a purpose.", [Region.Labyrinth]],
 };
 
-export const resourcePedia: { [key: string]: string } = {
+export const resourcePedia: { [key in Resource]: string } = {
   [Resource.Primordy]:
     "Found deep below the surface of the Rainbow Island's quarries and magma fields, primordy oil is an ancient substance containing a wide array of organic compounds, making it perfect as a base for many Slime Science creations.",
   [Resource.Brine]:
@@ -166,6 +107,8 @@ export const resourcePedia: { [key: string]: string } = {
     "The royal jelly found in the hives of the Grey Labyrinth is as special as it is unnaturally sweet compared to other varieties. It's believed that this is a result of bees collectiong small deposits of slime from honey slimes and working it into their royal jelly mixture. If a rancher is lucky enough to acquire some, they'll find its unique properties are very valuable in certain Slime Science endeavors.",
   [Resource.Snowball]:
     "Curiously, snowballs can be found fully formed in neat piles within frigid regions of the Far, Far Range. While it is unknown how or why these piles were formed, all signed point towards a symbiotic relationship between slimes and things that are a super fun, awesome time in snow. Nature is truly magical.",
+  [Resource.UnstableResources]:
+    "Caught and stretched across reality, matter, and time, resources affected by the prisma disruptions of the Grey Labyrinth are too volatile to exist for long in the natural world. Eventually, these resources will pop out of existence, or even a rancher's vac tank, to escape the confines of reality and mundane three dimensions.\nBasically, they've got too many reality appointments and they are constantly rushing to get to their next one. ",
   [Resource.Prisma]:
     "Unlike other objects affected by prisma disruptions, these plorts appear to be especially sensitive to the temporal distortions that appear throughout the Grey Labyrinth. The ancient beings that created the Grey Labyrinth seem to have had a special use in mind for these plorts when they designed the megastructure. Perhaps the plorts themselves are the key to delving further into the structure's mysteries?",
 };

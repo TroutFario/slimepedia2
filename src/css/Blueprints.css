@@ -62,7 +62,8 @@
   right: 1vh;
   background-color: #f45d8c;
   border-radius: 50px;
-  transition: border-radius var(--animation-speed) var(--animation-function),
+  transition:
+    border-radius var(--animation-speed) var(--animation-function),
     width var(--animation-speed) var(--animation-function),
     height var(--animation-speed) var(--animation-function),
     background-color var(--animation-speed) var(--animation-function);
@@ -133,7 +134,8 @@
   background-color: var(--item-color);
   overflow: hidden;
   transform: scale(1);
-  transition: background-color var(--animation-speed) var(--animation-function),
+  transition:
+    background-color var(--animation-speed) var(--animation-function),
     transform var(--animation-speed) var(--animation-function);
 }
 
@@ -166,7 +168,8 @@
   cursor: pointer;
   font-size: 1.8em;
   transform: scale(1);
-  transition: fill var(--animation-speed) var(--animation-function),
+  transition:
+    fill var(--animation-speed) var(--animation-function),
     transform var(--animation-speed) var(--animation-function);
 }
 
@@ -264,7 +267,8 @@
 }
 
 .pin-element > svg {
-  transition: fill var(--animation-speed) var(--animation-function),
+  transition:
+    fill var(--animation-speed) var(--animation-function),
     transform var(--animation-speed) var(--animation-function);
 }
 
@@ -329,7 +333,8 @@
   border: none;
   background-color: var(--item-color);
   cursor: var(--pointer-style);
-  transition: background-color var(--animation-speed) var(--animation-function),
+  transition:
+    background-color var(--animation-speed) var(--animation-function),
     transform var(--animation-speed) var(--animation-function);
 }
 
@@ -343,7 +348,8 @@
 .quantity-selector > svg {
   height: 100%;
   cursor: var(--pointer-style);
-  transition: fill var(--animation-speed) var(--animation-function),
+  transition:
+    fill var(--animation-speed) var(--animation-function),
     transform var(--animation-speed) var(--animation-function);
   font-size: 1.7em;
 }
@@ -523,7 +529,8 @@
   height: 50px;
   width: 50px;
   cursor: var(--pointer-style);
-  transition: fill var(--animation-speed) var(--animation-function),
+  transition:
+    fill var(--animation-speed) var(--animation-function),
     transform var(--animation-speed) var(--animation-function);
 }
 

@@ -6,11 +6,7 @@ export const ErrorPage = () => {
 
   return (
     <header className="slimepedia-header">
-      <img
-        src="/assets/slimes/glitch.png"
-        className="slimepedia-logo"
-        alt="Pink Slime Logo"
-      />
+      <img src="/assets/slimes/glitch.png" className="slimepedia-logo" alt="Pink Slime Logo" />
       <h1>404: Page not found</h1>
       <h2>
         <NavLink to="/">Go back to main menu</NavLink>

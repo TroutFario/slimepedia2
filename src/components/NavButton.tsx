@@ -25,11 +25,7 @@ export const NavButton: React.FC<NavButtonProps> = ({
   );
 
   useEffect(() => {
-    setTiltingSafe(
-      ["left", "none", "right", "random"].includes(tilting)
-        ? tilting
-        : "random",
-    );
+    setTiltingSafe(["left", "none", "right", "random"].includes(tilting) ? tilting : "random");
   }, [tilting]);
 
   const randomHandler = () => {
@@ -59,11 +55,7 @@ export const NavButton: React.FC<NavButtonProps> = ({
       }
     >
       <div className="image-frame">
-        <img
-          src={`/assets/${icon}.png`}
-          alt={name}
-          className={`image-button img-btn-${randomNumber}`}
-        />
+        <img src={`/assets/${icon}.png`} alt={name} className={`image-button img-btn-${randomNumber}`} />
       </div>
       <p>{name}</p>
     </button>

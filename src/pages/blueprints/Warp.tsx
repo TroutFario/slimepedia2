@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  BlueprintType,
-  unlockRequirements,
-} from "../../data/blueprints/blueprints";
-import {
-  Warp,
-  warpDescriptions,
-  warpGadgets,
-  warpNames,
-} from "../../data/blueprints/warp";
+import { BlueprintType, unlockRequirements } from "../../data/blueprints/blueprints";
+import { Warp, warpDescriptions, warpGadgets, warpNames } from "../../data/blueprints/warp";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { NavLink, useParams } from "react-router-dom";
 import NavButton from "../../components/NavButton";
@@ -27,7 +19,7 @@ const WarpInfos: React.FC<{ warp: Warp | null }> = ({ warp }) => {
       alt: "No warp tech selected",
       title: "Unlock Requirements",
     });
-  } else{
+  } else {
     title = warpGadgets[warp][0];
     subtitle = warpDescriptions[warp];
     icon = `/assets/gadgets/${warp}.png`;
@@ -37,7 +29,7 @@ const WarpInfos: React.FC<{ warp: Warp | null }> = ({ warp }) => {
       title: "Unlock Requirements",
       subtitle: unlockRequirements[warpGadgets[warp][1]][0],
     });
-  } 
+  }
   return (
     <div className={"blueprint-infos box-presentation"}>
       <PediaInfo
@@ -61,10 +53,7 @@ export const WarpPage: React.FC = () => {
   const { blueprint: warpName } = useParams();
   const warp = (warpName as Warp) ?? null;
 
-  document.title =
-    warp === null
-      ? "Blueprints - Slimepedia"
-      : warpGadgets[warp][0] + " - Slimepedia";
+  document.title = warp === null ? "Blueprints - Slimepedia" : warpGadgets[warp][0] + " - Slimepedia";
 
   return (
     <>
@@ -79,11 +68,7 @@ export const WarpPage: React.FC = () => {
         className="blueprint-list"
       >
         {warpNames.map((warpName) => (
-          <NavLink
-            key={warpName}
-            to={`/blueprints/warp/${warpName}`}
-            className="blueprint-item"
-          >
+          <NavLink key={warpName} to={`/blueprints/warp/${warpName}`} className="blueprint-item">
             <NavButton
               key={warpName}
               name={warpGadgets[warpName][0]}

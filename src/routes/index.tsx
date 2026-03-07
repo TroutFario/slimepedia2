@@ -4,9 +4,7 @@ import { NavBar } from "../components/NavBar";
 import { ErrorPage } from "../pages/ErrorPage";
 import MusicPage from "../pages/Music";
 
-function lazyWithDefault<T extends ComponentType>(
-  factory: () => Promise<{ default: T }>,
-): LazyExoticComponent<T> {
+function lazyWithDefault<T extends ComponentType>(factory: () => Promise<{ default: T }>): LazyExoticComponent<T> {
   return React.lazy(factory);
 }
 
@@ -42,14 +40,11 @@ export default function Index() {
           <Route path="/blueprints" element={<Blueprints />} />
           <Route path="/blueprints/:tab" element={<Blueprints />} />
           <Route path="/blueprints/:tab/:blueprint" element={<Blueprints />} />
-          <Route
-            path="/blueprints/:tab/:blueprint/:tier"
-            element={<Blueprints />}
-          />
+          <Route path="/blueprints/:tab/:blueprint/:tier" element={<Blueprints />} />
           <Route path="/buildings" element={<Buildings />} />
           <Route path="/buildings/:building" element={<Buildings />} />
           <Route path="/buildings/:building/:upgrade" element={<Buildings />} />
-          <Route path="/music" element={<MusicPage/>} />
+          <Route path="/music" element={<MusicPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Suspense>

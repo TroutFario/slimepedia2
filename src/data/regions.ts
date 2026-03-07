@@ -4,57 +4,30 @@ import { Region, Ranch, Resource } from "./enums";
 export { Region, Ranch, Resource } from "./enums";
 
 export const regionInfos: {
-  [key in Region]: [string, string, string, number,];
+  [key in Region]: [string, string, string, number];
 } = {
   [Region.Sea]: [
     "The Slime Sea",
     "se",
     "An expansive body of water and slime compound that's not fit for swimming, let alone drinking.",
-    0
+    0,
   ],
-  [Region.Fields]: [
-    "Rainbow Fields",
-    "rf",
-    "Shifting colors like a dream, fading just as quickly.",
-    18
-  ],
-  [Region.Strand]: [
-    "Starlight Strand",
-    "ss",
-    "A vision of dusk and dawn together as one.",
-    32
-  ],
-  [Region.Valley]: [
-    "Ember Valley",
-    "ev",
-    "The ancient world stirs beneath your feet with every step.",
-    33
-  ],
-  [Region.Bluffs]: [
-    "Powderfall Bluffs",
-    "pb",
-    "A lost era echoing trough halls of shimmering ice.",
-    24
-  ],
+  [Region.Fields]: ["Rainbow Fields", "rf", "Shifting colors like a dream, fading just as quickly.", 18],
+  [Region.Strand]: ["Starlight Strand", "ss", "A vision of dusk and dawn together as one.", 32],
+  [Region.Valley]: ["Ember Valley", "ev", "The ancient world stirs beneath your feet with every step.", 33],
+  [Region.Bluffs]: ["Powderfall Bluffs", "pb", "A lost era echoing trough halls of shimmering ice.", 24],
   [Region.Labyrinth]: [
     "The Grey Labyrinth",
     "gl",
     "An imposing layer cake whose depths hide ancient, prismatic secrets.",
-    25
+    25,
   ],
 };
 
 export const ranchInfos: {
   [key in Ranch]: [string, string, string, number, number, number];
 } = {
-  [Ranch.Conservatory]: [
-    "The Conservatory",
-    "co",
-    "Your gateway to a prismatic paradise.",
-    0,
-    8,
-    0,
-  ],
+  [Ranch.Conservatory]: ["The Conservatory", "co", "Your gateway to a prismatic paradise.", 0, 8, 0],
   [Ranch.Den]: [
     "The Den",
     "td",
@@ -97,25 +70,24 @@ export const ranchInfos: {
   ],
 };
 
-export const spawnLocationsList: { [key: string]: [string, string, boolean] } =
-  {
-    co: ["conservatory", "The Conservatory", true],
-    td: ["den", "The Den", true],
-    gu: ["gully", "The Gully", true],
-    ar: ["archway", "The Archway", true],
-    tp: ["tidepools", "The Tidepools", true],
-    ds: ["digsite", "The Digsite", true],
-    rf: ["fields", "Rainbow Fields", false],
-    ss: ["strand", "Starlight Strand", false],
-    ev: ["valley", "Ember Valley", false],
-    pb: ["bluffs", "Powderfall Bluffs", false],
-    gl: ["labyrinth", "Grey Labyrinth", false],
-    se: ["sea", "The Slime Sea", false],
-    ws: ["cyclone", "Cyclone", false],
-    ps: ["vine", "Vine Tangle", false],
-    ls: ["lightning", "Lightning Strike", false],
-    pm: ["shop", "Pronto Mart", false],
-  };
+export const spawnLocationsList: { [key: string]: [string, string, boolean] } = {
+  co: ["conservatory", "The Conservatory", true],
+  td: ["den", "The Den", true],
+  gu: ["gully", "The Gully", true],
+  ar: ["archway", "The Archway", true],
+  tp: ["tidepools", "The Tidepools", true],
+  ds: ["digsite", "The Digsite", true],
+  rf: ["fields", "Rainbow Fields", false],
+  ss: ["strand", "Starlight Strand", false],
+  ev: ["valley", "Ember Valley", false],
+  pb: ["bluffs", "Powderfall Bluffs", false],
+  gl: ["labyrinth", "Grey Labyrinth", false],
+  se: ["sea", "The Slime Sea", false],
+  ws: ["cyclone", "Cyclone", false],
+  ps: ["vine", "Vine Tangle", false],
+  ls: ["lightning", "Lightning Strike", false],
+  pm: ["shop", "Pronto Mart", false],
+};
 
 export const regionElements: {
   [key in Region]: [Slime[], Food[], (Resource | Slime | Food.Water)[]];
@@ -135,14 +107,7 @@ export const regionElements: {
       Food.HenElder,
       Food.RoosterElder,
     ],
-    [
-      Resource.Jelly,
-      Resource.Brine,
-      Resource.Diamond,
-      Slime.Pink,
-      Slime.Cotton,
-      Slime.Phosphor,
-    ],
+    [Resource.Jelly, Resource.Brine, Resource.Diamond, Slime.Pink, Slime.Cotton, Slime.Phosphor],
   ],
   [Region.Strand]: [
     [
@@ -269,14 +234,7 @@ export const regionElements: {
       Food.HenElder,
       Food.RoosterElder,
     ],
-    [
-      Food.Water,
-      Resource.Snowflake,
-      Resource.Sunsap,
-      Resource.Fossil,
-      Resource.Diamond,
-      Slime.Saber,
-    ],
+    [Food.Water, Resource.Snowflake, Resource.Sunsap, Resource.Fossil, Resource.Diamond, Slime.Saber],
   ],
   [Region.Labyrinth]: [
     [
@@ -323,8 +281,12 @@ export const regionElements: {
       Food.Cherry,
       Food.HenCandied,
       Food.ChickCandied,
+      Food.UnstableFruit,
+      Food.UnstableVeggie,
+      Food.UnstableMeat,
     ],
     [
+      Food.Water,
       Resource.Aqua,
       Resource.Magma,
       Resource.Indigo,
@@ -336,7 +298,7 @@ export const regionElements: {
       Resource.Diamond,
       Slime.Twin,
       Slime.Sloomber,
-      Slime.Hyper
+      Slime.Hyper,
     ],
   ],
   [Region.Sea]: [[], [], []],
@@ -384,10 +346,7 @@ export const regionPedia: { [key in Region]: string } = {
 export const ranchConnections: {
   [key in Ranch]: [(Region | Ranch)[], (Region | Ranch)[]];
 } = {
-  [Ranch.Conservatory]: [
-    [Region.Fields],
-    [Ranch.Den, Ranch.Gully, Ranch.Archway],
-  ],
+  [Ranch.Conservatory]: [[Region.Fields], [Ranch.Den, Ranch.Gully, Ranch.Archway]],
   [Ranch.Den]: [[Ranch.Conservatory], [Ranch.Digsite]],
   [Ranch.Gully]: [[Ranch.Conservatory], [Ranch.Tidepools]],
   [Ranch.Archway]: [[Ranch.Conservatory], []],
@@ -403,31 +362,23 @@ export const regionsConnections: {
   [Region.Valley]: [[Region.Fields], [Region.Bluffs, Region.Labyrinth]],
   [Region.Bluffs]: [[Region.Valley], []],
   [Region.Labyrinth]: [[Region.Strand, Region.Valley], []],
-  [Region.Sea]: [
-    [
-      Ranch.Conservatory,
-      Region.Fields,
-      Region.Strand,
-      Region.Valley,
-      Region.Bluffs,
-    ],
-    [],
-  ],
+  [Region.Sea]: [[Ranch.Conservatory, Region.Fields, Region.Strand, Region.Valley, Region.Bluffs], []],
 };
 
 export enum GLSection {
   WATERWORKS = "waterworks",
   LAVA = "lava",
-  LABYRINTH = "labyrinth",
+  HUB = "hub",
   DREAMLAND = "dreamland",
   TERRARIUM = "terrarium",
 }
+
 export const GLSectionTimecodes: { [key in GLSection]: [number, number, number, number] } = {
-  waterworks: [0, 5, 10, 15],
-  lava: [0, 30, 60, 90],
-  labyrinth: [0, 30, 60, 90],
-  dreamland: [0, 30, 60, 90],
-  terrarium: [0, 30, 60, 90],
+  waterworks: [0, 5, 5, 10],
+  lava: [95, 100, 110, 115],
+  hub: [15, 25, 70, 85],
+  dreamland: [30, 40, 55, 60],
+  terrarium: [160, 140, 130, 125],
 };
 
 export const regionsResourcesInfos: {
@@ -456,28 +407,16 @@ export const regionsResourcesInfos: {
   radiant: ["Radiant Ore", "resources/radiant", "/items/resources/radiant"],
   sand: ["Silky Sand", "resources/sand", "/items/resources/sand"],
   wax: ["Buzz Wax", "resources/wax", "/items/resources/wax"],
-  wildhoney: [
-    "Wild Honey",
-    "resources/wildhoney",
-    "/items/resources/wildhoney",
-  ],
+  wildhoney: ["Wild Honey", "resources/wildhoney", "/items/resources/wildhoney"],
   diamond: ["Strange Diamond", "resources/diamond", "/items/resources/diamond"],
   primordy: ["Primordy Oil", "resources/primordy", "/items/resources/primordy"],
   lava: ["Lava Dust", "resources/lava", "/items/resources/lava"],
-  snowflake: [
-    "Perfect Snowflake",
-    "resources/snowflake",
-    "/items/resources/snowflake",
-  ],
+  snowflake: ["Perfect Snowflake", "resources/snowflake", "/items/resources/snowflake"],
   sunsap: ["Sun Sap", "resources/sunsap", "/items/resources/sunsap"],
   fossil: ["Slime Fossil", "resources/fossil", "/items/resources/fossil"],
   aqua: ["Aqua Glass", "resources/aqua", "/items/resources/aqua"],
   magma: ["Magma Comb", "resources/magma", "/items/resources/magma"],
-  blackindigo: [
-    "Black Indigonium",
-    "resources/blackindigo",
-    "/items/resources/blackindigo",
-  ],
+  blackindigo: ["Black Indigonium", "resources/blackindigo", "/items/resources/blackindigo"],
   dream: ["Dream Bubble", "resources/dream", "/items/resources/dream"],
   petal: ["Tin Petal", "resources/petal", "/items/resources/petal"],
   royal: ["Royal Jelly", "resources/royal", "/items/resources/royal"],
@@ -491,9 +430,5 @@ export const regionsResourcesInfos: {
   spawnPogo: ["Pogofruit Trees", "food/pogo", "/food/pogo"],
   spawnCarrot: ["Carrot Patches", "food/carrot", "/food/carrot"],
   pond: ["Natural Ponds", "buildings/pond", "/buildings/pond"],
-  springpad: [
-    "Spring Pad",
-    "gadgets/springpad",
-    "/blueprints/utility/springpad",
-  ],
+  springpad: ["Spring Pad", "gadgets/springpad", "/blueprints/utility/springpad"],
 };

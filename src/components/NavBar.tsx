@@ -4,8 +4,7 @@ import NavButton from "./NavButton";
 
 const darkModeCheck = () => {
   const savedDarkMode: string | null = localStorage.getItem("darkMode");
-  if (savedDarkMode === null)
-    return globalThis.matchMedia("(prefers-color-scheme: dark)").matches;
+  if (savedDarkMode === null) return globalThis.matchMedia("(prefers-color-scheme: dark)").matches;
   return savedDarkMode === "dark";
 };
 
@@ -44,14 +43,7 @@ export const NavBar = () => {
     <nav className="box-layout">
       {navLinks.map(({ name, to, icon, tilting }) => (
         <NavLink style={noLink} to={to} key={to}>
-          {({ isActive }) => (
-            <NavButton
-              name={name}
-              icon={icon}
-              tilting={tilting}
-              selected={isActive}
-            />
-          )}
+          {({ isActive }) => <NavButton name={name} icon={icon} tilting={tilting} selected={isActive} />}
         </NavLink>
       ))}
       <div className="theme-btn-container">

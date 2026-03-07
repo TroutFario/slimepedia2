@@ -42,6 +42,7 @@ export enum Resource {
   Wax = "wax",
   Honey = "wildhoney",
   Jelly = "jelly",
+  UnstableResources = "unstableresources",
   Radiant = "radiant",
   Diamond = "diamond",
   Fossil = "fossil",
