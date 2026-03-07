@@ -257,8 +257,8 @@
   grid-template-areas:
     "pedia cost slots"
     "pedia connections connections"
-    "blank connections connections"
-    "blank pods special";
+    "pedia connections connections"
+    "pedia pods special";
 }
 
 .ranch-description > div,
