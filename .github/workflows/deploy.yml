@@ -17,7 +17,16 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            set -e
+
             cd /home/${{ secrets.SSH_USER }}/slimepedia2
-            git pull origin main
-            npm install
+
+            git fetch origin
+            git reset --hard origin/main
+            git clean -fd
+
+            source ~/.nvm/nvm.sh
+            nvm use
+
+            npm ci
             npm run build
