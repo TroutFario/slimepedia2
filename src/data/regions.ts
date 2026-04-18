@@ -68,6 +68,14 @@ export const ranchInfos: {
     4,
     4500,
   ],
+  [Ranch.Sanctuary]: [
+    "The Sanctuary",
+    "sa",
+    "A secret hideaway for slimes that need a little extra care-taking...",
+    0,
+    9, // TODO: not sure
+    0
+  ]
 };
 
 export const spawnLocationsList: { [key: string]: [string, string, boolean] } = {
@@ -77,6 +85,7 @@ export const spawnLocationsList: { [key: string]: [string, string, boolean] } = 
   ar: ["archway", "The Archway", true],
   tp: ["tidepools", "The Tidepools", true],
   ds: ["digsite", "The Digsite", true],
+  sa: ["sanctuary", "The Sanctuary", true],
   rf: ["fields", "Rainbow Fields", false],
   ss: ["strand", "Starlight Strand", false],
   ev: ["valley", "Ember Valley", false],
@@ -311,6 +320,7 @@ export const ranchSpecials: { [key in Ranch]: string[] } = {
   [Ranch.Archway]: ["spawnPogo", "spawnCarrot"],
   [Ranch.Tidepools]: ["pond"],
   [Ranch.Digsite]: ["pond", "springpad"],
+  [Ranch.Sanctuary]: [] //TODO: add stuff
 };
 
 export const ranchPedia: { [key in Ranch]: string } = {
@@ -326,6 +336,8 @@ export const ranchPedia: { [key in Ranch]: string } = {
     "Perched on a low-lying peninsula, the Tidepools is like a vacation: a sandy getaway from a rancher's busy life in the conservatory. But slimes and other creatures like this place, too. Tall coral reef formations provide some respite from the sun, while shallow pools of water create an oasis for puddle slimes and other aquatic life.",
   [Ranch.Digsite]:
     "The Digsite is an expansion that revealed itself when a wall collapsed inside the Den, revealing an abandoned archaeological site. It's not clear what the excavator was searching for on the site's windswept cliffs, or if they ever discovered it.",
+  [Ranch.Sanctuary]:
+    "The Sanctuary is familliar and unfamillar at the same time: a brand new island, but one clearly cultivated by the people of the past who also created the Labyrinth, with an equally ancient facility build on it for an equally mysterious purpose.\nOn disembarking from the docks, an explorer is greeted wuth towering cliffs with beautiful yes strange symbols marked on them, and an  enormous, oddly radiant slime statue.\nSurrounded by the gently lapping waves of the Slime Sea, a sense of peace permeates the Sanctuary, and mossy old growth makes everything feel perfectly in the tune with nature.\nIts greater secret lie within, with plots for ranchers implying that this place may be used to care for slimes, and an unusual new friend to meet inside."
 };
 
 export const regionPedia: { [key in Region]: string } = {
@@ -352,12 +364,13 @@ export const ranchConnections: {
   [Ranch.Archway]: [[Ranch.Conservatory], []],
   [Ranch.Tidepools]: [[Ranch.Gully], []],
   [Ranch.Digsite]: [[Ranch.Den], []],
+  [Ranch.Sanctuary]: [[Region.Fields], []]
 };
 
 export const regionsConnections: {
   [key in Region]: [(Region | Ranch)[], (Region | Ranch)[]];
 } = {
-  [Region.Fields]: [[Ranch.Conservatory], [Region.Strand, Region.Valley]],
+  [Region.Fields]: [[Ranch.Conservatory], [Region.Strand, Region.Valley, Ranch.Sanctuary]],
   [Region.Strand]: [[Region.Fields], [Region.Labyrinth]],
   [Region.Valley]: [[Region.Fields], [Region.Bluffs, Region.Labyrinth]],
   [Region.Bluffs]: [[Region.Valley], []],

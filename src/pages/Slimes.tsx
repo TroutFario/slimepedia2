@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { Slime, slimesList, slimesText, slimepedia, specialSlimes } from "../data/slimes";
+import React, { useState, useEffect } from "react";
+import { Slime, SlimePediaProps, slimes, specialSlimes } from "../data/slimes";
 import { NavButton } from "../components/NavButton";
 import { Biomes } from "../components/Biomes";
-import { foodList, foodTypeList, foodTypeBlacklist } from "../data/food";
+import { foodList, dietBlacklist, dietList } from "../data/food";
 import { toyList } from "../data/toys";
 import { Navigate, NavLink, useParams } from "react-router-dom";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
@@ -11,7 +11,8 @@ import "../css/Pedia.css";
 import { Region, regionElements } from "../data/regions";
 import { Weather, weatherList } from "../data/weather";
 import { LittleBoxProps } from "../components/shared/LittleBox";
-import { PediaBoxLayout, PediaInfo } from "../components/PediaInfo";
+import { PediaInfo } from "../components/PediaInfo";
+import { PediaBoxLayout } from "../data/enums";
 
 const nonePath = "/assets/misc/none.png";
 const nonPlortSlimes = new Set([null, Slime.Lucky, Slime.Tarr]);
@@ -32,132 +33,80 @@ const getSlimeSpawnlist = (slime: Slime | null): (Region | Weather)[] => {
 };
 
 const SlimeDetails: React.FC<SlimeDetailsProps> = ({ selectedSlime }) => {
-  const isNoSlime = selectedSlime === null;
+  if (selectedSlime === null) {
+    const littleBoxList: LittleBoxProps[] = [
+      { title: "Diet" },
+      { title: "Favorite Food" },
+      { title: "Largoable"},
+      { title: "Favorite Toy" },
+    ];
+    return (
+      <PediaInfo
+        layout={PediaBoxLayout.TwoByTwo}
+        title="Select a slime"
+        subtitle="Click on a slime on the list to get their information"
+        icon="/assets/misc/empty.png"
+        plortIcon={undefined}
+        littleBoxList={littleBoxList}
+        BiomeComponent={<Biomes spawnList={getSlimeSpawnlist(selectedSlime)} />}
+      />
+    );
+  }
 
-  const currentSlimeList = isNoSlime ? null : slimesList[selectedSlime];
-  const foodType = currentSlimeList?.[1] ?? null;
-  const favFood = currentSlimeList?.[2] ?? null;
-  const isLargoable = currentSlimeList?.[3] ?? false;
-  const toy = currentSlimeList?.[4] ?? null;
+  const slime = slimes[selectedSlime];
 
-  const textOrNone = (value: string | null | number | undefined) =>
-    value === null || value === undefined ? "None" : String(value);
-
-  const buildDietBox = (): LittleBoxProps => {
-    let image: string;
-    if (isNoSlime) image = "/assets/food/any.png";
-    else if (foodType === null) image = nonePath;
-    else image = `/assets/food/${foodType}.png`;
-
-    let label: string;
-    if (isNoSlime) {
-      label = "No slime selected";
-    } else {
-      let val: string | undefined;
-      if (foodType == null) val = undefined;
-      else val = foodTypeList[foodType][0];
-      label = textOrNone(val);
+  const [radiantSlime, setRadiantSlime] = useState<boolean>(false);
+  useEffect(() => {
+    if (!slime || !slime.radiantable) {
+      setRadiantSlime(false);
     }
+  }, [selectedSlime]);
 
-    let link: string | null;
-    if (isNoSlime || foodType == null || foodTypeBlacklist.slice(1).includes(foodType)) {
-      link = null;
-    } else {
-      link = `/food/${foodType}`;
-    }
-    return {
-      image,
-      alt: label,
+  const littleBoxList: LittleBoxProps[] = [
+    {
+      image: slime.diet ? `/assets/food/${slime.diet}.png` : nonePath,
+      alt: slime.diet ? slime.diet : nonePath,
       title: "Diet",
-      subtitle: (() => {
-        if (isNoSlime) return null;
-        let val: string | undefined;
-        if (foodType == null) val = undefined;
-        else val = foodTypeList[foodType][0];
-        return textOrNone(val);
-      })(),
-      action: null,
-      link,
-    };
-  };
-
-  const buildFavFoodBox = (): LittleBoxProps => {
-    let image: string;
-    if (isNoSlime) image = "/assets/misc/empty.png";
-    else if (favFood === null) image = "/assets/misc/none.png";
-    else image = `/assets/food/${favFood}.png`;
-    let label: string;
-    if (isNoSlime) {
-      label = "No slime selected";
-    } else {
-      let val: string | undefined;
-      if (favFood == null) val = undefined;
-      else val = foodList[favFood][0];
-      label = textOrNone(val);
-    }
-    return {
-      image,
-      alt: label,
+      subtitle: slime.diet ? dietList[slime.diet].plural : "None",
+      link: slime.diet && !dietBlacklist.slice(1).includes(slime.diet) ? `/food/${slime.diet}` : null,
+    },
+    {
+      image: slime.food ? `/assets/food/${slime.food}.png` : nonePath,
+      alt: slime.food ? foodList[slime.food].name : "None",
       title: "Favorite Food",
-      subtitle: (() => {
-        if (isNoSlime) return null;
-        let val: string | undefined;
-        if (favFood == null) val = undefined;
-        else val = foodList[favFood][0];
-        return textOrNone(val);
-      })(),
-      action: null,
-      link: isNoSlime || favFood === null ? null : `/food/${favFood}`,
-    };
-  };
-
-  const buildLargoBox = (): LittleBoxProps => {
-    let image: string;
-    if (isNoSlime) image = "/assets/misc/largo.png";
-    else image = `/assets/misc/${isLargoable ? "largo" : "none"}.png`;
-    let alt: string;
-    if (isNoSlime) alt = "No slime selected";
-    else alt = isLargoable ? "Largo-able" : "Non largo-able";
-    return {
-      image,
-      alt,
+      subtitle: slime.food ? foodList[slime.food].name : "None",
+      link: slime.food && `/food/${slime.food}`,
+    },
+    {
+      image: `/assets/misc/${slime.largoable ? "largo" : "none"}.png`,
+      alt: slime.largoable ? "Largo-able" : "Non largo-able",
       title: "Largo-able",
-      subtitle: (() => {
-        if (isNoSlime) return null;
-        return isLargoable ? "Yes" : "No";
-      })(),
-      action: null,
-      link: null,
-    };
-  };
-
-  const buildToyBox = (): LittleBoxProps => {
-    let image: string;
-    if (isNoSlime) image = "/assets/misc/empty.png";
-    else if (toy == null) image = "/assets/misc/none.png";
-    else image = `/assets/toys/${toy}.png`;
-    let toyLabel: string;
-    if (toy == null) toyLabel = "None";
-    else toyLabel = toyList[toy] ? toyList[toy][0] : "None";
-    return {
-      image,
-      alt: isNoSlime ? "No slime selected" : toyLabel,
+      subtitle: slime.largoable ? "Yes" : "No",
+    },
+    {
+      image: slime.toy ? `/assets/toys/${slime.toy}.png` : nonePath,
+      alt: slime.toy ? toyList[slime.toy][0] : "None",
       title: "Favorite Toy",
-      subtitle: isNoSlime ? null : toyLabel,
-      action: null,
-      link: isNoSlime || toy === null ? null : `/items/toys/${toy}`,
-    };
-  };
-
-  const littleBoxList: LittleBoxProps[] = [buildDietBox(), buildFavFoodBox(), buildLargoBox(), buildToyBox()];
+      subtitle: slime.toy ? toyList[slime.toy][0] : "None",
+      link: slime.toy && `/items/toys/${slime.toy}`,
+    },
+  ];
 
   return (
     <PediaInfo
       layout={PediaBoxLayout.TwoByTwo}
-      title={isNoSlime || !currentSlimeList ? "Select a slime" : currentSlimeList[0]}
-      subtitle={isNoSlime ? "Click on a slime on the list to get their information" : slimesText[selectedSlime]}
-      icon={isNoSlime ? "/assets/misc/empty.png" : `/assets/slimes/${selectedSlime}.png`}
-      plortIcon={isNoSlime || nonPlortSlimes.has(selectedSlime) ? undefined : selectedSlime}
+      title={slime.name}
+      subtitle={slime.desc}
+      icon={`/assets/${radiantSlime ? "radiant" : "slimes"}/${selectedSlime}.png`}
+      plortIcon={nonPlortSlimes.has(selectedSlime) ? undefined : selectedSlime}
+      botLeftBtn={
+        slime?.radiantable && (
+          <button onClick={() => setRadiantSlime(!radiantSlime)} className="btn-radiant">
+            <img src="/assets/misc/radiant.png" alt="Switch to Radiant Slime Button Image" />
+          </button>
+        )
+      }
+      radiant={radiantSlime}
       littleBoxList={littleBoxList}
       BiomeComponent={<Biomes spawnList={getSlimeSpawnlist(selectedSlime)} />}
     />
@@ -165,29 +114,32 @@ const SlimeDetails: React.FC<SlimeDetailsProps> = ({ selectedSlime }) => {
 };
 
 interface SlimeDescriptionProps {
-  slimepediaEntry: [string, string, string];
+  slime: Slime | null;
   topBtn: boolean;
 }
 
-const SlimeDescription: React.FC<SlimeDescriptionProps> = ({ slimepediaEntry, topBtn }) => (
+const SlimeDescription: React.FC<SlimeDescriptionProps> = ({ slime, topBtn }) => {
+  console.log(slime);
+  const slimepedia: SlimePediaProps = slime ? slimes[slime].pedia : {slimeology: "", risks: "", plortonomics: ""};
+  return (
   <div className={"desc " + (topBtn ? "shown-desc" : "hidden-desc")}>
     <div className="desc-title">
       <img src="/assets/misc/pediaslime.png" alt="Slimeology" />
       <h3>Slimeology</h3>
     </div>
-    <p>{slimepediaEntry[0]}</p>
+    <p>{slimepedia.slimeology}</p>
     <div className="desc-title">
       <img src="/assets/misc/pediarisks.png" alt="Rancher Risks" />
       <h3>Rancher Risks</h3>
     </div>
-    <p>{slimepediaEntry[1]}</p>
+    <p>{slimepedia.risks}</p>
     <div className="desc-title">
       <img src="/assets/misc/pediaplort.png" alt="Plortonomics" />
       <h3>Plortonomics</h3>
     </div>
-    <p>{slimepediaEntry[2]}</p>
+    <p>{slimepedia?.plortonomics}</p>
   </div>
-);
+)};
 
 export const Slimes = () => {
   const { slime: slimeName } = useParams();
@@ -195,15 +147,15 @@ export const Slimes = () => {
   const slime = Object.values(Slime).includes(slimeName as Slime) ? (slimeName as Slime) : null;
   const [topBtn, setTopBtn] = useState(false);
   useEffect(() => setTopBtn(false), [slime]);
-  const slimepediaEntry: [string, string, string] = useMemo(
-    () => (slime === null ? ["", "", ""] : slimepedia[slime]),
-    [slime],
-  );
+  // const slimepediaEntry = useMemo(
+  //   () => (slime === null ? ["", "", ""] : slimes[slime].pedia),
+  //   [slime],
+  // );
   if (slime === null && slimeName !== undefined) {
     return <Navigate to="/slimes" replace />;
   }
 
-  document.title = (slime ? slimesList[slime][0] : "Slimes") + " - Slimepedia 2";
+  document.title = (slime ? slimes[slime].name : "Slimes") + " - Slimepedia 2";
 
   return (
     <div>
@@ -223,7 +175,7 @@ export const Slimes = () => {
               key={slimeName}
               icon={`slimes/${slimeName}`}
               size={1.25}
-              name={slimesList[slimeName][0]}
+              name={slimes[slimeName].name}
               selected={slimeName === slime}
             />
           </NavLink>
@@ -244,7 +196,7 @@ export const Slimes = () => {
         >
           <FaAngleDown />
         </button>
-        <SlimeDescription slimepediaEntry={slimepediaEntry} topBtn={topBtn} />
+        <SlimeDescription slime={slime} topBtn={topBtn} />
       </div>
     </div>
   );

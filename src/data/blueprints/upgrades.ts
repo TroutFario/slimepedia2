@@ -1,4 +1,4 @@
-import { Recipe, RecipeElement, UnlockRequirementNames } from "./blueprints";
+import { Recipe, RecipeElement, Unlock } from "./blueprints";
 
 export enum Upgrade {
   HARVESTER = "harvester",
@@ -78,11 +78,11 @@ export enum UpgradeWithTier {
 }
 
 export const upgradesList: {
-  [key in UpgradeWithTier]: [string, UnlockRequirementNames, Recipe];
+  [key in UpgradeWithTier]: [string, Unlock, Recipe];
 } = {
   harvester1: [
     "Resource Harvester",
-    UnlockRequirementNames.START,
+    Unlock.START,
     new Map([
       [RecipeElement.NEWBUCKS, 450],
       [RecipeElement.COTTON, 10],
@@ -91,7 +91,7 @@ export const upgradesList: {
 
   health1: [
     "Heart Module I",
-    UnlockRequirementNames.START,
+    Unlock.START,
     new Map([
       [RecipeElement.NEWBUCKS, 450],
       [RecipeElement.PINK, 10],
@@ -99,7 +99,7 @@ export const upgradesList: {
   ],
   health2: [
     "Heart Module II",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 900],
       [RecipeElement.PINK, 20],
@@ -111,7 +111,7 @@ export const upgradesList: {
   ],
   health3: [
     "Heart Module III",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 3000],
       [RecipeElement.PINK, 30],
@@ -123,7 +123,7 @@ export const upgradesList: {
   ],
   health4: [
     "Heart Module IV",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 10000],
       [RecipeElement.PRISMA, 50],
@@ -134,7 +134,7 @@ export const upgradesList: {
   ],
   regenerator1: [
     "Regenerator",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 5000],
       [RecipeElement.TWIN, 25],
@@ -146,7 +146,7 @@ export const upgradesList: {
   ],
   regenerator2: [
     "Regenerator",
-    UnlockRequirementNames.NIGHT,
+    Unlock.NIGHT,
     new Map([
       [RecipeElement.NEWBUCKS, 10000],
       [RecipeElement.SLOOMBER, 50],
@@ -158,7 +158,7 @@ export const upgradesList: {
   ],
   powerinjector1: [
     "Power Injector",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 5000],
       [RecipeElement.SLOOMBER, 25],
@@ -170,7 +170,7 @@ export const upgradesList: {
   ],
   powerinjector2: [
     "Power Injector",
-    UnlockRequirementNames.NIGHT,
+    Unlock.NIGHT,
     new Map([
       [RecipeElement.NEWBUCKS, 10000],
       [RecipeElement.HYPER, 50],
@@ -182,7 +182,7 @@ export const upgradesList: {
   ],
   power1: [
     "Power Module I",
-    UnlockRequirementNames.START,
+    Unlock.START,
     new Map([
       [RecipeElement.NEWBUCKS, 450],
       [RecipeElement.COTTON, 10],
@@ -190,7 +190,7 @@ export const upgradesList: {
   ],
   power2: [
     "Power Module II",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 900],
       [RecipeElement.COTTON, 20],
@@ -202,7 +202,7 @@ export const upgradesList: {
   ],
   power3: [
     "Power Module III",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 3000],
       [RecipeElement.COTTON, 30],
@@ -214,7 +214,7 @@ export const upgradesList: {
   ],
   power4: [
     "Power Module IV",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 10000],
       [RecipeElement.COTTON, 50],
@@ -226,7 +226,7 @@ export const upgradesList: {
   ],
   power5: [
     "Power Module V",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 15000],
       [RecipeElement.PRISMA, 50],
@@ -238,7 +238,7 @@ export const upgradesList: {
   ],
   dash1: [
     "Dash Module I",
-    UnlockRequirementNames.START,
+    Unlock.START,
     new Map([
       [RecipeElement.NEWBUCKS, 450],
       [RecipeElement.BOOM, 10],
@@ -246,7 +246,7 @@ export const upgradesList: {
   ],
   dash2: [
     "Dash Module II",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 1500],
       [RecipeElement.BOOM, 20],
@@ -258,7 +258,7 @@ export const upgradesList: {
   ],
   jetpack1: [
     "Jetpack I",
-    UnlockRequirementNames.START,
+    Unlock.START,
     new Map([
       [RecipeElement.NEWBUCKS, 450],
       [RecipeElement.PHOSPHOR, 10],
@@ -267,7 +267,7 @@ export const upgradesList: {
   ],
   jetpack2: [
     "Jetpack II",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 1500],
       [RecipeElement.PHOSPHOR, 20],
@@ -279,7 +279,7 @@ export const upgradesList: {
   ],
   tankBooster1: [
     "Tank Booster I",
-    UnlockRequirementNames.START,
+    Unlock.START,
     new Map([
       [RecipeElement.NEWBUCKS, 450],
       [RecipeElement.TABBY, 10],
@@ -287,7 +287,7 @@ export const upgradesList: {
   ],
   tankBooster2: [
     "Tank Booster II",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 900],
       [RecipeElement.TABBY, 20],
@@ -299,7 +299,7 @@ export const upgradesList: {
   ],
   tankBooster3: [
     "Tank Booster III",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 3000],
       [RecipeElement.TABBY, 30],
@@ -311,7 +311,7 @@ export const upgradesList: {
   ],
   tankBooster4: [
     "Tank Booster IV",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 10000],
       [RecipeElement.TABBY, 40],
@@ -323,7 +323,7 @@ export const upgradesList: {
   ],
   tankBooster5: [
     "Tank Booster V",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 15000],
       [RecipeElement.SLOOMBER, 50],
@@ -335,7 +335,7 @@ export const upgradesList: {
   ],
   tankBooster6: [
     "Tank Booster VI",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 20000],
       [RecipeElement.TWIN, 60],
@@ -347,7 +347,7 @@ export const upgradesList: {
   ],
   tankBooster7: [
     "Tank Booster VII",
-    UnlockRequirementNames.NIGHT,
+    Unlock.NIGHT,
     new Map([
       [RecipeElement.NEWBUCKS, 30000],
       [RecipeElement.HYPER, 70],
@@ -359,7 +359,7 @@ export const upgradesList: {
   ],
   tankBooster8: [
     "Tank Booster VIII",
-    UnlockRequirementNames.NIGHT,
+    Unlock.NIGHT,
     new Map([
       [RecipeElement.NEWBUCKS, 50000],
       [RecipeElement.RINGTAIL, 80],
@@ -371,7 +371,7 @@ export const upgradesList: {
   ],
   extraTank1: [
     "Extra Tank I",
-    UnlockRequirementNames.START,
+    Unlock.START,
     new Map([
       [RecipeElement.NEWBUCKS, 1500],
       [RecipeElement.ROCK, 10],
@@ -380,7 +380,7 @@ export const upgradesList: {
   ],
   extraTank2: [
     "Extra Tank II",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 3000],
       [RecipeElement.ROCK, 40],
@@ -392,7 +392,7 @@ export const upgradesList: {
   ],
   waterTank1: [
     "Water Tank",
-    UnlockRequirementNames.START,
+    Unlock.START,
     new Map([
       [RecipeElement.NEWBUCKS, 450],
       [RecipeElement.BRINE, 10],
@@ -400,7 +400,7 @@ export const upgradesList: {
   ],
   pulseWave1: [
     "Pulse Wave",
-    UnlockRequirementNames.START,
+    Unlock.START,
     new Map([
       [RecipeElement.NEWBUCKS, 450],
       [RecipeElement.FLUTTER, 10],
@@ -410,7 +410,7 @@ export const upgradesList: {
   ],
   tankGuard1: [
     "Tank Guard I",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 3000],
       [RecipeElement.CRYSTAL, 20],
@@ -422,7 +422,7 @@ export const upgradesList: {
   ],
   tankGuard2: [
     "Tank Guard II",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 6000],
       [RecipeElement.CRYSTAL, 30],
@@ -434,7 +434,7 @@ export const upgradesList: {
   ],
   tankGuard3: [
     "Tank Guard III",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 12000],
       [RecipeElement.CRYSTAL, 40],
@@ -446,7 +446,7 @@ export const upgradesList: {
   ],
   droneKey1: [
     "Drone Archive Key",
-    UnlockRequirementNames.MOCHI,
+    Unlock.MOCHI,
     new Map([
       [RecipeElement.NEWBUCKS, 450],
       [RecipeElement.HUNTER, 20],
@@ -458,7 +458,7 @@ export const upgradesList: {
   ],
   goldenSureshot1: [
     "Golden Sureshot I",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 1500],
       [RecipeElement.FIRE, 20],
@@ -470,7 +470,7 @@ export const upgradesList: {
   ],
   goldenSureshot2: [
     "Golden Sureshot II",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 3000],
       [RecipeElement.SABER, 30],
@@ -482,7 +482,7 @@ export const upgradesList: {
   ],
   goldenSureshot3: [
     "Golden Sureshot III",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 6000],
       [RecipeElement.SABER, 40],
@@ -494,7 +494,7 @@ export const upgradesList: {
   ],
   shadowSureshot1: [
     "Shadow Sureshot",
-    UnlockRequirementNames.NIGHT,
+    Unlock.NIGHT,
     new Map([
       [RecipeElement.SLOOMBER, 20],
       [RecipeElement.TWIN, 20],

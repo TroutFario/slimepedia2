@@ -12,7 +12,8 @@ import {
 } from "../../data/blueprints/decoration";
 import { CraftingList } from "../../components/shared/CraftingList";
 import { LittleBoxProps } from "../../components/shared/LittleBox";
-import PediaInfo, { PediaBoxLayout } from "../../components/PediaInfo";
+import PediaInfo from "../../components/PediaInfo";
+import { PediaBoxLayout } from "../../data/enums";
 
 const DecorationInfos: React.FC<{
   decoration: Decoration | null;

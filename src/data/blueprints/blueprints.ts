@@ -140,7 +140,7 @@ export const recipeElements: {
 
 export type Recipe = Map<RecipeElement, number>;
 
-export enum UnlockRequirementNames {
+export enum Unlock {
   START = "start",
   POD = "pod",
   POLESTAR = "polestar",
@@ -153,21 +153,49 @@ export enum UnlockRequirementNames {
   DOOR = "door",
   NIGHT = "night",
   GHOST = "ghost",
+  CARETAKER = "caretaker",
 }
 
-export const unlockRequirements: { [key in UnlockRequirementNames]: [string, string] } = {
-  start: ["Available at the start", "misc/check"],
-  pod: ["Unlocked via a Pod", "misc/pod"],
-  polestar: ["Unlocked via Polestar Provisions", "misc/polestar"],
-  mochi: ["Given by Mochi Miles", "ranchers/mochi"],
-  viktor: ["Given by Viktor Humphries", "ranchers/viktor"],
-  ogden: ["Given by Ogden Ortiz", "ranchers/ogden"],
-  bob: ["Given by BOb", "ranchers/bob"],
-  thora: ["Given by Thora West", "ranchers/thora"],
-  gigi: ["Given by Gigi", "ranchers/gigi"],
-  door: ["Found inside Shadow Vaults", "misc/door"],
-  night: ["Unlocked via Night Market", "misc/nightmarket"],
-  ghost: ["Found with roaming Ghost Drones", "misc/ghostdroneface"],
+export enum Currency {
+  NEWBUCKS = "newbucks",
+  RAINBOW = "rainbow",
+  SPRINKLES = "sprinkles",
+  SHADOW = "shadow",
+}
+
+export const currencies: Record<Currency, { name: string; icon: string }> = {
+  [Currency.NEWBUCKS]: {
+    name: "Newbucks",
+    icon: "misc/buck",
+  },
+  [Currency.RAINBOW]: {
+    name: "Rainbow Bucks",
+    icon: "misc/rainbowbuck",
+  },
+  [Currency.SPRINKLES]: {
+    name: "Sprinkles",
+    icon: "misc/sprinkles",
+  },
+  [Currency.SHADOW]: {
+    name: "Shadow Orbs",
+    icon: "misc/shadoworb",
+  },
+} as const;
+
+export const unlockRequirements: { [key in Unlock]: [string, string, Currency | null] } = {
+  start: ["Available at the start", "misc/check", null],
+  pod: ["Unlocked via a Pod", "misc/pod", null],
+  polestar: ["Unlocked via Polestar Provisions", "misc/polestar", Currency.NEWBUCKS],
+  mochi: ["Given by Mochi Miles", "ranchers/mochi", null],
+  viktor: ["Given by Viktor Humphries", "ranchers/viktor", null],
+  ogden: ["Given by Ogden Ortiz", "ranchers/ogden", null],
+  bob: ["Given by BOb", "ranchers/bob", null],
+  thora: ["Given by Thora West", "ranchers/thora", null],
+  gigi: ["Given by Gigi", "ranchers/gigi", null],
+  door: ["Found inside Shadow Vaults", "misc/door", null],
+  night: ["Unlocked via Night Market", "misc/nightmarket", null],
+  ghost: ["Found with roaming Ghost Drones", "misc/ghostdroneface", null],
+  caretaker: ["Unlocked at the Caretaker's Shop", "ranchers/caretaker", null],
 };
 
 export function getEnumValue<T extends object>(enumObject: T, element: string | undefined): T[keyof T] | null {

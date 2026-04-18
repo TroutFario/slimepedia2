@@ -6,9 +6,10 @@ import { Biomes, MixedRegion } from "../components/Biomes";
 import { Tab } from "../components/Tab";
 import { Resource, resourceList, resourcePedia } from "../data/resources";
 import { Toy, toyList } from "../data/toys";
-import { Slime, slimesList } from "../data/slimes";
+import { Slime, slimes } from "../data/slimes";
 import "../css/Pedia.css";
-import PediaInfo, { PediaBoxLayout } from "../components/PediaInfo";
+import PediaInfo from "../components/PediaInfo";
+import { PediaBoxLayout } from "../data/enums";
 import { LittleBoxProps } from "../components/shared/LittleBox";
 
 enum ItemType {
@@ -18,8 +19,8 @@ enum ItemType {
 
 const slimePerToy: (toy: Toy) => Slime | null = (toy) => {
   if (toy === null) return null;
-  for (const [slime, slimeInfos] of Object.entries(slimesList)) {
-    if (slimeInfos[4] === toy) return slime as Slime;
+  for (const [slime, slimeInfos] of Object.entries(slimes)) {
+    if (slimeInfos.toy === toy) return slime as Slime;
   }
   return null;
 };
@@ -129,15 +130,15 @@ const ItemInfos: React.FC<ItemInfosProps> = ({ item, category }) => {
     } else {
       littleBoxList.push({
         image: `/assets/slimes/${slime}.png`,
-        alt: slimesList[slime][0],
+        alt: slimes[slime].name,
         title: "Favorite of",
-        subtitle: slimesList[slime][0],
+        subtitle: slimes[slime].name,
         link: `/slimes/${slime}`,
       });
     }
     icon = `/assets/toys/${item}.png`;
     title = toyList[item as Toy][0];
-    subtitle = "Playtime gets the wiggles out.";
+    subtitle = item === Toy.Detector ? "This toy isn't for slimes, it's for you!" : "Playtime gets the wiggles out.";
     biomeList = ["pm"];
     layout = PediaBoxLayout.OneThenTwo;
   }

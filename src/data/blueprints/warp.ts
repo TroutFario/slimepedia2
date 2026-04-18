@@ -1,4 +1,4 @@
-import { UnlockRequirementNames, Recipe, RecipeElement } from "./blueprints";
+import { Unlock, Recipe, RecipeElement } from "./blueprints";
 
 export enum Warp {
   TELEPORT_HOME_GREEN = "teleporthomegreen",
@@ -41,11 +41,11 @@ export enum Warp {
 }
 
 export const warpGadgets: {
-  [key in Warp]: [string, UnlockRequirementNames, Recipe];
+  [key in Warp]: [string, Unlock, Recipe];
 } = {
   teleporthomegreen: [
     "Green Home Portal",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 800],
       [RecipeElement.ANGLER, 20],
@@ -56,7 +56,7 @@ export const warpGadgets: {
   ],
   teleporthomeblue: [
     "Blue Home Portal",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.ROCK, 10],
@@ -66,7 +66,7 @@ export const warpGadgets: {
   ],
   teleporthomered: [
     "Red Home Portal",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 800],
       [RecipeElement.BOOM, 20],
@@ -77,7 +77,7 @@ export const warpGadgets: {
   ],
   teleporthomeyellow: [
     "Yellow Home Portal",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.COTTON, 10],
@@ -87,7 +87,7 @@ export const warpGadgets: {
   ],
   teleportev: [
     "Ember Valley Portal",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 1000],
       [RecipeElement.FIRE, 20],
@@ -99,7 +99,7 @@ export const warpGadgets: {
   ],
   teleportss: [
     "Starlight Strand Portal",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 1000],
       [RecipeElement.HUNTER, 20],
@@ -111,7 +111,7 @@ export const warpGadgets: {
   ],
   teleportpb: [
     "Powderfall Bluffs Portal",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 1000],
       [RecipeElement.SABER, 20],
@@ -123,7 +123,7 @@ export const warpGadgets: {
   ],
   teleportgl: [
     "Grey Labyrinth Portal",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 1000],
       [RecipeElement.SLOOMBER, 20],
@@ -135,7 +135,7 @@ export const warpGadgets: {
   ],
   marketlink: [
     "Market Link",
-    UnlockRequirementNames.MOCHI,
+    Unlock.MOCHI,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.PINK, 20],
@@ -146,7 +146,7 @@ export const warpGadgets: {
   ],
   refinerylink: [
     "Refinery Link",
-    UnlockRequirementNames.MOCHI,
+    Unlock.MOCHI,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.PHOSPHOR, 10],
@@ -156,7 +156,7 @@ export const warpGadgets: {
   ],
   teleportamber: [
     "Amber Teleporter",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 4000],
       [RecipeElement.DERVISH, 30],
@@ -168,7 +168,7 @@ export const warpGadgets: {
   ],
   teleportberry: [
     "Berry Teleporter",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 4000],
       [RecipeElement.SLOOMBER, 30],
@@ -180,7 +180,7 @@ export const warpGadgets: {
   ],
   teleportblue: [
     "Blue Teleporter",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 1200],
       [RecipeElement.ROCK, 30],
@@ -192,7 +192,7 @@ export const warpGadgets: {
   ],
   teleportgold: [
     "Golden Teleporter",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 1200],
       [RecipeElement.TWIN, 30],
@@ -204,7 +204,7 @@ export const warpGadgets: {
   ],
   teleportgreen: [
     "Green Teleporter",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 3000],
       [RecipeElement.TWIN, 30],
@@ -216,7 +216,7 @@ export const warpGadgets: {
   ],
   teleportgrey: [
     "Grey Teleporter",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 1200],
       [RecipeElement.TABBY, 30],
@@ -228,7 +228,7 @@ export const warpGadgets: {
   ],
   teleportpink: [
     "Pink Teleporter",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 1200],
       [RecipeElement.PINK, 30],
@@ -240,7 +240,7 @@ export const warpGadgets: {
   ],
   teleportred: [
     "Red Teleporter",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 3000],
       [RecipeElement.HYPER, 30],
@@ -252,7 +252,7 @@ export const warpGadgets: {
   ],
   teleportsnowy: [
     "Snowy Teleporter",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 1200],
       [RecipeElement.SABER, 30],
@@ -264,7 +264,7 @@ export const warpGadgets: {
   ],
   teleportviolet: [
     "Violet Teleporter",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 1200],
       [RecipeElement.PHOSPHOR, 30],
@@ -276,7 +276,7 @@ export const warpGadgets: {
   ],
   warpdepotamber: [
     "Amber Warp Depot",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.HONEY, 10],
@@ -287,7 +287,7 @@ export const warpGadgets: {
   ],
   warpdepotberry: [
     "Berry Warp Depot",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.SLOOMBER, 20],
@@ -298,7 +298,7 @@ export const warpGadgets: {
   ],
   warpdepotblue: [
     "Blue Warp Depot",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.ROCK, 20],
@@ -309,7 +309,7 @@ export const warpGadgets: {
   ],
   warpdepotgold: [
     "Gold Warp Depot",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 300],
       [RecipeElement.COTTON, 10],
@@ -320,7 +320,7 @@ export const warpGadgets: {
   ],
   warpdepotgreen: [
     "Green Warp Depot",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.PUDDLE, 10],
@@ -331,7 +331,7 @@ export const warpGadgets: {
   ],
   warpdepotgrey: [
     "Grey Warp Depot",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.TABBY, 20],
@@ -342,7 +342,7 @@ export const warpGadgets: {
   ],
   warpdepotpink: [
     "Pink Warp Depot",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.PINK, 20],
@@ -353,7 +353,7 @@ export const warpGadgets: {
   ],
   warpdepotred: [
     "Red Warp Depot",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.FIRE, 10],
@@ -364,7 +364,7 @@ export const warpGadgets: {
   ],
   warpdepotsnowy: [
     "Snowy Warp Depot",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.SABER, 20],
@@ -375,7 +375,7 @@ export const warpGadgets: {
   ],
   warpdepotviolet: [
     "Violet Warp Depot",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.BATTY, 20],
@@ -386,7 +386,7 @@ export const warpGadgets: {
   ],
   linkedcannonblue: [
     "Blue Linked Cannon",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 800],
       [RecipeElement.BATTY, 10],
@@ -395,7 +395,7 @@ export const warpGadgets: {
   ],
   linkedcannongreen: [
     "Green Linked Cannon",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 800],
       [RecipeElement.TWIN, 10],
@@ -404,7 +404,7 @@ export const warpGadgets: {
   ],
   linkedcannongrey: [
     "Grey Linked Cannon",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 800],
       [RecipeElement.BATTY, 10],
@@ -413,7 +413,7 @@ export const warpGadgets: {
   ],
   linkedcannongold: [
     "Gold Linked Cannon",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 800],
       [RecipeElement.SLOOMBER, 10],
@@ -422,7 +422,7 @@ export const warpGadgets: {
   ],
   linkedcannonpink: [
     "Pink Linked Cannon",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 800],
       [RecipeElement.BATTY, 10],
@@ -431,7 +431,7 @@ export const warpGadgets: {
   ],
   linkedcannonred: [
     "Red Linked Cannon",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 800],
       [RecipeElement.BATTY, 10],
@@ -440,7 +440,7 @@ export const warpGadgets: {
   ],
   linkedcannonviolet: [
     "Violet Linked Cannon",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 800],
       [RecipeElement.HYPER, 10],

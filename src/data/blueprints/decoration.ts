@@ -1,4 +1,4 @@
-import { DecorationTheme, Recipe, RecipeElement, UnlockRequirementNames } from "./blueprints";
+import { DecorationTheme, Recipe, RecipeElement, Unlock } from "./blueprints";
 
 export const themeList: { [key in DecorationTheme]: [string, string] } = {
   [DecorationTheme.ANY]: ["Any", "misc/decoration"],
@@ -185,6 +185,11 @@ export enum Decoration {
   FLOWER_LAMP = "flowerlamp",
   HIGHTECH_WALL = "hightechwall",
   HIGHTECH_BATTERY = "hightechbattery",
+  SCIENTISTS_CHAIR = "scientistschair",
+  SCIENTISTS_DESK = "scientistsdesk",
+  SHORT_COMFY_COUCH = "shortcomfycouch",
+  LONG_COMFY_COUCH = "longcomfycouch",
+  BLUE_LAVA_LAMP = "bluelavalamp",
   MINIATURES_DOME = "miniaturesdome",
   MINIATURE_WINDMILL = "miniaturewindmill",
   GOLDEN_CHICKEN_STATUE = "goldenchickenstatue",
@@ -192,9 +197,11 @@ export enum Decoration {
   GOLDEN_TABBY_STATUE = "goldentabbystatue",
   GOLDEN_ANGLER_STATUE = "goldenanglerstatue",
   GOLDEN_BATTY_STATUE = "goldenbattystatue",
+  GOLDEN_HONEY_STATUE = "goldenhoneystatue",
   GOLDEN_FLUTTER_STATUE = "goldenflutterstatue",
   GOLDEN_DERVISH_STATUE = "goldendervishstatue",
   GOLDEN_TANGLE_STATUE = "goldentanglestatue",
+  GOLDEN_SABER_STATUE = "goldensaberstatue",
   GOLDEN_TWIN_STATUE = "goldentwinstatue",
   GOLDEN_SLOOMBER_STATUE = "goldensloomberstatue",
   GOLDEN_HYPER_STATUE = "goldenhyperstatue",
@@ -210,11 +217,11 @@ export enum Decoration {
 }
 
 export const decorationList: {
-  [key in Decoration]: [string, UnlockRequirementNames, Recipe, DecorationTheme];
+  [key in Decoration]: [string, Unlock, Recipe, DecorationTheme];
 } = {
   emeraldgrass: [
     "Emerald Grass",
-    UnlockRequirementNames.THORA,
+    Unlock.THORA,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.TABBY, 5],
@@ -223,7 +230,7 @@ export const decorationList: {
   ],
   emeraldshrubs: [
     "Emerald Shrubs",
-    UnlockRequirementNames.OGDEN,
+    Unlock.OGDEN,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PHOSPHOR, 10],
@@ -232,7 +239,7 @@ export const decorationList: {
   ],
   emeraldcypress: [
     "Emerald Cypress",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.TABBY, 10],
@@ -241,7 +248,7 @@ export const decorationList: {
   ],
   tallemeraldcypress: [
     "Tall Emerald Cypress",
-    UnlockRequirementNames.OGDEN,
+    Unlock.OGDEN,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PHOSPHOR, 10],
@@ -250,7 +257,7 @@ export const decorationList: {
   ],
   emeraldcypresscluster: [
     "Emerald Cypress Cluster",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 75],
       [RecipeElement.COTTON, 10],
@@ -259,7 +266,7 @@ export const decorationList: {
   ],
   goldpetalflowers: [
     "Goldpetal Flowers",
-    UnlockRequirementNames.THORA,
+    Unlock.THORA,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.PHOSPHOR, 5],
@@ -269,7 +276,7 @@ export const decorationList: {
   ],
   rainbowgrass: [
     "Rainbow Grass",
-    UnlockRequirementNames.THORA,
+    Unlock.THORA,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.PINK, 5],
@@ -278,7 +285,7 @@ export const decorationList: {
   ],
   pinkbonsai: [
     "Pink Bonsai",
-    UnlockRequirementNames.OGDEN,
+    Unlock.OGDEN,
     new Map([
       [RecipeElement.NEWBUCKS, 150],
       [RecipeElement.HUNTER, 20],
@@ -290,7 +297,7 @@ export const decorationList: {
   ],
   largepinkbonsai: [
     "Large Pink Bonsai",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.HONEY, 20],
@@ -302,7 +309,7 @@ export const decorationList: {
   ],
   rockfragments: [
     "Rock Fragments",
-    UnlockRequirementNames.BOB,
+    Unlock.BOB,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 5],
@@ -312,7 +319,7 @@ export const decorationList: {
   ],
   rockcluster: [
     "Rock Cluster",
-    UnlockRequirementNames.BOB,
+    Unlock.BOB,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 10],
@@ -322,7 +329,7 @@ export const decorationList: {
   ],
   rockclump: [
     "Rock Clump",
-    UnlockRequirementNames.BOB,
+    Unlock.BOB,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.COTTON, 10],
@@ -332,7 +339,7 @@ export const decorationList: {
   ],
   smallboulder: [
     "Small Boulder",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.COTTON, 10],
@@ -342,7 +349,7 @@ export const decorationList: {
   ],
   sharpboulder: [
     "Sharp Boulder",
-    UnlockRequirementNames.BOB,
+    Unlock.BOB,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.ROCK, 10],
@@ -352,7 +359,7 @@ export const decorationList: {
   ],
   rainbowmound: [
     "Rainbow Mound",
-    UnlockRequirementNames.BOB,
+    Unlock.BOB,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.RINGTAIL, 10],
@@ -361,7 +368,7 @@ export const decorationList: {
   ],
   rainbowlumps: [
     "Rainbow Lumps",
-    UnlockRequirementNames.BOB,
+    Unlock.BOB,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.ROCK, 10],
@@ -370,7 +377,7 @@ export const decorationList: {
   ],
   shortpinkcoralcolumns: [
     "Short Pink Coral Columns",
-    UnlockRequirementNames.MOCHI,
+    Unlock.MOCHI,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.ANGLER, 5],
@@ -381,7 +388,7 @@ export const decorationList: {
   ],
   mediumpinkcoralcolumns: [
     "Medium Pink Coral Columns",
-    UnlockRequirementNames.OGDEN,
+    Unlock.OGDEN,
     new Map([
       [RecipeElement.NEWBUCKS, 150],
       [RecipeElement.ANGLER, 20],
@@ -393,7 +400,7 @@ export const decorationList: {
   ],
   tallpinkcoralcolumns: [
     "Tall Pink Coral Columns",
-    UnlockRequirementNames.THORA,
+    Unlock.THORA,
     new Map([
       [RecipeElement.NEWBUCKS, 150],
       [RecipeElement.ANGLER, 10],
@@ -405,7 +412,7 @@ export const decorationList: {
   ],
   overjoyedstatue: [
     "Overjoyed Statue",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 700],
       [RecipeElement.CRYSTAL, 15],
@@ -418,7 +425,7 @@ export const decorationList: {
   ],
   ambergrass: [
     "Amber Grass",
-    UnlockRequirementNames.THORA,
+    Unlock.THORA,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.PINK, 5],
@@ -428,7 +435,7 @@ export const decorationList: {
   ],
   ambershrubs: [
     "Amber Shrubs",
-    UnlockRequirementNames.OGDEN,
+    Unlock.OGDEN,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.ROCK, 10],
@@ -437,7 +444,7 @@ export const decorationList: {
   ],
   ambercypress: [
     "Amber Cypress",
-    UnlockRequirementNames.OGDEN,
+    Unlock.OGDEN,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PHOSPHOR, 10],
@@ -447,7 +454,7 @@ export const decorationList: {
   ],
   tallambercypress: [
     "Tall Amber Cypress",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.FIRE, 5],
@@ -457,7 +464,7 @@ export const decorationList: {
   ],
   ambercypresscluster: [
     "Amber Cypress Cluster",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.TABBY, 10],
@@ -467,7 +474,7 @@ export const decorationList: {
   ],
   ochrepoppies: [
     "Ochre Poppies",
-    UnlockRequirementNames.OGDEN,
+    Unlock.OGDEN,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.PINK, 5],
@@ -477,7 +484,7 @@ export const decorationList: {
   ],
   cinderspikeblossoms: [
     "Cinder Spike Blossoms",
-    UnlockRequirementNames.THORA,
+    Unlock.THORA,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.BOOM, 10],
@@ -487,7 +494,7 @@ export const decorationList: {
   ],
   ashblooms: [
     "Ash Blooms",
-    UnlockRequirementNames.MOCHI,
+    Unlock.MOCHI,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.RINGTAIL, 5],
@@ -497,7 +504,7 @@ export const decorationList: {
   ],
   sunfiredaisies: [
     "Sunfire Daisies",
-    UnlockRequirementNames.THORA,
+    Unlock.THORA,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.PHOSPHOR, 10],
@@ -507,7 +514,7 @@ export const decorationList: {
   ],
   shortpalm: [
     "Short Palm",
-    UnlockRequirementNames.THORA,
+    Unlock.THORA,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.BATTY, 20],
@@ -518,7 +525,7 @@ export const decorationList: {
   ],
   mediumpalm: [
     "Medium Palm",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.HONEY, 20],
@@ -530,7 +537,7 @@ export const decorationList: {
   ],
   stalagmite: [
     "Stalagmite",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.CRYSTAL, 10],
@@ -540,7 +547,7 @@ export const decorationList: {
   ],
   stalagmitecluster: [
     "Stalagmite Cluster",
-    UnlockRequirementNames.BOB,
+    Unlock.BOB,
     new Map([
       [RecipeElement.NEWBUCKS, 75],
       [RecipeElement.RINGTAIL, 10],
@@ -550,7 +557,7 @@ export const decorationList: {
   ],
   shortmagmaclump: [
     "Short Magma Clump",
-    UnlockRequirementNames.MOCHI,
+    Unlock.MOCHI,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.CRYSTAL, 20],
@@ -561,7 +568,7 @@ export const decorationList: {
   ],
   tallmagmaclump: [
     "Tall Magma Clump",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 150],
       [RecipeElement.BOOM, 10],
@@ -573,7 +580,7 @@ export const decorationList: {
   ],
   magmapool: [
     "Magma Pool",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 150],
       [RecipeElement.FIRE, 10],
@@ -585,7 +592,7 @@ export const decorationList: {
   ],
   roundedmagmapool: [
     "Rounded Magma Pool",
-    UnlockRequirementNames.MOCHI,
+    Unlock.MOCHI,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.FIRE, 10],
@@ -597,7 +604,7 @@ export const decorationList: {
   ],
   gnarledashwood: [
     "Gnarled Ashwood",
-    UnlockRequirementNames.MOCHI,
+    Unlock.MOCHI,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.CRYSTAL, 20],
@@ -609,7 +616,7 @@ export const decorationList: {
   ],
   shortredashwood: [
     "Short Red Ashwood",
-    UnlockRequirementNames.MOCHI,
+    Unlock.MOCHI,
     new Map([
       [RecipeElement.NEWBUCKS, 150],
       [RecipeElement.PHOSPHOR, 20],
@@ -621,7 +628,7 @@ export const decorationList: {
   ],
   mediumredashwood: [
     "Medium Red Ashwood",
-    UnlockRequirementNames.MOCHI,
+    Unlock.MOCHI,
     new Map([
       [RecipeElement.NEWBUCKS, 150],
       [RecipeElement.HONEY, 20],
@@ -633,7 +640,7 @@ export const decorationList: {
   ],
   tallashwood: [
     "Tall Ashwood",
-    UnlockRequirementNames.MOCHI,
+    Unlock.MOCHI,
     new Map([
       [RecipeElement.NEWBUCKS, 150],
       [RecipeElement.CRYSTAL, 20],
@@ -645,7 +652,7 @@ export const decorationList: {
   ],
   stonyegglamp: [
     "Stony Egg Lamp",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 2500],
       [RecipeElement.YOLKY, 10],
@@ -657,7 +664,7 @@ export const decorationList: {
   ],
   happystatue: [
     "Happy Statue",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 700],
       [RecipeElement.FLUTTER, 15],
@@ -670,7 +677,7 @@ export const decorationList: {
   ],
   starbloomflowers: [
     "Starbloom Flowers",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.FLUTTER, 10],
@@ -680,7 +687,7 @@ export const decorationList: {
   ],
   azuregrass: [
     "Azure Grass",
-    UnlockRequirementNames.THORA,
+    Unlock.THORA,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.PINK, 5],
@@ -690,7 +697,7 @@ export const decorationList: {
   ],
   azureshrubs: [
     "Azure Shrubs",
-    UnlockRequirementNames.OGDEN,
+    Unlock.OGDEN,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.TABBY, 10],
@@ -700,7 +707,7 @@ export const decorationList: {
   ],
   azuremangrove: [
     "Azure Mangrove",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.PUDDLE, 10],
@@ -712,7 +719,7 @@ export const decorationList: {
   ],
   pinkgrass: [
     "Pink Grass",
-    UnlockRequirementNames.THORA,
+    Unlock.THORA,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.PINK, 5],
@@ -722,7 +729,7 @@ export const decorationList: {
   ],
   pinkmangrove: [
     "Pink Mangrove",
-    UnlockRequirementNames.THORA,
+    Unlock.THORA,
     new Map([
       [RecipeElement.NEWBUCKS, 150],
       [RecipeElement.JELLY, 3],
@@ -733,7 +740,7 @@ export const decorationList: {
   ],
   roottangle: [
     "Root Tangle",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.RINGTAIL, 20],
@@ -745,7 +752,7 @@ export const decorationList: {
   ],
   rootarches: [
     "Root Arches",
-    UnlockRequirementNames.MOCHI,
+    Unlock.MOCHI,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.FLUTTER, 20],
@@ -757,7 +764,7 @@ export const decorationList: {
   ],
   costalrock: [
     "Costal Rock",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 75],
       [RecipeElement.COTTON, 10],
@@ -767,7 +774,7 @@ export const decorationList: {
   ],
   costalrockpillar: [
     "Costal Rock Pillar",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 75],
       [RecipeElement.TABBY, 10],
@@ -777,7 +784,7 @@ export const decorationList: {
   ],
   tallvioletswirlshroom: [
     "Tall Violet Swirl Shrool",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.HONEY, 10],
@@ -789,7 +796,7 @@ export const decorationList: {
   ],
   violetswirlshroom: [
     "Violet Swirl Shroom",
-    UnlockRequirementNames.MOCHI,
+    Unlock.MOCHI,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.HUNTER, 20],
@@ -801,7 +808,7 @@ export const decorationList: {
   ],
   azureglowshrooms: [
     "Azure Glow Shrooms",
-    UnlockRequirementNames.MOCHI,
+    Unlock.MOCHI,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.PHOSPHOR, 10],
@@ -813,7 +820,7 @@ export const decorationList: {
   ],
   pinkglowshrooms: [
     "Pink Glow Shrooms",
-    UnlockRequirementNames.MOCHI,
+    Unlock.MOCHI,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.PHOSPHOR, 20],
@@ -825,7 +832,7 @@ export const decorationList: {
   ],
   cavepillar: [
     "Cave Pillar",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 75],
       [RecipeElement.PINK, 10],
@@ -835,7 +842,7 @@ export const decorationList: {
   ],
   thincavepillar: [
     "Thin Cave Pillar",
-    UnlockRequirementNames.BOB,
+    Unlock.BOB,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.ROCK, 10],
@@ -845,7 +852,7 @@ export const decorationList: {
   ],
   mossyhenstatue: [
     "Mossy Hen Statue",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 2500],
       [RecipeElement.YOLKY, 15],
@@ -857,7 +864,7 @@ export const decorationList: {
   ],
   cheerfulstatue: [
     "Cheerful Statue",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 700],
       [RecipeElement.RINGTAIL, 20],
@@ -870,7 +877,7 @@ export const decorationList: {
   ],
   rubygrass: [
     "Ruby Grass",
-    UnlockRequirementNames.THORA,
+    Unlock.THORA,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.PINK, 5],
@@ -880,7 +887,7 @@ export const decorationList: {
   ],
   snowybush: [
     "Snowy Bush",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.BATTY, 10],
@@ -890,7 +897,7 @@ export const decorationList: {
   ],
   icetreeo: [
     "Ice Treeo",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.CRYSTAL, 15],
@@ -900,7 +907,7 @@ export const decorationList: {
   ],
   frostedshell: [
     "Frosted Shell",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.SABER, 10],
@@ -910,7 +917,7 @@ export const decorationList: {
   ],
   glacialcrystal: [
     "Glacial Crystal",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.ROCK, 10],
@@ -920,7 +927,7 @@ export const decorationList: {
   ],
   snowzbench: [
     "SnowZ Bench",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 1000],
       [RecipeElement.SABER, 25],
@@ -933,7 +940,7 @@ export const decorationList: {
   ],
   crystalspires: [
     "Crystal Spires",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.CRYSTAL, 10],
@@ -943,7 +950,7 @@ export const decorationList: {
   ],
   icecubed: [
     "Ice Cubed",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.PUDDLE, 10],
@@ -953,7 +960,7 @@ export const decorationList: {
   ],
   icelamp: [
     "Ice Lamp",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.PHOSPHOR, 30],
@@ -965,7 +972,7 @@ export const decorationList: {
   ],
   chillyslimestack: [
     "Chilly Slime Stack",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 800],
       [RecipeElement.SABER, 25],
@@ -976,7 +983,7 @@ export const decorationList: {
   ],
   fireflower: [
     "Fire Flower",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.TANGLE, 15],
@@ -986,7 +993,7 @@ export const decorationList: {
   ],
   auroraflowers: [
     "Aurora Flowers",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.SABER, 5],
@@ -995,7 +1002,7 @@ export const decorationList: {
   ],
   aurorapine: [
     "Aurora Pine",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 5000],
       [RecipeElement.HONEY, 25],
@@ -1006,7 +1013,7 @@ export const decorationList: {
   ],
   frozenflame: [
     "Frozen Flame",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 6000],
       [RecipeElement.PUDDLE, 15],
@@ -1018,7 +1025,7 @@ export const decorationList: {
   ],
   majesticsnowflake: [
     "Majestic Snowflake",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 8000],
       [RecipeElement.SABER, 25],
@@ -1029,7 +1036,7 @@ export const decorationList: {
   ],
   snowglobe: [
     "Snow Globe",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 15000],
       [RecipeElement.YOLKY, 20],
@@ -1040,7 +1047,7 @@ export const decorationList: {
   ],
   conservatorybench: [
     "Conservatory Bench",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.PINK, 10],
@@ -1049,7 +1056,7 @@ export const decorationList: {
   ],
   largesimplebench: [
     "Large Simple Bench",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.BOOM, 10],
@@ -1060,7 +1067,7 @@ export const decorationList: {
   ],
   conservatorychair: [
     "Conservatory Chair",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.COTTON, 10],
@@ -1069,7 +1076,7 @@ export const decorationList: {
   ],
   conservatorytable: [
     "Conservatory Table",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.TABBY, 10],
@@ -1078,7 +1085,7 @@ export const decorationList: {
   ],
   conservatorylamp: [
     "Conservatory Lamp",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.PHOSPHOR, 10],
@@ -1088,7 +1095,7 @@ export const decorationList: {
   ],
   smalltrellis: [
     "Small Trellis",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.TABBY, 5],
@@ -1098,7 +1105,7 @@ export const decorationList: {
   ],
   widetrellis: [
     "Wide Trellis",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 150],
       [RecipeElement.ANGLER, 5],
@@ -1108,7 +1115,7 @@ export const decorationList: {
   ],
   trellisarch: [
     "Trellis Arch",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 150],
       [RecipeElement.BATTY, 5],
@@ -1118,7 +1125,7 @@ export const decorationList: {
   ],
   smallemeraldtrellis: [
     "Small Emerald Trellis",
-    UnlockRequirementNames.OGDEN,
+    Unlock.OGDEN,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.COTTON, 20],
@@ -1130,7 +1137,7 @@ export const decorationList: {
   ],
   wideemeraldtrellis: [
     "Wide Emerald Trellis",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.TANGLE, 10],
@@ -1140,7 +1147,7 @@ export const decorationList: {
   ],
   pottedplants: [
     "Potted Plants",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.HONEY, 10],
@@ -1150,7 +1157,7 @@ export const decorationList: {
   ],
   mushroomplanter: [
     "Mushroom Planter",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.TABBY, 5],
@@ -1160,7 +1167,7 @@ export const decorationList: {
   ],
   displaycase: [
     "Display Case",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 1500],
       [RecipeElement.CRYSTAL, 10],
@@ -1170,7 +1177,7 @@ export const decorationList: {
   ],
   wheelbarrow: [
     "Wheelbarrow",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.ROCK, 10],
@@ -1180,7 +1187,7 @@ export const decorationList: {
   ],
   goldenanglerstatue: [
     "Golden Angler Statue",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 15000],
       [RecipeElement.ANGLER, 50],
@@ -1192,7 +1199,7 @@ export const decorationList: {
   ],
   goldenbattystatue: [
     "Golden Batty Statue",
-    UnlockRequirementNames.POD,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 15000],
       [RecipeElement.BATTY, 50],
@@ -1202,9 +1209,21 @@ export const decorationList: {
     ]),
     DecorationTheme.GOLDEN,
   ],
+  goldenhoneystatue: [
+    "Golden Honey Statue",
+    Unlock.POLESTAR,
+    new Map([
+      [RecipeElement.NEWBUCKS, 10000],
+      [RecipeElement.HONEY, 50],
+      [RecipeElement.GOLD, 3],
+      [RecipeElement.WILDHONEY, 10],
+      [RecipeElement.DIAMOND, 1],
+    ]),
+    DecorationTheme.GOLDEN,
+  ],
   goldenchickenstatue: [
     "Golden Chicken Statue",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 15000],
       [RecipeElement.YOLKY, 20],
@@ -1216,7 +1235,7 @@ export const decorationList: {
   ],
   goldencottonstatue: [
     "Golden Cotton Statue",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 15000],
       [RecipeElement.COTTON, 50],
@@ -1228,7 +1247,7 @@ export const decorationList: {
   ],
   goldendervishstatue: [
     "Golden Dervish Statue",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 15000],
       [RecipeElement.DERVISH, 50],
@@ -1240,7 +1259,7 @@ export const decorationList: {
   ],
   goldenflutterstatue: [
     "Golden Flutter Statue",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 15000],
       [RecipeElement.FLUTTER, 50],
@@ -1252,7 +1271,7 @@ export const decorationList: {
   ],
   goldentabbystatue: [
     "Golden Tabby Statue",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 10000],
       [RecipeElement.TABBY, 50],
@@ -1264,7 +1283,7 @@ export const decorationList: {
   ],
   goldentanglestatue: [
     "Golden Tangle Statue",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 15000],
       [RecipeElement.TANGLE, 50],
@@ -1274,9 +1293,21 @@ export const decorationList: {
     ]),
     DecorationTheme.GOLDEN,
   ],
+  goldensaberstatue: [
+    "Golden Saber Statue",
+    Unlock.POLESTAR,
+    new Map([
+      [RecipeElement.NEWBUCKS, 10000],
+      [RecipeElement.SABER, 50],
+      [RecipeElement.GOLD, 3],
+      [RecipeElement.FOSSIL, 10],
+      [RecipeElement.SUNSAP, 1],
+    ]),
+    DecorationTheme.GOLDEN,
+  ],
   goldentwinstatue: [
     "Golden Twin Statue",
-    UnlockRequirementNames.NIGHT,
+    Unlock.NIGHT,
     new Map([
       [RecipeElement.NEWBUCKS, 15000],
       [RecipeElement.TWIN, 50],
@@ -1288,7 +1319,7 @@ export const decorationList: {
   ],
   goldensloomberstatue: [
     "Golden Sloomber Statue",
-    UnlockRequirementNames.NIGHT,
+    Unlock.NIGHT,
     new Map([
       [RecipeElement.NEWBUCKS, 15000],
       [RecipeElement.SLOOMBER, 50],
@@ -1300,7 +1331,7 @@ export const decorationList: {
   ],
   goldenhyperstatue: [
     "Golden Hyper Statue",
-    UnlockRequirementNames.NIGHT,
+    Unlock.NIGHT,
     new Map([
       [RecipeElement.NEWBUCKS, 15000],
       [RecipeElement.HYPER, 50],
@@ -1312,7 +1343,7 @@ export const decorationList: {
   ],
   goldenyolkystatue: [
     "Golden Yolky Statue",
-    UnlockRequirementNames.DOOR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 15000],
       [RecipeElement.YOLKY, 50],
@@ -1324,7 +1355,7 @@ export const decorationList: {
   ],
   woodenfence: [
     "Wooden Fence",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.TWIN, 10],
       [RecipeElement.PETAL, 5],
@@ -1335,7 +1366,7 @@ export const decorationList: {
   ],
   straightstonefence: [
     "Straight Stone Fence",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.SLOOMBER, 10],
       [RecipeElement.ROCK, 10],
@@ -1347,7 +1378,7 @@ export const decorationList: {
   ],
   curvedstonefence: [
     "Curved Stone Fence",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.SLOOMBER, 10],
       [RecipeElement.ROCK, 10],
@@ -1359,7 +1390,7 @@ export const decorationList: {
   ],
   electricpillarlamp: [
     "Electric Pillar Lamp",
-    UnlockRequirementNames.NIGHT,
+    Unlock.NIGHT,
     new Map([
       [RecipeElement.HYPER, 20],
       [RecipeElement.PHOSPHOR, 20],
@@ -1371,7 +1402,7 @@ export const decorationList: {
   ],
   smallflowerpillow: [
     "Small Flower Pillow",
-    UnlockRequirementNames.NIGHT,
+    Unlock.NIGHT,
     new Map([
       [RecipeElement.HONEY, 10],
       [RecipeElement.COTTON, 10],
@@ -1382,7 +1413,7 @@ export const decorationList: {
   ],
   largeflowerpillow: [
     "Large Flower Pillow",
-    UnlockRequirementNames.NIGHT,
+    Unlock.NIGHT,
     new Map([
       [RecipeElement.FLUTTER, 10],
       [RecipeElement.BATTY, 10],
@@ -1393,7 +1424,7 @@ export const decorationList: {
   ],
   azurewaterflower: [
     "Azure Water Flower",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.HYPER, 10],
       [RecipeElement.PUDDLE, 10],
@@ -1404,7 +1435,7 @@ export const decorationList: {
   ],
   overgrownlilypad: [
     "Overgrown Lilypad",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.TWIN, 10],
       [RecipeElement.HYPER, 10],
@@ -1415,7 +1446,7 @@ export const decorationList: {
   ],
   giantstalks: [
     "Giant Stalks",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.TANGLE, 10],
       [RecipeElement.TABBY, 10],
@@ -1426,7 +1457,7 @@ export const decorationList: {
   ],
   floralslimetree: [
     "Floral Slime Tree",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.TANGLE, 10],
       [RecipeElement.TABBY, 10],
@@ -1437,7 +1468,7 @@ export const decorationList: {
   ],
   flowerlamp: [
     "Flower Lamp",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.HYPER, 20],
       [RecipeElement.HUNTER, 10],
@@ -1449,7 +1480,7 @@ export const decorationList: {
   ],
   hightechwall: [
     "High-Tech Wall",
-    UnlockRequirementNames.NIGHT,
+    Unlock.NIGHT,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.HYPER, 10],
@@ -1461,7 +1492,7 @@ export const decorationList: {
   ],
   hightechbattery: [
     "High-Tech Battery",
-    UnlockRequirementNames.NIGHT,
+    Unlock.NIGHT,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.HYPER, 10],
@@ -1471,9 +1502,62 @@ export const decorationList: {
     ]),
     DecorationTheme.CONSERVATORY,
   ],
+  scientistschair: [
+    "Scientist's Chair",
+    Unlock.NIGHT,
+    new Map([
+      [RecipeElement.NEWBUCKS, 150],
+      [RecipeElement.SABER, 10],
+      [RecipeElement.LAVA, 5],
+    ]),
+    DecorationTheme.CONSERVATORY,
+  ],
+  scientistsdesk: [
+    "Scientist's Desk",
+    Unlock.NIGHT,
+    new Map([
+      [RecipeElement.NEWBUCKS, 500],
+      [RecipeElement.HONEY, 20],
+      [RecipeElement.CRYSTAL, 20],
+      [RecipeElement.PRIMORDY, 5],
+      [RecipeElement.WAX, 5],
+    ]),
+    DecorationTheme.CONSERVATORY,
+  ],
+  shortcomfycouch: [
+    "Short Comfy Couch",
+    Unlock.NIGHT,
+    new Map([
+      [RecipeElement.NEWBUCKS, 200],
+      [RecipeElement.ANGLER, 10],
+      [RecipeElement.PRIMORDY, 10],
+    ]),
+    DecorationTheme.CONSERVATORY,
+  ],
+  longcomfycouch: [
+    "Long Comfy Couch",
+    Unlock.NIGHT,
+    new Map([
+      [RecipeElement.NEWBUCKS, 200],
+      [RecipeElement.FIRE, 10],
+      [RecipeElement.WAX, 10]
+    ]),
+    DecorationTheme.CONSERVATORY,
+  ],
+  bluelavalamp: [
+    "Blue Lava Lamp",
+    Unlock.NIGHT,
+    new Map([
+      [RecipeElement.NEWBUCKS, 1000],
+      [RecipeElement.PUDDLE, 20],
+      [RecipeElement.JELLY, 10],
+      [RecipeElement.LAVA, 5]
+    ]),
+    DecorationTheme.CONSERVATORY,
+  ],
   miniaturesdome: [
     "Miniatures Dome",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.TWIN, 25],
       [RecipeElement.BATTY, 25],
@@ -1485,7 +1569,7 @@ export const decorationList: {
   ],
   miniaturewindmill: [
     "Miniature Windmill",
-    UnlockRequirementNames.NIGHT,
+    Unlock.NIGHT,
     new Map([
       [RecipeElement.NEWBUCKS, 10000],
       [RecipeElement.SLOOMBER, 20],
@@ -1497,7 +1581,7 @@ export const decorationList: {
   ],
   yellowreefbush: [
     "Yellow Reef Bush",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.COTTON, 5],
@@ -1507,7 +1591,7 @@ export const decorationList: {
   ],
   sunflowerumbrella: [
     "Sunflower Umbrella",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.COTTON, 5],
@@ -1518,7 +1602,7 @@ export const decorationList: {
   ],
   sakuraumbrella: [
     "Sakura Umbrella",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.COTTON, 5],
@@ -1529,7 +1613,7 @@ export const decorationList: {
   ],
   beachumbrella: [
     "Beach Umbrella",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.COTTON, 20],
@@ -1540,7 +1624,7 @@ export const decorationList: {
   ],
   stripedbeachblanket: [
     "Striped Beach Blanket",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 150],
       [RecipeElement.COTTON, 10],
@@ -1550,7 +1634,7 @@ export const decorationList: {
   ],
   beachlantern: [
     "Beach Lantern",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.ANGLER, 5],
@@ -1560,7 +1644,7 @@ export const decorationList: {
   ],
   seashells: [
     "Seashells",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.TABBY, 5],
@@ -1570,7 +1654,7 @@ export const decorationList: {
   ],
   seashellcollection: [
     "Seashell Collection",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.COTTON, 5],
@@ -1580,7 +1664,7 @@ export const decorationList: {
   ],
   seagrass: [
     "Seagrass",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.TABBY, 5],
@@ -1590,7 +1674,7 @@ export const decorationList: {
   ],
   seaweed: [
     "Seaweed",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.PINK, 5],
@@ -1600,7 +1684,7 @@ export const decorationList: {
   ],
   curlyseaweed: [
     "Curly Seaweed",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.PHOSPHOR, 5],
@@ -1610,7 +1694,7 @@ export const decorationList: {
   ],
   blueswirltree: [
     "Blue Swirl Tree",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.BOOM, 10],
@@ -1620,7 +1704,7 @@ export const decorationList: {
   ],
   pinkreefbush: [
     "Pink Reef Bush",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.FIRE, 5],
@@ -1630,7 +1714,7 @@ export const decorationList: {
   ],
   pinkreeftree: [
     "Pink Reef Tree",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.ANGLER, 10],
@@ -1640,7 +1724,7 @@ export const decorationList: {
   ],
   pinkreeftreecluster: [
     "Pink Reef Tree Cluster",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.COTTON, 10],
@@ -1650,7 +1734,7 @@ export const decorationList: {
   ],
   tallpinkreeftree: [
     "Tall Pink Reef Tree",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.TABBY, 10],
@@ -1660,7 +1744,7 @@ export const decorationList: {
   ],
   bluereefbush: [
     "Blue Reef Bush",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.SABER, 10],
@@ -1670,7 +1754,7 @@ export const decorationList: {
   ],
   blueanemone: [
     "Blue Anemone",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.PHOSPHOR, 5],
@@ -1680,7 +1764,7 @@ export const decorationList: {
   ],
   pinkanemone: [
     "Pink Anemone",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.PINK, 5],
@@ -1690,7 +1774,7 @@ export const decorationList: {
   ],
   pinkanemonecluster: [
     "Pink Anemone Cluster",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.TABBY, 5],
@@ -1700,7 +1784,7 @@ export const decorationList: {
   ],
   shortpinkflowerreef: [
     "Short Pink Flower Reef",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.DERVISH, 10],
@@ -1710,7 +1794,7 @@ export const decorationList: {
   ],
   pinkflowerreef: [
     "Pink Flower Reef",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.HONEY, 10],
@@ -1720,7 +1804,7 @@ export const decorationList: {
   ],
   tallpinkflowerreef: [
     "Tall Pink Flower Reef",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.TANGLE, 10],
@@ -1730,7 +1814,7 @@ export const decorationList: {
   ],
   clamthrone: [
     "Clam Throne",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.ANGLER, 10],
@@ -1741,7 +1825,7 @@ export const decorationList: {
   ],
   smallsandcastle: [
     "Small Sand Castle",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.FIRE, 10],
@@ -1752,7 +1836,7 @@ export const decorationList: {
   ],
   largesandcastle: [
     "Large Sand Castle",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.PUDDLE, 10],
@@ -1763,7 +1847,7 @@ export const decorationList: {
   ],
   reefchair: [
     "Reef Chair",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.PUDDLE, 5],
@@ -1773,7 +1857,7 @@ export const decorationList: {
   ],
   reeftable: [
     "Reef Table",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.ANGLER, 10],
@@ -1783,7 +1867,7 @@ export const decorationList: {
   ],
   smallnet: [
     "Small Net",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 400],
       [RecipeElement.COTTON, 10],
@@ -1793,7 +1877,7 @@ export const decorationList: {
   ],
   mediumnet: [
     "Medium Net",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.PUDDLE, 10],
@@ -1803,7 +1887,7 @@ export const decorationList: {
   ],
   largenet: [
     "Large Net",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 1000],
       [RecipeElement.DERVISH, 20],
@@ -1813,7 +1897,7 @@ export const decorationList: {
   ],
   shipinabottle: [
     "Ship in a Bottle",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 9000],
       [RecipeElement.FLUTTER, 50],
@@ -1825,7 +1909,7 @@ export const decorationList: {
   ],
   sandyyellowcoral: [
     "Sandy Yellow Coral",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.ANGLER, 10],
@@ -1835,7 +1919,7 @@ export const decorationList: {
   ],
   pennant: [
     "Pennant",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 5],
@@ -1844,7 +1928,7 @@ export const decorationList: {
   ],
   ribbonstreamers: [
     "Ribbon Streamers",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 5],
@@ -1853,7 +1937,7 @@ export const decorationList: {
   ],
   scarfstreamers: [
     "Scarf Streamers",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 5],
@@ -1862,7 +1946,7 @@ export const decorationList: {
   ],
   windsocks: [
     "Windsocks",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.DERVISH, 5],
@@ -1871,7 +1955,7 @@ export const decorationList: {
   ],
   smallpinwheel: [
     "Small Pinwheel",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.DERVISH, 5],
@@ -1881,7 +1965,7 @@ export const decorationList: {
   ],
   largepinwheel: [
     "Large Pinwheel",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.TANGLE, 5],
@@ -1891,7 +1975,7 @@ export const decorationList: {
   ],
   windchimes: [
     "Windchimes",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.HONEY, 10],
@@ -1901,7 +1985,7 @@ export const decorationList: {
   ],
   boombox: [
     "Boombox",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 1000],
       [RecipeElement.BOOM, 25],
@@ -1913,7 +1997,7 @@ export const decorationList: {
   ],
   daintyteacup: [
     "Dainty Teacup",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.ANGLER, 10],
@@ -1923,7 +2007,7 @@ export const decorationList: {
   ],
   bountifulteacup: [
     "Bountiful Teacup",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.FIRE, 10],
@@ -1933,7 +2017,7 @@ export const decorationList: {
   ],
   pinkstripedlamp: [
     "Pink Striped Lamp",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.PINK, 20],
@@ -1943,7 +2027,7 @@ export const decorationList: {
   ],
   swing: [
     "Swing",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 1500],
       [RecipeElement.BATTY, 25],
@@ -1954,7 +2038,7 @@ export const decorationList: {
   ],
   prideflag: [
     "Pride Flag",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 5],
@@ -1963,7 +2047,7 @@ export const decorationList: {
   ],
   seesaw: [
     "Seesaw",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 1000],
       [RecipeElement.HUNTER, 25],
@@ -1974,7 +2058,7 @@ export const decorationList: {
   ],
   carousel: [
     "Carousel",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 10000],
       [RecipeElement.PHOSPHOR, 50],
@@ -1987,7 +2071,7 @@ export const decorationList: {
   ],
   ferriswheel: [
     "Ferris Wheel",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 10000],
       [RecipeElement.RINGTAIL, 50],
@@ -2000,7 +2084,7 @@ export const decorationList: {
   ],
   slimejailstandee: [
     "Slime Jail Standee",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.RINGTAIL, 10],
@@ -2011,7 +2095,7 @@ export const decorationList: {
   ],
   sunflowerstandee: [
     "Sunflower Standee",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.TANGLE, 10],
@@ -2022,7 +2106,7 @@ export const decorationList: {
   ],
   snowmanstandee: [
     "Snowman Standee",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.SABER, 10],
@@ -2033,7 +2117,7 @@ export const decorationList: {
   ],
   tarrstandee: [
     "Tarr Standee",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.HUNTER, 10],
@@ -2044,7 +2128,7 @@ export const decorationList: {
   ],
   musictile: [
     "Music Tile",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.SABER, 3],
@@ -2055,7 +2139,7 @@ export const decorationList: {
   ],
   musicpillar: [
     "Music Pilar",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.HUNTER, 3],
@@ -2066,7 +2150,7 @@ export const decorationList: {
   ],
   anglerfountain: [
     "Angler Fountain",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 9000],
       [RecipeElement.SLOOMBER, 25],
@@ -2078,7 +2162,7 @@ export const decorationList: {
   ],
   magmafountain: [
     "Magma Fountain",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 7000],
       [RecipeElement.TWIN, 25],
@@ -2090,7 +2174,7 @@ export const decorationList: {
   ],
   ancientroundpillar: [
     "Ancient Round Pillar",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.TWIN, 10],
@@ -2100,7 +2184,7 @@ export const decorationList: {
   ],
   ancientarchedwall: [
     "Ancient Arched Wall",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.ROCK, 10],
@@ -2111,7 +2195,7 @@ export const decorationList: {
   ],
   excavationlights: [
     "Excavation Lights",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 150],
       [RecipeElement.DERVISH, 10],
@@ -2122,7 +2206,7 @@ export const decorationList: {
   ],
   goldslimefloorpanel: [
     "Gold Slime Floor Panel",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 1000],
       [RecipeElement.SLOOMBER, 25],
@@ -2134,7 +2218,7 @@ export const decorationList: {
   ],
   goldtwistedtree: [
     "Gold Twisted Tree",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 1000],
       [RecipeElement.SLOOMBER, 20],
@@ -2146,7 +2230,7 @@ export const decorationList: {
   ],
   ancientpurpleoak: [
     "Ancient Purple Oak",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.SLOOMBER, 10],
@@ -2157,7 +2241,7 @@ export const decorationList: {
   ],
   youngcedaroak: [
     "Young Cedaroak",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 200],
       [RecipeElement.TWIN, 10],
@@ -2168,7 +2252,7 @@ export const decorationList: {
   ],
   pottedlavaplants: [
     "Potted Lava Plants",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 150],
       [RecipeElement.TANGLE, 10],
@@ -2179,7 +2263,7 @@ export const decorationList: {
   ],
   walllighting: [
     "Ancient Wall Lighting",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.ROCK, 3],
@@ -2190,7 +2274,7 @@ export const decorationList: {
   ],
   aquarium: [
     "Aquarium",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 6000],
       [RecipeElement.TWIN, 25],
@@ -2202,7 +2286,7 @@ export const decorationList: {
   ],
   indigograss: [
     "Indigo Grass",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.PUDDLE, 10],
@@ -2212,7 +2296,7 @@ export const decorationList: {
   ],
   indigoflowers: [
     "Indigo Flowers",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 25],
       [RecipeElement.PUDDLE, 10],
@@ -2222,7 +2306,7 @@ export const decorationList: {
   ],
   indigocypress: [
     "Indigo Cypress",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PUDDLE, 10],
@@ -2232,7 +2316,7 @@ export const decorationList: {
   ],
   indigocypresscluster: [
     "Indigo Cypress Cluster",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 75],
       [RecipeElement.PUDDLE, 10],
@@ -2242,7 +2326,7 @@ export const decorationList: {
   ],
   tallindigocypress: [
     "Tall Indigo Cypress",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PUDDLE, 10],
@@ -2252,7 +2336,7 @@ export const decorationList: {
   ],
   indigoshrubs: [
     "Indigo Shrubs",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PUDDLE, 10],
@@ -2262,7 +2346,7 @@ export const decorationList: {
   ],
   labyrinthwalllamp: [
     "Labyrinth Wall Lamp",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 300],
       [RecipeElement.FIRE, 20],
@@ -2273,7 +2357,7 @@ export const decorationList: {
   ],
   labyrinthstandinglamp: [
     "Labyrinth Standing Lamp",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 300],
       [RecipeElement.FIRE, 20],
@@ -2500,6 +2584,11 @@ export const decorationDescription: { [key in Decoration]: string } = {
   hightechwall:
     "A speculative, futuristic wall made from technology that, by all rights, shouldn't exist in this world.",
   hightechbattery: "A futuristic battery, designed with nano cells that haven't been invented yet.",
+  scientistschair: "The perfect chair for those long running experiments.",
+  scientistsdesk: "This desk is great for getting all your work done, so long as your work involves SCIENCE!",
+  shortcomfycouch: "Slimes will love to get cozy on this couch to watch some TV (your Terrific Vac-ing)!",
+  longcomfycouch: "An extra long couch will let even more slimes hang out together!",
+  bluelavalamp: "Lava lamps: Like a spa day for slimes.",
   miniaturesdome: "Miniature buildings in a display dome: just one of the many mysteries of Rainbow Island.",
   miniaturewindmill: "Works best in a small breeze.",
   goldentwinstatue: "A golden monument to the slime that'll have you seeing double.",
@@ -2508,6 +2597,8 @@ export const decorationDescription: { [key in Decoration]: string } = {
   goldenhyperstatue:
     "This golden monument to Rainbow Island's speediest slime is the only time you'll them standing still.",
   goldenyolkystatue: "The eggiest slime shines in this golden monument. Goes great with a Golden Chicken Statue!",
+  goldenhoneystatue: "This golden monument is a fitting tribute to the sweetest slime around.",
+  goldensaberstatue: "Slimes of the distant past rise again in this golden monument!",
   indigograss: "This prince of grasses grows best in a purple rain.",
   indigoflowers: "Plant them by in-digging! Go!",
   indigocypress: "The dream-like indigo hues of these cypress trees must come from somewhere with very unusual soil.",

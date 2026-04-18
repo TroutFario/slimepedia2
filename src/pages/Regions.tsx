@@ -16,7 +16,7 @@ import {
 } from "../data/regions";
 import { Tab } from "../components/Tab";
 import { foodList } from "../data/food";
-import { slimesList } from "../data/slimes";
+import { slimes } from "../data/slimes";
 import { LabyMusicRefs, MusicRefs } from "../components/MusicPlayer";
 import "../css/MusicPlayer.css";
 import "../css/Regions.css";
@@ -144,7 +144,7 @@ const RegionDescription: React.FC<{ region: Region }> = ({ region }) => (
         <NavLink to={`/slimes/${slime}`} style={{ textDecoration: "none" }} key={`${slime}-${index}`}>
           <div className="region-element" key={`${slime}-${index}`}>
             <div className="region-element-content">
-              <img src={`/assets/slimes/${slime}.png`} alt={slimesList[slime][0]} title={slimesList[slime][0]} />
+              <img src={`/assets/slimes/${slime}.png`} alt={slimes[slime].name} title={slimes[slime].name} />
             </div>
           </div>
         </NavLink>
@@ -165,7 +165,7 @@ const RegionDescription: React.FC<{ region: Region }> = ({ region }) => (
         <NavLink to={`/food/${food}`} style={{ textDecoration: "none" }} key={`${food}-${index}`}>
           <div className="region-element" key={`${food}-${index}`}>
             <div className="region-element-content">
-              <img src={`/assets/food/${food}.png`} alt={foodList[food][0]} title={foodList[food][0]} />
+              <img src={`/assets/food/${food}.png`} alt={foodList[food].name} title={foodList[food].name} />
             </div>
           </div>
         </NavLink>

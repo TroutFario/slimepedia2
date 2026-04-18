@@ -5,7 +5,8 @@ import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import NavButton from "../../components/NavButton";
 import { CraftingList } from "../../components/shared/CraftingList";
 import { BlueprintType, unlockRequirements } from "../../data/blueprints/blueprints";
-import PediaInfo, { PediaBoxLayout } from "../../components/PediaInfo";
+import PediaInfo from "../../components/PediaInfo";
+import { PediaBoxLayout } from "../../data/enums";
 import { LittleBoxProps } from "../../components/shared/LittleBox";
 
 const UtilityInfo: React.FC<{ utility: Utility | null }> = ({ utility }) => {

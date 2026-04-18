@@ -55,7 +55,9 @@ export const NavButton: React.FC<NavButtonProps> = ({
       }
     >
       <div className="image-frame">
-        <img src={`/assets/${icon}.png`} alt={name} className={`image-button img-btn-${randomNumber}`} />
+        <span className="image-anim">
+          <img src={`/assets/${icon}.png`} alt={name} className={`image-button img-btn-${randomNumber}`} />
+        </span>
       </div>
       <p>{name}</p>
     </button>

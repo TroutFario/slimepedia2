@@ -3,49 +3,45 @@ import { NavLink, useParams, Navigate } from "react-router-dom";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { NavButton } from "../components/NavButton";
 import { Biomes } from "../components/Biomes";
-import { foodpedia, foodDescription, foodList, Food, FoodType, foodTypeList, foodBlackList } from "../data/food";
+import { foodpedia, foodDescription, foodList, Food, Diet, dietList, foodBlackList } from "../data/food";
 import { Tab } from "../components/Tab";
-import { Slime, slimesList } from "../data/slimes";
+import { Slime, slimes } from "../data/slimes";
 import "../css/Pedia.css";
 import { FaAngleDown } from "react-icons/fa6";
 import { Region, regionElements } from "../data/regions";
 import { LittleBoxProps } from "../components/shared/LittleBox";
-import { PediaBoxLayout, PediaInfo } from "../components/PediaInfo";
+import { PediaInfo } from "../components/PediaInfo";
+import { PediaBoxLayout } from "../data/enums";
 
 interface FoodTabsProps {
-  filter: FoodType | null;
-  setFilter: (filter: FoodType | null) => void;
+  filter: Diet | null;
+  setFilter: (filter: Diet | null) => void;
 }
 
 const FoodTabs: React.FC<FoodTabsProps> = ({ filter, setFilter }) => (
   <div className="food-tabs">
-    <Tab title="All" icon={`food/any`} action={() => setFilter(FoodType.Any)} selected={filter === FoodType.Any} />
+    <Tab title="All" icon={`food/any`} action={() => setFilter(Diet.Any)} selected={filter === Diet.Any} />
     <Tab
       title="Veggies"
       icon={`food/veggies`}
-      action={() => setFilter(FoodType.Veggies)}
-      selected={filter === FoodType.Veggies}
+      action={() => setFilter(Diet.Veggies)}
+      selected={filter === Diet.Veggies}
     />
-    <Tab
-      title="Fruits"
-      icon={`food/fruits`}
-      action={() => setFilter(FoodType.Fruits)}
-      selected={filter === FoodType.Fruits}
-    />
-    <Tab title="Meat" icon={`food/meat`} action={() => setFilter(FoodType.Meat)} selected={filter === FoodType.Meat} />
+    <Tab title="Fruits" icon={`food/fruits`} action={() => setFilter(Diet.Fruits)} selected={filter === Diet.Fruits} />
+    <Tab title="Meat" icon={`food/meat`} action={() => setFilter(Diet.Meat)} selected={filter === Diet.Meat} />
     <Tab title="Special" icon={`food/honey`} action={() => setFilter(null)} selected={filter === null} />
   </div>
 );
 
 interface FoodDetailsProps {
-  food: Food | null;
-  setFilter: (filter: FoodType | null) => void;
+  selectedFood: Food | null;
+  setFilter: (filter: Diet | null) => void;
 }
 
-const favSlimeCalc = (food: Food | null): Slime | null => {
+const favSlimeCalc = (food: Food | null) => {
   if (food === null) return null;
   for (const s of Object.values(Slime)) {
-    if (slimesList[s][2] === food) return s;
+    if (slimes[s].food === food) return slimes[s];
   }
   return null;
 };
@@ -63,10 +59,10 @@ const getFoodSpawnlist = (food: Food | null): Region[] => {
 const FoodList: React.FC<{
   actualFoodList: Food[];
   food: Food | null;
-  filter: FoodType | null;
+  filter: Diet | null;
 }> = ({ actualFoodList, food, filter }) => (
   <OverlayScrollbarsComponent
-    className={"list-food" + (filter === FoodType.Any ? " list-food-first" : filter && " list-food-last")}
+    className={"list-food" + (filter === Diet.Any ? " list-food-first" : filter && " list-food-last")}
     options={{
       scrollbars: {
         autoHide: "move",
@@ -81,7 +77,7 @@ const FoodList: React.FC<{
           key={foodName}
           icon={`food/${foodName}`}
           size={1.25}
-          name={foodList[foodName][0]}
+          name={foodList[foodName].name}
           selected={foodName === food}
         />
       </NavLink>
@@ -89,32 +85,23 @@ const FoodList: React.FC<{
   </OverlayScrollbarsComponent>
 );
 
-const specialFoodFilter = (foodType: FoodType | null): FoodType | null => {
-  if (foodType && [FoodType.Fruits, FoodType.Veggies, FoodType.Meat].includes(foodType)) return foodType;
+const specialFoodFilter = (foodType: Diet | null): Diet | null => {
+  if (foodType && [Diet.Fruits, Diet.Veggies, Diet.Meat].includes(foodType)) return foodType;
   return null;
 };
 
-const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
-  const littleBoxList: LittleBoxProps[] = [];
-  if (food === null) {
-    littleBoxList.push(
+const FoodDetails: React.FC<FoodDetailsProps> = ({ selectedFood, setFilter }) => {
+  if (selectedFood === null) {
+    const littleBoxList: LittleBoxProps[] = [
       {
-        image: null,
         alt: "No food selected",
         title: "Food type",
-        subtitle: null,
-        action: null,
-        link: null,
       },
       {
-        image: null,
         alt: "No slime selected",
         title: "Favorite of",
-        subtitle: null,
-        action: null,
-        link: null,
       },
-    );
+    ];
     return (
       <PediaInfo
         layout={PediaBoxLayout.OneByTwo}
@@ -127,14 +114,14 @@ const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
     );
   }
 
-  const foodType = foodList[food][1];
-  const foodTypeName = foodType === null ? "Unedible" : foodTypeList[foodType][1];
+  const food = foodList[selectedFood];
+  const foodType = food.diet;
+  const foodTypeName = foodType === null ? "Unedible" : dietList[foodType].singular;
   const foodTypeIcon = foodType === null ? "/assets/misc/none.png" : `/assets/food/${foodType}.png`;
 
-  const favSlime = favSlimeCalc(food);
-  const slimeName = favSlime ? slimesList[favSlime][0] : "Nobody";
-  const slimeIcon = favSlime ? `/assets/slimes/${favSlime}.png` : "/assets/misc/none.png";
-  littleBoxList.push(
+  const slime = favSlimeCalc(selectedFood);
+
+  const littleBoxList: LittleBoxProps[] = [
     {
       image: foodTypeIcon,
       alt: foodTypeName,
@@ -144,22 +131,23 @@ const FoodDetails: React.FC<FoodDetailsProps> = ({ food, setFilter }) => {
       link: null,
     },
     {
-      image: slimeIcon,
-      alt: "Icon of " + slimeName,
+      image: slime ? `/assets/slimes/${slime}.png` : "/assets/misc/none.png",
+      alt: slime ? slime.name : "Nobody",
       title: "Favorite of",
-      subtitle: slimeName,
+      subtitle: slime ? slime.name : "Nobody",
       action: null,
-      link: favSlime ? `/slimes/${favSlime}` : null,
+      link: slime ? `/slimes/${slime}` : null,
     },
-  );
+  ];
+
   return (
     <PediaInfo
       layout={PediaBoxLayout.OneByTwo}
-      title={foodList[food][0]}
-      subtitle={foodDescription[food]}
-      icon={`/assets/food/${food}.png`}
+      title={food.name}
+      subtitle={foodDescription[selectedFood]}
+      icon={`/assets/food/${selectedFood}.png`}
       littleBoxList={littleBoxList}
-      BiomeComponent={<Biomes spawnList={getFoodSpawnlist(food)} />}
+      BiomeComponent={<Biomes spawnList={getFoodSpawnlist(selectedFood)} />}
     />
   );
 };
@@ -204,36 +192,26 @@ const FoodDescription: React.FC<FoodDescriptionProps> = ({ food, topBtn }) => {
 export const FoodPage = () => {
   const { food: foodName } = useParams<{ food: string }>();
   const food = Object.values(Food).includes(foodName as Food) ? (foodName as Food) : null;
-  const [filter, setFilter] = useState<FoodType | null>(food ? foodList[food][1] : FoodType.Any);
+  const [filter, setFilter] = useState<Diet | null>(food ? foodList[food].diet : Diet.Any);
   const [topBtn, setTopBtn] = useState(false);
 
   const actualFoodList: Food[] = useMemo(() => {
-    switch (filter) {
-      case FoodType.Any:
-        return Object.values(Food).slice(0, -2);
-      case FoodType.Fruits:
-        return Object.values(Food).filter((foodSearched) => foodList[foodSearched][1] === FoodType.Fruits);
-      case FoodType.Veggies:
-        return Object.values(Food).filter((foodSearched) => foodList[foodSearched][1] === FoodType.Veggies);
-      case FoodType.Meat:
-        return Object.values(Food).filter((foodSearched) => foodList[foodSearched][1] === FoodType.Meat);
-      case null:
-        return Object.values(Food)
-          .filter(
-            (foodSearched) =>
-              foodList[foodSearched][1] === null ||
-              ![FoodType.Fruits, FoodType.Veggies, FoodType.Meat].includes(foodList[foodSearched][1]),
-          )
-          .slice(0, -2);
-      default:
-        return Object.values(Food).slice(0, -2);
-    }
+    if (!filter)
+      return Object.values(Food)
+        .filter(
+          (foodSearched) =>
+            foodList[foodSearched].diet === null ||
+            ![Diet.Fruits, Diet.Veggies, Diet.Meat].includes(foodList[foodSearched].diet),
+        )
+        .slice(0, -2);
+    if (filter === Diet.Any) return Object.values(Food).slice(0, -2);
+    return Object.values(Food).filter((foodSearched) => foodList[foodSearched].diet === Diet.Fruits);
   }, [filter]);
 
   if ((food === null && foodName !== undefined) || (food !== null && foodBlackList.includes(food)))
     return <Navigate to="/food" replace />;
 
-  document.title = food === null ? "Food - Slimepedia" : foodList[food][0] + " - Slimepedia";
+  document.title = food === null ? "Food - Slimepedia" : foodList[food].name + " - Slimepedia";
 
   return (
     <div>
@@ -242,7 +220,7 @@ export const FoodPage = () => {
         <FoodList actualFoodList={actualFoodList} food={food} filter={filter} />
       </div>
       <div className={"box-presentation" + (topBtn ? " hidden-infos" : "")}>
-        <FoodDetails food={food} setFilter={setFilter} />
+        <FoodDetails selectedFood={food} setFilter={setFilter} />
         <button
           className={"arrow-btn " + (topBtn ? "top-btn" : "bot-btn")}
           onClick={() => setTopBtn(!topBtn)}

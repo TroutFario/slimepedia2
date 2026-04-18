@@ -1,4 +1,4 @@
-import { Recipe, RecipeElement, UnlockRequirementNames } from "./blueprints";
+import { Recipe, RecipeElement, Unlock } from "./blueprints";
 
 export enum Utility {
   DASH_PAD = "dashpad",
@@ -46,11 +46,11 @@ export enum Utility {
 }
 
 export const utilitiesList: {
-  [key in Utility]: [string, UnlockRequirementNames, Recipe];
+  [key in Utility]: [string, Unlock, Recipe];
 } = {
   medstation: [
     "Med Station",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 100],
       [RecipeElement.PINK, 10],
@@ -60,7 +60,7 @@ export const utilitiesList: {
   ],
   dashpad: [
     "Dash Pad",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.CRYSTAL, 10],
@@ -71,7 +71,7 @@ export const utilitiesList: {
   ],
   springpad: [
     "Spring Pad",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.COTTON, 10],
@@ -82,7 +82,7 @@ export const utilitiesList: {
   ],
   turret: [
     "Hydro Turret",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.BOOM, 10],
@@ -92,7 +92,7 @@ export const utilitiesList: {
   ],
   superturret: [
     "Super Turret",
-    UnlockRequirementNames.OGDEN,
+    Unlock.OGDEN,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.BOOM, 30],
@@ -103,7 +103,7 @@ export const utilitiesList: {
   ],
   trydroturret: [
     "Trydroturret",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 2000],
       [RecipeElement.HYPER, 30],
@@ -114,7 +114,7 @@ export const utilitiesList: {
   ],
   shower: [
     "Hydro Shower",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.FLUTTER, 40],
@@ -125,7 +125,7 @@ export const utilitiesList: {
   ],
   tamingbell: [
     "Taming Bell",
-    UnlockRequirementNames.THORA,
+    Unlock.THORA,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.FLUTTER, 10],
@@ -136,7 +136,7 @@ export const utilitiesList: {
   ],
   watertap: [
     "Portable Water Tap",
-    UnlockRequirementNames.OGDEN,
+    Unlock.OGDEN,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.PUDDLE, 10],
@@ -147,7 +147,7 @@ export const utilitiesList: {
   ],
   portablescareslime: [
     "Portable Scare Slime",
-    UnlockRequirementNames.OGDEN,
+    Unlock.OGDEN,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.BATTY, 30],
@@ -158,7 +158,7 @@ export const utilitiesList: {
   ],
   snarenovice: [
     "Novice Gordo Snare",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.HUNTER, 10],
@@ -169,7 +169,7 @@ export const utilitiesList: {
   ],
   snareadvanced: [
     "Advanced Gordo Snare",
-    UnlockRequirementNames.THORA,
+    Unlock.THORA,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.HUNTER, 20],
@@ -181,7 +181,7 @@ export const utilitiesList: {
   ],
   snaremaster: [
     "Master Gordo Snare",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 2000],
       [RecipeElement.HUNTER, 20],
@@ -193,7 +193,7 @@ export const utilitiesList: {
   ],
   baitpogo: [
     "Fruit Slime Bait",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.PHOSPHOR, 20],
@@ -204,7 +204,7 @@ export const utilitiesList: {
   ],
   baitcarrot: [
     "Veggie Slime Bait",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.COTTON, 20],
@@ -215,7 +215,7 @@ export const utilitiesList: {
   ],
   baitchicken: [
     "Meat Slime Bait",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 250],
       [RecipeElement.TABBY, 20],
@@ -226,7 +226,7 @@ export const utilitiesList: {
   ],
   slimestage: [
     "Slime Stage",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.PINK, 20],
@@ -237,7 +237,7 @@ export const utilitiesList: {
   ],
   slimestagefloral: [
     "Floral Slime Stage",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 1000],
       [RecipeElement.FLUTTER, 20],
@@ -248,7 +248,7 @@ export const utilitiesList: {
   ],
   snowballmachine: [
     "Snowball Machine",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 2000],
       [RecipeElement.SABER, 20],
@@ -258,7 +258,7 @@ export const utilitiesList: {
   ],
   fan: [
     "Easy Breezy Fan",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.DERVISH, 10],
@@ -268,7 +268,7 @@ export const utilitiesList: {
   ],
   bumper: [
     "Round Bumper",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.PINK, 10],
@@ -278,7 +278,7 @@ export const utilitiesList: {
   ],
   cannon: [
     "Stunt Cannon",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 1000],
       [RecipeElement.BOOM, 20],
@@ -288,7 +288,7 @@ export const utilitiesList: {
   ],
   accelerator: [
     "Accelerator",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.RINGTAIL, 1],
@@ -297,7 +297,7 @@ export const utilitiesList: {
   ],
   goal: [
     "Slimeball Goal",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 5000],
       [RecipeElement.HONEY, 25],
@@ -307,7 +307,7 @@ export const utilitiesList: {
   ],
   markerexcl: [
     "Attention Flag",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 5],
@@ -316,7 +316,7 @@ export const utilitiesList: {
   ],
   markerno: [
     "Cautious Flag",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 5],
@@ -325,7 +325,7 @@ export const utilitiesList: {
   ],
   markerquestion: [
     "Curious Flag",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 5],
@@ -334,7 +334,7 @@ export const utilitiesList: {
   ],
   markerfruit: [
     "Fruit Flag",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 5],
@@ -343,7 +343,7 @@ export const utilitiesList: {
   ],
   markerveggie: [
     "Veggie Flag",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 5],
@@ -352,7 +352,7 @@ export const utilitiesList: {
   ],
   markermeat: [
     "Meat Flag",
-    UnlockRequirementNames.POD,
+    Unlock.POD,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 5],
@@ -361,7 +361,7 @@ export const utilitiesList: {
   ],
   markerspout: [
     "Spout Resource Flag",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 5],
@@ -370,7 +370,7 @@ export const utilitiesList: {
   ],
   markermineral: [
     "Mineral Resource Flag",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 5],
@@ -379,7 +379,7 @@ export const utilitiesList: {
   ],
   markerhive: [
     "Hive Resource Flag",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 5],
@@ -388,7 +388,7 @@ export const utilitiesList: {
   ],
   markerslime: [
     "Slime Resource Flag",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 5],
@@ -397,7 +397,7 @@ export const utilitiesList: {
   ],
   markerstabilizer: [
     "Stabilizer Flag",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 50],
       [RecipeElement.PINK, 5],
@@ -406,7 +406,7 @@ export const utilitiesList: {
   ],
   dreamlantern: [
     "Dream Lantern",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 10000],
       [RecipeElement.HONEY, 50],
@@ -418,7 +418,7 @@ export const utilitiesList: {
   ],
   dreamlantern2: [
     "Dream Lantern II",
-    UnlockRequirementNames.DOOR,
+    Unlock.DOOR,
     new Map([
       [RecipeElement.NEWBUCKS, 15000],
       [RecipeElement.HONEY, 50],
@@ -430,7 +430,7 @@ export const utilitiesList: {
   ],
   radiantprojector: [
     "Radiant Projector",
-    UnlockRequirementNames.VIKTOR,
+    Unlock.VIKTOR,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.HUNTER, 10],
@@ -441,7 +441,7 @@ export const utilitiesList: {
   ],
   nullifier: [
     "Nullifier",
-    UnlockRequirementNames.GIGI,
+    Unlock.GIGI,
     new Map([
       [RecipeElement.NEWBUCKS, 1000],
       [RecipeElement.SHADOW, 20],
@@ -452,7 +452,7 @@ export const utilitiesList: {
   ],
   disruptiondetector: [
     "Disruption Detector",
-    UnlockRequirementNames.GIGI,
+    Unlock.GIGI,
     new Map([
       [RecipeElement.NEWBUCKS, 500],
       [RecipeElement.PRISMA, 10],
@@ -462,7 +462,7 @@ export const utilitiesList: {
   ],
   dronestation: [
     "Quantum Drone Station",
-    UnlockRequirementNames.GHOST,
+    Unlock.GHOST,
     new Map([
       [RecipeElement.NEWBUCKS, 5000],
       [RecipeElement.FLUTTER, 100],
@@ -474,7 +474,7 @@ export const utilitiesList: {
   ],
   distributor: [
     "Distributor",
-    UnlockRequirementNames.POLESTAR,
+    Unlock.POLESTAR,
     new Map([
       [RecipeElement.NEWBUCKS, 3000],
       [RecipeElement.DERVISH, 25],

@@ -38,7 +38,7 @@ export enum Food {
 
 export const foodBlackList: (Food | null)[] = [Food.RanchersnSlimes, Food.Ash, null];
 
-export enum FoodType {
+export enum Diet {
   Any = "any",
   Fruits = "fruits",
   Veggies = "veggies",
@@ -49,55 +49,66 @@ export enum FoodType {
   RanchersnSlimes = "ranchersnslimes",
 }
 
-export const foodTypeBlacklist: FoodType[] = [FoodType.Any, FoodType.Ash, FoodType.RanchersnSlimes];
+export const dietBlacklist: Diet[] = [Diet.Any, Diet.Ash, Diet.RanchersnSlimes];
 
-export const foodTypeList: { [key in FoodType]: [string, string] } = {
-  [FoodType.Any]: ["Any", "Any"],
-  [FoodType.Meat]: ["Meat", "Meat"],
-  [FoodType.Fruits]: ["Fruits", "Fruit"],
-  [FoodType.Veggies]: ["Veggies", "Veggie"],
-  [FoodType.Water]: ["Water", "Water"],
-  [FoodType.Ash]: ["Ash", "Ash"],
-  [FoodType.Nectar]: ["Nectar", "Nectar"],
-  [FoodType.RanchersnSlimes]: ["Ranchers and Slimes", "Ranchers and Slimes"],
+type DietProps = {
+  singular: string;
+  plural: string;
+};
+export const dietList: { [key in Diet]: DietProps } = {
+  [Diet.Any]: {plural: "Any", singular: "Any"},
+  [Diet.Meat]: {plural: "Meat", singular: "Meat"},
+  [Diet.Fruits]: {plural: "Fruits", singular: "Fruit"},
+  [Diet.Veggies]: {plural: "Veggies", singular: "Veggie"},
+  [Diet.Water]: {plural: "Water", singular: "Water"},
+  [Diet.Ash]: {plural: "Ash", singular: "Ash"},
+  [Diet.Nectar]: {plural: "Nectar", singular: "Nectar"},
+  [Diet.RanchersnSlimes]: {plural: "Ranchers and Slimes", singular: "Ranchers and Slimes"},
 };
 
-export const foodList: { [key in Food]: [string, FoodType | null] } = {
-  [Food.Carrot]: ["Carrot", FoodType.Veggies],
-  [Food.Lettuce]: ["Water Lettuce", FoodType.Veggies],
-  [Food.Beet]: ["Heart Beet", FoodType.Veggies],
-  [Food.Onion]: ["Odd Onion", FoodType.Veggies],
-  [Food.Tater]: ["Turbo Tater", FoodType.Veggies],
-  [Food.Pogo]: ["Pogofruit", FoodType.Fruits],
-  [Food.Cuberry]: ["Cuberry", FoodType.Fruits],
-  [Food.Mango]: ["Mint Mango", FoodType.Fruits],
-  [Food.Granite]: ["Pomegranite", FoodType.Fruits],
-  [Food.Pear]: ["Prickle Pear", FoodType.Fruits],
-  [Food.Cherry]: ["Polaricherry", FoodType.Fruits],
-  [Food.Chick]: ["Chickadoo", null],
-  [Food.ChickBriar]: ["Briar Chick", null],
-  [Food.ChickCandied]: ["Candied Chick", null],
-  [Food.ChickCluck]: ["Thundercluck Chick", null],
-  [Food.ChickPainted]: ["Painted Chick", null],
-  [Food.ChickSea]: ["Sea Chick", null],
-  [Food.ChickStony]: ["Stony Chick", null],
-  [Food.Hen]: ["Hen Hen", FoodType.Meat],
-  [Food.HenStony]: ["Stony Hen", FoodType.Meat],
-  [Food.HenSea]: ["Sea Hen", FoodType.Meat],
-  [Food.HenBriar]: ["Briar Hen", FoodType.Meat],
-  [Food.HenCluck]: ["Thundercluck Hen", FoodType.Meat],
-  [Food.HenPainted]: ["Painted Hen", FoodType.Meat],
-  [Food.HenCandied]: ["Candied Hen", FoodType.Meat],
-  [Food.Rooster]: ["Rooster", FoodType.Meat],
-  [Food.HenElder]: ["Elder Hen", FoodType.Meat],
-  [Food.RoosterElder]: ["Elder Rooster", FoodType.Meat],
-  [Food.Water]: ["Water", FoodType.Water],
-  [Food.Nectar]: ["Moondew Nectar", FoodType.Nectar],
-  [Food.UnstableFruit]: ["Unstable Fruit", FoodType.Fruits],
-  [Food.UnstableVeggie]: ["Unstable Veggie", FoodType.Veggies],
-  [Food.UnstableMeat]: ["Unstable Meat", FoodType.Meat],
-  [Food.RanchersnSlimes]: ["Ranchers and Slimes", FoodType.RanchersnSlimes],
-  [Food.Ash]: ["Ash", FoodType.Ash],
+type FoodProps = {
+  name: string,
+  diet: Diet | null;
+}
+
+const createFoodProps = (name: string, diet: Diet | null): FoodProps => ({name, diet});
+
+export const foodList: { [key in Food]: FoodProps } = {
+  [Food.Carrot]: createFoodProps("Carrot", Diet.Veggies),
+  [Food.Lettuce]: createFoodProps("Water Lettuce", Diet.Veggies),
+  [Food.Beet]: createFoodProps("Heart Beet", Diet.Veggies),
+  [Food.Onion]: createFoodProps("Odd Onion", Diet.Veggies),
+  [Food.Tater]: createFoodProps("Turbo Tater", Diet.Veggies),
+  [Food.Pogo]: createFoodProps("Pogofruit", Diet.Fruits),
+  [Food.Cuberry]: createFoodProps("Cuberry", Diet.Fruits),
+  [Food.Mango]: createFoodProps("Mint Mango", Diet.Fruits),
+  [Food.Granite]: createFoodProps("Pomegranite", Diet.Fruits),
+  [Food.Pear]: createFoodProps("Prickle Pear", Diet.Fruits),
+  [Food.Cherry]: createFoodProps("Polaricherry", Diet.Fruits),
+  [Food.Chick]: createFoodProps("Chickadoo", null),
+  [Food.ChickBriar]: createFoodProps("Briar Chick", null),
+  [Food.ChickCandied]: createFoodProps("Candied Chick", null),
+  [Food.ChickCluck]: createFoodProps("Thundercluck Chick", null),
+  [Food.ChickPainted]: createFoodProps("Painted Chick", null),
+  [Food.ChickSea]: createFoodProps("Sea Chick", null),
+  [Food.ChickStony]: createFoodProps("Stony Chick", null),
+  [Food.Hen]: createFoodProps("Hen Hen", Diet.Meat),
+  [Food.HenStony]: createFoodProps("Stony Hen", Diet.Meat),
+  [Food.HenSea]: createFoodProps("Sea Hen", Diet.Meat),
+  [Food.HenBriar]: createFoodProps("Briar Hen", Diet.Meat),
+  [Food.HenCluck]: createFoodProps("Thundercluck Hen", Diet.Meat),
+  [Food.HenPainted]: createFoodProps("Painted Hen", Diet.Meat),
+  [Food.HenCandied]: createFoodProps("Candied Hen", Diet.Meat),
+  [Food.Rooster]: createFoodProps("Rooster", Diet.Meat),
+  [Food.HenElder]: createFoodProps("Elder Hen", Diet.Meat),
+  [Food.RoosterElder]: createFoodProps("Elder Rooster", Diet.Meat),
+  [Food.Water]: createFoodProps("Water", Diet.Water),
+  [Food.Nectar]: createFoodProps("Moondew Nectar", Diet.Nectar),
+  [Food.UnstableFruit]: createFoodProps("Unstable Fruit", Diet.Fruits),
+  [Food.UnstableVeggie]: createFoodProps("Unstable Veggie", Diet.Veggies),
+  [Food.UnstableMeat]: createFoodProps("Unstable Meat", Diet.Meat),
+  [Food.RanchersnSlimes]: createFoodProps("Ranchers and Slimes", Diet.RanchersnSlimes),
+  [Food.Ash]: createFoodProps("Ash", Diet.Ash),
 };
 
 export const foodDescription: { [key in Food]: string } = {

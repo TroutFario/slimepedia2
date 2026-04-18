@@ -6,7 +6,8 @@ import { NavLink, useParams } from "react-router-dom";
 import NavButton from "../../components/NavButton";
 import { CraftingList } from "../../components/shared/CraftingList";
 import { LittleBoxProps } from "../../components/shared/LittleBox";
-import PediaInfo, { PediaBoxLayout } from "../../components/PediaInfo";
+import PediaInfo from "../../components/PediaInfo";
+import { PediaBoxLayout } from "../../data/enums";
 
 const WarpInfos: React.FC<{ warp: Warp | null }> = ({ warp }) => {
   let title = "No warp tech selected";

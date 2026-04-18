@@ -13,7 +13,8 @@ import {
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import CraftingList from "../../components/shared/CraftingList";
 import { BlueprintType, unlockRequirements } from "../../data/blueprints/blueprints";
-import PediaInfo, { PediaBoxLayout } from "../../components/PediaInfo";
+import PediaInfo from "../../components/PediaInfo";
+import { PediaBoxLayout } from "../../data/enums";
 import { LittleBoxProps } from "../../components/shared/LittleBox";
 
 interface UpgradeItemListProps {

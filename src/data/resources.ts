@@ -60,6 +60,7 @@ export const resourceList: { [key in Resource]: [string, string, MixedRegion[]] 
     [Region.Labyrinth],
   ],
   [Resource.Prisma]: ["Radiant Plort", "Prismatic plorts of possibilities with a purpose.", [Region.Labyrinth]],
+  [Resource.Sprinkles]: ["Sprinkles", "Sweet to have, but not for eating!", [Ranch.Sanctuary]]
 };
 
 export const resourcePedia: { [key in Resource]: string } = {
@@ -111,4 +112,6 @@ export const resourcePedia: { [key in Resource]: string } = {
     "Caught and stretched across reality, matter, and time, resources affected by the prisma disruptions of the Grey Labyrinth are too volatile to exist for long in the natural world. Eventually, these resources will pop out of existence, or even a rancher's vac tank, to escape the confines of reality and mundane three dimensions.\nBasically, they've got too many reality appointments and they are constantly rushing to get to their next one. ",
   [Resource.Prisma]:
     "Unlike other objects affected by prisma disruptions, these plorts appear to be especially sensitive to the temporal distortions that appear throughout the Grey Labyrinth. The ancient beings that created the Grey Labyrinth seem to have had a special use in mind for these plorts when they designed the megastructure. Perhaps the plorts themselves are the key to delving further into the structure's mysteries?",
+  [Resource.Sprinkles]:
+    "Sprinkles are made when Rainbow Island's slimes; especially the Radiant Slimes who have been most affected by the Prismacore, shed their radiance while hanging out in the Sanctuary. Think of it like a detox spa treatment for slimes!\nWhile there sprinkes look good enough to eat, side effects of ingestion may include dizziness, hallucinations, and unstable emotions. Also, an unstable physical composition. So maybe save them for the shop."
 };

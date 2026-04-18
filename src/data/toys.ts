@@ -21,6 +21,7 @@ export enum Toy {
   Spinner = "spinner",
   Bread = "bread",
   Chicken = "chicken",
+  Detector = "detector",
   Fox = "fox",
 }
 
@@ -140,4 +141,9 @@ export const toyList: { [key in Toy]: [string, string, number] } = {
     "Greatly reduces agitation of all nearby slimes. Perfect for slimes getting into mischief.\nNote: Steam-exclusive toy.",
     750,
   ],
+  [Toy.Detector]: [
+    "Resource Detector",
+    "Find unharvested resources in your area!\nJust walk around holding the Resource Detector Toy. It will lock onto the nearest resource in it's range and show tou the way to go. You can always reset it by dropping it, then picking it back up!",
+    1000,
+  ]
 };
