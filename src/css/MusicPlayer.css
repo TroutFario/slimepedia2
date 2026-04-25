@@ -34,7 +34,7 @@
   height: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  border-radius: 100vw, 0, 0, 100vw;
+  border-radius: 100vw 0 0 100vw;
   transition:
     background-color var(--animation-speed) var(--animation-function),
     max-width var(--animation-speed) var(--animation-function),
@@ -124,24 +124,4 @@
   border-radius: 100vh;
   width: fit-content;
   height: 100%;
-}
-
-.music-section-dreamland {
-  background-color: #f9ccff;
-}
-
-.music-section-hub {
-  background-color: #4ed6ac;
-}
-
-.music-section-lava {
-  background-color: #fc8400;
-}
-
-.music-section-waterworks {
-  background-color: #86ebf7;
-}
-
-.music-section-terrarium {
-  background-color: #a0ff87;
 }

@@ -1,8 +1,3 @@
-export enum RegionType {
-  Region = "regions",
-  Ranch = "ranch",
-}
-
 export enum Region {
   Fields = "fields",
   Strand = "strand",

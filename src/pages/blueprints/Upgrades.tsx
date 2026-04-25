@@ -12,7 +12,7 @@ import {
 } from "../../data/blueprints/upgrades";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import CraftingList from "../../components/shared/CraftingList";
-import { BlueprintType, unlockRequirements } from "../../data/blueprints/blueprints";
+import {BlueprintType, prettyRequirement, unlockRequirements} from "../../data/blueprints/blueprints";
 import PediaInfo from "../../components/PediaInfo";
 import { PediaBoxLayout } from "../../data/enums";
 import { LittleBoxProps } from "../../components/shared/LittleBox";
@@ -78,10 +78,10 @@ const UpgradeInfo: React.FC<{
     icon = `/assets/upgrades/${upgrade}.png`;
     littleBoxList.push(
       {
-        image: `/assets/${unlockRequirements[upgradesList[upgradeWithTier][1]][1]}.png`,
-        alt: unlockRequirements[upgradesList[upgradeWithTier][1]][0],
+        image: `/assets/${unlockRequirements[upgradesList[upgradeWithTier][1].unlock].icon}.png`,
+        alt: unlockRequirements[upgradesList[upgradeWithTier][1].unlock].name,
         title: "Unlock Requirements",
-        subtitle: unlockRequirements[upgradesList[upgradeWithTier][1]][0],
+        subtitle: prettyRequirement(upgradesList[upgradeWithTier][1]),
       },
       {
         image: `/assets/${upgradeEffects[upgradeWithTier][0]}.png`,
@@ -122,7 +122,7 @@ const UpgradeInfo: React.FC<{
   );
 };
 
-export const UpgradePage: React.FC = () => {
+const UpgradePage: React.FC = () => {
   const { blueprint: upgradeName, tier: selectedTier } = useParams();
   const tier = selectedTier ? Number.parseInt(selectedTier, 10) : 1;
   const upgrade = upgradeName ? (upgradeName as Upgrade) : null;

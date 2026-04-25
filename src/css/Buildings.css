@@ -1,18 +1,4 @@
-.buildings-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: 0;
-  padding: 10px;
-  border-radius: var(--border-size);
-  background-color: var(--menu-color-1);
-  gap: 10px;
-  min-width: fit-content;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
 .building-presentation {
-  height: 100%;
   display: grid;
   gap: var(--border-size);
   grid-template-columns: minmax(0, 2fr) 1fr 1fr;
@@ -22,6 +8,7 @@
     "title cost use"
     "title upgrade upgrade"
     "upgrade-list upgrade upgrade";
+  height: 100%;
 }
 
 .building-title {

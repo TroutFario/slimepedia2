@@ -68,7 +68,7 @@ export const LittleBox: React.FC<LittleBoxProps> = ({
       <NavLink to={link} style={{ textDecoration: "none" }}>
         <button
           className={
-            "little-box button-reset interactive-box element-" + order + (otherClasses ? " " + otherClasses : "")
+            "info-box-base button-reset interactive-box element-" + order + (otherClasses ? " " + otherClasses : "")
           }
           onClick={action ? () => action() : undefined}
           onKeyDown={(e) => actionHandler(e, action)}
@@ -82,7 +82,7 @@ export const LittleBox: React.FC<LittleBoxProps> = ({
   return (
     <button
       className={
-        "little-box button-reset element-" +
+        "info-box-base button-reset element-" +
         order +
         (otherClasses ? " " + otherClasses : "") +
         (action ? " interactive-box" : "")

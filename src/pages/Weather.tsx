@@ -4,7 +4,7 @@ import { Biomes } from "../components/Biomes";
 import { Navigate, NavLink, useParams } from "react-router-dom";
 import "../css/Weather.css";
 
-export const WeatherPage: React.FC = () => {
+const WeatherPage: React.FC = () => {
   const [panel, setPanel] = useState<boolean>(true);
   const videoRefs = useRef<{ [key: string]: HTMLVideoElement | null }>({});
   const backgroundVideoRef = useRef<HTMLVideoElement>(null);

@@ -58,7 +58,7 @@ const slimesBase: { [key in Slime]: SlimeBaseProps } = {
   [Slime.Flutter]: { name: "Flutter Slime", desc: "Like snowflakes, each pair of wings are unique, and just as delicate.", diet: Diet.Nectar, food: Food.Nectar, largoable: true, toy: Toy.Worm, radiantable: true },
   [Slime.Batty]: { name: "Batty Slime", desc: "A fiendish stalker of the night, hungering always... for fruit.", diet: Diet.Fruits, food: Food.Granite, largoable: true, toy: Toy.Moon, radiantable: true },
   [Slime.Boom]: { name: "Boom Slime", desc: "Careful, these slimes have been known to expl-", diet: Diet.Meat, food: Food.HenBriar, largoable: true, toy: Toy.Bomb, radiantable: true },
-  [Slime.Crystal]: { name: "Crystal Slime", desc: "It's clear as shiny, transparent rocks that these slimes are dangerous.", diet: Diet.Veggies, food: Food.Onion, largoable: true, toy: Toy.Crystalball, radiantable: true },
+  [Slime.Crystal]: { name: "Crystal Slime", desc: "It's clear as shiny, transparent rocks that these slimes are dangerous.", diet: Diet.Veggies, food: Food.Onion, largoable: true, toy: Toy.CrystalBall, radiantable: true },
   [Slime.Fire]: { name: "Fire Slime", desc: "Like a little campfire, except that it moves and it's a slime.", diet: Diet.Ash, food: Food.Ash, largoable: false, toy: Toy.Charcoal, radiantable: true },
   [Slime.Saber]: { name: "Saber Slime", desc: "A bouncing blast from the past.", diet: Diet.Meat, food: Food.HenCluck, largoable: true, toy: Toy.Stego, radiantable: true },
   [Slime.Shadow]: { name: "Shadow Slime", desc: "Chase your shadow and it will flee.", diet: null, food: null, largoable: false, toy: null, radiantable: false },
@@ -70,7 +70,7 @@ const slimesBase: { [key in Slime]: SlimeBaseProps } = {
   [Slime.Yolky]: { name: "Yolky Slime", desc: "This slime always looks at the sunny side... up.", diet: null, food: null, largoable: false, toy: Toy.Bread, radiantable: true },
   [Slime.Lucky]: { name: "Lucky Slime", desc: "Oooh, shiny!", diet: Diet.Meat, food: null, largoable: false, toy: null, radiantable: false },
   [Slime.Gold]: { name: "Gold Slime", desc: "Get rich or die sliming.", diet: Diet.Any, food: null, largoable: false, toy: null, radiantable: false },
-  [Slime.Tarr]: { name: "Tarr Slime", desc: "Those awful, ravenous rainbows.", diet: Diet.RanchersnSlimes, food: Food.RanchersnSlimes, largoable: false, toy: null, radiantable: false },
+  [Slime.Tarr]: { name: "Tarr Slime", desc: "Those awful, ravenous rainbows.", diet: Diet.RanchersNSlimes, food: Food.RanchersNSlimes, largoable: false, toy: null, radiantable: false },
 };
 
 export type SlimePediaProps = {

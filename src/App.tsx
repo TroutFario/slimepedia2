@@ -4,7 +4,7 @@ import Routes from "./routes/index";
 import "overlayscrollbars/overlayscrollbars.css";
 import "./css/App.css";
 
-function App() {
+const App = () => {
   document.title = "Slimepedia 2";
 
   useEffect(() => {

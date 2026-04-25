@@ -254,7 +254,7 @@
 }
 
 .weather-box {
-  padding-top: calc(var(--ranch-pedia-size) + var(--border-size));
+  padding-top: var(--border-size);
   position: relative;
   display: flex;
   flex-flow: row nowrap;
@@ -270,7 +270,6 @@
   position: absolute;
   top: 0.5vh;
   left: 10px;
-  font-size: var(--ranch-pedia-size);
   font-weight: normal;
   font-style: italic;
 }
@@ -300,11 +299,6 @@
   gap: var(--border-size);
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-}
-
-.related-weather-box {
-  grid-area: related;
   overflow: hidden;
 }
 

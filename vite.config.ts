@@ -13,6 +13,6 @@ export default defineConfig({
   },
   server: {
     host: process.env.DEV_SERVER_HOST || "localhost",
-    port: process.env.VITE_DEV_SERVER_PORT || 3000,
+    port: Number(process.env.VITE_DEV_SERVER_PORT) || 3000,
   },
 });

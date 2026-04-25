@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../css/NavButton.css";
 
 interface NavButtonProps {
@@ -7,61 +7,36 @@ interface NavButtonProps {
   size?: number;
   action?: () => void;
   selected?: boolean;
-  tilting?: string;
+  wiggle?: boolean;
   visible?: boolean;
 }
 
-export const NavButton: React.FC<NavButtonProps> = ({
+const NavButton: React.FC<NavButtonProps> = ({
   name = "Slimes",
   icon = "slimes/pink",
   size = 1,
   action = () => {},
   selected = false,
-  tilting = "random",
+  wiggle = true,
   visible = true,
-}) => {
-  const [tiltingSafe, setTiltingSafe] = useState(
-    ["left", "none", "right", "random"].includes(tilting) ? tilting : "random",
-  );
-
-  useEffect(() => {
-    setTiltingSafe(["left", "none", "right", "random"].includes(tilting) ? tilting : "random");
-  }, [tilting]);
-
-  const randomHandler = () => {
-    switch (tiltingSafe) {
-      case "left":
-        return 0;
-      case "right":
-        return 2;
-      case "random":
-        return Math.floor(Math.random() * 3);
-      default:
-        return 1;
+}) => (
+  <button
+    className={"button" + (selected ? " btn-selected" : "")}
+    onClick={action}
+    style={
+      {
+        "--btn-size": `${size * 5}em`,
+        visibility: visible ? "shown" : "hidden",
+      } as React.CSSProperties
     }
-  };
-  const [randomNumber, setRandomNumber] = useState(randomHandler());
-
-  return (
-    <button
-      className={"button" + (selected ? " btn-selected" : "")}
-      onClick={action}
-      onMouseLeave={() => setRandomNumber(randomHandler())}
-      style={
-        {
-          "--btn-size": `${size * 5}em`,
-          visibility: visible ? "shown" : "hidden",
-        } as React.CSSProperties
-      }
-    >
-      <div className="image-frame">
-        <span className="image-anim">
-          <img src={`/assets/${icon}.png`} alt={name} className={`image-button img-btn-${randomNumber}`} />
-        </span>
-      </div>
-      <p>{name}</p>
-    </button>
-  );
-};
+  >
+    <div className="image-frame">
+      <span className={"image-anim" + (wiggle ? " img-btn-wiggle" : "")}>
+        <img src={`/assets/${icon}.png`} alt={name} className="image-button" />
+      </span>
+    </div>
+    <p>{name}</p>
+  </button>
+);
 
 export default NavButton;

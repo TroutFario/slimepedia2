@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { RecipeProvider } from "../../components/RecipeContext";
 import "../../css/Blueprints.css";
-import { UpgradePage } from "./Upgrades";
+import UpgradePage from "./Upgrades";
 import { RecipeMenu } from "../../components/shared/CraftingList";
 import UtilityPage from "./Utility";
 import WarpPage from "./Warp";
 import DecorationPage from "./Decoration";
 import { BlueprintType } from "../../data/blueprints/blueprints";
 
-export const Blueprints: React.FC = () => {
+const Blueprints: React.FC = () => {
   const { tab: tabName } = useParams();
   const tab = (tabName as BlueprintType) ?? BlueprintType.UPGRADE;
 

@@ -151,6 +151,7 @@
   transform: translate(-50%, -50%);
   object-fit: cover;
   object-position: center;
+  border-radius: var(--border-size);
 }
 
 .region-container {
@@ -465,23 +466,7 @@
   margin: 0;
 }
 
-.ranch-connection {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(auto, 1fr));
-  grid-template-rows: 1fr;
-  gap: 10%;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.ranch-element-image {
-  width: auto;
-  height: var(--element-size);
-  cursor: var(--pointer-style);
-}
-
-.box-title {
+.region-box-title {
   margin: 0 0;
   position: absolute;
   top: 0.5vh;
@@ -498,10 +483,6 @@
 
 .ranch-in {
   grid-area: in;
-}
-
-.ranch-out {
-  grid-area: out;
 }
 
 .ranch-cost {
@@ -581,10 +562,6 @@
 
 .ranch-element > div > img {
   width: 100px;
-}
-
-.ranch-nowhere {
-  font-size: var(--main-menu-subtitle-size);
 }
 
 .resource-hover {

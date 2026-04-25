@@ -4,7 +4,7 @@ import { Warp, warpDescriptions, warpGadgets, warpNames } from "../../data/bluep
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { NavLink, useParams } from "react-router-dom";
 import NavButton from "../../components/NavButton";
-import { CraftingList } from "../../components/shared/CraftingList";
+import CraftingList from "../../components/shared/CraftingList";
 import { LittleBoxProps } from "../../components/shared/LittleBox";
 import PediaInfo from "../../components/PediaInfo";
 import { PediaBoxLayout } from "../../data/enums";
@@ -50,7 +50,7 @@ const WarpInfos: React.FC<{ warp: Warp | null }> = ({ warp }) => {
   );
 };
 
-export const WarpPage: React.FC = () => {
+const WarpPage: React.FC = () => {
   const { blueprint: warpName } = useParams();
   const warp = (warpName as Warp) ?? null;
 
@@ -74,7 +74,7 @@ export const WarpPage: React.FC = () => {
               key={warpName}
               name={warpGadgets[warpName][0]}
               icon={`gadgets/${warpName}`}
-              tilting="none"
+              wiggle={false}
               size={1.25}
             />
           </NavLink>

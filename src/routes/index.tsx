@@ -1,7 +1,7 @@
 import React, { Suspense, ComponentType, LazyExoticComponent } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { NavBar } from "../components/NavBar";
-import { ErrorPage } from "../pages/ErrorPage";
+import NavBar from "../components/NavBar";
+import ErrorPage from "../pages/ErrorPage";
 import MusicPage from "../pages/Music";
 
 function lazyWithDefault<T extends ComponentType>(factory: () => Promise<{ default: T }>): LazyExoticComponent<T> {
@@ -26,6 +26,7 @@ export default function Index() {
           <Route path="/" element={<Header />} />
           <Route path="/slimepedia" element={<Header />} />
           <Route path="/slimes" element={<Slimes />} />
+          <Route path="/slimes/:radiant/:slime" element={<Slimes />} />
           <Route path="/slimes/:slime" element={<Slimes />} />
           <Route path="/food" element={<Food />} />
           <Route path="/food/:food" element={<Food />} />

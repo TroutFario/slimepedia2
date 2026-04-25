@@ -32,11 +32,11 @@ export enum Food {
   UnstableVeggie = "unstableveggie",
   UnstableFruit = "unstablefruit",
   UnstableMeat = "unstablemeat",
-  RanchersnSlimes = "ranchersnslimes",
+  RanchersNSlimes = "ranchersnslimes",
   Ash = "ash",
 }
 
-export const foodBlackList: (Food | null)[] = [Food.RanchersnSlimes, Food.Ash, null];
+export const foodBlackList: (Food | null)[] = [Food.RanchersNSlimes, Food.Ash, null];
 
 export enum Diet {
   Any = "any",
@@ -46,10 +46,10 @@ export enum Diet {
   Nectar = "nectar",
   Water = "water",
   Ash = "ash",
-  RanchersnSlimes = "ranchersnslimes",
+  RanchersNSlimes = "ranchersnslimes",
 }
 
-export const dietBlacklist: Diet[] = [Diet.Any, Diet.Ash, Diet.RanchersnSlimes];
+export const dietBlacklist: Diet[] = [Diet.Any, Diet.Ash, Diet.RanchersNSlimes];
 
 type DietProps = {
   singular: string;
@@ -63,13 +63,13 @@ export const dietList: { [key in Diet]: DietProps } = {
   [Diet.Water]: {plural: "Water", singular: "Water"},
   [Diet.Ash]: {plural: "Ash", singular: "Ash"},
   [Diet.Nectar]: {plural: "Nectar", singular: "Nectar"},
-  [Diet.RanchersnSlimes]: {plural: "Ranchers and Slimes", singular: "Ranchers and Slimes"},
+  [Diet.RanchersNSlimes]: {plural: "Ranchers and Slimes", singular: "Ranchers and Slimes"},
 };
 
 type FoodProps = {
   name: string,
   diet: Diet | null;
-}
+};
 
 const createFoodProps = (name: string, diet: Diet | null): FoodProps => ({name, diet});
 
@@ -107,7 +107,7 @@ export const foodList: { [key in Food]: FoodProps } = {
   [Food.UnstableFruit]: createFoodProps("Unstable Fruit", Diet.Fruits),
   [Food.UnstableVeggie]: createFoodProps("Unstable Veggie", Diet.Veggies),
   [Food.UnstableMeat]: createFoodProps("Unstable Meat", Diet.Meat),
-  [Food.RanchersnSlimes]: createFoodProps("Ranchers and Slimes", Diet.RanchersnSlimes),
+  [Food.RanchersNSlimes]: createFoodProps("Ranchers and Slimes", Diet.RanchersNSlimes),
   [Food.Ash]: createFoodProps("Ash", Diet.Ash),
 };
 
@@ -146,7 +146,7 @@ export const foodDescription: { [key in Food]: string } = {
   [Food.UnstableFruit]: "Unnatural objects with a slippery grasp on reality.",
   [Food.UnstableVeggie]: "Unnatural objects with a slippery grasp on reality.",
   [Food.UnstableMeat]: "Unnatural objects with a slippery grasp on reality.",
-  [Food.RanchersnSlimes]: "",
+  [Food.RanchersNSlimes]: "",
 };
 
 export const foodpedia: { [key in Food]: [string, string] } = {
@@ -282,6 +282,6 @@ export const foodpedia: { [key in Food]: [string, string] } = {
     "Caught and stretched across reality, matter, and time, resources affected by the prisma disruptions of the Grey Labyrinth are too volatile to exist for long in the natural world. Eventually, these resources will pop out of existence, or even a rancher's vac tank, to escape the confines of reality and mundane three dimensions. Basically, they've got too many reality appointments and they are constantly rushing to get to their next one.",
     "While unable to be used for regular ranching, unstable resources do seem to have unique interactions with the slimes within the Grey Labyrinth. It will take an intrepid slime scientist or adventurous rancher to find out how these disrupted resources impact the normal slime digestive process. Due to their reality-bending energies, unstable resources directly conflict with warp technology. They cannot be teleported and even prevent ranchers from using warp technology themselves as long as unstable resources are within their vac tanks.",
   ],
-  [Food.RanchersnSlimes]: ["", ""],
+  [Food.RanchersNSlimes]: ["", ""],
   [Food.Ash]: ["", ""],
 };

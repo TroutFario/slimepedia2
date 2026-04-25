@@ -23,7 +23,7 @@ const blueprintMatcher = (blueprint: BlueprintItem | UpgradeWithTier, type: Blue
   }
 };
 
-export const CraftingList: React.FC<{
+const CraftingList: React.FC<{
   name: BlueprintItem | null;
   type: BlueprintType;
 }> = ({ name, type }) => {
@@ -59,8 +59,8 @@ export const CraftingList: React.FC<{
           ref={elementRef}
           onClick={() => {
             if (name === null) return;
-            triggerAnimation(currentElementRef, "add-to-cart");
-            triggerAnimation(elementRef, "grow-in-out");
+            triggerAnimation(currentElementRef, "add-to-cart-animation");
+            triggerAnimation(elementRef, "grow-in-out-animation");
             increaseBlueprint(name, type, quantity);
           }}
         >

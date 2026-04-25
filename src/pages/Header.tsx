@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export const Header: React.FC = () => {
+const Header: React.FC = () => {
   const [darkMode, setDarkMode] = useState<boolean>(false);
 
   const updateDarkMode = () => {

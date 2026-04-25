@@ -9,27 +9,25 @@ const darkModeCheck = () => {
 };
 
 const navLinks = [
-  { name: "Slimes", to: "/slimes", icon: "slimes/pink", tilting: "left" },
-  { name: "Food", to: "/food", icon: "food/any", tilting: "right" },
-  { name: "Items", to: "/items", icon: "misc/res", tilting: "left" },
+  { name: "Slimes", to: "/slimes", icon: "slimes/pink"},
+  { name: "Food", to: "/food", icon: "food/any"},
+  { name: "Items", to: "/items", icon: "misc/res"},
   {
     name: "Regions",
     to: "/regions/fields",
-    icon: "misc/world",
-    tilting: "left",
+    icon: "misc/world"
   },
-  { name: "Weather", to: "/weather", icon: "misc/weather", tilting: "none" },
+  { name: "Weather", to: "/weather", icon: "misc/weather"},
   {
     name: "Blueprints",
     to: "/blueprints",
-    icon: "misc/blueprint",
-    tilting: "none",
+    icon: "misc/blueprint"
   },
-  { name: "Buildings", to: "/buildings", icon: "misc/patch", tilting: "none" },
-  { name: "Music", to: "/", icon: "misc/audio", tilting: "none" },
+  { name: "Buildings", to: "/buildings", icon: "misc/patch"},
+  { name: "Music", to: "/", icon: "misc/audio"},
 ];
 
-export const NavBar = () => {
+const NavBar = () => {
   const noLink = { textDecoration: "none" };
   const [darkMode, setDarkMode] = useState<boolean>(darkModeCheck());
 
@@ -41,9 +39,9 @@ export const NavBar = () => {
 
   return (
     <nav className="box-layout">
-      {navLinks.map(({ name, to, icon, tilting }) => (
+      {navLinks.map(({ name, to, icon }) => (
         <NavLink style={noLink} to={to} key={to}>
-          {({ isActive }) => <NavButton name={name} icon={icon} tilting={tilting} selected={isActive} />}
+          {({ isActive }) => <NavButton name={name} icon={icon} selected={isActive} />}
         </NavLink>
       ))}
       <div className="theme-btn-container">
@@ -51,7 +49,6 @@ export const NavBar = () => {
           name="Switch Theme"
           icon={darkMode ? "misc/moon" : "misc/sun"}
           action={() => setDarkMode(!darkMode)}
-          tilting="random"
           selected={false}
         />
       </div>

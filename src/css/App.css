@@ -1,10 +1,11 @@
-@import "./shared.css";
+@import "shared/shared.css";
 
 :root {
   --menu-color-0: #efe7d4;
   --menu-color-1: #e9ddc7;
   --item-color: #d2b394;
   --text-color: #000;
+  --text-color-2: #222;
   --background-color: var(--menu-color-0);
   --text-shadow: 0 0 calc(var(--border-size) / 4) #000;
   --element-size: 10vh;
@@ -33,6 +34,7 @@
     --menu-color-1: #111;
     --item-color: #181818;
     --text-color: #fff;
+    --text-color-2: #ddd;
     --background-color: #000;
     --link-color: lightskyblue;
   }
@@ -77,6 +79,7 @@
   background-image: url("/assets/wallpapers/houseDay.png");
 }
 
+/* OverlayScrollbars classes */
 .os-scrollbar {
   cursor: pointer;
   background-color: transparent;
@@ -270,7 +273,7 @@ nav {
   border-radius: var(--border-size);
 }
 
-.little-box {
+.info-box-base {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
@@ -286,34 +289,34 @@ nav {
   min-height: 100%;
 }
 
-.little-box > img {
+.info-box-base > img {
   width: 5vh;
   height: auto;
 }
 
-.little-box > button,
-.little-box > div {
+.info-box-base > button,
+.info-box-base > div {
   width: 100%;
 }
 
-.little-box > div > h3,
-.little-box > div > h4 {
+.info-box-base > div > h3,
+.info-box-base > div > h4 {
   text-align: left;
   margin: 0;
   color: var(--text-color);
 }
 
-.little-box > button > h3,
-.little-box > div > h3 {
+.info-box-base > button > h3,
+.info-box-base > div > h3 {
   font-size: 1.2em;
   font-weight: 700;
 }
 
-.little-box > div > h4 {
+.info-box-base > div > h4 {
   font-size: 1em;
   font-weight: 500;
 }
 
-.little-box.disabled > div > h4 {
+.info-box-base.disabled > div > h4 {
   opacity: 0;
 }

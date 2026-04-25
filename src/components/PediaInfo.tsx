@@ -32,7 +32,7 @@ interface PediaInfoProps {
   BiomeComponent: React.ReactNode;
 }
 
-export const PediaInfo: React.FC<PediaInfoProps> = ({
+const PediaInfo: React.FC<PediaInfoProps> = ({
   layout,
   title,
   subtitle,

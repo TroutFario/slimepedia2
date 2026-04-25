@@ -1,7 +1,7 @@
 import { Food } from "./food";
 import { Slime } from "./slimes";
 import { Region, Ranch, Resource } from "./enums";
-export { Region, Ranch, Resource } from "./enums";
+export { Region, Ranch } from "./enums";
 
 export const regionInfos: {
   [key in Region]: [string, string, string, number];
@@ -76,26 +76,6 @@ export const ranchInfos: {
     9, // TODO: not sure
     0
   ]
-};
-
-export const spawnLocationsList: { [key: string]: [string, string, boolean] } = {
-  co: ["conservatory", "The Conservatory", true],
-  td: ["den", "The Den", true],
-  gu: ["gully", "The Gully", true],
-  ar: ["archway", "The Archway", true],
-  tp: ["tidepools", "The Tidepools", true],
-  ds: ["digsite", "The Digsite", true],
-  sa: ["sanctuary", "The Sanctuary", true],
-  rf: ["fields", "Rainbow Fields", false],
-  ss: ["strand", "Starlight Strand", false],
-  ev: ["valley", "Ember Valley", false],
-  pb: ["bluffs", "Powderfall Bluffs", false],
-  gl: ["labyrinth", "Grey Labyrinth", false],
-  se: ["sea", "The Slime Sea", false],
-  ws: ["cyclone", "Cyclone", false],
-  ps: ["vine", "Vine Tangle", false],
-  ls: ["lightning", "Lightning Strike", false],
-  pm: ["shop", "Pronto Mart", false],
 };
 
 export const regionElements: {

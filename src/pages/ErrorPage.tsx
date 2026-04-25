@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import React from "react";
 
-export const ErrorPage = () => {
+const ErrorPage = () => {
   document.title = "404: Page not found";
 
   return (

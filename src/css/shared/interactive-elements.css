@@ -9,22 +9,6 @@
   background-color: var(--menu-color-0);
 }
 
-/* Info boxes variations */
-.info-box-base {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--border-size);
-  background-color: var(--item-color);
-  padding: var(--border-size);
-  border-radius: var(--border-size);
-  height: fit-content;
-  overflow: hidden;
-  box-sizing: border-box;
-  min-height: 100%;
-}
-
 .info-box-base > img {
   width: 5vh;
   height: auto;

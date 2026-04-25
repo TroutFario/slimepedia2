@@ -10,7 +10,7 @@ import {
   decorationList,
   themeList,
 } from "../../data/blueprints/decoration";
-import { CraftingList } from "../../components/shared/CraftingList";
+import CraftingList from "../../components/shared/CraftingList";
 import { LittleBoxProps } from "../../components/shared/LittleBox";
 import PediaInfo from "../../components/PediaInfo";
 import { PediaBoxLayout } from "../../data/enums";
@@ -117,7 +117,7 @@ const DecorationPage: React.FC = () => {
               <NavButton
                 name={decorationList[decoName][0]}
                 icon={`deco/${decoName}`}
-                tilting="none"
+                wiggle={false}
                 selected={decoName === blueprint}
                 size={1.25}
               />
