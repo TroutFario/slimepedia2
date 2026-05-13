@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { NavLink, useParams } from "react-router-dom";
 import NavButton from "../../components/NavButton";
-import { BlueprintType, DecorationTheme, unlockRequirements } from "../../data/blueprints/blueprints";
+import {BlueprintType, DecorationTheme, prettyRequirement, unlockRequirements} from "../../data/blueprints/blueprints";
 import {
   Decoration,
   decorationNames,
@@ -37,22 +37,22 @@ const DecorationInfos: React.FC<{
       },
     );
   } else {
-    const themeName: string = themeList[decorationList[decoration][3]][0];
+    const themeName: string = themeList[decorationList[decoration].theme][0];
     littleBoxList.push({
-      image: `/assets/${themeList[decorationList[decoration][3]][1]}.png`,
+      image: `/assets/${themeList[decorationList[decoration].theme][1]}.png`,
       alt: themeName + " Theme",
       title: "Decoration Theme",
       subtitle: themeName,
-      action: () => setDecoFilter(decorationList[decoration][3]),
+      action: () => setDecoFilter(decorationList[decoration].theme),
     });
-    title = decorationList[decoration][0];
+    title = decorationList[decoration].name;
     subtitle = decorationDescription[decoration];
     icon = `/assets/deco/${decoration}.png`;
     littleBoxList.push({
-      image: `/assets/${unlockRequirements[decorationList[decoration][1]][1]}.png`,
-      alt: unlockRequirements[decorationList[decoration][1]][0],
+      image: `/assets/${unlockRequirements[decorationList[decoration].unlock.unlock].icon}.png`,
+      alt: prettyRequirement(decorationList[decoration].unlock),
       title: "Unlock Requirements",
-      subtitle: unlockRequirements[decorationList[decoration][1]][0],
+      subtitle: prettyRequirement(decorationList[decoration].unlock),
     });
   }
   return (
@@ -80,9 +80,9 @@ const DecorationPage: React.FC = () => {
   const [decoFilter, setDecoFilter] = useState<DecorationTheme>(DecorationTheme.ANY);
 
   const decorationListFiltered: Decoration[] =
-    decoFilter === "any" ? decorationNames : decorationNames.filter((deco) => decorationList[deco][3] === decoFilter);
+    decoFilter === "any" ? decorationNames : decorationNames.filter((deco) => decorationList[deco].theme=== decoFilter);
 
-  document.title = blueprint === null ? "Decoration - Slimepedia" : decorationList[blueprint][0] + " - Slimepedia";
+  document.title = blueprint === null ? "Decoration - Slimepedia" : decorationList[blueprint].name + " - Slimepedia";
 
   return (
     <>
@@ -115,7 +115,7 @@ const DecorationPage: React.FC = () => {
           {decorationListFiltered.map((decoName) => (
             <NavLink key={decoName} to={`/blueprints/decoration/${decoName}`} className="blueprint-item">
               <NavButton
-                name={decorationList[decoName][0]}
+                name={decorationList[decoName].name}
                 icon={`deco/${decoName}`}
                 wiggle={false}
                 selected={decoName === blueprint}

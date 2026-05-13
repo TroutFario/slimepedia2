@@ -557,7 +557,7 @@ grow-in-out-animation {
 .blueprint-recipe-list [data-overlayscrollbars-contents] > div,
 .recipe-list [data-overlayscrollbars-contents] > div {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto 1fr auto 1fr auto;
   grid-template-rows: 1fr;
   align-items: center;
   gap: var(--border-size);

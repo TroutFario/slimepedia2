@@ -177,8 +177,8 @@ export const currencies: { [key in Currency]: { name: string; icon: string } } =
         icon: "misc/sprinkles",
     },
     shadow: {
-        name: "Shadow Orbs",
-        icon: "misc/shadoworb",
+        name: "Shadow Plorts",
+        icon: "plort/shadow",
     },
 } as const;
 

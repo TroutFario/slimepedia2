@@ -73,15 +73,15 @@ const UpgradeInfo: React.FC<{
   const littleBoxList: LittleBoxProps[] = [];
 
   if (upgradeWithTier && upgradeWithTier in upgradesList) {
-    title = upgradesList[upgradeWithTier][0];
+    title = upgradesList[upgradeWithTier].name;
     subtitle = upgradeDescriptions[upgradeWithTier];
     icon = `/assets/upgrades/${upgrade}.png`;
     littleBoxList.push(
       {
-        image: `/assets/${unlockRequirements[upgradesList[upgradeWithTier][1].unlock].icon}.png`,
-        alt: unlockRequirements[upgradesList[upgradeWithTier][1].unlock].name,
+        image: `/assets/${unlockRequirements[upgradesList[upgradeWithTier].unlock.unlock].icon}.png`,
+        alt: unlockRequirements[upgradesList[upgradeWithTier].unlock.unlock].name,
         title: "Unlock Requirements",
-        subtitle: prettyRequirement(upgradesList[upgradeWithTier][1]),
+        subtitle: prettyRequirement(upgradesList[upgradeWithTier].unlock),
       },
       {
         image: `/assets/${upgradeEffects[upgradeWithTier][0]}.png`,
@@ -134,7 +134,7 @@ const UpgradePage: React.FC = () => {
   document.title =
     upgrade === null
       ? "Blueprints - Slimepedia"
-      : upgradesList[(upgrade + tier) as UpgradeWithTier][0] + " - Slimepedia";
+      : upgradesList[(upgrade + tier) as UpgradeWithTier].name + " - Slimepedia";
 
   return (
     <>

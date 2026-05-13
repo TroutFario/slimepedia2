@@ -77,27 +77,35 @@ export enum UpgradeWithTier {
     POWER_INJECTOR2 = "powerinjector2",
 }
 
+type UpgradeProps = {
+    name: string;
+    unlock: RequirementProps;
+    recipe: Recipe;
+};
+
+const cUpg = (name: string, unlock: RequirementProps, recipe: Recipe) => ({name, unlock, recipe});
+
 export const upgradesList: {
-    [key in UpgradeWithTier]: [string, RequirementProps, Recipe];
+    [key in UpgradeWithTier]: UpgradeProps;
 } = {
-    harvester1: [
+    harvester1: cUpg(
         "Resource Harvester",
         Requirement(Unlock.START, null),
         new Map([
             [RecipeElement.NEWBUCKS, 450],
             [RecipeElement.COTTON, 10],
         ]),
-    ],
+    ),
 
-    health1: [
+    health1: cUpg(
         "Heart Module I",
         Requirement(Unlock.START, null),
         new Map([
             [RecipeElement.NEWBUCKS, 450],
             [RecipeElement.PINK, 10],
         ]),
-    ],
-    health2: [
+    ),
+    health2: cUpg(
         "Heart Module II",
         Requirement(Unlock.POD, null),
         new Map([
@@ -108,8 +116,8 @@ export const upgradesList: {
             [RecipeElement.JELLY, 10],
             [RecipeElement.HEARTMODULE, 1],
         ]),
-    ],
-    health3: [
+    ),
+    health3: cUpg(
         "Heart Module III",
         Requirement(Unlock.POD, null),
         new Map([
@@ -120,10 +128,10 @@ export const upgradesList: {
             [RecipeElement.SAND, 10],
             [RecipeElement.HEARTMODULE, 1],
         ]),
-    ],
-    health4: [
+    ),
+    health4: cUpg(
         "Heart Module IV",
-        Requirement(Unlock.DOOR, null),
+        Requirement(Unlock.DOOR, 25),
         new Map([
             [RecipeElement.NEWBUCKS, 10000],
             [RecipeElement.PRISMA, 50],
@@ -131,10 +139,10 @@ export const upgradesList: {
             [RecipeElement.ROYAL, 1],
             [RecipeElement.HEARTMODULE, 1],
         ]),
-    ],
-    regenerator1: [
+    ),
+    regenerator1: cUpg(
         "Regenerator",
-        Requirement(Unlock.DOOR, null),
+        Requirement(Unlock.DOOR, 60),
         new Map([
             [RecipeElement.NEWBUCKS, 5000],
             [RecipeElement.TWIN, 25],
@@ -143,10 +151,10 @@ export const upgradesList: {
             [RecipeElement.AQUA, 10],
             [RecipeElement.REGENMODULE, 1],
         ]),
-    ],
-    regenerator2: [
+    ),
+    regenerator2: cUpg(
         "Regenerator",
-        Requirement(Unlock.NIGHT, null),
+        Requirement(Unlock.NIGHT, 15),
         new Map([
             [RecipeElement.NEWBUCKS, 10000],
             [RecipeElement.SLOOMBER, 50],
@@ -155,10 +163,10 @@ export const upgradesList: {
             [RecipeElement.ROYAL, 1],
             [RecipeElement.REGENMODULE, 1],
         ]),
-    ],
-    powerinjector1: [
+    ),
+    powerinjector1: cUpg(
         "Power Injector",
-        Requirement(Unlock.DOOR, null),
+        Requirement(Unlock.DOOR, 60),
         new Map([
             [RecipeElement.NEWBUCKS, 5000],
             [RecipeElement.SLOOMBER, 25],
@@ -167,10 +175,10 @@ export const upgradesList: {
             [RecipeElement.BLACKINDIGO, 10],
             [RecipeElement.INJECTORMODULE, 1],
         ]),
-    ],
-    powerinjector2: [
+    ),
+    powerinjector2: cUpg(
         "Power Injector",
-        Requirement(Unlock.NIGHT, null),
+        Requirement(Unlock.NIGHT, 15),
         new Map([
             [RecipeElement.NEWBUCKS, 10000],
             [RecipeElement.HYPER, 50],
@@ -179,16 +187,16 @@ export const upgradesList: {
             [RecipeElement.ROYAL, 1],
             [RecipeElement.INJECTORMODULE, 1],
         ]),
-    ],
-    power1: [
+    ),
+    power1: cUpg(
         "Power Module I",
         Requirement(Unlock.START, null),
         new Map([
             [RecipeElement.NEWBUCKS, 450],
             [RecipeElement.COTTON, 10],
         ]),
-    ],
-    power2: [
+    ),
+    power2: cUpg(
         "Power Module II",
         Requirement(Unlock.POD, null),
         new Map([
@@ -199,8 +207,8 @@ export const upgradesList: {
             [RecipeElement.JELLY, 10],
             [RecipeElement.POWERCHIP, 1],
         ]),
-    ],
-    power3: [
+    ),
+    power3: cUpg(
         "Power Module III",
         Requirement(Unlock.POD, null),
         new Map([
@@ -211,8 +219,8 @@ export const upgradesList: {
             [RecipeElement.PRIMORDY, 30],
             [RecipeElement.POWERCHIP, 1],
         ]),
-    ],
-    power4: [
+    ),
+    power4: cUpg(
         "Power Module IV",
         Requirement(Unlock.POD, null),
         new Map([
@@ -223,10 +231,10 @@ export const upgradesList: {
             [RecipeElement.SUNSAP, 1],
             [RecipeElement.POWERCHIP, 1],
         ]),
-    ],
-    power5: [
+    ),
+    power5: cUpg(
         "Power Module V",
-        Requirement(Unlock.DOOR, null),
+        Requirement(Unlock.DOOR, 25),
         new Map([
             [RecipeElement.NEWBUCKS, 15000],
             [RecipeElement.PRISMA, 50],
@@ -235,16 +243,16 @@ export const upgradesList: {
             [RecipeElement.ROYAL, 1],
             [RecipeElement.POWERCHIP, 1],
         ]),
-    ],
-    dash1: [
+    ),
+    dash1: cUpg(
         "Dash Module I",
         Requirement(Unlock.START, null),
         new Map([
             [RecipeElement.NEWBUCKS, 450],
             [RecipeElement.BOOM, 10],
         ]),
-    ],
-    dash2: [
+    ),
+    dash2: cUpg(
         "Dash Module II",
         Requirement(Unlock.POD, null),
         new Map([
@@ -255,8 +263,8 @@ export const upgradesList: {
             [RecipeElement.LAVA, 10],
             [RecipeElement.DASHBOOTMODULE, 1],
         ]),
-    ],
-    jetpack1: [
+    ),
+    jetpack1: cUpg(
         "Jetpack I",
         Requirement(Unlock.START, null),
         new Map([
@@ -264,8 +272,8 @@ export const upgradesList: {
             [RecipeElement.PHOSPHOR, 10],
             [RecipeElement.RADIANT, 10],
         ]),
-    ],
-    jetpack2: [
+    ),
+    jetpack2: cUpg(
         "Jetpack II",
         Requirement(Unlock.POD, null),
         new Map([
@@ -276,16 +284,16 @@ export const upgradesList: {
             [RecipeElement.WILDHONEY, 10],
             [RecipeElement.JETPACKDRIVE, 1],
         ]),
-    ],
-    tankBooster1: [
+    ),
+    tankBooster1: cUpg(
         "Tank Booster I",
         Requirement(Unlock.START, null),
         new Map([
             [RecipeElement.NEWBUCKS, 450],
             [RecipeElement.TABBY, 10],
         ]),
-    ],
-    tankBooster2: [
+    ),
+    tankBooster2: cUpg(
         "Tank Booster II",
         Requirement(Unlock.POD, null),
         new Map([
@@ -296,8 +304,8 @@ export const upgradesList: {
             [RecipeElement.JELLY, 10],
             [RecipeElement.STORAGECELL, 1],
         ]),
-    ],
-    tankBooster3: [
+    ),
+    tankBooster3: cUpg(
         "Tank Booster III",
         Requirement(Unlock.POD, null),
         new Map([
@@ -308,10 +316,10 @@ export const upgradesList: {
             [RecipeElement.LAVA, 10],
             [RecipeElement.STORAGECELL, 1],
         ]),
-    ],
-    tankBooster4: [
+    ),
+    tankBooster4: cUpg(
         "Tank Booster IV",
-        Requirement(Unlock.POD, null),
+        Requirement(Unlock.GIGI, 20),
         new Map([
             [RecipeElement.NEWBUCKS, 10000],
             [RecipeElement.TABBY, 40],
@@ -320,8 +328,8 @@ export const upgradesList: {
             [RecipeElement.SUNSAP, 1],
             [RecipeElement.STORAGECELL, 1],
         ]),
-    ],
-    tankBooster5: [
+    ),
+    tankBooster5: cUpg(
         "Tank Booster V",
         Requirement(Unlock.DOOR, null),
         new Map([
@@ -332,10 +340,10 @@ export const upgradesList: {
             [RecipeElement.ROYAL, 1],
             [RecipeElement.STORAGECELL, 1],
         ]),
-    ],
-    tankBooster6: [
+    ),
+    tankBooster6: cUpg(
         "Tank Booster VI",
-        Requirement(Unlock.DOOR, null),
+        Requirement(Unlock.DOOR, 60),
         new Map([
             [RecipeElement.NEWBUCKS, 20000],
             [RecipeElement.TWIN, 60],
@@ -344,10 +352,10 @@ export const upgradesList: {
             [RecipeElement.SUNSAP, 3],
             [RecipeElement.STORAGECELL, 1],
         ]),
-    ],
-    tankBooster7: [
+    ),
+    tankBooster7: cUpg(
         "Tank Booster VII",
-        Requirement(Unlock.NIGHT, null),
+        Requirement(Unlock.DOOR, 60),
         new Map([
             [RecipeElement.NEWBUCKS, 30000],
             [RecipeElement.HYPER, 70],
@@ -356,10 +364,10 @@ export const upgradesList: {
             [RecipeElement.ROYAL, 3],
             [RecipeElement.STORAGECELL, 1],
         ]),
-    ],
-    tankBooster8: [
+    ),
+    tankBooster8: cUpg(
         "Tank Booster VIII",
-        Requirement(Unlock.NIGHT, null),
+        Requirement(Unlock.DOOR, 60),
         new Map([
             [RecipeElement.NEWBUCKS, 50000],
             [RecipeElement.RINGTAIL, 80],
@@ -368,8 +376,8 @@ export const upgradesList: {
             [RecipeElement.ROYAL, 3],
             [RecipeElement.STORAGECELL, 1],
         ]),
-    ],
-    extraTank1: [
+    ),
+    extraTank1: cUpg(
         "Extra Tank I",
         Requirement(Unlock.START, null),
         new Map([
@@ -377,8 +385,8 @@ export const upgradesList: {
             [RecipeElement.ROCK, 10],
             [RecipeElement.SAND, 10],
         ]),
-    ],
-    extraTank2: [
+    ),
+    extraTank2: cUpg(
         "Extra Tank II",
         Requirement(Unlock.POD, null),
         new Map([
@@ -389,16 +397,16 @@ export const upgradesList: {
             [RecipeElement.DIAMOND, 2],
             [RecipeElement.STORAGEUNIT, 1],
         ]),
-    ],
-    waterTank1: [
+    ),
+    waterTank1: cUpg(
         "Water Tank",
         Requirement(Unlock.START, null),
         new Map([
             [RecipeElement.NEWBUCKS, 450],
             [RecipeElement.BRINE, 10],
         ]),
-    ],
-    pulseWave1: [
+    ),
+    pulseWave1: cUpg(
         "Pulse Wave",
         Requirement(Unlock.START, null),
         new Map([
@@ -407,8 +415,8 @@ export const upgradesList: {
             [RecipeElement.JELLY, 10],
             [RecipeElement.WILDHONEY, 5],
         ]),
-    ],
-    tankGuard1: [
+    ),
+    tankGuard1: cUpg(
         "Tank Guard I",
         Requirement(Unlock.POD, null),
         new Map([
@@ -419,8 +427,8 @@ export const upgradesList: {
             [RecipeElement.LAVA, 10],
             [RecipeElement.TANKLINER, 1],
         ]),
-    ],
-    tankGuard2: [
+    ),
+    tankGuard2: cUpg(
         "Tank Guard II",
         Requirement(Unlock.POD, null),
         new Map([
@@ -431,8 +439,8 @@ export const upgradesList: {
             [RecipeElement.DIAMOND, 1],
             [RecipeElement.TANKLINER, 1],
         ]),
-    ],
-    tankGuard3: [
+    ),
+    tankGuard3: cUpg(
         "Tank Guard III",
         Requirement(Unlock.POD, null),
         new Map([
@@ -443,8 +451,8 @@ export const upgradesList: {
             [RecipeElement.DIAMOND, 2],
             [RecipeElement.TANKLINER, 1],
         ]),
-    ],
-    droneKey1: [
+    ),
+    droneKey1: cUpg(
         "Drone Archive Key",
         Requirement(Unlock.MOCHI, null),
         new Map([
@@ -455,8 +463,8 @@ export const upgradesList: {
             [RecipeElement.LAVA, 10],
             [RecipeElement.DRONEKEY, 1],
         ]),
-    ],
-    goldenSureshot1: [
+    ),
+    goldenSureshot1: cUpg(
         "Golden Sureshot I",
         Requirement(Unlock.POD, null),
         new Map([
@@ -467,8 +475,8 @@ export const upgradesList: {
             [RecipeElement.SUNSAP, 1],
             [RecipeElement.GOLDENSURESHOTMODULE, 1],
         ]),
-    ],
-    goldenSureshot2: [
+    ),
+    goldenSureshot2: cUpg(
         "Golden Sureshot II",
         Requirement(Unlock.POD, null),
         new Map([
@@ -479,8 +487,8 @@ export const upgradesList: {
             [RecipeElement.SUNSAP, 2],
             [RecipeElement.GOLDENSURESHOTMODULE, 1],
         ]),
-    ],
-    goldenSureshot3: [
+    ),
+    goldenSureshot3: cUpg(
         "Golden Sureshot III",
         Requirement(Unlock.POD, null),
         new Map([
@@ -491,10 +499,10 @@ export const upgradesList: {
             [RecipeElement.SUNSAP, 3],
             [RecipeElement.GOLDENSURESHOTMODULE, 1],
         ]),
-    ],
-    shadowSureshot1: [
+    ),
+    shadowSureshot1: cUpg(
         "Shadow Sureshot",
-        Requirement(Unlock.NIGHT, null),
+        Requirement(Unlock.NIGHT, 5000),
         new Map([
             [RecipeElement.SLOOMBER, 20],
             [RecipeElement.TWIN, 20],
@@ -502,7 +510,7 @@ export const upgradesList: {
             [RecipeElement.DIAMOND, 1],
             [RecipeElement.SHADOWSURESHOTMODULE, 1],
         ]),
-    ],
+    ),
 };
 
 export const upgradeDescriptions: { [key in UpgradeWithTier]: string } = {

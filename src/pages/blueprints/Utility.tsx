@@ -4,7 +4,7 @@ import { utilitiesDescription, utilitiesList, Utility, utilityNames } from "../.
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import NavButton from "../../components/NavButton";
 import CraftingList from "../../components/shared/CraftingList";
-import { BlueprintType, unlockRequirements } from "../../data/blueprints/blueprints";
+import {BlueprintType, prettyRequirement, unlockRequirements} from "../../data/blueprints/blueprints";
 import PediaInfo from "../../components/PediaInfo";
 import { PediaBoxLayout } from "../../data/enums";
 import { LittleBoxProps } from "../../components/shared/LittleBox";
@@ -21,14 +21,14 @@ const UtilityInfo: React.FC<{ utility: Utility | null }> = ({ utility }) => {
       title: "Unlock Requirements",
     });
   } else {
-    title = utilitiesList[utility][0];
+    title = utilitiesList[utility].name;
     subtitle = utilitiesDescription[utility];
     icon = `/assets/gadgets/${utility}.png`;
     littleBoxList.push({
-      image: `/assets/${unlockRequirements[utilitiesList[utility][1]][1]}.png`,
-      alt: unlockRequirements[utilitiesList[utility][1]][0],
+      image: `/assets/${unlockRequirements[utilitiesList[utility].unlock.unlock].icon}.png`,
+      alt: prettyRequirement(utilitiesList[utility].unlock),
       title: "Unlock Requirements",
-      subtitle: unlockRequirements[utilitiesList[utility][1]][0],
+      subtitle: prettyRequirement(utilitiesList[utility].unlock),
     });
   }
   return (
@@ -54,7 +54,7 @@ const UtilityPage: React.FC = () => {
   const { blueprint: blueprintName } = useParams<{ blueprint: string }>();
   const warp = (blueprintName as Utility) ?? null;
 
-  document.title = warp === null ? "Blueprints - Slimepedia" : utilitiesList[warp][0] + " - Slimepedia";
+  document.title = warp === null ? "Blueprints - Slimepedia" : utilitiesList[warp].name + " - Slimepedia";
 
   return (
     <>
@@ -72,7 +72,7 @@ const UtilityPage: React.FC = () => {
           <NavLink key={utilityName} to={`/blueprints/utility/${utilityName}`} className="blueprint-item">
             <NavButton
               key={utilityName}
-              name={utilitiesList[utilityName][0]}
+              name={utilitiesList[utilityName].name}
               icon={`gadgets/${utilityName}`}
               wiggle={false}
               size={1.25}

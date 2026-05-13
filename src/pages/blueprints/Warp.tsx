@@ -1,5 +1,5 @@
 import React from "react";
-import { BlueprintType, unlockRequirements } from "../../data/blueprints/blueprints";
+import {BlueprintType, prettyRequirement, unlockRequirements} from "../../data/blueprints/blueprints";
 import { Warp, warpDescriptions, warpGadgets, warpNames } from "../../data/blueprints/warp";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { NavLink, useParams } from "react-router-dom";
@@ -21,14 +21,14 @@ const WarpInfos: React.FC<{ warp: Warp | null }> = ({ warp }) => {
       title: "Unlock Requirements",
     });
   } else {
-    title = warpGadgets[warp][0];
+    title = warpGadgets[warp].name;
     subtitle = warpDescriptions[warp];
     icon = `/assets/gadgets/${warp}.png`;
     littleBoxList.push({
-      image: `/assets/${unlockRequirements[warpGadgets[warp][1]][1]}.png`,
-      alt: unlockRequirements[warpGadgets[warp][1]][0],
+      image: `/assets/${unlockRequirements[warpGadgets[warp].unlock.unlock].icon}.png`,
+      alt: unlockRequirements[warpGadgets[warp].unlock.unlock].name,
       title: "Unlock Requirements",
-      subtitle: unlockRequirements[warpGadgets[warp][1]][0],
+      subtitle: prettyRequirement(warpGadgets[warp].unlock),
     });
   }
   return (
@@ -54,7 +54,7 @@ const WarpPage: React.FC = () => {
   const { blueprint: warpName } = useParams();
   const warp = (warpName as Warp) ?? null;
 
-  document.title = warp === null ? "Blueprints - Slimepedia" : warpGadgets[warp][0] + " - Slimepedia";
+  document.title = warp === null ? "Blueprints - Slimepedia" : warpGadgets[warp].name + " - Slimepedia";
 
   return (
     <>
@@ -72,7 +72,7 @@ const WarpPage: React.FC = () => {
           <NavLink key={warpName} to={`/blueprints/warp/${warpName}`} className="blueprint-item">
             <NavButton
               key={warpName}
-              name={warpGadgets[warpName][0]}
+              name={warpGadgets[warpName].name}
               icon={`gadgets/${warpName}`}
               wiggle={false}
               size={1.25}
