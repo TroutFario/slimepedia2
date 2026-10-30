@@ -1,5 +1,4 @@
-import React from "react";
-import { RecipeContext, RecipeContextType } from "./RecipeContext.shared";
+import { RecipeContext } from "./RecipeContext.shared";
 import { useRecipeContextState } from "./RecipeContextState";
 
 export const RecipeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -7,5 +6,3 @@ export const RecipeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   return <RecipeContext.Provider value={contextValue}>{children}</RecipeContext.Provider>;
 };
-
-export type { RecipeContextType };

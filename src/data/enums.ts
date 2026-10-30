@@ -14,7 +14,7 @@ export enum Ranch {
   Gully = "gully",
   Tidepools = "tidepools",
   Digsite = "digsite",
-  Sanctuary = "sanctuary"
+  Sanctuary = "sanctuary",
 }
 
 export enum Weather {
@@ -55,7 +55,7 @@ export enum Resource {
   Royal = "royal",
   Snowball = "snowball",
   Prisma = "prisma",
-  Sprinkles = "sprinkles"
+  Sprinkles = "sprinkles",
 }
 
 export enum PediaBoxLayout {

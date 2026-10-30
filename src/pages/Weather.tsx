@@ -1,7 +1,7 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Weather, weatherList, weatherPedia, weatherSpawn } from "../data/weather";
 import { Biomes } from "../components/Biomes";
-import { Navigate, NavLink, useParams } from "react-router-dom";
+import { Navigate, NavLink, useParams } from "react-router";
 import "../css/Weather.css";
 
 const WeatherPage: React.FC = () => {
@@ -11,7 +11,9 @@ const WeatherPage: React.FC = () => {
   const weatherMusicRef = useRef<HTMLAudioElement>(null);
   const { weather: weatherName } = useParams();
   const weather =
-    weatherName && Object.values(Weather).includes(weatherName as Weather) ? (weatherName as Weather) : Weather.Clear;
+    weatherName && Object.values(Weather).includes(weatherName as Weather)
+      ? (weatherName as Weather)
+      : Weather.Clear;
   const [weatherMusicAvailable, setWeatherMusicAvailable] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -75,7 +77,10 @@ const WeatherPage: React.FC = () => {
             </audio>
           )}
           {weatherMusicAvailable && (
-            <button onClick={() => handleMusicPlay()} className={"music-player" + (isPlaying ? " music-played" : "")}>
+            <button
+              onClick={() => handleMusicPlay()}
+              className={"music-player" + (isPlaying ? " music-played" : "")}
+            >
               <img src="/assets/misc/audio.png" alt="Play weather music" />
             </button>
           )}
@@ -93,9 +98,14 @@ const WeatherPage: React.FC = () => {
               onMouseEnter={() => handleMouseEnter(weatherName)}
               onMouseLeave={() => handleMouseLeave(weatherName)}
             >
-              <img src={`/assets/world/${weatherName}.png`} alt={weatherList[weatherName][0] + " icon"} />
+              <img
+                src={`/assets/world/${weatherName}.png`}
+                alt={weatherList[weatherName][0] + " icon"}
+              />
               <video
-                ref={(el) => (videoRefs.current[weatherName] = el)}
+                ref={(el) => {
+                  videoRefs.current[weatherName] = el;
+                }}
                 className={`video-${weatherName}`}
                 src={`/assets/videos/${weatherList[weatherName][1]}.light.webm`}
                 muted

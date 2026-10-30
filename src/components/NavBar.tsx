@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink } from "react-router";
 import NavButton from "./NavButton";
 
 const darkModeCheck = () => {
@@ -9,22 +9,14 @@ const darkModeCheck = () => {
 };
 
 const navLinks = [
-  { name: "Slimes", to: "/slimes", icon: "slimes/pink"},
-  { name: "Food", to: "/food", icon: "food/any"},
-  { name: "Items", to: "/items", icon: "misc/res"},
-  {
-    name: "Regions",
-    to: "/regions/fields",
-    icon: "misc/world"
-  },
-  { name: "Weather", to: "/weather", icon: "misc/weather"},
-  {
-    name: "Blueprints",
-    to: "/blueprints",
-    icon: "misc/blueprint"
-  },
-  { name: "Buildings", to: "/buildings", icon: "misc/patch"},
-  { name: "Music", to: "/", icon: "misc/audio"},
+  { name: "Slimes", to: "/slimes", icon: "slimes/pink" },
+  { name: "Food", to: "/food", icon: "food/any" },
+  { name: "Items", to: "/items", icon: "misc/res" },
+  { name: "Regions", to: "/regions", icon: "misc/world" },
+  { name: "Weather", to: "/weather", icon: "misc/weather" },
+  { name: "Blueprints", to: "/blueprints", icon: "misc/blueprint" },
+  { name: "Buildings", to: "/buildings", icon: "misc/patch" },
+  { name: "Music", to: "/", icon: "misc/audio" },
 ];
 
 const NavBar = () => {

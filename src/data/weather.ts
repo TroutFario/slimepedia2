@@ -17,7 +17,17 @@ export const weatherList: {
     [string, string][],
   ];
 } = {
-  [Weather.Clear]: ["Clear Skies", "se", "Select a weather to get it's informations", "", [], null, [], false, []],
+  [Weather.Clear]: [
+    "Clear Skies",
+    "se",
+    "Select a weather to get it's informations",
+    "",
+    [],
+    null,
+    [],
+    false,
+    [],
+  ],
   [Weather.Rain]: [
     "Rain",
     "ra",

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaAngleDown } from "react-icons/fa6";
-import { Navigate, NavLink, useParams } from "react-router-dom";
+import { Navigate, NavLink, useParams } from "react-router";
 import {
   Upgrade,
   upgradeDescriptions,
@@ -12,10 +12,14 @@ import {
 } from "../../data/blueprints/upgrades";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import CraftingList from "../../components/shared/CraftingList";
-import {BlueprintType, prettyRequirement, unlockRequirements} from "../../data/blueprints/blueprints";
+import {
+  BlueprintType,
+  prettyRequirement,
+  unlockRequirements,
+} from "../../data/blueprints/blueprints";
 import PediaInfo from "../../components/PediaInfo";
 import { PediaBoxLayout } from "../../data/enums";
-import { LittleBoxProps } from "../../components/shared/LittleBox";
+import type { LittleBoxProps } from "../../components/shared/LittleBox";
 
 interface UpgradeItemListProps {
   selected: boolean;
@@ -23,7 +27,11 @@ interface UpgradeItemListProps {
   tier: number;
 }
 
-const UpgradeItemList: React.FC<UpgradeItemListProps> = ({ selected = false, upgradePack, tier: selectedTier = 1 }) => {
+const UpgradeItemList: React.FC<UpgradeItemListProps> = ({
+  selected = false,
+  upgradePack,
+  tier: selectedTier = 1,
+}) => {
   const [tier, setTier] = useState<number>(selectedTier);
 
   return (
@@ -34,7 +42,10 @@ const UpgradeItemList: React.FC<UpgradeItemListProps> = ({ selected = false, upg
       </NavLink>
       <div className="vac-upgrade-tiers">
         {tier > 1 && upgradePack[2] >= 1 ? (
-          <NavLink to={`/blueprints/upgrade/${upgradePack[0]}/${tier - 1}`} onClick={() => setTier(tier - 1)}>
+          <NavLink
+            to={`/blueprints/upgrade/${upgradePack[0]}/${tier - 1}`}
+            onClick={() => setTier(tier - 1)}
+          >
             <div className="arrow-left">
               <FaAngleDown />
             </div>
@@ -46,7 +57,10 @@ const UpgradeItemList: React.FC<UpgradeItemListProps> = ({ selected = false, upg
         )}
         <h2>{tier}</h2>
         {tier < upgradePack[2] && upgradePack[2] >= 1 ? (
-          <NavLink to={`/blueprints/upgrade/${upgradePack[0]}/${tier + 1}`} onClick={() => setTier(tier + 1)}>
+          <NavLink
+            to={`/blueprints/upgrade/${upgradePack[0]}/${tier + 1}`}
+            onClick={() => setTier(tier + 1)}
+          >
             <div className="arrow-right">
               <FaAngleDown />
             </div>
@@ -66,7 +80,9 @@ const UpgradeInfo: React.FC<{
   tier: number;
 }> = ({ upgrade, tier }) => {
   const upgradeWithTier: UpgradeWithTier | null =
-    upgrade === null || !(upgrade + tier in upgradesList) ? null : ((upgrade + tier) as UpgradeWithTier);
+    upgrade === null || !(upgrade + tier in upgradesList)
+      ? null
+      : ((upgrade + tier) as UpgradeWithTier);
   let title = "No upgrade selected";
   let subtitle = "Select an upgrade to get its information";
   let icon: string | null = null;
@@ -129,7 +145,8 @@ const UpgradePage: React.FC = () => {
 
   if (upgrade !== null) {
     if (!upgradeNames.includes(upgrade)) return <Navigate to="/blueprints/upgrade" replace />;
-    if (tier < 1 || tier > upgradePacks[upgrade][1]) return <Navigate to={`/blueprints/upgrade/${upgrade}`} replace />;
+    if (tier < 1 || tier > upgradePacks[upgrade][1])
+      return <Navigate to={`/blueprints/upgrade/${upgrade}`} replace />;
   }
   document.title =
     upgrade === null

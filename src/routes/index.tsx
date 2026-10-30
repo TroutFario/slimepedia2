@@ -1,11 +1,13 @@
-import React, { Suspense, ComponentType, LazyExoticComponent } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { lazy, Suspense, type ComponentType, type LazyExoticComponent } from "react";
 import NavBar from "../components/NavBar";
 import ErrorPage from "../pages/ErrorPage";
 import MusicPage from "../pages/Music";
+import { BrowserRouter, Route, Routes } from "react-router";
 
-function lazyWithDefault<T extends ComponentType>(factory: () => Promise<{ default: T }>): LazyExoticComponent<T> {
-  return React.lazy(factory);
+function lazyWithDefault<T extends ComponentType>(
+  factory: () => Promise<{ default: T }>,
+): LazyExoticComponent<T> {
+  return lazy(factory);
 }
 
 const Header = lazyWithDefault(() => import("../pages/Header"));

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const Header: React.FC = () => {
   const [darkMode, setDarkMode] = useState<boolean>(false);
@@ -19,7 +19,11 @@ const Header: React.FC = () => {
 
   return (
     <header className="slimepedia-header">
-      <img src={`/assets/slimes/${darkMode ? "phosphor" : "pink"}.png`} className="slimepedia-logo" alt="Slime Logo" />
+      <img
+        src={`/assets/slimes/${darkMode ? "phosphor" : "pink"}.png`}
+        className="slimepedia-logo"
+        alt="Slime Logo"
+      />
       <h1>Slimepedia 2</h1>
     </header>
   );

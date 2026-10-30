@@ -1,9 +1,10 @@
-import React, { useCallback, useRef, useState } from "react";
-import { BlueprintItem, BlueprintType, Recipe, RecipeElement } from "../data/blueprints/blueprints";
+import { useCallback, useRef, useState } from "react";
+import { BlueprintType, type Recipe, RecipeElement } from "../data/blueprints/blueprints";
 import { upgradesList, UpgradeWithTier } from "../data/blueprints/upgrades";
 import { utilitiesList, Utility } from "../data/blueprints/utilities";
 import { Warp, warpGadgets } from "../data/blueprints/warp";
 import { Decoration, decorationList } from "../data/blueprints/decoration";
+import type { BlueprintItem } from "../data/blueprints/commons";
 
 export type BlueprintList = Map<BlueprintItem, [BlueprintType, number]>;
 export type CraftList = Map<RecipeElement, number>;
@@ -50,54 +51,66 @@ export const useRecipeContextState = () => {
     setCraftList(buildCraftList(sourceBlueprints));
   }, []);
 
-  const increaseBlueprint = useCallback((item: BlueprintItem, type: BlueprintType, qtty: number) => {
-    setBlueprintList((previousBlueprints) => {
-      const next = new Map(previousBlueprints);
-      if (next.has(item)) next.get(item)![1] += qtty;
-      else next.set(item, [type, qtty]);
-      updateCraftList(next);
-      return next;
-    });
-  }, [updateCraftList]);
+  const increaseBlueprint = useCallback(
+    (item: BlueprintItem, type: BlueprintType, qtty: number) => {
+      setBlueprintList((previousBlueprints) => {
+        const next = new Map(previousBlueprints);
+        if (next.has(item)) next.get(item)![1] += qtty;
+        else next.set(item, [type, qtty]);
+        updateCraftList(next);
+        return next;
+      });
+    },
+    [updateCraftList],
+  );
 
-  const decreaseBlueprint = useCallback((item: BlueprintItem, qtty: number) => {
-    setBlueprintList((previousBlueprints) => {
-      if (!previousBlueprints.has(item)) {
-        console.error("Item not found in blueprint list: ", item);
-        return previousBlueprints;
-      }
+  const decreaseBlueprint = useCallback(
+    (item: BlueprintItem, qtty: number) => {
+      setBlueprintList((previousBlueprints) => {
+        if (!previousBlueprints.has(item)) {
+          console.error("Item not found in blueprint list: ", item);
+          return previousBlueprints;
+        }
 
-      const next = new Map(previousBlueprints);
-      if (next.get(item)![1] <= qtty) next.delete(item);
-      else next.get(item)![1] -= qtty;
-      updateCraftList(next);
-      return next;
-    });
-  }, [updateCraftList]);
+        const next = new Map(previousBlueprints);
+        if (next.get(item)![1] <= qtty) next.delete(item);
+        else next.get(item)![1] -= qtty;
+        updateCraftList(next);
+        return next;
+      });
+    },
+    [updateCraftList],
+  );
 
-  const deleteBlueprint = useCallback((item: BlueprintItem) => {
-    setBlueprintList((previousBlueprints) => {
-      if (!previousBlueprints.has(item)) return previousBlueprints;
+  const deleteBlueprint = useCallback(
+    (item: BlueprintItem) => {
+      setBlueprintList((previousBlueprints) => {
+        if (!previousBlueprints.has(item)) return previousBlueprints;
 
-      const next = new Map(previousBlueprints);
-      next.delete(item);
-      updateCraftList(next);
-      return next;
-    });
-  }, [updateCraftList]);
+        const next = new Map(previousBlueprints);
+        next.delete(item);
+        updateCraftList(next);
+        return next;
+      });
+    },
+    [updateCraftList],
+  );
 
   const resetList = useCallback(() => {
     setBlueprintList(new Map());
     setCraftList(new Map());
   }, []);
 
-  const triggerAnimation = useCallback((elementRef: React.MutableRefObject<HTMLButtonElement | null>, animation: string) => {
-    if (elementRef.current) {
-      elementRef.current.classList.remove(animation);
-      void elementRef.current.offsetWidth;
-      elementRef.current.classList.add(animation);
-    }
-  }, []);
+  const triggerAnimation = useCallback(
+    (elementRef: React.RefObject<HTMLButtonElement | null>, animation: string) => {
+      if (elementRef.current) {
+        elementRef.current.classList.remove(animation);
+        void elementRef.current.offsetWidth;
+        elementRef.current.classList.add(animation);
+      }
+    },
+    [],
+  );
 
   return {
     blueprintList,

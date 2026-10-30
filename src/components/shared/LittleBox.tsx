@@ -1,5 +1,4 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 
 const DisplayText: React.FC<{ text: string | null | undefined }> = ({ text }) => {
   if (!text) return <h4>&nbsp;</h4>;
@@ -20,6 +19,7 @@ interface LittleBoxBodyProps {
 }
 
 const LittleBoxBody: React.FC<LittleBoxBodyProps> = ({ image, alt, title, subtitle }) => {
+  console.log(image);
   const imagePath = image ?? "/assets/misc/empty.png";
   const altText = alt ?? "No image";
   return (
@@ -33,7 +33,10 @@ const LittleBoxBody: React.FC<LittleBoxBodyProps> = ({ image, alt, title, subtit
   );
 };
 
-const actionHandler = (e: React.KeyboardEvent<HTMLButtonElement>, action: (() => void) | null | undefined) => {
+const actionHandler = (
+  e: React.KeyboardEvent<HTMLButtonElement>,
+  action: (() => void) | null | undefined,
+) => {
   if (action && "key" in e) {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -68,7 +71,9 @@ export const LittleBox: React.FC<LittleBoxProps> = ({
       <NavLink to={link} style={{ textDecoration: "none" }}>
         <button
           className={
-            "info-box-base button-reset interactive-box element-" + order + (otherClasses ? " " + otherClasses : "")
+            "info-box-base button-reset interactive-box element-" +
+            order +
+            (otherClasses ? " " + otherClasses : "")
           }
           onClick={action ? () => action() : undefined}
           onKeyDown={(e) => actionHandler(e, action)}

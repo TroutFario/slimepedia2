@@ -1,5 +1,3 @@
-import React from "react";
-
 const MusicPage = () => {
   return (
     <div className="page">

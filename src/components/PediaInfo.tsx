@@ -1,5 +1,4 @@
-import React from "react";
-import { LittleBox, LittleBoxProps } from "./shared/LittleBox";
+import { LittleBox, type LittleBoxProps } from "./shared/LittleBox";
 import "../css/Pedia.css";
 import { PediaBoxLayout } from "../data/enums";
 
@@ -15,7 +14,9 @@ const simpleHash = (str: string): string => {
 };
 
 const getLittleBoxKey = (box: LittleBoxProps, index: number): string => {
-  const base = [box.link, box.title, box.subtitle, box.image, box.alt, box.otherClasses].filter(Boolean).join("|");
+  const base = [box.link, box.title, box.subtitle, box.image, box.alt, box.otherClasses]
+    .filter(Boolean)
+    .join("|");
   const hash = simpleHash(base || "little-box");
   return `${hash}-${index}`;
 };
@@ -58,7 +59,13 @@ const PediaInfo: React.FC<PediaInfoProps> = ({
           />
         </div>
         {botLeftBtn}
-        {plortIcon && <img src={`/assets/plorts/${plortIcon}.png`} className="img-plort" alt={"Plort of " + title} />}
+        {plortIcon && (
+          <img
+            src={`/assets/plorts/${plortIcon}.png`}
+            className="img-plort"
+            alt={"Plort of " + title}
+          />
+        )}
       </div>
       {littleBoxList.map((box, index) => (
         <LittleBox

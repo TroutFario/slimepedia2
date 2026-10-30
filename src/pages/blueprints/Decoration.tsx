@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router";
 import NavButton from "../../components/NavButton";
-import {BlueprintType, DecorationTheme, prettyRequirement, unlockRequirements} from "../../data/blueprints/blueprints";
+import {
+  BlueprintType,
+  prettyRequirement,
+  unlockRequirements,
+} from "../../data/blueprints/blueprints";
 import {
   Decoration,
   decorationNames,
   decorationDescription,
   decorationList,
   themeList,
+  DecorationTheme,
 } from "../../data/blueprints/decoration";
 import CraftingList from "../../components/shared/CraftingList";
-import { LittleBoxProps } from "../../components/shared/LittleBox";
+import type { LittleBoxProps } from "../../components/shared/LittleBox";
 import PediaInfo from "../../components/PediaInfo";
 import { PediaBoxLayout } from "../../data/enums";
 
@@ -80,9 +85,14 @@ const DecorationPage: React.FC = () => {
   const [decoFilter, setDecoFilter] = useState<DecorationTheme>(DecorationTheme.ANY);
 
   const decorationListFiltered: Decoration[] =
-    decoFilter === "any" ? decorationNames : decorationNames.filter((deco) => decorationList[deco].theme=== decoFilter);
+    decoFilter === "any"
+      ? decorationNames
+      : decorationNames.filter((deco) => decorationList[deco].theme === decoFilter);
 
-  document.title = blueprint === null ? "Decoration - Slimepedia" : decorationList[blueprint].name + " - Slimepedia";
+  document.title =
+    blueprint === null
+      ? "Decoration - Slimepedia"
+      : decorationList[blueprint].name + " - Slimepedia";
 
   return (
     <>
@@ -113,7 +123,11 @@ const DecorationPage: React.FC = () => {
           className="blueprint-list decoration"
         >
           {decorationListFiltered.map((decoName) => (
-            <NavLink key={decoName} to={`/blueprints/decoration/${decoName}`} className="blueprint-item">
+            <NavLink
+              key={decoName}
+              to={`/blueprints/decoration/${decoName}`}
+              className="blueprint-item"
+            >
               <NavButton
                 name={decorationList[decoName].name}
                 icon={`deco/${decoName}`}

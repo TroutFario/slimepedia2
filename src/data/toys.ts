@@ -31,8 +31,7 @@ type ToyProps = {
   price: number;
 };
 
-const cTP = (name: string, description: string, price: number) => ({name, description, price});
-
+const cTP = (name: string, description: string, price: number) => ({ name, description, price });
 
 export const toyList: { [key in Toy]: ToyProps } = {
   [Toy.Ball]: cTP(
@@ -154,5 +153,5 @@ export const toyList: { [key in Toy]: ToyProps } = {
     "Resource Detector",
     "Find unharvested resources in your area!\nJust walk around holding the Resource Detector Toy. It will lock onto the nearest resource in it's range and show tou the way to go. You can always reset it by dropping it, then picking it back up!",
     1000,
-  )
+  ),
 };

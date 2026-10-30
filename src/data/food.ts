@@ -56,22 +56,22 @@ type DietProps = {
   plural: string;
 };
 export const dietList: { [key in Diet]: DietProps } = {
-  [Diet.Any]: {plural: "Any", singular: "Any"},
-  [Diet.Meat]: {plural: "Meat", singular: "Meat"},
-  [Diet.Fruits]: {plural: "Fruits", singular: "Fruit"},
-  [Diet.Veggies]: {plural: "Veggies", singular: "Veggie"},
-  [Diet.Water]: {plural: "Water", singular: "Water"},
-  [Diet.Ash]: {plural: "Ash", singular: "Ash"},
-  [Diet.Nectar]: {plural: "Nectar", singular: "Nectar"},
-  [Diet.RanchersNSlimes]: {plural: "Ranchers and Slimes", singular: "Ranchers and Slimes"},
+  [Diet.Any]: { plural: "Any", singular: "Any" },
+  [Diet.Meat]: { plural: "Meat", singular: "Meat" },
+  [Diet.Fruits]: { plural: "Fruits", singular: "Fruit" },
+  [Diet.Veggies]: { plural: "Veggies", singular: "Veggie" },
+  [Diet.Water]: { plural: "Water", singular: "Water" },
+  [Diet.Ash]: { plural: "Ash", singular: "Ash" },
+  [Diet.Nectar]: { plural: "Nectar", singular: "Nectar" },
+  [Diet.RanchersNSlimes]: { plural: "Ranchers and Slimes", singular: "Ranchers and Slimes" },
 };
 
 type FoodProps = {
-  name: string,
+  name: string;
   diet: Diet | null;
 };
 
-const createFoodProps = (name: string, diet: Diet | null): FoodProps => ({name, diet});
+const createFoodProps = (name: string, diet: Diet | null): FoodProps => ({ name, diet });
 
 export const foodList: { [key in Food]: FoodProps } = {
   [Food.Carrot]: createFoodProps("Carrot", Diet.Veggies),

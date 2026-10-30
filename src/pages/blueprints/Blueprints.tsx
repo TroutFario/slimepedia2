@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { NavLink, useParams } from "react-router";
 import { RecipeProvider } from "../../components/RecipeContext";
 import "../../css/Blueprints.css";
 import UpgradePage from "./Upgrades";
@@ -50,7 +50,10 @@ const Blueprints: React.FC = () => {
             <img src="/assets/misc/utility.png" alt="Utility" />
             <h1>Utility</h1>
           </NavLink>
-          <NavLink to="/blueprints/warp" className={`blueprints-tab${tab === BlueprintType.WARP ? " selected" : ""}`}>
+          <NavLink
+            to="/blueprints/warp"
+            className={`blueprints-tab${tab === BlueprintType.WARP ? " selected" : ""}`}
+          >
             <img src="/assets/misc/warp.png" alt="Warp Tech" />
             <h1>Warp Tech</h1>
           </NavLink>

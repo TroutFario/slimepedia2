@@ -12,10 +12,25 @@ export const regionInfos: {
     "An expansive body of water and slime compound that's not fit for swimming, let alone drinking.",
     0,
   ],
-  [Region.Fields]: ["Rainbow Fields", "rf", "Shifting colors like a dream, fading just as quickly.", 18],
+  [Region.Fields]: [
+    "Rainbow Fields",
+    "rf",
+    "Shifting colors like a dream, fading just as quickly.",
+    18,
+  ],
   [Region.Strand]: ["Starlight Strand", "ss", "A vision of dusk and dawn together as one.", 32],
-  [Region.Valley]: ["Ember Valley", "ev", "The ancient world stirs beneath your feet with every step.", 33],
-  [Region.Bluffs]: ["Powderfall Bluffs", "pb", "A lost era echoing trough halls of shimmering ice.", 24],
+  [Region.Valley]: [
+    "Ember Valley",
+    "ev",
+    "The ancient world stirs beneath your feet with every step.",
+    33,
+  ],
+  [Region.Bluffs]: [
+    "Powderfall Bluffs",
+    "pb",
+    "A lost era echoing trough halls of shimmering ice.",
+    24,
+  ],
   [Region.Labyrinth]: [
     "The Grey Labyrinth",
     "gl",
@@ -27,7 +42,14 @@ export const regionInfos: {
 export const ranchInfos: {
   [key in Ranch]: [string, string, string, number, number, number];
 } = {
-  [Ranch.Conservatory]: ["The Conservatory", "co", "Your gateway to a prismatic paradise.", 0, 8, 0],
+  [Ranch.Conservatory]: [
+    "The Conservatory",
+    "co",
+    "Your gateway to a prismatic paradise.",
+    0,
+    8,
+    0,
+  ],
   [Ranch.Den]: [
     "The Den",
     "td",
@@ -74,8 +96,8 @@ export const ranchInfos: {
     "A secret hideaway for slimes that need a little extra care-taking...",
     0,
     9, // TODO: not sure
-    0
-  ]
+    0,
+  ],
 };
 
 export const regionElements: {
@@ -223,7 +245,14 @@ export const regionElements: {
       Food.HenElder,
       Food.RoosterElder,
     ],
-    [Food.Water, Resource.Snowflake, Resource.Sunsap, Resource.Fossil, Resource.Diamond, Slime.Saber],
+    [
+      Food.Water,
+      Resource.Snowflake,
+      Resource.Sunsap,
+      Resource.Fossil,
+      Resource.Diamond,
+      Slime.Saber,
+    ],
   ],
   [Region.Labyrinth]: [
     [
@@ -300,7 +329,7 @@ export const ranchSpecials: { [key in Ranch]: string[] } = {
   [Ranch.Archway]: ["spawnPogo", "spawnCarrot"],
   [Ranch.Tidepools]: ["pond"],
   [Ranch.Digsite]: ["pond", "springpad"],
-  [Ranch.Sanctuary]: [] //TODO: add stuff
+  [Ranch.Sanctuary]: [], //TODO: add stuff
 };
 
 export const ranchPedia: { [key in Ranch]: string } = {
@@ -317,7 +346,7 @@ export const ranchPedia: { [key in Ranch]: string } = {
   [Ranch.Digsite]:
     "The Digsite is an expansion that revealed itself when a wall collapsed inside the Den, revealing an abandoned archaeological site. It's not clear what the excavator was searching for on the site's windswept cliffs, or if they ever discovered it.",
   [Ranch.Sanctuary]:
-    "The Sanctuary is familliar and unfamillar at the same time: a brand new island, but one clearly cultivated by the people of the past who also created the Labyrinth, with an equally ancient facility build on it for an equally mysterious purpose.\nOn disembarking from the docks, an explorer is greeted wuth towering cliffs with beautiful yes strange symbols marked on them, and an  enormous, oddly radiant slime statue.\nSurrounded by the gently lapping waves of the Slime Sea, a sense of peace permeates the Sanctuary, and mossy old growth makes everything feel perfectly in the tune with nature.\nIts greater secret lie within, with plots for ranchers implying that this place may be used to care for slimes, and an unusual new friend to meet inside."
+    "The Sanctuary is familliar and unfamillar at the same time: a brand new island, but one clearly cultivated by the people of the past who also created the Labyrinth, with an equally ancient facility build on it for an equally mysterious purpose.\nOn disembarking from the docks, an explorer is greeted wuth towering cliffs with beautiful yes strange symbols marked on them, and an  enormous, oddly radiant slime statue.\nSurrounded by the gently lapping waves of the Slime Sea, a sense of peace permeates the Sanctuary, and mossy old growth makes everything feel perfectly in the tune with nature.\nIts greater secret lie within, with plots for ranchers implying that this place may be used to care for slimes, and an unusual new friend to meet inside.",
 };
 
 export const regionPedia: { [key in Region]: string } = {
@@ -344,7 +373,7 @@ export const ranchConnections: {
   [Ranch.Archway]: [[Ranch.Conservatory], []],
   [Ranch.Tidepools]: [[Ranch.Gully], []],
   [Ranch.Digsite]: [[Ranch.Den], []],
-  [Ranch.Sanctuary]: [[Region.Fields], []]
+  [Ranch.Sanctuary]: [[Region.Fields], []],
 };
 
 export const regionsConnections: {
@@ -355,7 +384,10 @@ export const regionsConnections: {
   [Region.Valley]: [[Region.Fields], [Region.Bluffs, Region.Labyrinth]],
   [Region.Bluffs]: [[Region.Valley], []],
   [Region.Labyrinth]: [[Region.Strand, Region.Valley], []],
-  [Region.Sea]: [[Ranch.Conservatory, Region.Fields, Region.Strand, Region.Valley, Region.Bluffs], []],
+  [Region.Sea]: [
+    [Ranch.Conservatory, Region.Fields, Region.Strand, Region.Valley, Region.Bluffs],
+    [],
+  ],
 };
 
 export enum GLSection {

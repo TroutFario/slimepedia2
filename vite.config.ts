@@ -1,12 +1,10 @@
+import react, { reactCompilerPreset } from "@vitejs/plugin-react";
+import babel from "@rolldown/plugin-babel";
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import process from "node:process";
-import dotenv from "dotenv";
 
-dotenv.config();
-
+// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
   base: process.env.VITE_PUBLIC_URL || "/",
   build: {
     outDir: process.env.VITE_BUILD_PATH || "dist",

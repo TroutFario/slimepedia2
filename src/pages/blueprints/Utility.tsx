@@ -1,13 +1,21 @@
-import React from "react";
-import { NavLink, useParams } from "react-router-dom";
-import { utilitiesDescription, utilitiesList, Utility, utilityNames } from "../../data/blueprints/utilities";
+import { NavLink, useParams } from "react-router";
+import {
+  utilitiesDescription,
+  utilitiesList,
+  Utility,
+  utilityNames,
+} from "../../data/blueprints/utilities";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import NavButton from "../../components/NavButton";
 import CraftingList from "../../components/shared/CraftingList";
-import {BlueprintType, prettyRequirement, unlockRequirements} from "../../data/blueprints/blueprints";
+import {
+  BlueprintType,
+  prettyRequirement,
+  unlockRequirements,
+} from "../../data/blueprints/blueprints";
 import PediaInfo from "../../components/PediaInfo";
 import { PediaBoxLayout } from "../../data/enums";
-import { LittleBoxProps } from "../../components/shared/LittleBox";
+import type { LittleBoxProps } from "../../components/shared/LittleBox";
 
 const UtilityInfo: React.FC<{ utility: Utility | null }> = ({ utility }) => {
   let title = "No utility selected";
@@ -54,7 +62,8 @@ const UtilityPage: React.FC = () => {
   const { blueprint: blueprintName } = useParams<{ blueprint: string }>();
   const warp = (blueprintName as Utility) ?? null;
 
-  document.title = warp === null ? "Blueprints - Slimepedia" : utilitiesList[warp].name + " - Slimepedia";
+  document.title =
+    warp === null ? "Blueprints - Slimepedia" : utilitiesList[warp].name + " - Slimepedia";
 
   return (
     <>
@@ -69,7 +78,11 @@ const UtilityPage: React.FC = () => {
         className="blueprint-list"
       >
         {utilityNames.map((utilityName) => (
-          <NavLink key={utilityName} to={`/blueprints/utility/${utilityName}`} className="blueprint-item">
+          <NavLink
+            key={utilityName}
+            to={`/blueprints/utility/${utilityName}`}
+            className="blueprint-item"
+          >
             <NavButton
               key={utilityName}
               name={utilitiesList[utilityName].name}

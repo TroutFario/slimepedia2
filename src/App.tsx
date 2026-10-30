@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Slime } from "./data/slimes";
 import Routes from "./routes/index";
 import "overlayscrollbars/overlayscrollbars.css";
@@ -21,6 +21,6 @@ const App = () => {
       <Routes />
     </div>
   );
-}
+};
 
 export default App;

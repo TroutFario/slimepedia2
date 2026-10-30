@@ -1,11 +1,14 @@
-import React from "react";
-import {BlueprintType, prettyRequirement, unlockRequirements} from "../../data/blueprints/blueprints";
+import {
+  BlueprintType,
+  prettyRequirement,
+  unlockRequirements,
+} from "../../data/blueprints/blueprints";
 import { Warp, warpDescriptions, warpGadgets, warpNames } from "../../data/blueprints/warp";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router";
 import NavButton from "../../components/NavButton";
 import CraftingList from "../../components/shared/CraftingList";
-import { LittleBoxProps } from "../../components/shared/LittleBox";
+import type { LittleBoxProps } from "../../components/shared/LittleBox";
 import PediaInfo from "../../components/PediaInfo";
 import { PediaBoxLayout } from "../../data/enums";
 
@@ -54,7 +57,8 @@ const WarpPage: React.FC = () => {
   const { blueprint: warpName } = useParams();
   const warp = (warpName as Warp) ?? null;
 
-  document.title = warp === null ? "Blueprints - Slimepedia" : warpGadgets[warp].name + " - Slimepedia";
+  document.title =
+    warp === null ? "Blueprints - Slimepedia" : warpGadgets[warp].name + " - Slimepedia";
 
   return (
     <>
